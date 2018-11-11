@@ -1,0 +1,79 @@
+//Table File, Version 1.02 (c) 2004 4head studios
+//Exported 
+
+Table Description:
+"id" INT -1 |"exportname" STRING  0         |
+
+Data: 
+1            "textcategories"                | 
+19           "tables"                        | 
+26           "Properties"                    | 
+27           "PropertiesTypes"               | 
+29           "TemplatePropValues"            | 
+30           "CharPatterns"                  | 
+31           "CharPatternGroups"             | 
+32           "CharPropertyTemplates"         | 
+33           "Buildings"                     | 
+34           "Items"                         | 
+35           "Needs"                         | 
+36           "Professions"                   | 
+37           "Filter"                        | 
+38           "Measures"                      | 
+39           "MeasureToObjects"              | 
+40           "Seasons"                       | 
+42           "Models"                        | 
+43           "Materials"                     | 
+44           "ConstructionTime"              | 
+45           "Scenes"                        | 
+46           "GitsePropertys"                | 
+47           "GitseDialogtypes"              | 
+48           "PathPrefPatterns"              | 
+49           "PathPrefPatternNames"          | 
+50           "MeasureObjects"                | 
+51           "GitseConstants"                | 
+54           "GameConstants"                 | 
+56           "Decorators"                    | 
+57           "Classes"                       | 
+58           "PathMaterials"                 | 
+59           "BuildingTypes"                 | 
+60           "BuildingUpgrades"              | 
+61           "CharModels"                    | 
+62           "FacialExpressions"             | 
+63           "CharLevels"                    | 
+64           "SkillXpCost"                   | 
+65           "Skills"                        | 
+66           "MemoryEvent"                   | 
+67           "MemoryInfoQuality"             | 
+70           "Action"                        | 
+72           "AIScripts"                     | 
+73           "Sentences"                     | 
+74           "VegetationGroups"              | 
+75           "Text"                          | 
+76           "AnimationEffects"              | 
+77           "MeasureType"                   | 
+78           "AICharacterType"               | 
+79           "GuildResource"                 | 
+81           "Impacts"                       | 
+82           "State"                         | 
+83           "Weapons"                       | 
+84           "Offices"                       | 
+85           "IndoorMapPositions"            | 
+86           "Fonts"                         | 
+87           "DynastyColors"                 | 
+88           "Positions"                     | 
+89           "Sound"                         | 
+90           "NobilityTitle"                 | 
+91           "Apprentice"                    | 
+92           "BuildingNPC"                   | 
+93           "abilities"                     | 
+94           "abilitypoints"                 | 
+95           "maps"                          | 
+96           "messageclass"                  | 
+97           "SoundSources"                  | 
+98           "BoneLODs"                      | 
+100          "songvariation"                 | 
+101          "songspecialevents"             | 
+102          "Lordship"                      | 
+
+// TOM Modded
+110         "BuildingToItems"                |

@@ -1,0 +1,82 @@
+// Additional Table by ThreeOfMe
+// The table lists the items a building produces. 
+// NOTE that the id column MUST match the building-id for easy lookup.
+// The name column serves readability only. 
+// The list of items refers to item ids.
+
+Table Description:
+"id" INT -1 |"name" STRING  0     | "maxcount" INT  0   |"produceditems" STRING  0   |
+
+Data: 
+// Farm 100, 101, 102
+100            "Farm1"             4                 "1   2   4   5"                                         | 
+101            "Farm2"             6                 "1   2   4   5   6   7"                                 | 
+102            "Farm3"             9                 "1   2   4   5   6   7   8   9   10"                    | 
+// Bakery 120, 121, 122
+120            "Bakery1"           2                 "22   23"                                               |
+121            "Bakery2"           5                 "22   23   24   25   26"                                |
+122            "Bakery3"           8                 "22   23   24   25   26   27   28   29"                 |
+// Tavern 130, 131, 132
+130            "Tavern1"           3                 "30   31   32"                                          |
+131            "Tavern2"           6                 "30   31   32   34   35   36"                           |
+132            "Tavern3"           10                "30   31   32   34   35   36   37   38   39   40"       |
+// Smithy 140 and 141, 142 and 143, 144 
+140            "Smithy1"           3                 "61   80   81"                                          |
+141            "Smithy2a"          6                 "61   80   81   83   84   85"                           |
+142            "Smithy3a"          9                 "61   80   81   83   84   85   86   87   88"            |
+143            "Smithy2b"          6                 "61   80   81   89   90   91"                           |
+144            "Smithy3b"          9                 "61   80   81   89   90   91   94   95"            |
+// Joinery 150, 151, 152
+150            "Joinery1"          4                 "100   101   102   103"                                 |
+151            "Joinery2"          8                 "100   101   102   103   104   105   106   107"         |
+152            "Joinery3"          11                "100   101   102   103   104   105   106   107   108   109   110"       |
+// Tailor 160, 161, 162
+160            "Tailor1"           4                 "121   122   123"                                 |
+161            "Tailor2"           7                 "121   122   123   124   125   126"               |
+162            "Tailor3"           10                "121   122   123   124   125   126   127   128   129"      |
+// Stonemason 165, 166, 167
+165            "Stonemason1"       4                 "131 132"                                 |
+166            "Stonemason2"       4                 "131 132 135 136"                                 |
+167            "Stonemason3"       4                 "131 132 135 136 137 138 139"                                 |
+// Alchimist 170 and 171, 172 and 173, 174
+170            "Alchimist1"        4                 "33 162 163"                                 |
+171            "Alchimist2a"       4                 "33 162 163 167 168 169"                     |
+172            "Alchimist3a"       4                 "33 162 163 167 168 169 170 171"     |
+173            "Alchimist2b"       4                 "33 162 163 174 175 176"                 |
+174            "Alchimist3b"       4                 "33 162 163 174 175 176 177 178 179"      |
+// Church prot 190, 191, 192
+190            "ChurchProt1"       4                 "181 182 184"                                |
+191            "ChurchProt2"       4                 "181 182 184 185 186"                                |
+192            "ChurchProt3"       4                 "181 182 184 185 186 187 188"                                |
+// Church cath 193, 194, 195
+193            "ChurchCath1"       4                 "181 182 184"                                |
+194            "ChurchCath2"       4                 "181 182 184 189 190"                                |
+195            "ChurchCath3"       4                 "181 182 184 189 190 191 192"                                |
+// WoodcutterHut 270
+270            "WoodcutterHut"       5                 "140 141 142 143 144"                                 |
+// Mine 290
+290            "WoodcutterHut"       5                 "150 151 152 153 154"                                 |
+// Fishinghut 370, 371, 372
+370            "Fishinghut1"        4                 "50 51 52 53"                                 |
+371            "Fishinghut2"        7                 "50 51 52 53 55 56"                                 |
+372            "Fishinghut3"        9                 "50 51 52 53 55 56 59"                                 |
+// Hospital 390, 391, 392
+390            "Hospital1"        3                 "200 201 202"                                 |
+391            "Hospital2"        3                 "200 201 202 203 205 206"                                 |
+392            "Hospital3"        3                 "200 201 202 203 205 206 204 207"                                 |
+// Windmill 490
+490            "Windmill"        3                 "70 71 72"                                 |
+// Fruitfarm 491
+491            "Fruitfarm"        3                 "60 63 64 73 38"                                 |
+// Friedhof 660, 661, 662
+660            "Friedhof1"        4                 "223 224 225"                                 |
+661            "Friedhof2"        5                 "223 224 225 227 228"                                 |
+662            "Friedhof3"        5                 "223 224 225 227 228 229 230 231"                                 |
+// Bankhouse 665, 666, 667
+665            "Bankhouse1"        4                 "210 212 213"                                 |
+666            "Bankhouse2"        7                 "210 212 213 214 215 216"                                 |
+667            "Bankhouse3"        10                "210 212 213 214 215 216 217 218 219"                                 |
+// Gaukler 670, 671, 672
+670            "Gaukler1"        3                 "240 241"                                 |
+671            "Gaukler2"        4                 "240 241 242 243 "                                 |
+672            "Gaukler3"        4                 "240 241 242 243 244 245"                                 |

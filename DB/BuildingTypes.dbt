@@ -1,0 +1,55 @@
+//Table File (c) 2004 4head studios
+//Modified by RUNEFORGE Game Studio
+
+Table Description:
+"id" INT -1 |"name" STRING  0 |"professionid" INT  0 |"charclassid" INT  0 |"standardproduct" INT  0 |
+
+Data:
+1   "worker_housing"   0   0   0   |
+2   "residence"   18   0   0   |
+3   "farm"   1   1   4   |
+4   "tavern"   2   1   31   |
+6   "bakery"   4   1   20   |
+7   "smithy"   5   2   81   |
+8   "joinery"   6   2   100   |
+9   "tailoring"   7   2   121   |
+11   "piratesnest"   14   4   0   |
+12   "mine"   13   2   0   |
+13   "harbor"   0   0   0   |
+14   "market"   0   0   0   |
+15   "robber"   15   4   0   |
+16   "alchemist_shop"   9   3   162   |
+18   "rangerhut"   16   2   0   |
+19   "church_ev"   11   3   181   |
+20   "church_cath"   11   3   181   |
+21   "castle"   17   0   0   |
+22   "thief"   26   4   0   |
+23   "townhall"   17   0   0   |
+24   "well"   17   0   0   |
+25   "prison"   17   0   0   |
+26   "bank"   0   0   0   |
+27   "school"   13   0   0   |
+28   "executionplace"   0   0   0   |
+29   "graveyard"   0   0   0   |
+30   "resource"   0   0   0   |
+31   "duelplace"   0   0   0   |
+32   "lingerplace"   0   0   0   |
+33   "buildableresource"   1   1   0   |
+34   "kontor"   0   0   0   |
+35   "fishinghut"   29   1   52   |
+36   "divehouse"   30   4   0   |
+37   "hospital"   31   3   202   |
+38   "warehouse"   0   0   0   |
+39   "waterresource"   0   0   0   |
+40   "tower"   0   0   0   |
+41   "blackboard"   0   0   0   |
+42   "weddingchapel"   0   0   0   |
+43   "bankhouse"   41   3   212   |
+97   "none"   1   0   0   |
+98   "Friedhof"   40   3   222   |
+102   "gaukler"   42   4   241   |
+104   "Mill"   66   1   70   |
+108   "Fruitfarm"   1   1   0   |
+109   "Soldierplace"   0   0   0   |
+110   "stonemason"   62   2   131   |
+111   "estate"   74   0   0   |

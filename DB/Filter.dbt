@@ -1,0 +1,602 @@
+//Table File (c) 2004 4head studios
+//Modified by RUNEFORGE Game Studio
+
+Table Description:
+"id" INT -1 |"name" STRING  0 |"filter" STRING  0 |
+
+Data:
+0   "None"   ""   |
+1   "TargetFilterWalk"   "__F((Object.Type == Position)OR(Object.Type == Sim)OR(Object.Type == Cart)OR(Object.Type == Building))"   |
+2   "TargetFilterBuilding"   "__F((Object.Type == Building))"   |
+3   "TargetFilterBuilding"   "__F((Object.Type == Building)AND(Object.HasDynasty()))"   |
+5   "IsInBuilding"   "__F((Object.IsInBuilding()))"   |
+9   "BelongsToMe"   "__F((Object.BelongsToMe()))"   |
+10   "CanBeControlled"   "__F((Object.CanBeControlled()))"   |
+11   "CanBeFired"   "__F((Object.BelongsToMe())AND NOT(Object.GetState(npc))AND NOT(Object.GetState(npcfighter)))"   |
+12   "CanHire"   "__F((Object.CanHire()))"   |
+15   "IsOnVehicle"   "__F((Object.IsOnVehicle()))"   |
+21   "HasOperator"   "__F((Object.VehicleHasOperator()))"   |
+22   "IsNotInBuilding"   "__F(NOT(Object.IsInBuilding()))"   |
+25   "IsBurning"   "__F((Object.GetState(burning))AND(Object.CanBeControlled()))"   |
+27   "HasBlackDeath"   "__F((Object.GetState(blackdeath)))"   |
+28   "HasNotBlackDeath"   "__F(NOT(Object.GetState(blackdeath)))"   |
+75   "IsMyMyrmidon"   "__F((Object.CanBeControlled())AND(Object.GetProfession()== 18)OR(Object.GetProfession()== 74))"   |
+76   "CanWorkHere"   "__F((Object.CanWorkHere())AND(Object.CanBeControlled())AND(Object.GetProfession()!= 18))"   |
+80   "CanExitCart"   "__F((Object.CanBeControlled())AND (Object.VehicleHasOperator()))"   |
+81   "IsNotBurning"   "__F((Object.CanBeControlled())AND NOT(Object.GetState(burning)))"   |
+82   "NotBelongsToMe"   "__F(NOT(Object.BelongsToMe())AND(Object.MinAge(16)))"   |
+83   "TakeOverBid"   "__F(NOT(Object.BelongsToMe())AND(Object.Type == Building)AND(Object.HasDynasty())AND NOT(Object.IsBuyable()))"   |
+84   "IsBuyable"   "__F(NOT(Object.BelongsToMe())AND(Object.IsBuyable()))"   |
+85   "BuildingCanLevelUp"   "__F((Object.CanBeControlled())AND NOT(Object.IsInFight())AND(Object.CanLevelUp()))"   |
+88   "CanInteractWithOwnSimsInside"   "__F((Object.CanBeControlled())AND(Object.IsNotAloneInRoom())AND(Object.GetInsideBuilding())AND(Object.BelongsToMe()))"   |
+89   "CanPerformEvocation"   "__F((Object.CanBeControlled())AND(Object.CanWorkHere())AND(Object.GetInsideBuilding())AND(Object.HasUpgrade(EvocationCircle)))"   |
+90   "WillFollow"   "__F((Object.WillFollow(Owner))AND(Object.CheckCutscene()))"   |
+92   "CanHaveVision"   "__F((Object.CanBeControlled())AND(Object.GetInsideBuilding())AND(Object.BelongsToMe())AND(Object.HasUpgrade(Observatory)))"   |
+93   "IsNotMarried"   "__F((Object.BelongsToMe())AND NOT(Object.IsMarried()))"   |
+98   "IsQuestSource"   "__F((Object.IsQuestSource()))"   |
+99   "CanTalk"   "__F((Object.CanBeControlled())AND(Object.Property.CanTalk==1))"   |
+101   "IsMyResidence"   "__F((Object.CanBeControlled())AND (Object.IsClass(1)))"   |
+103   "BuildingCanBeRepaired"   "__F((Object.CanBeControlled())AND NOT(Object.IsInFight())AND(Object.CompareHPRelative()<99))"   |
+104   "CameraIsInBuilding"   "__F((Object.CameraIsInBuilding())"   |
+105   "NotCameraIsInBuilding"   "__F(NOT(Object.CameraIsInBuilding())AND(Object.Property.HasIndoor > 0))"   |
+106   "CanMoveTo"   "__F((Object.CanMoveTo(Destination)))"   |
+109   "HasItemToSell"   "__F((Object.HasItemToSell()))"   |
+110   "IsTavern"   "__F((Object.IsType(4)))"   |
+111   "ToggleProductionBuilding"   "__F((Object.CanBeControlled())AND (Object.IsClass(2)))"   |
+112   "ToggleProductionSim"   "__F((Object.CanBeControlled())AND (Object.IsInBuilding(player))AND(Object.MinAge(16)))"   |
+113   "ToggleTransportCart"   "__F((Object.CanBeControlled())AND (Object.IsInOwnLoadingRange()))"   |
+114   "HasDifferentSex"   "__F((Object.HasDifferentSex()))"   |
+115   "IsMarketBuilding"   "__F((Object.IsClass(5)))"   |
+116   "ToggleTransportBuilding"   "__F((Object.CanBeControlled())OR (Object.IsClass(5)))"   |
+117   "CanEmbezzlePublicMoney"   "__F((Object.CanBeControlled())AND(Object.HasImpact(EmbezzlePublicMoney))AND(Object.IsInOfficeBuilding()))"   |
+118   "IsMyWorkerInTavern"   "__F((Object.CanWorkHere())AND(Object.GetProfession()==2)AND(Object.CanBeControlled())AND(Object.MinAge(16)))"   |
+119   "IsMySimAtHome"   "__F((Object.CanBeControlled())AND(Object.GetInsideBuilding())AND(Object.BelongsToMe())AND(Object.IsType(2)))"   |
+121   "IsMySimInTavern"   "__F((Object.CanBeControlled())AND(Object.GetInsideBuilding())AND(Object.IsType(4)))"   |
+122   "CanBeAssignedToBuilding"   "__F((Object.CanBeControlled())AND(Object.GetInsideBuilding())AND(Object.BelongsToMe())AND NOT(Object.IsBuildingOwnedByMe())AND(Object.CanBuildingBeOwnedByMe()))"   |
+123   "IsMySimInBuilding"   "__F((Object.CanBeControlled())AND(Object.IsInBuilding()))"   |
+125   "CanGather"   "__F((Object.CanBeControlled())AND(Object.MinAge(16))AND NOT(Object.GetProfession()==18))"   |
+126   "IsSingle"   "__F((Object.CanBeControlled())AND(Object.CanCourt()))"   |
+127   "CanBeCourted"   "__F((Object.CanBeCourted())AND NOT(Object.GetState(animal)) AND NOT (Object.GetState(npcfighter)) AND NOT (Object.HasProperty(Guarding)))"   |
+128   "HasCourtLover"   "__F((Object.CanBeControlled())AND(Object.HasCourtLover()))"   |
+129   "HasNoCourtLover"   "__F((Object.BelongsToMe())AND NOT(Object.HasCourtLover()))"   |
+130   "IsNotMarketBuilding"   "__F(NOT(Object.IsClass(5)))"   |
+131   "IsInventoryVisible"   "__F((Object.IsInventoryVisible())AND NOT(Object.HudIsInCutscene()))"   |
+132   "IsInsideBank"   "__F((Object.CanBeControlled())AND(Object.GetInsideBuilding())AND(Object.IsType(26)))"   |
+133   "IsMySimInTownHall"   "__F((Object.CanBeControlled())AND(Object.GetInsideBuilding())AND(Object.IsType(23)))"   |
+135   "CanAdministrateDiplomacy"   "__F((Object.BelongsToMe())AND(Object.HasUpgrade(Escritoire)))"   |
+136   "HasNoLiaison"   "__F((Object.CanBeControlled())AND NOT(Object.HasLiaison())AND(Object.MinAge(16)))"   |
+137   "FreeForLiaison"   "__F((Object.HasDifferentSex())AND NOT(Object.BelongsToMe())AND(Object.MinAge(16)))"   |
+138   "CanBeBlackmailed"   "__F(NOT(Object.BelongsToMe())AND(Object.ActionAdmissible()))"   |
+139   "CanBeCharged"   "__F(NOT(Object.BelongsToMe())AND (Object.EnoughEvidenceAgainst()))"   |
+140   "IsHostile"   "__F((Object.IsHostile()))"   |
+141   "IsInDamagedHostileBuilding"   "__F((Object.CanBeControlled())AND NOT(Object.GetState(fighting))AND(Object.GetInsideBuilding())AND(Object.IsHostile())AND(Object.CompareHPRelative()<30))"   |
+142   "CanEscape"   "__F((Object.BelongsToMe())AND(Object.GetState(imprisoned))AND(Object.GetInsideBuilding())AND(Object.IsType(25))AND(Object.CompareHPRelative()<50))"   |
+144   "CanSabotageBomb"   "__F((Object.CanBeControlled())AND(Object.GetProfession()== 18)AND(Object.GetWorkBuilding())AND(Object.IsType(2))AND(Object.HasUpgrade(Bomb)))"   |
+145   "CanSabotageCombustionBomb"   "__F((Object.CanBeControlled())AND(Object.GetProfession()== 18)AND(Object.GetWorkBuilding())AND(Object.IsType(2))AND(Object.HasUpgrade(CombustionBomb)))"   |
+146   "CanUseHealthPotion"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Mead)>0)AND NOT(Object.GetState(fighting)))"   |
+147   "CanUseAboutTalents1"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(AboutTalents1)>0)AND NOT(Object.GetState(fighting)))"   |
+148   "CanUseAboutTalents2"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(AboutTalents2)>0)AND NOT(Object.GetState(fighting)))"   |
+149   "ToggleStoreOwnBuilding"   "__F((Object.CanBeControlled())AND (Object.IsClass(1))OR(Object.IsClass(8)))"   |
+150   "ToggleStoreForeignBuilding"   "__F(NOT(Object.CanBeControlled())AND (Object.IsClass(2)))"   |
+151   "CanDemolishBuilding"   "__F((Object.CanBeControlled())AND (Object.HasImpact(DemolishBuilding)))"   |
+152   "CanCurryFavor"   "__F((Object.CanBeControlled())AND (Object.HasImpact('CurryFavor')))"   |
+153   "CanAbsolveSinner"   "__F((Object.CanBeControlled())AND (Object.HasImpact(AbsolveSinner)))"   |
+154   "CanDeliverTheFalseGauntlet"   "__F((Object.CanBeControlled())AND (Object.HasImpact(DeliverTheFalseGauntlet)))"   |
+155   "InTalk"   "__F((Object.InTalk()))"   |
+156   "IsMyLover"   "__F((Object.IsMyLover()))"   |
+157   "CanUseCityGuard"   "__F((Object.PlayerHasOfficeImpact('CommandCityGuard'))AND(Object.GetProfession()== 21))"   |
+158   "CanUseCityPrisonGuard"   "__F((Object.PlayerHasOfficeImpact('CommandPrisonGuard'))AND(Object.GetProfession()== 22))"   |
+159   "CanUseInspector"   "__F((Object.PlayerHasOfficeImpact('CommandInspector'))AND(Object.GetProfession()== 23))"   |
+160   "CanUseMonitor"   "__F((Object.PlayerHasOfficeImpact('CommandMonitor'))AND(Object.GetProfession()== 24))"   |
+161   "CanUseCake"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Cake)>0)AND NOT(Object.GetState(fighting)))"   |
+162   "CanUseCrossOfProtection"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(CrossOfProtection)>0)AND NOT(Object.GetState(fighting)))"   |
+163   "CanUseGhostlyFog"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(GhostlyFog)>0)AND NOT(Object.GetState(fighting)))"   |
+164   "CanUseBoozyBreathBeer"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(BoozyBreathBeer)>0)AND NOT(Object.GetState(fighting)))"   |
+165   "CanUseLetterFromRome"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(LetterFromRome)>0)AND NOT(Object.GetState(fighting)))"   |
+166   "CanUsePoem"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Poem)>0)AND NOT(Object.GetState(fighting)))"   |
+167   "CanUseFlowerOfDiscord"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(FlowerOfDiscord)>0)AND NOT(Object.GetState(fighting)))"   |
+168   "IsMyLoverInTavern"   "__F((Object.IsMyLover())AND(Object.GetInsideBuilding())AND(Object.IsType(4)))"   |
+169   "CanUseCandy"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Candy)>0)AND NOT(Object.GetState(fighting)))"   |
+170   "CanUseCamouflageCloak"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(CamouflageCloak)>0)AND NOT(Object.GetState(fighting)))"   |
+171   "CanUseBeltOfMetaPhysic"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(BeltOfMetaPhysic)>0)AND NOT(Object.GetState(fighting)))"   |
+172   "CanUseGlovesOfDexterity"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(GlovesOfDexterity)>0)AND NOT(Object.GetState(fighting)))"   |
+173   "CanUseDartagnansFragrance"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(DartagnansFragrance)>0)AND NOT(Object.GetState(fighting)))"   |
+174   "CanUsePerfume"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Perfume)>0)AND NOT(Object.GetState(fighting)))"   |
+175   "CanUseThesisPaper"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(ThesisPaper)>0)AND NOT(Object.GetState(fighting)))"   |
+176   "CanUseToadExcrements"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(ToadExcrements)>0)AND NOT(Object.GetState(fighting)))"   |
+177   "IsVacantOffice"   "__F((Object.IsVacantOffice()))"   |
+178   "IsEnemyOfficeBearer"   "__F(NOT(Object.BelongsToMe())AND(Object.IsOfficeBearer()))"   |
+179   "IsOwnOfficeBearer"   "__F((Object.BelongsToMe())AND(Object.IsOfficeBearer()))"   |
+180   "CanProduceJanesRing"   "__F((Object.CanBeControlled())AND(Object.GetInsideBuilding())AND(Object.GetItemCnt(JanesGem)>0)AND(Object.GetItemCnt(Iron)>0)AND(Object.IsType(7))AND(Object.CanBeControlled()))"   |
+181   "IsTownHall"   "__F((Object.IsType(23)))"   |
+182   "CanUseElixirOfPurgation"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(ElixirOfPurgation)>0)AND NOT(Object.GetState(fighting)))"   |
+183   "IsMySpouse"   "__F((Object.IsMySpouse()))"   |
+184   "CanTortureCharacter"   "__F((Object.PlayerHasOfficeImpact('TortureCharacter'))AND(Object.GetProfession()== 22))"   |
+185   "HasFullLoverProgress"   "__F((Object.CanBeControlled())AND(Object.HasFullLoverProgress())AND NOT(Object.IsMarried()))"   |
+186   "CanApplyForOffice"   "__F((Object.HasOfficeAccess('apply')))"   |
+187   "CanDepositOffice"   "__F((Object.HasOfficeAccess('deposit')))"   |
+188   "IsMarried"   "__F((Object.IsMarried()))"   |
+189   "IsMySimAtHomeAndMarried"   "__F((Object.CanBeControlled())AND(Object.IsMarried())AND(Object.GetInsideBuilding())AND(Object.BelongsToMe())AND(Object.IsType(2)))"   |
+190   "IsFighting"   "__F((Object.IsFighting()))"   |
+191   "IsUnconscious"   "__F((Object.GetState(unconscious)))"   |
+192   "CanBeTortured"   "__F(NOT(Object.BelongsToMe())AND (Object.CompareHPRelative()>30)AND (Object.MinAge(16))AND(Object.ActionAdmissible())AND NOT(Object.GetState(pregnant)))"   |
+193   "CanBeInteractedUnconscious"   "__F(NOT(Object.BelongsToMe())AND(Object.GetState(unconscious))AND(Object.ActionAdmissible()))"   |
+194   "IsDead"   "__F((Object.GetState(dead)))"   |
+195   "CanBeRobbed"   "__F((Object.GetState(dead))OR (Object.GetState(unconscious))AND(Object.ActionAdmissible())AND NOT(Object.HasImpact(Unantastbar)))"   |
+196   "CanSetSeverityOfLaw"   "__F((Object.CanBeControlled())AND(Object.HasImpact(Set_SeverityOfLaw))AND(Object.IsInOfficeBuilding()))"   |
+197   "CanBeInspected"   "__F(NOT(Object.BelongsToMe())AND(Object.IsClass(2))AND NOT(Object.IsType(22))AND NOT(Object.IsType(15))AND(Object.ActionAdmissible()))"   |
+198   "CanBeBombed"   "__F(NOT(Object.BelongsToMe())AND (Object.HasDynasty())AND NOT(Object.IsClass(5))AND NOT(Object.IsClass(3))AND NOT(Object.IsClass(6))AND(Object.ActionAdmissible())AND NOT(Object.HasImpact(Unantastbar))AND NOT(Object.GetState(building)))"   |
+199   "CanProduceFlagOfNottingham"   "__F((Object.CanBeControlled())AND(Object.GetInsideBuilding())AND(Object.GetItemCnt(Cloth)>7)AND(Object.GetItemCnt(Gold)>3)AND(Object.GetItemCnt(Pattern)>0)AND(Object.IsType(7))AND(Object.CanBeControlled()))"   |
+200   "CanBeAttackedNew"   "__F((Object.ActionAdmissible())AND(Object.CheckCutscene())AND NOT(Object.HasImpact(Unantastbar))AND NOT(Object.IsClass(0))AND NOT(Object.IsClass(6))AND NOT(Object.IsClass(5))AND NOT(Object.GetState(child))AND NOT(Object.GetState(npc))AND NOT(Object.GetState(animal))AND NOT(Object.IsType(23))AND NOT(Object.IsType(24))AND NOT(Object.IsType(25))AND NOT(Object.IsType(26))AND NOT(Object.IsType(97))AND NOT(Object.IsType(109)))"   |
+201   "CanSetChurchTithe"   "__F((Object.CanBeControlled())AND(Object.HasImpact(Set_ChurchTithe))AND(Object.IsInOfficeBuilding()))"   |
+202   "CanSetTurnoverTax"   "__F((Object.CanBeControlled())AND(Object.HasImpact(Set_TurnoverTax))AND(Object.IsInOfficeBuilding()))"   |
+203   "CanBeDemolished"   "__F(NOT(Object.BelongsToMe())AND(Object.CompareHPRelative()<30)AND(Object.ActionAdmissible())AND NOT(Object.HasProperty(NOT_ATTACKABLE))AND NOT(Object.IsClass(5)))"   |
+204   "CanDetainCharacterPrisonGuard"   "__F((Object.PlayerHasOfficeImpact('DetainCharacter'))AND(Object.PlayerHasOfficeImpact('CommandPrisonGuard'))AND(Object.GetProfession()== 22))"   |
+205   "CanBeDetained"   "__F(NOT(Object.BelongsToMe())AND(Object.MinAge(16))AND(Object.CheckCutscene())AND NOT(Object.GetState(imprisoned))AND(Object.EnoughEvidenceAgainst())AND(Object.ActionAdmissible()))"   |
+206   "CanDetainCharacterCityGuard"   "__F((Object.PlayerHasOfficeImpact('DetainCharacter'))AND(Object.PlayerHasOfficeImpact('CommandCityGuard'))AND(Object.GetProfession()== 21))"   |
+207   "HasFullLoverProgressAndNoLiaison"   "__F((Object.CanBeControlled())AND(Object.HasFullLoverProgress())AND NOT(Object.HasLiaison()))"   |
+208   "IsMyLiaison"   "__F((Object.IsMyLiaison()))"   |
+209   "IsMyCourtLover"   "__F((Object.IsMyCourtLover()))"   |
+210   "CanHaveAStabbingGaze"   "__F((Object.CanBeControlled())AND(Object.HasImpact(UncannyGlare)))"   |
+211   "CanOrderBrainwash"   "__F((Object.PlayerHasOfficeImpact('OrderABrainWash'))AND(Object.PlayerHasOfficeImpact('CommandPrisonGuard'))AND(Object.GetProfession()== 22))"   |
+212   "CanBanCharacter"   "__F((Object.CanBeControlled())AND(Object.HasImpact(BanCharacter)))"   |
+213   "CanImposeASalesFreeze"   "__F((Object.PlayerHasOfficeImpact('ImposeASalesFreeze'))AND(Object.PlayerHasOfficeImpact('CommandInspector'))AND(Object.GetProfession()== 23))"   |
+214   "CanBeFreezed"   "__F((Object.IsType(14)))"   |
+215   "IsMyThief"   "__F((Object.CanBeControlled())AND(Object.GetProfession()== 26)AND(Object.MinAge(16)))"   |
+216   "CanReceivePoem"   "__F((Object.MinAge(16))AND(Object.CheckCutscene())AND (Object.HasDifferentSex())AND (NOT (Object.BelongsToMe())OR NOT (Object.IsDynastySim())OR (Object.IsMySpouse())))"   |
+217   "CanQuestGather"   "__F((Object.CanBeControlled())AND(Object.Property.CanGather==1))"   |
+218   "CanBeAMaster"   "__F((Object.HasMinNobilityTitle(2)))"   |
+219   "IsMySimInTownhallCanRunOffice"   "__F((Object.CanBeControlled())AND(Object.HasMinNobilityTitle(4))AND(Object.GetInsideBuilding())AND(Object.IsType(23)))"   |
+220   "CanDuel"   "__F((Object.CanBeControlled())AND(Object.BelongsToMe())AND(Object.HasMinNobilityTitle(6)))"   |
+221   "CanDivorce"   "__F((Object.CanBeControlled())AND(Object.BelongsToMe())AND(Object.IsDynastySim())AND(Object.IsMarried()))"   |
+223   "CanUseTreasureMap"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(TreasureMap)>0))"   |
+224   "CanDemandRandsom"   "__F((Object.CanBeControlled())AND(Object.GetWorkBuilding())AND(Object.BuildingHasPrisoner()))"   |
+226   "IsUnconsciousAndHasDynasty"   "__F(NOT(Object.BelongsToMe())AND(Object.GetState(unconscious))AND(Object.HasDynasty())AND(Object.ActionAdmissible()))"   |
+227   "CanReleaseAbductee"   "__F((Object.CanBeControlled())AND(Object.BuildingHasPrisoner()))"   |
+228   "CanGoToSchool"   "__F((Object.BelongsToMe())AND(Object.HasBehavior(Schooldays))AND(Object.Property.EduLevel==0))"   |
+229   "CanGoToApprenticeship"   "__F((Object.BelongsToMe())AND(Object.HasBehavior(Apprenticeship))AND(Object.LacksProperty('is_apprentice')))"   |
+230   "CanGoToUniversity"   "__F((Object.BelongsToMe())AND(Object.IsClass(3))AND(Object.HasBehavior(University))AND(Object.Property.EduLevel>0)AND(Object.Property.EduLevel<3))"   |
+231   "IsUniversity"   "__F((Object.IsType(27))AND (Object.GetLevel()==2))"   |
+232   "CanBeUsedForApprenticeship"   "__F((Object.CompareHPRelative()>30)AND(Object.IsClass(2))AND NOT(Object.IsHostile())AND NOT(Object.IsType(38))AND(Object.HasDynasty()))"   |
+233   "IsMySimInTownHallHasOffice"   "__F((Object.CanBeControlled())AND (Object.HasOfficeAccess('leave'))AND(Object.GetInsideBuilding())AND(Object.IsType(23)))"   |
+234   "CanUseVitaeOfEarth"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(VitaeOfEarth)>0))"   |
+235   "IsMySimInChurch"   "__F((Object.CanBeControlled())AND(Object.GetInsideBuilding())AND(Object.GetReligion()>=0))"   |
+236   "CanCreateSquad"   "__F((Object.BelongsToMe())AND NOT(Object.HasSquad())AND(Object.MinAge(16)))"   |
+237   "CanJoinSquad"   "__F((Object.BelongsToMe())AND(Object.CanJoinSquad())AND(Object.MinAge(16)))"   |
+238   "CanDestroySquad"   "__F((Object.BelongsToMe())AND(Object.HasSquad()))"   |
+239   "CanInviteToFeast"   "__F((Object.CanBeControlled())AND(Object.GetInsideBuilding())AND(Object.BelongsToMe())AND(Object.IsType(2))AND(Object.Property.InvitationsLeft>0))"   |
+240   "CanBribeInTrial"   "__F((Object.BelongsToMe())AND(Object.HasProperty(CanBribeInTrial)))"   |
+241   "CanUseFlirtBook"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(FlirtBook)>0))"   |
+242   "CanChangeToCatholic"   "__F((Object.CanBeControlled())AND NOT (Object.GetReligion()==0)AND (Object.GetInsideBuilding())AND (Object.GetReligion()>=0)AND (Object.HasUpgrade(baptismal_font_catholic)))"   |
+243   "CanChangeToEvangelic"   "__F((Object.CanBeControlled())AND NOT (Object.GetReligion()==1)AND (Object.GetInsideBuilding())AND (Object.GetReligion()>=0)AND (Object.HasUpgrade(baptismal_font_evangelic)))"   |
+244   "CanBuyHolyIndulgence"   "__F((Object.CanBeControlled())AND (Object.GetInsideBuilding())AND (Object.GetReligion()>=0)AND (Object.HasUpgrade(SinnersEscritoire)))"   |
+245   "CanPrepareWorship"   "__F((Object.CanBeControlled())AND(Object.CanWorkHere())AND(Object.BelongsToMe())AND(Object.GetProfession()==11)AND(Object.GetInsideBuilding())AND(Object.GetReligion()>=0)"   |
+246   "CanSingForPeacefulness"   "__F((Object.CanBeControlled())AND(Object.GetReligion()==1)AND(Object.GetProfession()==11)AND(Object.GetWorkBuilding())AND(Object.IsType(19))AND(Object.HasUpgrade(trumpet)))"   |
+247   "WinBelievers"   "__F((Object.CanBeControlled())AND(Object.GetProfession()== 11)AND(Object.BelongsToMe())AND(Object.MinAge(16))AND(Object.GetWorkBuilding())AND(Object.GetReligion()>=0)AND(Object.GetLevel()>=2)AND(Object.HasUpgrade(Feretory)))"   |
+248   "CanPrayForGodsBlessing"   "__F((Object.CanBeControlled())AND(Object.MinAge(16))AND(Object.GetWorkBuilding())AND(Object.BelongsToMe())AND(Object.HasUpgrade(SaintsPainting)))"   |
+249   "IsAdmissible"   "__F((Object.ActionAdmissible())AND(Object.CheckCutscene()))"   |
+250   "CanPrayForGodsBlessingCatholic"   "__F((Object.CanBeControlled())AND(Object.MinAge(16))AND(Object.GetWorkBuilding())AND(Object.BelongsToMe())AND(Object.HasUpgrade(saints_statue)))"   |
+251   "CanUseSleepingPotion"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(SleepingPotion)>0))"   |
+252   "CanReceiveSleepingPotion"   "__F((Object.HasProperty(PotionVictim))AND(Object.ActionAdmissible()))"   |
+253   "IsSayingMass"   "__F((Object.CanBeControlled())AND (Object.HasImpact(MassInProgress)))"   |
+254   "IsMyPriest"   "__F((Object.CanBeControlled())AND (Object.GetProfession()==11)AND(Object.MinAge(16)))"   |
+255   "IsMyScholar"   "__F((Object.CanBeControlled())AND(Object.IsClass(3))AND(Object.MinAge(16)))"   |
+257   "ValidTargetForEvilMeasure"   "__F(NOT(Object.BelongsToMe())AND(Object.ActionAdmissible()))"   |
+258   "CanBeThreated"   "__F((Object.CanBeThreated())AND(Object.ActionAdmissible()))"   |
+259   "IsMyRobber"   "__F((Object.CanBeControlled())AND(Object.IsClass(4))AND NOT(Object.GetProfession()==14)AND NOT(Object.GetProfession()>15))"   |
+260   "IsMyCartToBeRepaired"   "__F((Object.BelongsToMe())AND(Object.CompareHPRelative()<99))"   |
+261   "CanStartFeast"   "__F((Object.CanBeControlled())AND(Object.GetInsideBuilding())AND(Object.IsBuildingOwnedByMe())AND(Object.IsBuildingMyHome())AND(Object.BelongsToMe())AND(Object.IsType(2))AND(Object.HasUpgrade(Saloon))AND NOT(Object.GetState(feast)))"   |
+263   "IsInventoryVisibleSim"   "__F((Object.IsInventoryVisible())AND NOT(Object.HudIsInCutscene()))"   |
+264   "IsMyPeasant"   "__F((Object.CanBeControlled())AND(Object.GetProfession()==1)AND(Object.MinAge(16))AND(Object.GetWorkBuilding())AND NOT(Object.IsType(108)))"   |
+268   "CanArrangeDanceShow"   "__F((Object.CanBeControlled())AND(Object.CanWorkHere())AND(Object.GetInsideBuilding())AND(Object.HasUpgrade(stage)))"   |
+269   "IsMyRobberAtHomeAndInjured"   "__F((Object.CanBeControlled())AND(Object.CompareHPRelative()<99)AND(Object.GetObjectsByRadius(Building)==1000)AND(Object.BelongsToMe())AND(Object.IsType(15))OR(Object.IsType(21))AND(Object.HasUpgrade(Campfire)))"   |
+270   "CanUseWolfTalisman"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(WolfTalisman)>0)AND NOT(Object.GetState(fighting)))"   |
+271   "ValidDynastySimTargetForEvilMeasure"   "__F(NOT(Object.BelongsToMe())AND(Object.IsDynastySim())AND(Object.ActionAdmissible()))"   |
+272   "CanCollectEvidence"   "__F((Object.CanBeControlled())AND(Object.GetProfession()== 18)AND(Object.MinAge(16))AND(Object.GetWorkBuilding())AND(Object.IsType(2))AND(Object.HasUpgrade(Commode)))"   |
+273   "CanOrderAShadowing"   "__F((Object.CanBeControlled())AND(Object.GetProfession()== 18)AND(Object.MinAge(16))AND(Object.GetWorkBuilding())AND(Object.IsType(2))AND(Object.HasUpgrade(DarkCorner)))"   |
+274   "HasFullLoverProgressAndNoLiaisonAndCanHaveLiaison"   "__F((Object.CanBeControlled())AND(Object.HasFullLoverProgress())AND NOT(Object.HasLiaison())AND(Object.GetHome())AND(Object.IsType(2))AND(Object.HasUpgrade(AmatoryCorner)))"   |
+275   "CanPropitiateEnemies"   "__F((Object.CanBeControlled())AND (Object.HasImpact(PropitiateEnemies)))"   |
+276   "CanHijack"   "__F((Object.CanBeControlled())AND(Object.GetProfession()== 15)AND(Object.MinAge(16))AND(Object.GetWorkBuilding())AND(Object.HasUpgrade(PrisonDoor)))"   |
+277   "CanEscapeFromArrest"   "__F((Object.BelongsToMe())AND NOT(Object.CanBeControlled())AND(Object.CompareHPRelative()>30)AND(Object.GetState(captured))AND NOT(Object.IsInBuilding())AND NOT(Object.HasImpact(Unantastbar))AND NOT(Object.Property.NoEscape==1))"   |
+280   "IsAllowedForCourtingMeasures"   "__F((Object.HasDifferentSex())AND(Object.CheckCutscene())AND(Object.MinAge(16))AND(Object.IsSocialMeasureTarget()))"   |
+281   "CanRentSleepingBerth"   "__F((Object.CanBeControlled())AND(Object.GetInsideBuilding())AND(Object.IsType(4))AND NOT(Object.BelongsToMe())AND(Object.HasUpgrade(fireplacebench)))"   |
+282   "CanUseFragranceOfHoliness"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(FragranceOfHoliness)>0)AND NOT(Object.GetState(fighting)))"   |
+283   "IsResourceMeasure"   "__F((Object.BelongsToMe())AND(Object.IsResourceMeasure()))"   |
+284   "CanLinger"   "__F((Object.CanBeControlled())AND(Object.GetObjectsByRadius(Building)==400)AND(Object.IsType(32)))"   |
+285   "CanUseCutsceneBribeCharacter"   "__F((Object.CanBeControlledInCutscene())AND (Object.HasProperty(CutsceneBribeCharacter)))"   |
+286   "CanUseCutsceneFragranceOfHoliness"   "__F((Object.CanBeControlledInCutscene())AND (Object.HasProperty(CutsceneFragranceOfHoliness))AND (Object.GetItemCnt(FragranceOfHoliness)>0)AND NOT(Object.GetState(fighting)))"   |
+287   "CanUseCutsceneLetterFromRome"   "__F((Object.CanBeControlledInCutscene())AND (Object.HasProperty(CutsceneLetterFromRome))AND(Object.GetItemCnt(LetterFromRome)>0)AND NOT(Object.GetState(fighting)))"   |
+288   "CanUseCutsceneAboutTalents1"   "__F((Object.CanBeControlledInCutscene())AND (Object.HasProperty(CutsceneAboutTalents1))AND(Object.GetItemCnt(AboutTalents1)>0)AND NOT(Object.GetState(fighting)))"   |
+289   "CanUseCutsceneFlowerOfDiscord"   "__F((Object.CanBeControlledInCutscene())AND (Object.HasProperty(CutsceneFlowerOfDiscord))AND(Object.GetItemCnt(FlowerOfDiscord)>0)AND NOT(Object.GetState(fighting)))"   |
+290   "CanUseCutscenePerfume"   "__F((Object.CanBeControlledInCutscene())AND (Object.HasProperty(CutscenePerfume))AND(Object.GetItemCnt(Perfume)>0)AND NOT(Object.GetState(fighting)))"   |
+291   "CanUseCutscenePoem"   "__F((Object.CanBeControlledInCutscene())AND (Object.HasProperty(CutscenePoem))AND(Object.GetItemCnt(Poem)>0)AND NOT(Object.GetState(fighting)))"   |
+292   "CanUseCutsceneThesisPaper"   "__F((Object.CanBeControlledInCutscene())AND (Object.HasProperty(CutsceneThesisPaper))AND(Object.GetItemCnt(ThesisPaper)>0)AND NOT(Object.GetState(fighting)))"   |
+293   "CanUseCutsceneCurryFavor"   "__F((Object.CanBeControlledInCutscene())AND (Object.HasProperty(CutsceneCurryFavor))AND (Object.HasImpact('CurryFavor')))"   |
+294   "CanUseCutsceneDeliverTheFalseGauntlet"   "__F((Object.CanBeControlledInCutscene())AND (Object.HasProperty(CutsceneDeliverTheFalseGauntlet))AND (Object.HasImpact(DeliverTheFalseGauntlet)))"   |
+295   "CanUseCutsceneHaveAStabbingGaze"   "__F((Object.CanBeControlledInCutscene())AND (Object.HasProperty(CutsceneHaveAStabbingGaze))AND(Object.HasImpact(UncannyGlare)))"   |
+296   "CanUseCutsceneMakeACompliment"   "__F((Object.CanBeControlledInCutscene())AND (Object.HasProperty(CutsceneMakeACompliment)))"   |
+297   "CanUseCutsceneFlirt"   "__F((Object.CanBeControlledInCutscene())AND (Object.HasProperty(CutsceneFlirt)))"   |
+298   "CanUseCutsceneThreatCharacter"   "__F((Object.CanBeControlledInCutscene())AND (Object.HasProperty(CutsceneThreatCharacter)))"   |
+299   "CanUseDrFaustusElixir"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(DrFaustusElixir)>0)AND NOT(Object.GetState(fighting)))"   |
+300   "CanUseToadSlime"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Toadslime)>0)AND NOT(Object.GetState(fighting)))"   |
+301   "CanUseCutsceneAboutTalents2"   "__F((Object.CanBeControlledInCutscene())AND (Object.HasProperty(CutsceneAboutTalents2))AND(Object.GetItemCnt(AboutTalents2)>0)AND NOT(Object.GetState(fighting)))"   |
+302   "CanPoisonWell"   "__F((Object.CanBeControlled())AND(Object.GetOwnedBuildings())AND(Object.IsType(16))AND(Object.GetLevel()>=2)ANDObject.HasUpgrade(AlchimistCellar)))"   |
+303   "IsWell"   "__F((Object.IsType(24))AND NOT(Object.HasImpact(polluted)))"   |
+304   "CanUseHolyWater"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(HolyWater)>0)AND NOT(Object.GetState(fighting)))"   |
+305   "IsPollutedWell"   "__F((Object.IsType(24))AND(Object.HasImpact(polluted)))"   |
+306   "CanUseWalkingStick"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(WalkingStick)>0)AND NOT(Object.GetState(fighting)))"   |
+307   "CanUseArgusEyeglasses"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(ArgusEyeglasses)>0)AND NOT(Object.GetState(fighting)))"   |
+308   "CanUseMoneyBag"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(MoneyBag)>0)AND NOT(Object.GetState(fighting)))"   |
+309   "CanBeHijacked"   "__F(NOT(Object.BelongsToMe())AND(Object.IsDynastySim())AND(Object.MinAge(16))AND(Object.CheckCutscene())AND(Object.ActionAdmissible()))"   |
+310   "ValidDynastyTargetForEvilMeasure"   "__F(NOT(Object.BelongsToMe())AND(Object.HasDynasty())AND(Object.ActionAdmissible())AND(Object.CheckCutscene()))"   |
+311   "CanPayBonus"   "__F((Object.CanBeControlled())AND(Object.GetInsideBuilding())AND(Object.IsBuildingOwnedByMe())AND(Object.IsClass(2))AND NOT(Object.IsType(11)AND NOT(Object.IsType(15))AND NOT(Object.IsType(22))AND NOT(Object.IsType(36))AND NOT(Object.IsType(21))AND NOT(Object.IsType(102)))"   |
+312   "CanPropelEmployees"   "__F((Object.CanBeControlled())AND(Object.GetInsideBuilding())AND(Object.IsBuildingOwnedByMe())AND(Object.IsClass(2)))"   |
+313   "CanTakeCreditAndIsAtHome"   "__F((Object.CanBeControlled())AND(Object.GetInsideBuilding())AND(Object.BelongsToMe())AND(Object.IsType(2)))"   |
+314   "CanTakeCreditAndIsInsideBank"   "__F((Object.CanBeControlled())AND(Object.GetInsideBuilding())AND(Object.IsType(26)))"   |
+315   "CanThreatCharacter"   "__F((Object.CanBeControlled()))"   |
+316   "CanThreatCharacterInCutscene"   "__F((Object.CanBeControlledInCutscene())AND(Object.HasProperty(CutsceneThreatCharacter)))"   |
+317   "CanRoughUp"   "__F((Object.CanBeControlled()))"   |
+318   "CanBeGathered"   "__F((Object.GetResourceScriptFunction()=='Herbs')OR(Object.GetResourceScriptFunction()=='well')OR(Object.GetResourceScriptFunction()=='Fungi'))"   |
+319   "ValidBuildingTargetForEvilMeasures"   "__F(NOT(Object.BelongsToMe())AND(Object.IsClass(1))OR(Object.IsClass(2))AND(Object.ActionAdmissible()))"   |
+320   "InstantDynastyCharStartDialog"   "__F(NOT(Object.IsHostile()))"   |
+321   "InstantDynastyCharPropelEmployes"   "__F((Object.CanBeControlled())AND (Object.CanWorkHere()))"   |
+322   "InstantAttack"   "__F((Object.CanAttack())AND(Object.ActionAdmissible())AND NOT(Object.HasImpact(Unantastbar))AND(Object.IsHostile())AND(Object.IsClass(4))OR(Object.GetProfession()== 18)OR(Object.GetProfession()== 15))"   |
+323   "InstantSawField"   "__F(NOT(Object.CanBeGathered())AND (Object.IsResourceMeasure()))"   |
+324   "CanTakeABath"   "__F((Object.CanBeControlled())AND(Object.GetInsideBuilding())AND(Object.IsType(4))AND(Object.HasUpgrade(BathingRoom)))"   |
+325   "IsMyCityGuardInBuilding"   "__F((Object.PlayerHasOfficeImpact('CommandCityGuard'))AND(Object.GetProfession()== 21)AND(Object.IsInBuilding()))"   |
+356   "CanUseCutsceneCanDuel"   "__F((Object.CanBeControlledInCutscene())AND(Object.HasProperty(CutsceneInsult))AND(Object.BelongsToMe())AND(Object.HasMinNobilityTitle(6)))"   |
+358   "IsMyWorkingBuilding"   "__F((Object.CanBeControlled())AND (Object.IsClass(2)))"   |
+359   "CanBuyNobilityTitle"   "__F((Object.CanBeControlled())AND NOT(Object.GrantInProgress())AND(Object.GetInsideBuilding())AND(Object.IsType(23)))"   |
+360   "NotInsideBuilding"   "__F(NOT(Object.IsInBuilding()))"   |
+361   "CanUseWeatherRocket"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(WeatherRocket)>0)AND NOT(Object.GetState(fighting)))"   |
+363   "CanBeAssignedToHome"   "__F((Object.CanBeControlled())AND(Object.GetInsideBuilding())AND(Object.BelongsToMe())AND(Object.IsClass(1))AND NOT(Object.IsBuildingMyHome()))"   |
+364   "CanBewitchCharacter"   "__F((Object.CanBeControlled())AND(Object.GetInsideBuilding())AND(Object.IsType(4))AND(Object.HasUpgrade(Divanbed)))"   |
+365   "CanBeBribed"   "__F(NOT(Object.BelongsToMe())AND(Object.IsDynastySim())AND(Object.MinAge(16)))"   |
+366   "CanOrderSpying"   "__F((Object.CanBeControlled())AND(Object.GetProfession()== 18)AND(Object.MinAge(16))AND(Object.GetWorkBuilding())AND(Object.IsType(2))AND(Object.HasUpgrade(SpyGlass)))"   |
+367   "CanUseCartBooster"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(CartBooster)>0)AND NOT(Object.GetState(fighting)))"   |
+368   "CanUseBoobyTrap"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(BoobyTrap)>0)AND NOT(Object.GetState(fighting)))"   |
+369   "CanUsePoisonedCake"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(PoisonedCake)>0)AND NOT(Object.GetState(fighting)))"   |
+370   "CanAlertGuards"   "__F((Object.BelongsToMe())AND(Object.CanCryForGuards()))"   |
+371   "CanFightKill"   "__F((Object.CanBeControlled())AND(Object.GetProfession()== 18)AND(Object.MinAge(16))AND(Object.GetWorkBuilding())AND(Object.IsType(2))AND(Object.HasUpgrade(CrossedAxes)))"   |
+372   "CanAttendCatholicMass"   "__F((Object.CanBeControlled())AND NOT(Object.HasImpact(MassInProgress))AND(Object.GetReligion()==0)AND(Object.GetInsideBuilding())AND(Object.GetReligion()==0)AND(Object.HasImpact(MassInProgress)))"   |
+373   "CanAttendEvangelicMass"   "__F((Object.CanBeControlled())AND NOT(Object.HasImpact(MassInProgress))AND(Object.GetReligion()==1)AND(Object.GetInsideBuilding())AND(Object.GetReligion()==1)AND(Object.HasImpact(MassInProgress)))"   |
+374   "WorkersHutBurgle"   "__F(NOT(Object.BelongsToMe())AND NOT(Object.IsClass(0))AND NOT(Object.IsClass(3))AND NOT(Object.IsClass(5))AND NOT(Object.IsClass(7))AND NOT(Object.IsType(1))AND(Object.ActionAdmissible())AND NOT(Object.HasImpact(Unantastbar))AND NOT(Object.GetState(building)))"   |
+375   "CanBeRoughedUp"   "__F(NOT(Object.BelongsToMe())AND(Object.GetState(unconscious))AND(Object.MinAge(16))AND NOT(Object.HasImpact(Fracture))AND(Object.ActionAdmissible()))"   |
+376   "CanSleepMyrmidon"   "__F((Object.CanBeControlled())AND(Object.GetProfession()==18)AND(Object.GetInsideBuilding())AND(Object.BelongsToMe())AND(Object.IsType(2)))"   |
+377   "CanBeAdministrated"   "__F((Object.CanBeControlled())AND(Object.IsClass(2))AND NOT(Object.IsType(38)))"   |
+378   "CanHireRandom"   "__F((Object.CanBeControlled())AND(Object.CanHireNewWorker()))"   |
+379   "ValidCartTarget"   "__F((Object.IsClass(5))OR(Object.IsClass(2))OR(Object.BelongsToMe()))"   |
+380   "HasThievesHut"   "__F((Object.CanBeControlled())AND(Object.IsClass(4))AND(Object.MinAge(16))AND(Object.GetOwnedBuildings())AND(Object.IsType(22)))"   |
+381   "HasThievesGuild"   "__F((Object.CanBeControlled())AND(Object.IsClass(4))AND(Object.GetOwnedBuildings())AND(Object.IsType(22))AND(Object.GetLevel()>=2))"   |
+382   "HasRobberCamp"   "__F((Object.CanBeControlled())AND(Object.IsClass(4))AND(Object.GetOwnedBuildings())AND(Object.IsType(15)))"   |
+383   "CanPrepareWorshipDynSim"   "__F((Object.CanBeControlled())AND(Object.BelongsToMe())AND(Object.IsClass(3))AND(Object.MinAge(16))AND(Object.GetInsideBuilding())AND(Object.GetReligion()>=0)AND(Object.BelongsToMe()))"   |
+384   "WinBelieversDynSim"   "__F((Object.CanBeControlled())AND(Object.BelongsToMe())AND(Object.IsClass(3))AND(Object.MinAge(16))AND(Object.GetOwnedBuildings())AND(Object.GetReligion()>=0)AND(Object.GetLevel()>=2)AND(Object.HasUpgrade(Feretory)))"   |
+385   "CanPrayForGodsBlessingDynSim"   "__F((Object.CanBeControlled())AND(Object.IsClass(3))AND(Object.MinAge(16))AND(Object.GetOwnedBuildings())AND(Object.BelongsToMe())AND(Object.HasUpgrade(SaintsPainting))OR(Object.HasUpgrade(saints_statue)))"   |
+386   "RunInquisition"   "__F((Object.PlayerHasOfficeImpact('CommandInquisitor'))AND(Object.GetProfession()== 28))"   |
+387   "CanOrderMilitaryTraining"   "__F((Object.CanBeControlled())AND(Object.HasImpact('MilitaryTraining')))"   |
+388   "CanOrderMilitaryTrainingSelf"   "__F((Object.CanBeControlled())AND(Object.HasImpact('MilitaryTraining'))AND NOT(Object.IsClass(4)))"   |
+389   "CanConfiscateGoods"   "__F((Object.CanBeControlled())AND(Object.HasImpact('ConfiscateGoods')))"   |
+390   "IsEnemyWorkshop"   "__F((Object.Type==Building)AND NOT(Object.BelongsToMe())AND(Object.IsClass(2)))"   |
+391   "CanWorkWonders"   "__F((Object.CanBeControlled())AND(Object.HasImpact('WorkWonders')))"   |
+392   "CanSendRoyalGuard"   "__F((Object.CanBeControlled())AND(Object.HasImpact('RoyalGuard')))"   |
+393   "CanDisappropriate"   "__F((Object.CanBeControlled())AND(Object.HasImpact('Disappropriate')))"   |
+394   "CanDeliverFlamingSpeech"   "__F((Object.CanBeControlled())AND(Object.HasImpact('FlamingSpeech')))"   |
+395   "CanRepealImmunity"   "__F((Object.CanBeControlled())AND(Object.HasImpact('RepealImmunity')))"   |
+396   "EnemyHasImmunity"   "__F((Object.HasImpact(HaveImmunity))AND NOT(Object.BelongsToMe()))"   |
+398   "CanLeadCrusade"   "__F((Object.CanBeControlled())AND(Object.HasImpact('LeadCrusade')))"   |
+399   "CanRage"   "__F((Object.CanBeControlled())AND(Object.HasImpact('Rage')))"   |
+403   "CanBeKilledUnconscious"   "__F(NOT(Object.BelongsToMe())AND(Object.GetState(unconscious))AND(Object.MinAge(16))AND(Object.ActionAdmissible()))"   |
+404   "CanUseMixture"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Mixture)>0)AND NOT(Object.GetState(fighting)))"   |
+405   "TargetCanRepealImmunity"   "__F(NOT(Object.BelongsToMe())AND(Object.HasImpact(HaveImmunity))AND NOT(Object.HasOfficeType(3))AND NOT(Object.HasImpact(HasRepealedImmunity)))"   |
+406   "IsMedic"   "__F((Object.GetProfession()==31)AND(Object.CanBeControlled())AND(Object.MinAge(16)))"   |
+407   "CanMedicalTreatmentDynSim"   "__F((Object.CanBeControlled())AND(Object.CanWorkHere())AND(Object.MinAge(16))AND(Object.GetInsideBuilding())AND(Object.IsType(37)))"   |
+408   "CanQuacksalveDynSim"   "__F((Object.CanBeControlled())AND(Object.IsClass(3))AND(Object.MinAge(16))AND(Object.GetOwnedBuildings())AND(Object.IsType(37))AND(Object.HasUpgrade(MiracleCure)))"   |
+409   "CanQuacksalve"   "__F((Object.CanBeControlled())AND(Object.GetProfession()==31)AND(Object.MinAge(16))AND(Object.GetWorkBuilding())AND(Object.IsType(37))AND(Object.HasUpgrade(MiracleCure)))"   |
+410   "CanGoToDoc"   "__F((Object.CanBeControlled())AND(Object.BelongsToMe())AND(Object.HasImpact(Sickness))OR(Object.CompareHPRelative()<99))"   |
+411   "ValidShipTarget"   "__F((Object.CanMoveTo(Destination))AND(Object.IsType(13))OR(Object.IsType(34))OR(Object.BelongsToMe()))"   |
+412   "IsMyFisherboot"   "__F((Object.CanBeControlled())AND(Object.IsType(4)))"   |
+413   "IsFishableResource"   "__F((Object.GetResourceScriptFunction()=='Fishing'))"   |
+414   "IsMyPirateShip"   "__F((Object.CanBeControlled())AND(Object.IsType(8)))"   |
+415   "HasDifferentReligion"   "__F(NOT(Object.BelongsToMe())AND NOT(Object.HasSameReligion('Owner')))"   |
+416   "SellBuilding"   "__F((Object.CanBeControlled())AND NOT(Object.IsBuyable())AND NOT(Object.IsType(40)))"   |
+417   "CancelSellBuilding"   "__F((Object.CanBeControlled())AND(Object.IsBuyable()))"   |
+418   "CanUseMediPack"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(MediPack)>0))"   |
+419   "CanUseStaffOfAesculap"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(StaffOfAesculap)>0)AND NOT(Object.GetState(fighting)))"   |
+420   "IsDamagedHostileShip"   "__F(NOT(Object.BelongsToMe())AND NOT(Object.IsType(4))AND(Object.CompareHPRelative()<30))"   |
+421   "BelongsToMeRealShip"   "__F((Object.BelongsToMe())AND NOT(Object.IsType(4)))"   |
+422   "QuestCanDive"   "__F((Object.CanBeControlled())AND (Object.GetHome())AND (Object.Property.QuestCanDive==1))"   |
+423   "QuestCanBuildPestMask"   "__F((Object.Property.QuestCanBuildPestMask==1)AND (Object.GetInsideBuilding())AND (Object.BelongsToMe())AND (Object.IsType(37)))"   |
+424   "QuestCanusePestMask"   "__F((Object.Property.QuestCanBuildUseMask==1))"   |
+425   "CanUseStinkBomb"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(StinkBomb)>0)AND NOT(Object.GetState(fighting)))"   |
+427   "IsMyCocotte"   "__F((Object.CanBeControlled())AND(Object.GetProfession()== 30)AND(Object.MinAge(16))AND(Object.GetWorkBuilding())AND(Object.IsType(36)))"   |
+428   "CanUseCocotte"   "__F((Object.CanBeControlled())AND (Object.GetObjectsByRadius(Sim)==300)AND (Object.GetProfession()== 30)AND(Object.Property.CocotteProvidesLove == 1)AND(Object.Property.CocotteHasClient == 0)AND(Object.HasDifferentSex()))"   |
+429   "CanUseCocotteTarget"   "__F((Object.GetProfession()== 30)AND (Object.Property.CocotteProvidesLove == 1)AND (Object.Property.CocotteHasClient == 0)AND (Object.HasDifferentSex()))"   |
+430   "CanShipPlunderBuilding"   "__F((Object.CanBeControlled())AND(Object.CompareHPRelative()>30)AND(Object.IsType(8)))"   |
+432   "CanBePlunderedByShip1"   "__F(NOT(Object.BelongsToMe())AND(Object.IsType(11))OR(Object.IsType(34))AND(Object.ActionAdmissible())AND NOT(Object.HasImpact(Unantastbar))AND NOT(Object.HasImpact(buildingburgledtoday))AND NOT(Object.GetState(building)))"   |
+433   "CanBePlunderedByShip2"   "__F(NOT(Object.BelongsToMe())AND(Object.IsType(34))AND(Object.ActionAdmissible())AND NOT(Object.HasImpact(Unantastbar))AND NOT(Object.GetState(building)))"   |
+434   "IsMyMilitaryBuilding"   "__F((Object.CanBeControlled())AND(Object.IsClass(7)))"   |
+435   "IsMyMilitaryShip"   "__F((Object.CanBeControlled())AND(Object.IsShipWithCannons))"   |
+436   "CanSendApplicant"   "__F((Object.CanBeControlled())AND(Object.CanCourt())AND(Object.HasMinNobilityTitle(8)))"   |
+437   "CanDoMultiplayerAction"   "__F((Object.CanBeControlled())AND(Object.IsMultiplayer()))"   |
+438   "CanUseBard"   "__F((Object.CanBeControlled())AND(Object.GetObjectsByRadius(Sim)==1000)AND(Object.Property.IsBard == 1)AND(Object.Property.BardIsFree == 1))"   |
+439   "InstantAttackShip"   "__F((Object.CanAttack())AND(Object.ActionAdmissible())AND NOT(Object.HasImpact(Unantastbar)))"   |
+440   "CanAssignToServiceDynSim"   "__F((Object.CanBeControlled())AND(Object.CanWorkHere())AND(Object.GetInsideBuilding())AND(Object.IsType(4)))"   |
+441   "CanArrangeDanceShowDynSim"   "__F((Object.CanBeControlled())AND(Object.CanWorkHere())AND(Object.GetInsideBuilding())AND(Object.HasUpgrade(stage)))"   |
+442   "IsFreeForPlunder"   "__F(NOT(Object.BelongsToMe())AND NOT(Object.IsType(4)))"   |
+443   "CanRPGSitAround"   "__F((Object.CanBeControlled())AND(Object.GetInsideBuilding())AND(Object.IsType(4))OR(Object.IsType(2))OR(Object.IsType(111))OR(Object.IsType(36)))"   |
+444   "IsBlackBoard"   "__F((Object.IsType(41))"   |
+445   "CanAddPamphlet"   "__F((Object.CanBeControlled())AND(Object.GetObjectsByRadius(Building)==400)AND(Object.IsType(41))AND(Object.HasProperty(PamphletCnt))AND(Object.Property.PamphletCnt < 4))"   |
+446   "CanRemovePamphlet"   "__F((Object.CanBeControlled())AND(Object.GetObjectsByRadius(Building)==400)AND(Object.IsType(41))AND(Object.HasProperty(PamphletCnt))AND(Object.Property.PamphletCnt > 0))"   |
+447   "CanUseOrientalTobacco"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(OrientalTobacco)>0)AND NOT(Object.GetState(fighting)))"   |
+448   "CanUseOrientalStatues"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(OrientalStatues)>0)AND NOT(Object.GetState(fighting)))"   |
+449   "CanUseOrientalCarpet"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(OrientalCarpet)>0)AND NOT(Object.GetState(fighting)))"   |
+450   "CanUseFarmMeasuresDynSim"   "__F((Object.CanBeControlled())AND(Object.IsClass(1))AND(Object.GetOwnedBuildings())AND(Object.IsType(3)))"   |
+451   "IsMyShipToRepair"   "__F((Object.BelongsToMe())AND(Object.CompareHPRelative()<99)AND(Object.GetObjectsByRadius(Building)==3000)AND(Object.BelongsToMe())AND(Object.IsType(11))OR(Object.IsType(35))OR(Object.IsType(38)))"   |
+452   "CanBeCaptured"   "__F(NOT(Object.BelongsToMe())AND (Object.HasDynasty())AND NOT(Object.GetState(fighting))AND(Object.CompareHPRelative()<30)AND NOT(Object.HasImpact(recentlycaptured))AND NOT(Object.IsClass(7)))"   |
+453   "ValidInquisitionTarget"   "__F(NOT(Object.BelongsToMe())AND NOT(Object.HasSameReligion('Owner'))AND(Object.MinAge(16)))"   |
+454   "CanBeBanned"   "__F(NOT(Object.BelongsToMe())AND(Object.MinAge(16))AND(Object.IsOfficeLevelLower(6)))"   |
+455   "ValidDuelTarget"   "__F(NOT(Object.BelongsToMe())AND(Object.MinAge(16))AND NOT(Object.IsMyCourtLover()))"   |
+500   "CanBePressed"   "__F(NOT(Object.BelongsToMe())AND(Object.HasDynasty())AND NOT(Object.IsClass(7))AND NOT(Object.IsClass(5))AND NOT(Object.IsClass(3))AND NOT(Object.IsClass(6))AND(Object.ActionAdmissible())AND NOT(Object.HasImpact(Unantastbar))AND NOT(Object.GetState(building)))"   |
+501   "CanUseGemRing"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(GemRing)>0)AND NOT(Object.GetState(fighting))AND NOT(Object.HasImpact(jewellery)))"   |
+502   "CanUseGoldChain"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(GoldChain)>0)AND NOT(Object.GetState(fighting))AND NOT(Object.HasImpact(jewellery)))"   |
+503   "CanUseRubinStaff"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(RubinStaff)>0)AND NOT(Object.GetState(fighting))AND NOT(Object.HasImpact(jewellery)))"   |
+504   "CanUseSilverRing"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(SilverRing)>0)AND NOT(Object.GetState(fighting))AND NOT(Object.HasImpact(jewellery)))"   |
+505   "CanUseOakwoodRing"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(OakwoodRing)>0)AND NOT(Object.GetState(fighting))AND NOT(Object.HasImpact(jewellery)))"   |
+506   "CanUsePearlchain"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Pearlchain)>0)AND NOT(Object.GetState(fighting))AND NOT(Object.HasImpact(jewellery)))"   |
+507   "CanUseShellchain"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Shellchain)>0)AND NOT(Object.GetState(fighting))AND NOT(Object.HasImpact(jewellery)))"   |
+508   "CanUseFarmersClothes"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(FarmersClothes)>0)AND NOT(Object.GetState(fighting))AND NOT(Object.HasImpact(jewellery)))"   |
+509   "CanUseCitizensClothes"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(CitizensClothes)>0)AND NOT(Object.GetState(fighting))AND NOT(Object.HasImpact(jewellery)))"   |
+510   "CanUseNoblesClothes"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(NoblesClothes)>0)AND NOT(Object.GetState(fighting))AND NOT(Object.HasImpact(jewellery)))"   |
+511   "CanUseAldermanChain"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(AldermanChain)>0)AND NOT(Object.GetState(fighting))AND NOT(Object.HasImpact(jewellery)))"   |
+512   "CanAdoptOrphan"   "__F((Object.CanBeControlled())AND NOT(Object.HudIsInCutscene())AND(Object.IsMarried())AND(Object.GetInsideBuilding())AND(Object.IsType(42)))"   |
+513   "CanBuyGoldRing"   "__F((Object.CanBeControlled())AND NOT(Object.HudIsInCutscene())AND(Object.GetInsideBuilding())AND(Object.IsType(42)))"   |
+514   "CanManageGroup"   "__F((Object.BelongsToMe())AND(Object.MinAge(16))AND NOT(Object.GetState(fighting))AND NOT(Object.HudIsInCutscene()))"   |
+516   "CanBuyAldermanChain"   "__F((Object.CanBeControlled())AND NOT(Object.HudIsInCutscene())AND(Object.GetInsideBuilding())AND(Object.IsType(26)))"   |
+517   "SimSellInsideGuildHouse"   "__F((Object.BelongsToMe())AND NOT(Object.HudIsInCutscene())AND(Object.GetInsideBuilding())AND(Object.IsType(26))AND(Object.Property.ContractCount>0))"   |
+518   "SimSellOutsideGuildHouse"   "__F((Object.BelongsToMe())AND NOT(Object.HudIsInCutscene())AND(Object.GetObjectsByRadius(Building)==1000)AND(Object.IsType(26))AND(Object.Property.ContractCount>0))"   |
+519   "ShowGuildMembership"   "__F((Object.IsDynastySim())AND(Object.MinAge(16))AND NOT(Object.HudIsInCutscene()))"   |
+520   "CanUseWorkingPlanPatron1a"   "__F((Object.CanBeControlled())AND NOT(Object.HudIsInCutscene())AND(Object.GetItemCnt(WorkingPlanPatron1)>0)AND NOT(Object.GetState(fighting))AND(Object.GetInsideBuilding())AND(Object.CanBeControlled())AND(Object.IsType(4))OR(Object.IsType(6)))"   |
+521   "CanUseWorkingPlanPatron1b"   "__F((Object.CanBeControlled())AND NOT(Object.HudIsInCutscene())AND(Object.GetItemCnt(WorkingPlanPatron1)>0)AND NOT(Object.GetState(fighting))AND(Object.GetObjectsByRadius(Building)==700)AND(Object.CanBeControlled())AND(Object.IsType(3))OR(Object.IsType(35))OR(Object.IsType(104))OR(Object.IsType(108)))"   |
+522   "CanUseWorkingPlanArtisan1"   "__F((Object.CanBeControlled())AND NOT(Object.HudIsInCutscene())AND(Object.GetItemCnt(WorkingPlanArtisan1)>0)AND NOT(Object.GetState(fighting))AND(Object.GetInsideBuilding())AND(Object.CanBeControlled())AND(Object.IsType(7))OR(Object.IsType(8))OR(Object.IsType(9))OR(Object.IsType(110)))"   |
+523   "CanUseWorkingPlanScholar1"   "__F((Object.CanBeControlled())AND NOT(Object.HudIsInCutscene())AND(Object.GetItemCnt(WorkingPlanScholar1)>0)AND NOT(Object.GetState(fighting))AND(Object.GetInsideBuilding())AND(Object.CanBeControlled())AND(Object.IsType(16))OR(Object.IsType(19))OR(Object.IsType(20))OR(Object.IsType(37))OR(Object.IsType(43))OR(Object.IsType(98)))"   |
+524   "CanUseWorkingPlanChiseler1a"   "__F((Object.CanBeControlled())AND NOT(Object.HudIsInCutscene())AND(Object.GetItemCnt(WorkingPlanChiseler1)>0)AND NOT(Object.GetState(fighting))AND(Object.GetInsideBuilding())AND(Object.CanBeControlled())AND(Object.IsType(22))OR(Object.IsType(36)))"   |
+525   "CanUseWorkingPlanChiseler1b"   "__F((Object.CanBeControlled())AND NOT(Object.HudIsInCutscene())AND(Object.GetItemCnt(WorkingPlanChiseler1)>0)AND NOT(Object.GetState(fighting))AND(Object.GetObjectsByRadius(Building)==700)AND(Object.CanBeControlled())AND(Object.IsType(11))OR(Object.IsType(15))OR(Object.IsType(21))OR(Object.IsType(102)))"   |
+526   "IsGuildHouse"   "__F((Object.IsType(26)))"   |
+527   "IsGuildHouseAndContract"   "__F((Object.IsType(26))AND(Object.Property.ContractCount>0))"   |
+528   "IsInGuildHousePatronMaster" "__F((Object.CanBeControlled())AND(Object.IsClass(1))AND NOT(Object.HudIsInCutscene())AND(Object.GetInsideBuilding())AND(Object.IsType(26)))" | 
+529   "IsInGuildHouseArtisanMaster" "__F((Object.CanBeControlled())AND(Object.IsClass(2))AND NOT(Object.HudIsInCutscene())AND(Object.GetInsideBuilding())AND(Object.IsType(26)))" | 
+530   "IsInGuildHouseScholarMaster" "__F((Object.CanBeControlled())AND(Object.IsClass(3))AND NOT(Object.HudIsInCutscene())AND(Object.GetInsideBuilding())AND(Object.IsType(26)))" | 
+531   "IsInGuildHouseChiselerMaster" "__F((Object.CanBeControlled())AND(Object.IsClass(4))AND NOT(Object.HudIsInCutscene())AND(Object.GetInsideBuilding())AND(Object.IsType(26)))" | 
+532   "CanUnpackIronBox1"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(IronBox1)>0))"   |
+533   "CanUnpackIronBox2"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(IronBox2)>0))"   |
+534   "CanUnpackIronBox3"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(IronBox3)>0))"   |
+535   "CanUnpackSilverBox1"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(SilverBox1)>0))"   |
+536   "CanUnpackSilverBox2"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(SilverBox2)>0))"   |
+537   "CanUnpackSilverBox3"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(SilverBox3)>0))"   |
+538   "CanUnpackGoldBox1"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(GoldBox1)>0))"   |
+539   "CanUnpackGoldBox2"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(GoldBox2)>0))"   |
+540   "CanUnpackGoldBox3"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(GoldBox3)>0))"   |
+541   "CanUnpackFungiBox1"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(FungiBox1)>0))"   |
+542   "CanUnpackFungiBox2"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(FungiBox2)>0))"   |
+543   "CanUnpackFungiBox3"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(FungiBox3)>0))"   |
+544   "CanUnpackLeatherBox1"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(LeatherBox1)>0))"   |
+545   "CanUnpackLeatherBox2"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(LeatherBox2)>0))"   |
+546   "CanUnpackLeatherBox3"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(LeatherBox3)>0))"   |
+547   "CanUnpackOakwoodBox1"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(OakwoodBox1)>0))"   |
+548   "CanUnpackOakwoodBox2"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(OakwoodBox2)>0))"   |
+549   "CanUnpackOakwoodBox3"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(OakwoodBox3)>0))"   |
+550   "CanUnpackPinewoodBox1"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(PinewoodBox1)>0))"   |
+551   "CanUnpackPinewoodBox2"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(PinewoodBox2)>0))"   |
+552   "CanUnpackPinewoodBox3"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(PinewoodBox3)>0))"   |
+553   "CanUnpackBarleyBox1"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(BarleyBox1)>0))"   |
+554   "CanUnpackBarleyBox2"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(BarleyBox2)>0))"   |
+555   "CanUnpackBarleyBox3"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(BarleyBox3)>0))"   |
+556   "CanUnpackWheatBox1"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(WheatBox1)>0))"   |
+557   "CanUnpackWheatBox2"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(WheatBox2)>0))"   |
+558   "CanUnpackWheatBox3"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(WheatBox3)>0))"   |
+559   "CanUnpackWoolBox1"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(WoolBox1)>0))"   |
+560   "CanUnpackWoolBox2"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(WoolBox2)>0))"   |
+561   "CanUnpackWoolBox3"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(WoolBox3)>0))"   |
+562   "CanUnpackHerringBox1"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(HerringBox1)>0))"   |
+563   "CanUnpackHerringBox2"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(HerringBox2)>0))"   |
+564   "CanUnpackHerringBox3"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(HerringBox3)>0))"   |
+565   "CanUnpackMediPackBox1"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(MediPackBox1)>0))"   |
+566   "CanUnpackMediPackBox2"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(MediPackBox2)>0))"   |
+567   "CanUnpackMediPackBox3"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(MediPackBox3)>0))"   |
+568   "CanUnpackWeaponsBox1"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(WeaponsBox1)>0))"   |
+569   "CanUnpackWeaponsBox2"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(WeaponsBox2)>0))"   |
+570   "CanUnpackWeaponsBox3"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(WeaponsBox3)>0))"   |
+571   "CanUnpackArmorsBox1"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(ArmorsBox1)>0))"   |
+572   "CanUnpackArmorsBox2"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(ArmorsBox2)>0))"   |
+573   "CanUnpackArmorsBox3"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(ArmorsBox3)>0))"   |
+574   "CanUnpackCamouflageCloakBox1"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(CamouflageCloakBox1)>0))"   |
+575   "CanUnpackCamouflageCloakBox2"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(CamouflageCloakBox2)>0))"   |
+576   "CanUnpackCamouflageCloakBox3"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(CamouflageCloakBox3)>0))"   |
+577   "CanUnpackMeadBox1"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(MeadBox1)>0))"   |
+578   "CanUnpackMeadBox2"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(MeadBox2)>0))"   |
+579   "CanUnpackMeadBox3"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(MeadBox3)>0))"   |
+580   "IsMyHospital"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.IsType(37)))"   |
+581   "GuildNewsletter"   "__F((Object.CanBeControlled())AND(Object.HasUpgrade(GuildNewsletter)))"   |
+582   "StrongBox"   "__F((Object.CanBeControlled())AND(Object.HasUpgrade(StrongBox)))"   |
+583   "IsMyMercenary"   "__F((Object.CanBeControlled())AND(Object.GetProfession()==17)AND(Object.MinAge(16)))"   |
+584   "IsMyMercenary2"   "__F((Object.CanBeControlled())AND(Object.MinAge(16))AND(Object.GetProfession()==17)AND(Object.GetWorkBuilding())AND(Object.HasUpgrade(Halberd)))"   |
+585   "CanBeAttackedNoPoison"   "__F((Object.CanAttack())AND(Object.CheckCutscene())AND(Object.MinAge(16))AND NOT(Object.HasImpact(Unantastbar))AND NOT(Object.HasImpact(poisoned))AND NOT(Object.IsClass(0))AND NOT(Object.IsClass(6)))"   |
+586   "CanUseWeaponPoison"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(WeaponPoison)>0)AND NOT(Object.GetState(fighting)))"   |
+588   "CanUseParalysisPoison"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(ParalysisPoison)>0)AND NOT(Object.GetState(fighting)))"   |
+589   "CanUseBlackWidowPoison"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(BlackWidowPoison)>0)AND NOT(Object.GetState(fighting)))"   |
+590   "CanUseAntidote"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Antidote)>0)AND NOT(Object.GetState(fighting))AND(Object.HasImpact(poisoned)))"   |
+592   "CanUnpackCharcoalBox1"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(CharcoalBox1)>0))"   |
+593   "CanUnpackCharcoalBox2"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(CharcoalBox2)>0))"   |
+594   "CanUnpackCharcoalBox3"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(CharcoalBox3)>0))"   |
+595   "CanBuildPirateShip"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.IsType(11))AND(Object.LacksProperty('pirateship')))"   |
+596   "CanBeWorldTrader"   "__F((Object.Type==Vehicle)AND NOT(Object.CanBeControlled()))"   |
+597   "CanManageProduction"   "__F((Object.CanBeControlled())AND(Object.IsType(4))OR(Object.IsType(6))OR(Object.IsType(7))OR(Object.IsType(8))OR(Object.IsType(9))OR(Object.IsType(19))OR(Object.IsType(20)))"   |
+598   "CanBeUpgraded"   "__F((Object.CanBeControlled())AND NOT(Object.IsType(2)))"   |
+599   "IsInPreWar"   "__F((Object.IsType(27))AND(Object.Property.prewar>0))"   |
+600   "IsInPreWarSim"   "__F((Object.CanBeControlled())AND NOT(Object.HudIsInCutscene())AND(Object.GetObjectsByRadius(Building)==2000)AND(Object.IsType(27))AND(Object.Property.prewar>0))"   |
+601   "CanUseWorkingPlanScholar1b"   "__F((Object.CanBeControlled())AND NOT(Object.HudIsInCutscene())AND(Object.GetItemCnt(WorkingPlanPatron1)>0)AND NOT(Object.GetState(fighting))AND(Object.GetObjectsByRadius(Building)==1000)AND(Object.CanBeControlled())AND(Object.IsType(98)))"   |
+602   "IsArsenal"   "__F((Object.IsType(27)))"   |
+603   "CanUseAmulet"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Amulet)>0)AND NOT(Object.GetState(fighting))AND NOT(Object.HasImpact(jewellery)))"   |
+604   "CanUseTarotCards"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(TarotCards)>0)AND NOT(Object.GetState(fighting))AND NOT(Object.HudIsInCutscene()))"   |
+605   "CanBuyCannon"   "__F((Object.CanBeControlled())AND NOT(Object.HudIsInCutscene())AND(Object.GetObjectsByRadius(Building)==1000)AND(Object.IsType(27)))"   |
+606   "CanUseStonerotary"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Stonerotary)>0)AND NOT(Object.HudIsInCutscene())AND NOT(Object.GetState(fighting)))"   |
+607   "IsMyChild"   "__F((Object.BelongsToMe())AND(Object.HasBehavior(Childness))OR(Object.HasBehavior(Schooldays))OR(Object.HasBehavior(Apprenticeship)))"   |
+608   "CanUseStonesoldier"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Stonesoldier)>0)AND NOT(Object.HudIsInCutscene())AND NOT(Object.GetState(fighting)))"   |
+609   "IsMyChildForStonerotary"   "__F((Object.BelongsToMe())AND(Object.HasBehavior(Childness))OR(Object.HasBehavior(Schooldays))OR(Object.HasBehavior(Apprenticeship)))"   |
+610   "IsMyChildForStonesoldier"   "__F((Object.BelongsToMe())AND(Object.HasBehavior(Childness))OR(Object.HasBehavior(Schooldays))OR(Object.HasBehavior(Apprenticeship))AND(Object.LacksProperty('Stonesoldier')))"   |
+612   "CanUseHorse"   "__F((Object.CanBeControlled())AND NOT(Object.IsInBuilding())AND NOT(Object.HudIsInCutscene())AND NOT(Object.GetState(fighting))AND(Object.GetOwnedBuildings())AND(Object.HasUpgrade(stallung)))"   |
+613   "IsAlderman"   "__F((Object.CanBeControlled())AND NOT(Object.HudIsInCutscene())AND NOT(Object.GetState(fighting))AND(Object.Property.Alderman>0))"   |
+706   "NoTalkToPerson"  "__F(NOT(Object.BelongsToMe())AND(Object.CheckCutscene()))" | 
+707   "TalkButtonAppears" "__F((Object.BelongsToMe())AND(Object.CanBeControlled())AND(Object.CheckCutscene())AND NOT(Object.GetState(child)))" | 
+1456   "CanUsePddv"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Pddv)>0)AND NOT(Object.GetState(fighting)))"   |
+1461   "CanUseRobe"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Robe)>0)AND NOT(Object.GetState(fighting)))"   |
+1462   "CanUseHandwerksurkunde"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Handwerksurkunde)>0)AND NOT(Object.GetState(fighting)))"   |
+1463   "CanUseSpindel"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Spindel)>0)AND NOT(Object.GetState(fighting))AND NOT(Object.IsInBuilding()))"   |
+1466   "CanUseVoodo"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Voodo)>0)AND NOT(Object.GetState(fighting)))"   |
+1467   "CanUseHasstirade"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Hasstirade)>0)AND NOT(Object.GetState(fighting)))"   |
+1468   "CanUseKamm"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Kamm)>0)AND NOT(Object.GetState(fighting)))"   |
+1469   "IsMeinNekromant"   "__F((Object.CanBeControlled())AND(Object.GetProfession()==40))"   |
+1472   "CanUsePendel"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Pendel)>0)AND NOT(Object.GetState(fighting))AND NOT(Object.IsInBuilding()))"   |
+1473   "CanUseHexerdokumentI"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(HexerdokumentI)>0)AND NOT(Object.GetState(fighting)))"   |
+1474   "CanUseHexerdokumentII"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(HexerdokumentII)>0)AND NOT(Object.GetState(fighting)))"   |
+1476   "CanUseOptieisen"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Optieisen)>0)AND NOT(Object.GetState(fighting)))"   |
+1477   "CanUseOptigold"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Optigold)>0)AND NOT(Object.GetState(fighting)))"   |
+1478   "CanUseOptisilber"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Optisilber)>0)AND NOT(Object.GetState(fighting)))"   |
+1479   "ObjectFuerAutoroute"   "__F((Object.Type==Cart)AND(Object.CanBeControlled())AND(Object.BelongstoMe()))"   |
+1481   "KeineArtefakteInnen"   "__F(NOT(Object.BelongsToMe())AND(Object.ActionAdmissible())AND NOT(Object.IsInBuilding()))"   |
+1484   "ObjectZurReparatur"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.CompareHPRelative()<99))"   |
+1485   "DarfReparieren"   "__F((Object.CanBeControlled())AND(Object.IsClass(2))AND(Object.MinAge(16))AND(Object.HasMinNobilityTitle(2)))"   |
+1488   "DarfAusschenken"   "__F((Object.CanBeControlled())AND(Object.IsClass(1))AND(Object.MinAge(16))AND(Object.GetOwnedBuildings())AND(Object.IsType(4))AND(Object.HasUpgrade(Regularstable)))"   |
+1489   "DarfBetrugen"   "__F((Object.CanBeControlled())AND(Object.IsClass(3))AND(Object.MinAge(16))AND(Object.GetOwnedBuildings())AND(Object.HasUpgrade(Urkunde))AND(Object.BelongsToMe()))"   |
+1490   "DarfLehren"   "__F((Object.CanBeControlled())AND(Object.IsClass(3))AND(Object.MinAge(16))AND(Object.HasProperty(IsADoctor)))"   |
+1491   "DarfVerfluchen"   "__F((Object.CanBeControlled())AND(Object.IsClass(3))AND(Object.MinAge(16))AND(Object.GetOwnedBuildings())AND(Object.HasUpgrade(steinkreis))AND(Object.BelongsToMe()))"   |
+1492   "DarfFreiHandeln"   "__F((Object.CanBeControlled())AND(Object.BelongsToMe())AND(Object.MinAge(16))AND(Object.GetOwnedBuildings())AND(Object.IsType(2))AND(Object.HasUpgrade(GuildNewsletter)))"   |
+1504   "IstHafenMarkt"   "__F((Object.IsClass(3))AND(Object.IsType(13)))"   |
+1507   "CanBeControlledPlusA"   "__F((Object.CanBeControlled())AND(Object.IsClass(4)))"   |
+1509   "AutoRoutenButtons"   "__F((Object.BelongsToMe())AND(Object.CanBeControlled())AND NOT(Object.IsType(4))AND NOT(Object.IsType(8)))"   |
+1510   "ObjectFuerStadtAusBau"   "__F((Object.IsClass(3))OR(Object.IsClass(1))AND NOT(Object.IsType(31))AND NOT(Object.IsType(29))AND NOT(Object.IsType(28))AND NOT(Object.IsType(32))AND NOT(Object.IsType(41))AND NOT(Object.IsType(2))AND NOT(Object.IsType(105))AND NOT(Object.IsType(107)))"   |
+1513   "AutoRoutenZiel"   "__F((Object.IsClass(5))OR(Object.IsClass(2))OR(Object.BelongsToMe()))"   |
+1516   "CanUseDrunkGame"   "__F((Object.CanBeControlled())AND(Object.GetInsideBuilding())AND(Object.IsType(36))AND(Object.GetLevel()>=2))"   |
+1517   "CanUseDiceGame"   "__F((Object.CanBeControlled())AND(Object.GetInsideBuilding())AND(Object.IsType(36))AND(Object.HasUpgrade(gablingtable)))"   |
+1518   "MeineBaustelle"   "__F((Object.BelongsToMe())AND(Object.Type==Building)AND(Object.GetState(building))OR(Object.GetState(levelingup)))"   |
+1519   "PartyMember"   "__F((Object.BelongsToMe())AND(Object.CanBeControlled())AND(Object.GetObjectsByRadius(Building)==3000)AND(Object.BelongsToMe())AND(Object.GetState(building)))"   |
+1520   "RauchBombeNutzer"   "__F((Object.CanBeControlled())AND(Object.IsClass(4))AND NOT(Object.IsInBuilding()))"   |
+1521   "KannStadtUpgrade"   "__F((Object.PlayerHasOfficeImpact('TurnoverTax')))"   |
+1522   "CanUseKnochenarmreif"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Knochenarmreif)>0)AND NOT(Object.GetState(fighting))AND NOT(Object.HasImpact(jewellery)))"   |
+1523   "CanEatDrink"   "__F((Object.CanBeControlled())AND NOT(Object.GetState(fighting)))"   |
+1524   "CanUnpackHoneyBox1"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(HoneyBox1)>0))"   |
+1525   "CanUnpackHoneyBox2"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(HoneyBox2)>0))"   |
+1526   "CanUnpackHoneyBox3"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(HoneyBox3)>0))"   |
+1527   "CanUnpackFruitBox1"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(FruitBox1)>0))"   |
+1528   "CanUnpackFruitBox2"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(FruitBox2)>0))"   |
+1529   "CanUnpackFruitBox3"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(FruitBox3)>0))"   |
+1530   "CanMarry"   "__F((Object.CanBeControlled())AND(Object.CanCourt())AND NOT(Object.IsMarried()) AND NOT (Object.HasProperty(Guarding)))"   |
+1531   "IsTownHallAndNoMultiplayer"   "__F((Object.IsType(23))AND NOT(Object.IsMultiplayer()))"   |
+1532   "CanDoRazzia"   "__F((Object.CanBeControlled())AND(Object.IsClass(4))AND(Object.GetOwnedBuildings())AND(Object.IsType(21))AND(Object.HasUpgrade(PlanOfSite)))"   |
+1533   "CanUseBlissstone"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Blissstone)>0)AND NOT(Object.GetState(fighting)))"   |
+1534   "IsMyJuggler"   "__F((Object.CanBeControlled())AND(Object.MinAge(16))AND(Object.GetProfession()==42))"   |
+1535   "CanPlayTarot"   "__F((Object.CanBeControlled())AND(Object.GetObjectsByRadius(Sim)==500)AND(Object.GetProfession()==42)AND(Object.HasProperty(Signal)))"   |
+1536   "JugglerOfferFortune"   "__F((Object.CanBeControlled())AND(Object.GetProfession()==42)AND(Object.MinAge(16))AND(Object.GetWorkBuilding())AND(Object.IsType(102))AND(Object.GetLevel()==3))"   |
+1537   "JugglerOfferTarot"   "__F((Object.CanBeControlled())AND(Object.GetProfession()==42)AND(Object.MinAge(16))AND(Object.GetWorkBuilding())AND(Object.IsType(102))AND(Object.GetLevel()>=2))"   |
+1538   "IsADivehouse"   "__F((Object.IsType(36))AND(Object.HasUpgrade(gablingtable)))"   |
+1539   "IsMyCocotteForGuards"   "__F((Object.CanBeControlled())AND(Object.GetProfession()== 30)AND NOT(Object.IsInBuilding())AND(Object.GetWorkBuilding())AND(Object.IsType(36))AND(Object.GetLevel()>=2))"   |
+1540   "IsMyCocotteForThief"   "__F((Object.CanBeControlled())AND(Object.GetProfession()== 30)AND NOT(Object.IsInBuilding())AND(Object.GetWorkBuilding())AND(Object.IsType(36))AND(Object.GetLevel()==3))"   |
+1541   "IsADivehouseWithSmuggler"   "__F((Object.BelongsToMe())AND(Object.IsType(36))AND(Object.HasUpgrade(PiratenGrog)))"   |
+1542   "IsMyWorkerInDivehouse"   "__F((Object.CanWorkHere())AND(Object.GetProfession()==30)AND(Object.MinAge(16))AND(Object.CanBeControlled()))"   |
+1543   "CanUseFruitFarmMeasuresSim"   "__F((Object.CanBeControlled())AND(Object.IsClass(1))AND(Object.MinAge(16))AND(Object.GetOwnedBuildings())AND(Object.IsType(108)))"   |
+1544   "CanDoRazzia2"   "__F((Object.CanBeControlled())AND(Object.GetProfession()==17)AND(Object.MinAge(16))AND(Object.GetWorkBuilding())AND(Object.IsType(21))AND(Object.HasUpgrade(PlanOfSite)))"   |
+1545   "TearDownMine"   "__F((Object.BelongsToMe())AND NOT(Object.GetState(building))AND NOT(Object.GetState(levelingup)))"   |
+1546   "CanDoGelage"   "__F((Object.CanBeControlled())AND(Object.GetInsideBuilding())AND(Object.IsBuildingOwnedByMe())AND(Object.IsClass(2))AND(Object.IsType(15))OR(Object.IsType(11))OR(Object.IsType(22))OR(Object.IsType(36))OR(Object.IsType(21))OR(Object.IsType(102)))"   |
+1547   "IsMineBankhouse"   "__F((Object.BelongsToMe())AND(Object.IsType(43))AND NOT Object.GetState(building))"   |
+1548   "IsMineBankhouseChief"   "__F((Object.CanBeControlled())AND(Object.GetInsideBuilding())AND(Object.IsBuildingOwnedByMe())AND(Object.IsType(43)))"   |
+1549   "IsMyFruitfarmer"   "__F((Object.CanBeControlled())AND(Object.GetProfession()==1)AND(Object.MinAge(16))AND(Object.GetWorkBuilding())AND(Object.IsType(108)))"   |
+1550   "TarnenDynNutzer"   "__F((Object.CanBeControlled())AND(Object.IsClass(4))AND(Object.GetOwnedBuildings())AND(Object.IsType(22))AND(Object.HasUpgrade(ShadowCloak))AND NOT(Object.IsInBuilding()))"   |
+1551   "IsDynMember"   "__F((Object.BelongsToMe())AND(Object.CanBeControlled()))"   |
+1552   "CanEmpfangenWuerden"   "__F((Object.CanBeControlled())AND(Object.GetInsideBuilding())AND(Object.IsType(111))AND(Object.BelongsToMe())AND(Object.HasUpgrade(ImperialSignet)))"   |
+1553   "IsMyWorkerInBank"   "__F((Object.CanWorkHere())AND(Object.GetProfession()==41)AND(Object.MinAge(16))AND(Object.CanBeControlled()))"   |
+1554   "IsMyMeInDivehouse"   "__F((Object.CanWorkHere())AND(Object.CanBeControlled())AND(Object.MinAge(16))AND(Object.GetInsideBuilding())AND(Object.IsType(36)))"   |
+1555   "IsMyCocotteForDance"   "__F((Object.CanBeControlled())AND(Object.GetProfession()== 30)AND(Object.MinAge(16))AND(Object.IsInBuilding())AND(Object.GetWorkBuilding())AND(Object.IsType(36))AND(Object.GetLevel()>=2))"   |
+1556   "IsMeForDanceDivehouse"   "__F((Object.CanWorkHere())AND(Object.CanBeControlled())AND(Object.GetInsideBuilding())AND(Object.IsType(36))AND(Object.GetLevel()>=2))"   |
+1557   "IsMeAJuggler"   "__F((Object.CanBeControlled())AND(Object.GetOwnedBuildings())AND(Object.IsType(102))AND NOT(Object.GetState(levelingup))OR(Object.GetState(building)))"   |
+1558   "MeOfferFortune"   "__F((Object.CanBeControlled())AND(Object.GetOwnedBuildings())AND(Object.IsType(102))AND(Object.GetLevel()==3)AND NOT(Object.GetState(levelingup))OR(Object.GetState(building)))"   |
+1559   "MeOfferTarot"   "__F((Object.CanBeControlled())AND(Object.GetOwnedBuildings())AND(Object.IsType(102))AND(Object.GetLevel()>=2)AND NOT(Object.GetState(levelingup))OR(Object.GetState(building)))"   |
+1560   "MeAMercenary"   "__F((Object.CanBeControlled())AND(Object.IsClass(4))AND(Object.GetOwnedBuildings())AND(Object.IsType(21)))"   |
+1561   "MeAMercenary2"   "__F((Object.CanBeControlled())AND(Object.IsClass(4))AND(Object.GetOwnedBuildings())AND(Object.IsType(21))AND(Object.HasUpgrade(Halberd)))"   |
+1562   "CanHaveProtection"   "__F((Object.HasDynasty())AND NOT(Object.GetState(building))AND(Object.IsClass(1))OR(Object.IsClass(2)))"   |
+1563   "IsMyResidenceAndNotUpgrading"   "__F((Object.CanBeControlled())AND (Object.IsClass(1))AND NOT (Object.GetState(levelingup)))"   |
+1564   "IsMyBuilding"   "__F((Object.Type==Building)AND(Object.BelongsToMe()))"   |
+1565   "HasBathingRoom"   "__F(Object.CanBeControlled())AND(Object.IsType(4))AND(Object.HasUpgrade(BathingRoom)))"   |
+1566   "CanLevelUpCity"   "__F((Object.CanBeControlled())AND(Object.HasImpact(LevelUpCity))AND(Object.IsInOfficeBuilding()))"   |
+1567   "CanArrangeConcert"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.IsType(4))OR(Object.IsType(36)))"   |
+1568   "CanUseMineGuards"   "__F((Object.CanBeControlled())AND(Object.GetOwnedBuildings())AND(Object.IsType(12))AND NOT Object.GetState(building))"   |
+2000   "CanSelfApplyBandage" "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Bandage)>0)AND NOT(Object.GetState(fighting)))" | 
+2001   "CanSelfApplyMedicine" "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Medicine)>0)AND NOT(Object.GetState(fighting)))" | 
+2002   "CanSelfApplyPainKiller" "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Painkiller)>0)AND NOT(Object.GetState(fighting)))" | 
+2003   "CanEatCookie"    "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Cookie)>0)AND NOT(Object.GetState(fighting)))" | 
+2004   "CanEatCreamPie"  "__F((Object.CanBeControlled())AND(Object.GetItemCnt(CreamPie)>0)AND NOT(Object.GetState(fighting)))" | 
+2005   "CanUnpackDyeBox1" "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(DyeBox1)>0))" | 
+2006   "CanUnpackDyeBox2" "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(DyeBox2)>0))" | 
+2007   "CanUnpackDyeBox3" "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(DyeBox3)>0))" | 
+2008   "CanUnpackWheatFlourBox1" "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(WheatFlourBox1)>0))" | 
+2009   "CanUnpackWheatFlourBox2" "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(WheatFlourBox2)>0))" | 
+2010   "CanUnpackWheatFlourBox3" "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(WheatFlourBox3)>0))" | 
+2011   "CanUnpackBarleyFlourBox1" "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(BarleyFlourBox1)>0))" | 
+2012   "CanUnpackBarleyFlourBox2" "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(BarleyFlourBox2)>0))" | 
+2013   "CanUnpackBarleyFlourBox3" "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(BarleyFlourBox3)>0))" | 
+2014   "CanUseTool"  "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Tool)>0)AND NOT(Object.GetState(fighting)))" | 
+2015   "CanUseSoap"  "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Soap)>0)AND NOT(Object.GetState(fighting)))" | 
+2016   "PATCH_TODO"   "__F((Object.BelongsToMe())AND(Object.IsDynastySim()))"   |
+2017   "CanUseEmpfehlung"  "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Empfehlung)>0)AND NOT(Object.GetState(fighting)))" | 
+2018   "CanUseBible"  "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Bible)>0)AND NOT(Object.GetState(fighting)))" | 
+2019   "CanUseChaplet"  "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Chaplet)>0)AND NOT(Object.GetState(fighting)))" | 
+2020   "CanDrinkHerbtea"  "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Herbtea)>0)AND NOT(Object.GetState(fighting)))" | 
+2021   "CanDrinkSmallBeer"  "__F((Object.CanBeControlled())AND(Object.GetItemCnt(SmallBeer)>0)AND NOT(Object.GetState(fighting)))" | 
+2022   "CanDrinkWheatBeer"  "__F((Object.CanBeControlled())AND(Object.GetItemCnt(WheatBeer)>0)AND NOT(Object.GetState(fighting)))" | 
+2023   "CanDrinkWine"  "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Wine)>0)AND NOT(Object.GetState(fighting)))" | 
+2024   "CanUseGargoyle"  "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Gargoyle)>0)AND NOT(Object.GetState(fighting)))" | 
+2025   "CanUseInvisiblePotion"   "__F((Object.CanBeControlled())AND(Object.GetItemCnt(InvisiblePotion)>0)AND NOT(Object.GetState(fighting)))"   |
+2026   "CanUseWeingeist"  "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Weingeist)>0)AND NOT(Object.GetState(fighting)))" | 
+2027   "CanUsePfandbrief"   "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(Pfandbrief)>0))"   |
+2028   "CanPreachBible"   "__F((Object.CanBeControlled())AND(Object.BelongsToMe())AND(Object.GetItemCnt(Bible)>0)AND(Object.GetReligion()==1)AND NOT(Object.GetState(fighting)))"   |
+2029   "CanUnpackBeefBox1" "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(BeefBox1)>0))" | 
+2030   "CanUnpackBeefBox2" "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(BeefBox2)>0))" | 
+2031   "CanUnpackBeefBox3" "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(BeefBox3)>0))" | 
+2032   "CanUnpackGrindingbrickBox1" "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(GrindingbrickBox1)>0))" | 
+2033   "CanUnpackGrindingbrickBox2" "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(GrindingbrickBox2)>0))" | 
+2034   "CanUnpackGrindingbrickBox3" "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(GrindingbrickBox3)>0))" | 
+2035   "CanUnpackGemstoneBox1" "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(GemstoneBox1)>0))" | 
+2036   "CanUnpackGemstoneBox2" "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(GemstoneBox2)>0))" | 
+2037   "CanUnpackGemstoneBox3" "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(GemstoneBox3)>0))" | 
+2038   "CanUnpackSugarBox1" "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(SugarBox1)>0))" | 
+2039   "CanUnpackSugarBox2" "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(SugarBox2)>0))" | 
+2040   "CanUnpackSugarBox3" "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(SugarBox3)>0))" | 
+2041   "CanUnpackInkBox1" "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(InkBox1)>0))" | 
+2042   "CanUnpackInkBox2" "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(InkBox2)>0))" | 
+2043   "CanUnpackInkBox3" "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(InkBox3)>0))" | 
+2044   "CanUnpackPechBox1" "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(PechBox1)>0))" | 
+2045   "CanUnpackPechBox2" "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(PechBox2)>0))" | 
+2046   "CanUnpackPechBox3" "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(PechBox3)>0))" | 
+2047   "CanUnpackFatBox1" "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(FatBox1)>0))" | 
+2048   "CanUnpackFatBox2" "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(FatBox2)>0))" | 
+2049   "CanUnpackFatBox3" "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(FatBox3)>0))" | 
+2050   "CanUnpackMilchBox1" "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(MilchBox1)>0))" | 
+2051   "CanUnpackMilchBox2" "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(MilchBox2)>0))" | 
+2052   "CanUnpackMilchBox3" "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(MilchBox3)>0))" | 
+2053   "CanCollectDebtsBoss"   "__F((Object.CanBeControlled())AND(Object.IsClass(3))AND(Object.GetOwnedBuildings())AND(Object.IsType(43)))"   |
+2054   "CanCollectDebtsWorker"   "__F((Object.CanBeControlled())AND(Object.GetProfession()==41))"   |
+2055   "HasStolenMoney"   "__F((Object.HasProperty(StolenSum)))"   |
+2056   "ShowBalance" "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.IsClass(2)))" | 
+2057   "IsMyTavern"   "__F((Object.BelongsToMe())AND(Object.IsType(4)))"   |
+2058   "CanUseVase" "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(vase)>0))" |  
+2059   "CanUseStatue" "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(statue)>0))" |
+2060   "CanUseGravestone"  "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Gravestone)>0)AND NOT(Object.GetState(fighting)))" | 
+2061   "CanUseFalseRelict" "__F((Object.Type==Building)AND(Object.BelongsToMe())AND(Object.GetItemCnt(FalseRelict)>0)AND(Object.IsType(19))OR(Object.IsType(20)))" |
+2062   "CanUseBoneFlute"  "__F((Object.CanBeControlled())AND(Object.GetItemCnt(BoneFlute)>0)AND NOT(Object.GetState(fighting)))" | 
+2063   "CanUseHolzpferd"  "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Holzpferd)>0)AND NOT(Object.GetState(fighting)))" | 
+2064   "CanUsePastry"  "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Pastry)>0)AND NOT(Object.GetState(fighting)))" | 
+2065   "SelectFriedhof" "__F((Object.Type==Building)AND(Object.BelongsToMe())OR(NOT(Object.BelongsToMe()))" |
+2066   "BookmarkPerson" "__F((Object.IsDynastySim)AND NOT(Object.BelongsToMe()))" |  
+
+2070   "IsMyThiefCanSteal"   "__F((Object.CanBeControlled())AND(Object.GetProfession()== 26)AND(Object.MinAge(16))AND(Object.GetWorkBuilding())AND(Object.GetLevel()>=3))"   |
+2071   "IsMyThiefCanBurgle"   "__F((Object.CanBeControlled())AND(Object.GetProfession()== 26)AND(Object.MinAge(16))AND(Object.GetWorkBuilding())AND(Object.GetLevel()>=2))"   |
+
