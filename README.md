@@ -1,3 +1,28 @@
+Installation
+============
+
+TradeWarPolitics is based on Fajeth's MegaModPack 0.95. Make sure to follow 
+the installation instructions of that mod **before** you continue with the 
+following steps.
+
+1. Make sure that **MegaModPack 0.95** is installed correctly.
+
+2. !IMPORTANT! Remove the folder "Scripts/AI/" from your game folder. 
+   Do not remove the rest of the scripts folder, as not all scripts are 
+   contained in this zip file.
+   You may experience oddities in AI behavior if you skipped this step. 
+
+3. Unzip this mod into your Guild2 game folder. Confirm to overwrite 
+   existing files. If you are not prompted to confirm any overwrite, 
+   you unzipped into the wrong folder.
+
+4. Go into the DBT-folder and remove the file **Text.dbt**. Rename the 
+   file **Text_EN.dbt** or **Text_DE.dbt** into **Text.dbt** for English 
+   or German text.
+
+5. Start a new game and have fun. 
+
+
 Mod Details
 ===========
 
@@ -13,54 +38,50 @@ The mod is to be considered "Work in Progress". It is currently based on Fajeth'
 Please see the changelog at the end of this file for the latest changes.
 
 
-Installation
-------------
-
-TradeWarPolitics is based on Fajeth's MegaModPack 0.95. Make sure to follow the installation instructions of that mod **before** you continue with the following steps.
-
-1) Make sure that **MegaModPack 0.95** is installed correctly.
-
-2) Unzip this mod into your Guild2 game folder. Confirm to overwrite existing files. If you are not prompted to confirm any overwrite, you unzipped into the wrong folder.
-
-3) Go into the DBT-folder and remove the file **Text.dbt**. Rename the file **Text_EN.dbt** or **Text_DE.dbt** into **Text.dbt** for English or German text.
-
-4) Start a new game and have fun. 
-
-
 Features
 --------
 
 ### Trade ###
 
-* A new sales counter was implemented. It is available through a building measure (look for crates). The amount of items in your counter can be configured. The items will be put into the counter automatically. 
+* A new sales counter was implemented. It is available through a building 
+  measure (look for crates). The amount of items in your counter can be configured. 
+  The items will be put into the counter automatically. 
 
 * The AI uses the sales counter for all production items. 
 
 * Idle SIMs will check out the sales counters of local shops and may buy items.
 
-* The world traders (neutral carts) will look for interesting goods at local shops. They may buy larger amounts at your sales counter.
+* The world traders (neutral carts) will look for interesting goods at local shops. 
+  They may buy larger amounts at your sales counter.
 
-* You may use a cart to buy items from market or shops. Use the measure "Send cart and unload" which has a new option to "Buy and return".
+* You may use a cart to buy items from market or shops. Use the measure "Send cart 
+  and unload" which has a new option to "Buy and return".
 
-* A new Measure "Show Workshop Balance" is available on all production buildings. The sheet sums up all wages and all transactions done with either "Send cart and unload" or trade routes. It also lists sales at your sales counter.
+* A new Measure "Show Workshop Balance" is available on all production buildings. 
+   The sheet sums up all wages and all transactions done with either "Send cart and 
+   unload" or trade routes. It also lists sales at your sales counter.
 
-* Trade events are enabled for any market, not just counting houses. The chances are much higher for need events than for offer events.
+* Trade events are enabled for any market, not just counting houses. The chances are 
+  much higher for need events than for offer events.
 
 
 ### War ###
 
 * War will happen later but more than once.
 
-* The calculation for winning/losing the war was improved. Sending officers and armsmen will improve chances.
+* The calculation for winning/losing the war was improved. Sending officers and armsmen 
+  will improve chances.
 
 
 ### Politics ###
 
 * All office incomes have been increased significantly. 
 
-* To afford the extra payments, the costs for office applications counts towards the city treasury.
+* To afford the extra payments, the costs for office applications counts towards the 
+  city treasury.
 
-* New office **Treasurer** was introduced to take care of taxes. This serves to split the power in city council.
+* New office **Treasurer** was introduced to take care of taxes. This serves to split 
+  the power in city council.
 
 
 ### Other Changes ###
@@ -69,9 +90,12 @@ Features
 
 * Fruit farms now produce wine. Sugar beets were removed.
 
-* Nobility title at game start may now be configured in config.ini, look for "InitialTitle". It defaults to "2".
+* Nobility title at game start may now be configured in config.ini, look for "InitialTitle". 
+  It defaults to "2".
 
-* Increased chances for city events (fire, sickness, black death). Chances are based on difficulty, but never fall to zero. Chances also depend on current season, so expect more fires in summer.
+* Increased chances for city events (fire, sickness, black death). Chances are based on 
+  difficulty, but never fall to zero. Chances also depend on current season, so expect 
+  more fires in summer.
 
 
 Bug fixes
@@ -113,26 +137,72 @@ Known Issues
 * Workers seem to end their work days early sometimes.
 * AI dynasties still seem to die out quickly.
 * Trading routes do not continue after being robbed.
-* The game may or may not OOS in trial situations. Avoid watching the trial scene if it happens in your game. 
-* The AI is unable to build outside the city walls. I see no more ways to fix this without access to the source code. 
+* The game may or may not OOS in trial situations. Avoid watching the 
+  trial scene if it happens in your game. 
+* The AI is unable to build outside the city walls. I see no more ways 
+  to fix this without access to the source code. 
 
 
 Planned Features
 ----------------
-There are still some ideas I'd like to implement in the future -- whenever I find the time. Here are the most likely to happen:
+There are still some ideas I'd like to implement in the future -- whenever 
+I find the time. Here are the most likely to happen:
 
-* The warehouse should have workers (merchants). They will have two measures: free trade and trade agreement. Free trade is currently limited to dynasty characters and bound to an upgraded residence. 
-  Trade agreements can be reached by sending the merchant off to another town/market/counting house. The player chooses item type and amount and tries to fetch good prices.
+* The warehouse should have workers (merchants). They will have two measures: 
+  free trade and trade agreement. Free trade is currently limited to dynasty 
+  characters and bound to an upgraded residence. 
+  Trade agreements can be reached by sending the merchant off to another 
+  town/market/counting house. The player chooses item type and amount and tries 
+  to fetch good prices.
 
-* War should lead to special conditions at the markets. Any weapons and armor will be needed as well as food for the army. Also, participating in war should be more interesting and transparent. 
+* War should lead to special conditions at the markets. Any weapons and armor 
+  will be needed as well as food for the army. Also, participating in war should 
+  be more interesting and transparent. 
 
-* AI-workshops currently don't look for resources at the sales counters of other shops.
+* AI-workshops currently don't look for resources at the sales counters of other 
+  shops.
 
-* The rogue AI is currently useless. This may not be part of this mod, but it takes away a lot of the challenge. Currently there are no burglaries and likely no kidnappings. 
+* The AI control for rogue buildings of the player is mostly useless. It works 
+  better for AI rogues. I'll look into that some time.
 
 
 Changelog
 =========
+
+## TWP 0.95.3beta ##
+
+This version offers a thorough rework of AI dynasties. It still requires testing of
+AI and performance in longer games:
+
+**NOTE** this is a beta release, so don't blame me for breaking your game. 
+It's possible to have two installations of the game side-by-side, make use 
+of that. Also, I'd appreciate any feedback regarding the AI or the mod in 
+general. 
+
+* The courting process works all the way up to marriage. The AI is now able 
+  to start with a single character, just like the player. 
+  
+* The AI should even be able to build the first workshop pretty soon, but I still 
+  recommend giving them one workshop at game start.
+
+* Several dynasty actions were moved to idle behavior of a SIM. This includes tavern 
+  visits, medical treatment, poison treatment and usage of boosting artefacts. It also 
+  includes additional courting actions to make sure they are able to get married.
+
+* Idle family members (non-party) will also perform idle actions (see above).
+
+* The decisions of AI dynasties are now partly based on a priority system that calculates 
+  their current interest in political and military actions. The decisions are also based on 
+  current events like duels, trials and office applications.
+
+* The AI will now focus aggressive actions on a few enemies. The current enemies are 
+  reconsidered every other day and may include economic rivals, current feuds and other 
+  colored dynasties. 
+
+* The AI did not receive/spend money in most scripted actions. I found a workaround to
+  enable normal finances for AI dynasties. Try getting them bankrupt :) 
+
+* The divehouse was unable to use the sales counter for smuggled goods. It is now enabled. 
 
 ## TWP 0.95.2 ##
 
