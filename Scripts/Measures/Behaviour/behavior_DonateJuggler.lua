@@ -21,7 +21,7 @@ function Run()
 		spend = 12+Rand(13)
 	end
 	local getbeg = math.floor(spend + ((spend / 100) * begbonus))+Rand(5)*charm
-	CreditMoney("Actor",getbeg,"Offering")
+	f_CreditMoney("Actor",getbeg,"Offering")
 	economy_UpdateBalance("Juggler", "Service", getbeg)
 	IncrementXPQuiet("Actor",15)
 	if dyn_IsLocalPlayer("Actor") then

@@ -126,8 +126,8 @@ function Run()
 						BuildingGetCity("VictimHome","city")
 						local CityBonus = math.floor(VictimSpendValue/2)
 						if GetMoney("city")>CityBonus then
-							SpendMoney("city", CityBonus, "Mercenaries")
-							CreditMoney("MercOwner", CityBonus, "HushMoneyCity")
+							f_SpendMoney("city", CityBonus, "Mercenaries")
+							f_CreditMoney("MercOwner", CityBonus, "HushMoneyCity")
 							economy_UpdateBalance("MyHome", "Service", CityBonus)
 							
 							local MercMoney = CityBonus
@@ -153,7 +153,7 @@ function Run()
 						if VictimSpendValue > Value then
 							VictimSpendValue = Value
 						end
-						SpendMoney(DestAlias, VictimSpendValue,"CostBribes")
+						f_SpendMoney(DestAlias, VictimSpendValue,"CostBribes")
 						
 						--if VictimSpendValue>25 then
 						--	feedback_MessageCharacter(DestAlias,

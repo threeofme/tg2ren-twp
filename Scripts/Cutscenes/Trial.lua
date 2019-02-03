@@ -1045,7 +1045,7 @@ function Go()
 		MsgSay("judge","@L_LAWSUIT_4_ACCUSAL_NOEVIDENCE_JUDGE",TrialFee)
 		PlayAnimationNoWait("judge", "sit_talk")
 		MsgSay("judge","@L_LAWSUIT_6_DECISION_C_JUDGEMENT_CLOSE_+0")
-		CreditMoney("accuser",-TrialFee,"trialfee")
+		f_CreditMoney("accuser",-TrialFee,"trialfee")
 	else
 --		MsgSay("accuser"," @L_LAWSUIT_4_ACCUSAL_B_INTRO"..RhethoricReplace..EvidenceReplace..GenderType)
 
@@ -1561,7 +1561,7 @@ function Go()
 				local Reward = { 300, 600, 900, 1200, 1500, 2000 }
 				PlayAnimationNoWait("judge", "talk_sit_short")
 				MsgSay("judge","@L_LAWSUIT_REWARD",GetID("accuser"),Reward[SentenceLevel])
-				CreditMoney("accuser",Reward[SentenceLevel],"tip")
+				f_CreditMoney("accuser",Reward[SentenceLevel],"tip")
 				Sleep(0.25)
 			end
 			DecisionForFinalComment = 1
@@ -1579,7 +1579,7 @@ function Go()
 			trial_PlayRelevantJuryAni("judge",0)
 			MsgSay("judge","@L_LAWSUIT_6_DECISION_B_JUDGE_DECISION_NOTGUILTY"..GenderType,GetID("accused"))
 			MsgSay("judge","@L_LAWSUIT_6_DECISION_B_JUDGE_DECISION_NOTGUILTY_TOBOTH",TrialCosts)
-			CreditMoney("accuser",-TrialCosts,"trialfee")
+			f_CreditMoney("accuser",-TrialCosts,"trialfee")
 			DecisionForFinalComment = 0
 			xp_ChargeCharacter("accused", SentenceLevel)
 		end

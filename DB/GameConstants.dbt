@@ -181,3 +181,4 @@ Data:
 1010         "GL_BUILDING_TYPE_JUGGLER"    102               ""                              |
 1011         "GL_BUILDING_CLASS_ADDON"    8                 ""                              | 
 1012         "GL_BUILDING_TYPE_WAREHOUSE"     38             ""                              |
+1013         "GL_PROFESSION_COCOTTE"           30                ""                              |

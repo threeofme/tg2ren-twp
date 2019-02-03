@@ -34,10 +34,10 @@ function Run()
 	    StopMeasure()
 	else
 	    GetDynasty("Destination","kasse")
-	    CreditMoney("kasse",spend,"Offering")
+	    f_CreditMoney("kasse",spend,"Offering")
 	    --economy_UpdateBalance("kasse", "Service", spend)
         ShowOverheadSymbol("Destination",false,true,0,"%1t",spend)
-        SpendMoney("Owner",spend,"Offering")
+        f_SpendMoney("Owner",spend,"Offering")
 		
 		local card = Rand(21)
 		
@@ -63,7 +63,7 @@ function TheDestiny(x)
 			if pay > 25 then
 				pay = 25
 			end
-		SpendMoney("Owner",pay,"Offering")
+		f_SpendMoney("Owner",pay,"Offering")
 		return
 	
 	elseif x == 1 then
@@ -80,7 +80,7 @@ function TheDestiny(x)
 			if pay > 25 then
 				pay = 25
 			end
-		CreditMoney("Owner",pay,"Offering")
+		f_CreditMoney("Owner",pay,"Offering")
 		return
 		
 	elseif x == 12 then

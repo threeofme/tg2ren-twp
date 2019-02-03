@@ -144,8 +144,8 @@ function Run()
 					else
 						
 						PlaySound3D("Destination", "fanfare/FanfarPositiveShort_s_01.ogg", 1.0)
-						SpendMoney("dynasty",Value,"misc")
-						CreditMoney("FormerOwner",Value,"misc")
+						f_SpendMoney("dynasty",Value,"misc")
+						f_CreditMoney("FormerOwner",Value,"misc")
 						
 						if HasProperty("FormerOwner","intimidated") then
 							RemoveProperty("FormerOwner","intimidated")
@@ -180,8 +180,8 @@ function Run()
 					else
 						
 						PlaySound3D("Destination", "fanfare/FanfarPositiveShort_s_01.ogg", 1.0)
-						SpendMoney("dynasty",Value,"misc")
-						CreditMoney("FormerOwner",Value,"misc")
+						f_SpendMoney("dynasty",Value,"misc")
+						f_CreditMoney("FormerOwner",Value,"misc")
 						
 						if HasProperty("FormerOwner","intimidated") then
 							RemoveProperty("FormerOwner","intimidated")
@@ -216,8 +216,8 @@ function Run()
 					else
 						
 						PlaySound3D("Destination", "fanfare/FanfarPositiveShort_s_01.ogg", 1.0)
-						SpendMoney("dynasty",Value,"misc")
-						CreditMoney("FormerOwner",Value,"misc")
+						f_SpendMoney("dynasty",Value,"misc")
+						f_CreditMoney("FormerOwner",Value,"misc")
 						
 						if HasProperty("FormerOwner","intimidated") then
 							RemoveProperty("FormerOwner","intimidated")
@@ -256,8 +256,8 @@ function Run()
 					else
 						
 						PlaySound3D("Destination", "fanfare/FanfarPositiveShort_s_01.ogg", 1.0)
-						SpendMoney("dynasty",Value,"misc")
-						CreditMoney("FormerOwner",Value,"misc")
+						f_SpendMoney("dynasty",Value,"misc")
+						f_CreditMoney("FormerOwner",Value,"misc")
 						
 						if HasProperty("FormerOwner","intimidated") then
 							RemoveProperty("FormerOwner","intimidated")

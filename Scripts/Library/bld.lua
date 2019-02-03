@@ -62,7 +62,7 @@ function ClearBuildingStash(BldAlias, OwnerAlias)
 		local invest = GetProperty(BldAlias,"BankAccount")
 		RemoveProperty(BldAlias,"BankAccount")
 		if AliasExists(OwnerAlias) then
-			CreditMoney(OwnerAlias,invest,"BuildingSold")
+			f_CreditMoney(OwnerAlias,invest,"BuildingSold")
 			-- notify former owner
 			MsgNewsNoWait(OwnerAlias, BldAlias, "", "building", -1, 
 				"@L_BUYBUILDING_CREDIT_HEAD_+0",
@@ -81,7 +81,7 @@ function ClearBuildingStash(BldAlias, OwnerAlias)
 		RemoveProperty("Salescounter_"..ItemId)
 	end
 	if Value > 0 and AliasExists(OwnerAlias) then
-		CreditMoney(OwnerAlias, Value, "BuildingSold")
+		f_CreditMoney(OwnerAlias, Value, "BuildingSold")
 		MsgNewsNoWait(OwnerAlias, BldAlias, "", "building", -1, 
 			"@L_BUYBUILDING_MEDICINE_HEAD_+0",
 			"@L_BUYBUILDING_MEDICINE_BODY_+0", 
@@ -766,7 +766,7 @@ function SetupAI(BldAlias)
 					}
 		ItemsNum = 12
 		MarketStock = { 30, 30, 30, 15, 10, 10, 10, 10, -1, -1, -1, -1 }
-		LocalStock = { 4, 4, -1, -1, -1, -1, -1, -1, 2, 2, 2, 1 }
+		LocalStock = { 4, 4, -1, -1, -1, -1, -1, -1, 20, 20, 20, 20 }
 		
 	elseif BldType == GL_BUILDING_TYPE_MILL then
 		Items = {	"Oil", "Dye", "WheatFlour"
@@ -1074,7 +1074,7 @@ function SpawnMaterial(BldAlias)
 					Price = ItemGetPriceSell(CheckItem, "Market")*MarketStock
 					if PayMoney == true then
 						if GetMoney("MyBoss") >= Price then -- check if we have the money
-							if SpendMoney("MyBoss", Price, "misc") then
+							if f_SpendMoney("MyBoss", Price, "misc") then
 								RemoveItems("Market", CheckItem, MarketStock, INVENTORY_STD)
 								Transfer(nil, nil, INVENTORY_STD, "Market", INVENTORY_STD, CheckItem, MarketStock)
 								AddItems(BldAlias, CheckItem, MarketStock, INVENTORY_STD)
@@ -1089,7 +1089,7 @@ function SpawnMaterial(BldAlias)
 					Price = ItemGetPriceSell(CheckItem, "Market")*SpawnCount[i]
 					if PayMoney == true then
 						if GetMoney("MyBoss") >= Price then -- check if we have the money
-							if SpendMoney("MyBoss", Price, "misc") then
+							if f_SpendMoney("MyBoss", Price, "misc") then
 								RemoveItems("Market", CheckItem, SpawnCount[i], INVENTORY_STD)
 								Transfer(nil, nil, INVENTORY_STD, "Market", INVENTORY_STD, CheckItem, SpawnCount[i])
 								AddItems(BldAlias, CheckItem, SpawnCount[i], INVENTORY_STD)
@@ -1109,7 +1109,7 @@ end
 function RemoveCart(BldAlias)
 
 	local CartCount = BuildingGetCartCount(BldAlias)
-	if CartCount > 1 then
+	if CartCount > 2 then
 		for i=1, BuildingGetCartCount("")-1 do
 			if BuildingGetCart("", i, "CartAlias") then
 				if not GetState("CartAlias", STATE_CHECKFORSPINNINGS) then -- means it is standing still
@@ -1126,7 +1126,7 @@ function RemoveCart(BldAlias)
 							end
 						end
 						if not HasItems then -- only remove cart if it is empty
-							CreditMoney(BldAlias, 250, "misc") -- add some money for compensation (needs testing)
+							f_CreditMoney(BldAlias, 250, "misc") -- add some money for compensation (needs testing)
 							InternalRemove("CartAlias")
 							break
 						end
@@ -1213,7 +1213,7 @@ function ForceLevelUp(BldAlias)
 	
 	local Proto = ScenarioFindBuildingProto(2, BuildType, BuildLevel+1, SubLevel)
 	
-	if SpendMoney("MyBoss", Cost, "BuildingLevelUp", false) then
+	if f_SpendMoney("MyBoss", Cost, "BuildingLevelUp", false) then
 		local RepeatTime = 120 - 12*ScenarioGetDifficulty()
 		SetRepeatTimer(BldAlias, "ai_ForceLevelUp", RepeatTime)
 		SetProperty(BldAlias, "LevelUpProto", Proto)
@@ -1241,7 +1241,7 @@ function HandlePingHour(BldAlias)
 	-- Improve AI management
 	if BuildingGetAISetting(BldAlias, "Produce_Selection") > 0 then
 		bld_SetupAI(BldAlias)
-		bld_SpawnMaterial(BldAlias)
+		--bld_SpawnMaterial(BldAlias)
 	end
 	
 	local Count, Items = economy_GetItemsForSale(BldAlias)
@@ -1250,8 +1250,8 @@ function HandlePingHour(BldAlias)
 		economy_InitializeDefaultSalescounter(BldAlias, Count, Items)
 	end
 	economy_UpdateSalescounter(BldAlias, Count, Items)
-	-- every odd hour
-	if math.mod(GetGametime(), 3) == 1 then
+	-- at 3, 11, 19 
+	if math.mod(GetGametime(), 8) == 3 then
 		economy_CalculateSalesRanking(BldAlias, Count, Items)
 	end
 	-- at 1am: subtract current wages from balance
@@ -1269,6 +1269,8 @@ function HandlePingHour(BldAlias)
 		if DynastyIsAI("MyBoss") then
 			bld_CheckRivals(BldAlias)
 			bld_ForceLevelUp(BldAlias)
+			-- attempt to fix stagnant money of AI dynasties
+			--f_CreditMoney("MyBoss", Rand(100)*BuildingGetLevel(BldAlias))
 		end
 	end
 end
@@ -1277,5 +1279,6 @@ function HandleNewOwner(BldAlias, FormerOwner)
 	bld_ClearBuildingStash(BldAlias, FormerOwner)
 	bld_BuildingWorkersStopWorking(BldAlias)
 	bld_ResetWorkers(BldAlias)
+	economy_ClearBalance(BldAlias)
 	SetProperty(BldAlias, "BuySell_SellStock", 0)
 end

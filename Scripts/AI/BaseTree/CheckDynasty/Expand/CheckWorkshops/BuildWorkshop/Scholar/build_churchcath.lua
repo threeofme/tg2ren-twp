@@ -4,7 +4,7 @@ function Weight()
 	end
 	local Count = CityGetBuildingCount("HomeCity", -1, GL_BUILDING_TYPE_CHURCH_CATH)
 	local CityLevel = CityGetLevel("HomeCity")
-	return math.max(0, ((CityLevel - 1) - Count))
+	return (CityLevel - 1) - Count
 end
 
 function Execute()

@@ -535,13 +535,16 @@ function Worker(ActiveMovement)
 	if AtPlace or BuildingGetAISetting("WorkingPlace", "Enable") > 0 then
 		if SimGetProfession("") == GL_PROFESSION_THIEF then
 			--LogMessage("::TOM::ThiefIdle::"..GetName("").." Going into idle work state.")
-			idlelib_ThiefIdle("WorkingPlace")
+			aitwp_ThiefIdle("WorkingPlace")
 			return
 		elseif SimGetProfession("") == GL_PROFESSION_ROBBER then
 			idlelib_RobberIdle("WorkingPlace")
 			return
+		elseif SimGetProfession("") == GL_PROFESSION_COCOTTE then
+			idlelib_CocotteIdle("")
+			return
 		elseif SimGetProfession("") == GL_PROFESSION_MYRMIDON then
-			idlelib_MyrmidonIdle("WorkingPlace")
+			aitwp_MyrmidonIdle("")
 			return
 		elseif SimGetProfession("") == 74 then
 			idlelib_LeibwacheIdle("WorkingPlace")

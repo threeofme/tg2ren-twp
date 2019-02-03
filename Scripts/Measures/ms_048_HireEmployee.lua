@@ -5,13 +5,6 @@ function Run() -- fixed by Serp, after hiring, the sim won't loose his level.
 		chr_OutputHireError("", "Destination", Error)
 		return
 	end
-	
-	-- PATCH TODO -- Courtlovers cannot be hired anymore
-	if HasProperty("", "courted") then
-		MsgQuick("Destination","@L_HIRE_ERROR_COURTED",GetID(""))
-		AddImpact("", "NoRandomHire", 1, 12)
-		StopMeasure()
-	end
 
 	if GetDynastyID("")>0 then
 		chr_OutputHireError("", "Destination", "NoWorker")
@@ -60,9 +53,9 @@ function Run() -- fixed by Serp, after hiring, the sim won't loose his level.
 	end
     
 	MoveSetActivity("","")
-	chr_CalculateBuildingBonus("","Destination","hire")
+	chr_CalculateBuildingBonus("","Destination",true)
     
-	CreateScriptcall( "GiveBack", 0.001, "Measures/ms_048_HireEmployee.lua", "GiveXPBack", "", "Destination", XP) -- use scriptcall, because this function is stopped after SimHire
+	CreateScriptcall("GiveBack", 0.001, "Measures/ms_048_HireEmployee.lua", "GiveXPBack", "", "Destination", XP) -- use scriptcall, because this function is stopped after SimHire
     
 	local Error = SimHire("", "Destination",true) -- I think after hiring, the sim is replaced with another sim with same name and so on, but level 1.
 	-- and the script measure is stopped about some miliseconds after SimHire, because the calling object gets removed!!! So with luck, you can call one function after it (the sound), but not more.
@@ -120,6 +113,10 @@ function CheckLeibwache()
 end
 
 function GiveXPBack(params)
+	-- stop courting
+	if SimGetCourtLover("", "WorkerLover") then
+		SimReleaseCourtLover("")
+	end
 	if SimGetLevel("") == 1 then  -- sometimes the level is not reduced to 1 (I guess because he already had the right clothes)
 		IncrementXPQuiet("",params) -- after hiring, the sim looses all his XP, so we give it back
 	end

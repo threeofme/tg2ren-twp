@@ -47,7 +47,7 @@ function Run()
 			return
 		end
 		
-		local NumOfObjects = Find("Owner","__F( (Object.GetObjectsByRadius(Sim)==1000) AND NOT(Object.BelongsToMe())AND NOT(Object.GetState(cutscene))AND NOT(Object.HasImpact(HaveBeenPickpocketed))AND NOT(Object.GetProfession() == 25)AND NOT(Object.GetProfession() == 21)AND NOT(Object.GetProfession() == 22)AND(Object.MinAge(16)))","Sims",-1)
+		local NumOfObjects = Find("Owner","__F( (Object.GetObjectsByRadius(Sim)==1000) AND NOT(Object.BelongsToMe())AND NOT(Object.GetState(cutscene))AND NOT(Object.HasImpact(HaveBeenPickpocketed))AND NOT(Object.GetProfession() == 25)AND NOT(Object.GetProfession() == 21)AND NOT(Object.GetProfession() == 22)AND(Object.MinAge(16))AND NOT(Object.GetInsideBuilding()))","Sims",-1)
 --		LogMessage("::TOM::Pickpocket::"..GetName("Owner").." Looking for victims... Found "..NumOfObjects)
 		if NumOfObjects <= 0 then
 			-- change position
@@ -102,7 +102,7 @@ function Run()
 							if VictimSpendValue > Value then
 								VictimSpendValue = Value
 							end
-							SpendMoney(DestAlias, VictimSpendValue, "theft")
+							f_SpendMoney(DestAlias, VictimSpendValue, "theft")
 							
 							if VictimSpendValue>25 then
 								feedback_MessageCharacter(DestAlias,

@@ -73,7 +73,7 @@ function Run()
 	--while true do
 	local CurrentTime = GetGametime()
 	local EndTime = CurrentTime + mdata_GetDuration(MeasureID)
-	while CurrentTime < EndTime do
+	while CurrentTime < EndTime or IsGUIDriven() do
 		SetProperty("Divehouse", "DanceShow", 1)
 		local SearchSimFilter = "__F((Object.GetObjectsByRadius(Sim) == 10000) AND NOT(Object.BelongsToMe()))"
 		local NumGuests = Find("", SearchSimFilter,"Guests", -1)
@@ -155,10 +155,10 @@ function Dance()
 	            spend = 30 * chakill
 	        end
 		    if IsDynastySim(DestAlias) then
-			    SpendMoney(DestAlias,spend,"LaborOfLove")
+			    f_SpendMoney(DestAlias,spend,"LaborOfLove")
 		    end
 		    SimGetWorkingPlace("","Divehouse")
-		    CreditMoney("",spend,"LaborOfLove")
+		    f_CreditMoney("",spend,"LaborOfLove")
 		    economy_UpdateBalance("Divehouse", "Service", spend)
 			AddImpact(DestAlias,"FullOfLove",1,2)
 		end

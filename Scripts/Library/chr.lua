@@ -561,7 +561,7 @@ end
 -- -----------------------
 function RecieveMoney(ObjectAlias, val, topic)
 
-	CreditMoney(ObjectAlias, val, topic)
+	f_CreditMoney(ObjectAlias, val, topic)
 	ShowOverheadSymbol(ObjectAlias, false, false, 0, "@L%1t",val)
 	return val
 

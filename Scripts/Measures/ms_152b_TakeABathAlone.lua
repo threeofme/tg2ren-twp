@@ -75,11 +75,11 @@ function Run()
 	
 	-- Pay if the tavern does not belong to the owners dynasty
 	if GetDynastyID("Tavern") ~= GetDynastyID("") then
-		if not SpendMoney("", OverallPrice, "CostSocial") then
+		if not f_SpendMoney("", OverallPrice, "CostSocial") then
 			MsgQuick("", "_TAVERN_152_TAKEABATH_FAILURES_+0", GetID("Tavern"))
 			return
 		end
-		CreditMoney("Tavern",OverallPrice,"Offering")
+		f_CreditMoney("Tavern",OverallPrice,"Offering")
 		economy_UpdateBalance("Tavern", "Service", OverallPrice)
 	end
 

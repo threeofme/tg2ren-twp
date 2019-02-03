@@ -13,10 +13,6 @@ function Run()
 		return
 	end
 	
-	if GetInsideBuilding("","InsideBuilding") then
-		f_ExitCurrentBuilding("")
-	end
-	
 	local result = 0
 	
 	if IsStateDriven() then
@@ -56,7 +52,11 @@ function Run()
 			result = 5
 		end
 	end
-		
+	
+	if GetInsideBuilding("","InsideBuilding") then
+		f_ExitCurrentBuilding("")
+	end
+	
 	if result == 1 then
 		-- Go to the market (or black board)	
 		local Market = 1+Rand(5)
@@ -156,9 +156,7 @@ function Run()
 				return
 			end
 			-- Find a place with people
-			if f_CityFindCrowdedPlace("City", "", "Destination")==0 then
-				return
-			else
+			if GetSettlement("", "City") and f_CityFindCrowdedPlace("City", "", "Destination") > 0 then
 				-- Check if place is too far away from starting position. If that is the case, return to starting position
 				if AliasExists("MarketPos") then
 					if (GetDistance("MarketPos", "Destination") >= 1500) then

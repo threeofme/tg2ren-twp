@@ -33,11 +33,11 @@ function Run()
 	end
 
 	if GetDynastyID("")~=GetDynastyID("Tavern") then
-		if not SpendMoney("", Price, "CostSocial") then
+		if not f_SpendMoney("", Price, "CostSocial") then
 			MsgQuick("","@L_TAVERN_158_RENTSLEEPINGBERTH_FAILURES_+0",Price)
 			StopMeasure()
 		end
-		CreditMoney("Tavern", Price, "RentABerth")
+		f_CreditMoney("Tavern", Price, "RentABerth")
 		economy_UpdateBalance("Tavern", "Service", Price)		
 	end
 

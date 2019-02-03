@@ -435,7 +435,7 @@ function LoadCart(SrcID, DestID, station, type, itemCount)
 	economy_UpdateBalance("homeBuilding", "Autoroute", 0 - math.abs(EstimatedMoney))
 	if BargainMoney > 0 then
 		Sleep(0.5)
-		CreditMoney("",BargainMoney,"WaresSold")
+		f_CreditMoney("",BargainMoney,"WaresSold")
 		ShowOverheadSymbol("", false, false, 0, "@L(+ %1t)",BargainMoney)
 	end
 end
@@ -516,7 +516,7 @@ function Unload(Station, Type, Count, Threshold)
 	economy_UpdateBalance("homeBuilding", "Autoroute", math.abs(EstimatedMoney))
 	if BargainMoney > 0 then
 		Sleep(0.5)
-		CreditMoney("",BargainMoney,"WaresSold")
+		f_CreditMoney("",BargainMoney,"WaresSold")
 		ShowOverheadSymbol("", false, false, 0, "@L(+ %1t)",BargainMoney)
 	end
 	if GetItemCount("", Type, INVENTORY_STD) > Count then

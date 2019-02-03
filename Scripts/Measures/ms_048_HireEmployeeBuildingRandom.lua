@@ -124,31 +124,35 @@ function DecideYou()
 --		chr_OutputHireError("RandWorker", "", "NoWorker")
 --	end
 
-	Error = SimHire("RandWorker", "",true)
+	Error = SimHire("RandWorker", "", true)
 	chr_OutputHireError("RandWorker", "", Error)
 	if SimGetLevel("RandWorker") == 1 then  -- sometimes the level is not reduced to 1 (I guess because he already had the right clothes)
 		IncrementXPQuiet("RandWorker",xp)	      -- XP back to previous value
 	end
 	if Error == "" then
+		-- stop courting
+		if SimGetCourtLover("RandWorker", "WorkerLover") then
+			SimReleaseCourtLover("RandWorker")
+		end
 		PlaySound3D("", "Effects/moneybag_to_hand+0.wav", 1.0)
 		if BuildingHasUpgrade("",716) == true then
-			SpendMoney("BOwner",4900,"misc")
+			f_SpendMoney("BOwner",4900,"misc")
 		elseif BuildingHasUpgrade("",604) then
-			SpendMoney("BOwner",2400,"misc")
+			f_SpendMoney("BOwner",2400,"misc")
 		end
 		if BuildingGetType("")==111 then
-			SpendMoney("BOwner",4900,"misc")
+			f_SpendMoney("BOwner",4900,"misc")
 		end
 		SetData("Entscheid",1)
 		if DynastyIsShadow("") == true or DynastyIsAI("") == true then
-		    if BuildingGetLevel("") == 1 then  
-			  local lvlset = (Rand(2)+1)   -- 1 or 2
+			if BuildingGetLevel("") == 1 then  
+				local lvlset = (Rand(2)+1)   -- 1 or 2
 				SetProperty("RandWorker","Level",lvlset)
 			elseif BuildingGetLevel("") == 2 then
-			  local lvlset = (Rand(2)+3) -- 3 or 4
+				local lvlset = (Rand(2)+3) -- 3 or 4
 				SetProperty("RandWorker","Level",lvlset)
 			else
-			  local lvlset = (Rand(2)+5)  -- 5 or 6
+				local lvlset = (Rand(2)+5)  -- 5 or 6
 				SetProperty("RandWorker","Level",lvlset)
 			end
 		end
@@ -165,19 +169,18 @@ function DecideYou()
 		diseases_Caries("RandWorker",false)
 	end
 	
-	
 	MoveSetActivity("","")
 	SimGetWorkingPlace("RandWorker", "workbuilding")
 	chr_CalculateBuildingBonus("RandWorker","","hire")
 end
 
 function DecideFirst()
-    if BuildingGetLevel("") == 1 then
-	    return "B"
+	if BuildingGetLevel("") == 1 then
+		return "B"
 	elseif BuildingGetLevel("") == 2 then
-        return "N"
+		return "N"
 	else
-	    return "M"
+		return "M"
 	end
 end
 

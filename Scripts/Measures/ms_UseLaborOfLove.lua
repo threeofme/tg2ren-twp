@@ -30,14 +30,14 @@ function Run()
 		charskill = GetSkillValue("Destination",CHARISMA)
 		local MoneyToPay = 25 + 25*charskill
 		if IsDynastySim("") then
-			if not SpendMoney("",500 ,"LaborOfLove") then
+			if not f_SpendMoney("",500 ,"LaborOfLove") then
 				PlayAnimationNoWait("Destination","threat")
 				MsgSay("Destination","@L_PIRATE_LABOROFLOVE_TALK_DISAGREE")
 				StopMeasure()
 			end
 			ShowOverheadSymbol("",false,false,0,"%1t",-500)
 		end
-		CreditMoney("Destination", MoneyToPay , "LaborOfLove")
+		f_CreditMoney("Destination", MoneyToPay , "LaborOfLove")
 		SimGetWorkingPlace("Destination", "WorkingPlace")
 		economy_UpdateBalance("WorkingPlace", "Service", MoneyToPay)
 		
@@ -80,7 +80,7 @@ function Run()
 			spend = 50 * chakill
 		end
 	
-		CreditMoney("Destination",spend,"LaborOfLove")
+		f_CreditMoney("Destination",spend,"LaborOfLove")
 		SimGetWorkingPlace("Destination", "WorkingPlace")
 		economy_UpdateBalance("WorkingPlace", "Service", MoneyToPay)
 		IncrementXPQuiet("Destination",10)

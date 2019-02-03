@@ -611,11 +611,54 @@ function CityFindCrowdedPlace(CityAlias, SimAlias, RetAlias)
 	local BldTypes = { GL_BUILDING_TYPE_TOWNHALL, GL_BUILDING_TYPE_CHURCH_CATH, GL_BUILDING_TYPE_CHURCH_EV, GL_BUILDING_TYPE_TAVERN, GL_BUILDING_TYPE_HOSPITAL, GL_BUILDING_TYPE_MARKET, GL_BUILDING_TYPE_MARKET }
 	local BldType = BldTypes[Rand(7)+1] 
 	CityGetNearestBuilding(CityAlias, SimAlias, -1, BldType, -1, -1, FILTER_IGNORE, "NearBld")
-	GetOutdoorMovePosition("NearBld", "OutdoorMovePosition")
+	GetOutdoorMovePosition(SimAlias, "NearBld", "OutdoorMovePosition")
 	if AliasExists("OutdoorMovePosition") then
 		CopyAlias("OutdoorMovePosition", RetAlias)
 	else
 		CopyAlias("NearBld", RetAlias)
 	end
 	return 1
+end
+
+-- Boolean f_CreditMoney(Alias ( of type guildobject) pObject, Number Amount, String Purpose)
+CRD_DYN_ALIAS = "CrdAlias"
+function CreditMoney(Alias, Amount, Purpose)
+	if DynastyIsPlayer(Alias) or IsGUIDriven() then
+		-- call hardcoded f_CreditMoney since it works for these cases
+		LogMessage("AITWP::CreditMoney::"..Purpose.." on "..GetName(Alias))
+		return CreditMoney(Alias, Amount, Purpose)
+	else
+		-- save to property for later transfer
+		GetDynasty(Alias, CRD_DYN_ALIAS)
+		local Current = GetProperty(CRD_DYN_ALIAS, "AITWP_Money") or 0
+		SetProperty(CRD_DYN_ALIAS, "AITWP_Money", Current + Amount)
+		return true
+	end
+end
+
+function SpendMoney(Alias, Amount, Purpose)
+	if DynastyIsPlayer(Alias) or IsGUIDriven() then
+		-- call hardcoded f_SpendMoney since it works for these cases
+		LogMessage("AITWP::SpendMoney::"..Purpose.." on "..GetName(Alias))
+		return SpendMoney(Alias, Amount, Purpose)
+	else
+		-- save to property for later transfer
+		GetDynasty(Alias, CRD_DYN_ALIAS)
+		local Current = GetProperty(CRD_DYN_ALIAS, "AITWP_Money") or 0
+		SetProperty(CRD_DYN_ALIAS, "AITWP_Money", Current - Amount)
+		return true
+	end
+end
+
+function GiveMoney(Target)
+	local Current = GetProperty(Target, "AITWP_Money") or 0
+	Current = math.floor(Current)
+	SetProperty(Target, "AITWP_Money", 0)
+	if Current > 0 then
+		CreditMoney(Target, Current, "Income")
+		LogMessage("::AITWP::GiveMoney "..GetName(Target).." received "..Current)
+	elseif Current < 0 then
+		SpendMoney(Target, math.abs(Current), "Expense")
+		LogMessage("::AITWP::GiveMoney "..GetName(Target).." spent "..Current)
+	end
 end

@@ -268,6 +268,7 @@ function CreateDynasty(ID, SpawnPoint, IsPlayer, PeerID, PlayerDescLabel)
 		if not BossCreate(nil, Rand(2), 0, -1, "boss") then
 			return "unable to create boss of the dynasty"
 		end
+		SimSetAge("boss", 18 + Rand(5))
 	end	
 	
 	if not DynastyCreate(ID, IsPlayer, PeerID, DynastyAlias, false) then
@@ -416,12 +417,19 @@ function CreateDynasty(ID, SpawnPoint, IsPlayer, PeerID, PlayerDescLabel)
 		GetOutdoorMovePosition("boss", "Residence", "BeamPos")
 		BeamPos = "BeamPos"
 	else
+		local Proto = ScenarioFindBuildingProto(-1, GL_BUILDING_TYPE_RESIDENCE, 1, -1)
+		if Proto ~= -1 and CityBuildNewBuilding(CityAlias, Proto, "boss", "Residence") then
+			GetOutdoorMovePosition("boss", "Residence", "BeamPos")
+			BeamPos = "BeamPos"
+		end
+	end
+	if not AliasExists("Residence") then
 		if GetOutdoorMovePosition("boss", SpawnPoint, "Position") then
 			BeamPos = "Position"
 		else
 			BeamPos = SpawnPoint
 		end
-	end
+	end	
 	SimBeamMeUp("boss", BeamPos)
 	
 	-- buy the workshops for the character
@@ -444,6 +452,7 @@ function CreateDynasty(ID, SpawnPoint, IsPlayer, PeerID, PlayerDescLabel)
 	
 	if Married == 1 then
 		if BossCreate(nil, 1 - SimGetGender("boss"), SimGetClass("boss"), -1, "spouse") then
+			SimSetAge("spouse", 18 + Rand(5))
 			SimBeamMeUp("spouse", BeamPos)
 			SimMarry("boss", "spouse")
 		end
@@ -484,14 +493,18 @@ function CreateDynasty(ID, SpawnPoint, IsPlayer, PeerID, PlayerDescLabel)
 		
 		SetProperty(DynastyAlias,"PlayerDesc",PlayerDescLabel)
 		local MissionType = PlayerDescNode:GetValueInt("MissionType")
-		local MissionSubtype = PlayerDescNode:GetValueInt("MissionSubType")
+		local MissionSubtype = PlayerDescNode:GetValueInt("MissionSubType") or 0
 	
-	
+		-- save mission to scenario
+		GetScenario("Scenario")
+		SetProperty("Scenario", "AITWP_Mission", MissionType)
+		
 		if (MissionType==0) then			-- ausloeschung
 			StartMission("Mission_DeathMatch",DynastyAlias)
 		elseif (MissionType==1) then		-- timelimit
 			StartMission("Mission_TimeLimit",DynastyAlias)
-		elseif (MissionType==2)  then		-- common goal 
+		elseif (MissionType==2)  then		-- common goal
+			SetProperty("Scenario", MissionType*10 + MissionSubtype) 
 			if (MissionSubtype==0) then
 				StartMission("Mission_MakeMoney",DynastyAlias)
 			elseif (MissionSubtype==1) then
@@ -510,104 +523,12 @@ function CreateDynasty(ID, SpawnPoint, IsPlayer, PeerID, PlayerDescLabel)
 
 	local ChildAge = 0
 
-	if not IsPlayer then
-		local Difficulty = ScenarioGetDifficulty()
-		local XP
-		local StartMoney
-		local	Fame
-		local	ImpFame
-		local Age = 17
-		
-		if Difficulty == 0 then
-			XP = 0
-			StartMoney = 500
-			Fame = 0
-			ImpFame = 0
-			Age = Age+Rand(14)
-			ChildAge = ChildAge + 2
-		elseif Difficulty == 1 then
-			XP = 500
-			StartMoney = 1000
-			Age = Age+Rand(12)
-			ChildAge = ChildAge + 4
-		elseif Difficulty == 2 then
-			XP = Rand(10)*10 + 500
-			StartMoney = 2000
-			Fame = Rand(2)+1
-			ImpFame = Rand(2)+1
-			if Childs==0 then
-				Childs=Rand(2)
-			end
-			Age = Age+Rand(10)
-			ChildAge = ChildAge + 6
-		elseif Difficulty == 3 then
-			XP = Rand(50)*10 + 500
-			StartMoney = 3000
-			Fame = Rand(4)+1
-			ImpFame = Rand(4)+1
-			if Childs==0 then
-				Childs=Rand(2)+1
-			end
-			Age = Age+6+Rand(6)
-			ChildAge = ChildAge + 4 + Rand(4)
-		else
-			XP = Rand(76)*10 + 500
-			StartMoney = 5000
-			Fame = Rand(6)+2
-			ImpFame = Rand(6)+2
-			if Childs==0 then
-				Childs=Rand(2)+2
-			end
-			Age = Age+8+Rand(6)
-			ChildAge = ChildAge + 6 + Rand(6)
-			-- Some starting items
-			local RandEquip = Rand(4)
-			if RandEquip == 0 then
-				AddItems("boss","Dagger",1,INVENTORY_EQUIPMENT)
-			elseif RandEquip == 1 then
-				AddItems("boss","Mace",1,INVENTORY_EQUIPMENT)
-			elseif RandEquip == 2 then
-				AddItems("boss","Shortsword",1,INVENTORY_EQUIPMENT)
-			elseif RandEquip == 3 then
-				AddItems("boss","Longsword",1,INVENTORY_EQUIPMENT)
-			end
-			
-			if Rand(2) == 0 then
-				AddItems("boss","LeatherArmor",1,INVENTORY_EQUIPMENT)
-			else
-				AddItems("boss","Chainmail",1,INVENTORY_EQUIPMENT)
-			end
-		end
-
-		local BossAge = Age-2+Rand(5)
-		local SpouseAge = Age-2+Rand(5)
-
-		if (BossAge-16-ChildAge)<0 then
-			BossAge = BossAge + (-1*(BossAge-16-ChildAge))
-		end
-		
-		if (SpouseAge-16-ChildAge)<0 then
-			SpouseAge = SpouseAge + (-1*(SpouseAge-16-ChildAge))
-		end
-		
-		SimSetAge("boss", BossAge)
-		if Married == 1 then
-			SimSetAge("spouse", SpouseAge)
-			IncrementXP("spouse", XP)
-		end
-
-		IncrementXP("boss", XP)
-		CreditMoney("boss", StartMoney, "GameStart")
-		chr_SimAddFame("boss",Fame)
-		chr_SimAddImperialFame("boss",ImpFame)
-	end
-	
 	if Childs>0	then
 	
 		if AliasExists("Residence") then
 			local	ch
 			for ch=0,Childs-1 do
-				local Age = Rand(ChildAge)+1
+				local Age = Rand(3) + 1
 				if Rand(2)==0 then
 					SimCreate(8, "Residence", "Residence", "NewBorn"..ch) -- it's a girl!
 				else

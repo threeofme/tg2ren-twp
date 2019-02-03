@@ -130,8 +130,8 @@ function PayTavern(Cost, Tavern)
 	if (GetDynastyID("") ~= GetDynastyID("TavernOwner")) then 
 	--if not enough money don't pay, just stop measure by standing up
 		if (GetMoney("") >= Cost) then
-			SpendMoney("",Cost,"Misc")
-			CreditMoney(Tavern,Cost,"Misc")
+			f_SpendMoney("",Cost,"Misc")
+			f_CreditMoney(Tavern,Cost,"Misc")
 			economy_UpdateBalance(Tavern, "Service", Cost)
 			feedback_OverheadMoney("", -Cost)
 			PlaySound3D("","Effects/coins_to_counter+0.wav", 1.0)

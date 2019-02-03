@@ -1,20 +1,24 @@
 function Run()
 
+	-- shadows won't apply if there are more than 3 applicants already
 	if DynastyIsShadow("") then
 		if OfficeGetShadowApplicantCount("destination") >=3 or OfficeGetApplicantCount("destination") >= 3 then
 			StopMeasure()
 		end
 	end
 	
-	if not ai_GoInsideBuilding("", "", -1, GL_BUILDING_TYPE_TOWNHALL) then
-		StopMeasure()
-	end
-	
+	-- no application if you don't have a home
 	if not GetHomeBuilding("","HomeBuilding") then
 		MsgQuick("", "@L_PRIVILEGES_118_RUNFORANOFFICE_FAILURES_+4")
 		StopMeasure()
 	end
+
+	-- can't get there?!?
+	if not ai_GoInsideBuilding("", "", -1, GL_BUILDING_TYPE_TOWNHALL) then
+		StopMeasure()
+	end
 	
+	-- offices above first level require Bürger
 	if GetNobilityTitle("") < 5 and OfficeGetLevel("destination") > 1 then
 		MsgQuick("", "@L_PRIVILEGES_118_RUNFORANOFFICE_FAILURES_+5")
 		StopMeasure()
@@ -47,18 +51,10 @@ function Run()
 		end
 	end
 	
-	local ChargeCost  = OfficeGetChargeCost("destination")
-		
-	if DynastyIsPlayer("") then
-		if (GetMoney("") < ChargeCost) then
-			MsgQuick("", "@L_PRIVILEGES_118_RUNFORANOFFICE_FAILURES_+3")
+	if not GetImpactValue("","RunForAnOffice") then
+		if OfficeGetLevel("destination") > 1 then
+			MsgQuick("", "@L_PRIVILEGES_118_RUNFORANOFFICE_FAILURES_+5")
 			StopMeasure()
-		end
-		if not GetImpactValue("","RunForAnOffice") then
-			if OfficeGetLevel("destination")>1 then
-				MsgQuick("", "@L_PRIVILEGES_118_RUNFORANOFFICE_FAILURES_+5")
-				StopMeasure()
-			end
 		end
 	end
 
@@ -133,6 +129,12 @@ function Run()
 		StopMeasure()
 	end
 
+	local ChargeCost  = OfficeGetChargeCost("destination")
+	if (GetMoney("") < ChargeCost) then
+		MsgQuick("", "@L_PRIVILEGES_118_RUNFORANOFFICE_FAILURES_+3")
+		StopMeasure()
+	end
+
 --	--cutscene cam
 	SetData("CutsceneCleared", 0)
 	CreateCutscene("default","cutscene")
@@ -180,10 +182,8 @@ function Run()
 		end
 	end
 	if SimRunForAnOffice("","destination") then
-		if DynastyIsPlayer("") then
-			SpendMoney("",ChargeCost,"CostAdministration")
-			CreditMoney("city", ChargeCost, "title")
-		end
+		f_SpendMoney("",ChargeCost,"CostAdministration")
+		f_CreditMoney("city", ChargeCost, "title")
 		
 		if not DynastyIsShadow("") then
 			PlayAnimationNoWait("Usher",ms_118_runforanoffice_getRandomTalk())

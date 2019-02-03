@@ -82,14 +82,14 @@ function CleanUp()
 		if tips>0 then
 			if IsPartyMember("") then
 				if GetMoney("") > tips then
-					SpendMoney("",tips,"Versengold")
+					f_SpendMoney("",tips,"Versengold")
 				end
 			end
 			
 			local stage = GetData("#MusicStage")
 			if GetAliasByID(stage,"stageobj") then
 				if BuildingGetOwner("stageobj","BuildingOwner") then
-					CreditMoney("BuildingOwner", tips, "Versengold")
+					f_CreditMoney("BuildingOwner", tips, "Versengold")
 					economy_UpdateBalance("stageobj", "Service", tips)
 				end
 			end
