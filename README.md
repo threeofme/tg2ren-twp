@@ -204,6 +204,15 @@ general.
 
 * The divehouse was unable to use the sales counter for smuggled goods. It is now enabled. 
 
+* The working hours of some professions were reduced. I'll check the balancing of these 
+  changes later, just seemed right to give these guys some leisure time and sleep. 
+    - Brewer:  10--24
+	- Priest:   9--21
+	- Cocotte: 12-- 2
+	- Medic:    8--22
+	- Banker:   6--20
+	- Juggler:  9--21
+
 ## TWP 0.95.2 ##
 
 This version improves the sales counter and balance sheets for workshops. It also introduces some major changes to the rogue class.
