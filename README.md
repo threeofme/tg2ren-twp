@@ -7,7 +7,7 @@ following steps.
 
 1. Make sure that **MegaModPack 0.95** is installed correctly.
 
-2. !IMPORTANT! Remove the folder "Scripts/AI/" from your game folder. 
+2. **IMPORTANT** Remove the folder "Scripts/AI/" from your game folder. 
    Do not remove the rest of the scripts folder, as not all scripts are 
    contained in this zip file.
    You may experience oddities in AI behavior if you skipped this step. 
