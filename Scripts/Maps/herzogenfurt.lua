@@ -77,28 +77,28 @@ function Start()
 			end
 
 			if Difficulty == 0 then
-				f_CreditMoney(Alias, 20000, "StartupMoney")
+				CreditMoney(Alias, 20000, "StartupMoney")
 				SetNobilityTitle("Sim", 6, true)
 				IncrementXP("Sim", 3000)
 				Proto = ScenarioFindBuildingProto(0, GL_BUILDING_TYPE_RESIDENCE, 5, 0)
 				GetHomeBuilding("Sim", "Home")
 				BuildingInternalLevelUp("Home", Proto)
 			elseif Difficulty == 1 then
-				f_CreditMoney(Alias, 15000, "StartupMoney")
+				CreditMoney(Alias, 15000, "StartupMoney")
 				SetNobilityTitle("Sim", 5, true)
 				IncrementXP("Sim", 2000)
 				Proto = ScenarioFindBuildingProto(0, GL_BUILDING_TYPE_RESIDENCE, 4, 0)
 				GetHomeBuilding("Sim", "Home")
 				BuildingInternalLevelUp("Home", Proto)
 			elseif Difficulty == 2 then
-				f_CreditMoney(Alias, 10000, "StartupMoney")
+				CreditMoney(Alias, 10000, "StartupMoney")
 				SetNobilityTitle("Sim", 4, true)
 				IncrementXP("Sim", 1000)
 				Proto = ScenarioFindBuildingProto(0, GL_BUILDING_TYPE_RESIDENCE, 3, 0)
 				GetHomeBuilding("Sim", "Home")
 				BuildingInternalLevelUp("Home", Proto)
 			elseif Difficulty == 3 then
-				f_CreditMoney(Alias, 5000, "StartupMoney")
+				CreditMoney(Alias, 5000, "StartupMoney")
 				SetNobilityTitle("Sim", 3, true)
 				IncrementXP("Sim", 500)
 				Proto = ScenarioFindBuildingProto(0, GL_BUILDING_TYPE_RESIDENCE, 2, 0)

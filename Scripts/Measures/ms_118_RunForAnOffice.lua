@@ -183,7 +183,7 @@ function Run()
 	end
 	if SimRunForAnOffice("","destination") then
 		f_SpendMoney("",ChargeCost,"CostAdministration")
-		f_CreditMoney("city", ChargeCost, "title")
+		CreditMoney("city", ChargeCost, "title")
 		
 		if not DynastyIsShadow("") then
 			PlayAnimationNoWait("Usher",ms_118_runforanoffice_getRandomTalk())

@@ -103,7 +103,7 @@ function Run()
 		SetProperty("Bank","BankAccount",(OldAccount+StolenSum))
 		-- giveout the bonus Money directly
 		Sleep(0.25)
-		f_CreditMoney("",Bonus,"Credit")
+		f_CreditMoney("Bank",Bonus,"Credit")
 		economy_UpdateBalance("Bank", "Service", Bonus)
 		
 		-- Set the balance
@@ -282,7 +282,7 @@ function Run()
 				SetProperty("Bank","BankAccount",(OldAccount+StolenSum))
 				-- giveout the bonus Money directly
 				Sleep(0.5)
-				f_CreditMoney("",Bonus,"Credit")
+				f_CreditMoney("Bank",Bonus,"Credit")
 				economy_UpdateBalance("Bank", "Service", Bonus)
 				
 				-- Set the balance
@@ -349,7 +349,7 @@ function Run()
 				chr_GainXP("",50)
 				Sleep(0.5)
 				-- giveout the whole sum in cash
-				f_CreditMoney("",StolenSum,"Credit")
+				f_CreditMoney("Bank",StolenSum,"Credit")
 				-- Set the balance
 		
 				local BalanceReturnCount = 0

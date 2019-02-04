@@ -37,8 +37,8 @@ function Run()
 			end
 			ShowOverheadSymbol("",false,false,0,"%1t",-500)
 		end
-		f_CreditMoney("Destination", MoneyToPay , "LaborOfLove")
 		SimGetWorkingPlace("Destination", "WorkingPlace")
+		f_CreditMoney("WorkingPlace", MoneyToPay , "LaborOfLove")
 		economy_UpdateBalance("WorkingPlace", "Service", MoneyToPay)
 		
 	end
@@ -80,8 +80,8 @@ function Run()
 			spend = 50 * chakill
 		end
 	
-		f_CreditMoney("Destination",spend,"LaborOfLove")
 		SimGetWorkingPlace("Destination", "WorkingPlace")
+		f_CreditMoney("WorkingPlace",spend,"LaborOfLove")
 		economy_UpdateBalance("WorkingPlace", "Service", MoneyToPay)
 		IncrementXPQuiet("Destination",10)
 	end

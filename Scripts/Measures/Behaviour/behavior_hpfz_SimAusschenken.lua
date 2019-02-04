@@ -76,11 +76,17 @@ function HandelStuff()
 		
 		local GPreis = ItemGetBasePrice(Lager)
 		Eingenommen = GPreis + (Gewinn * Feilschen)
-		f_CreditMoney("Actor",Eingenommen,"Offering")
+		SimGetWorkingPlace("Actor", "Workingplace")
+		if AliasExists("Workingplace") then
+			f_CreditMoney("Workingplace",Eingenommen,"Offering")
+			economy_UpdateBalance("Workingplace", Eingenommen, "Service")
+		else
+			f_CreditMoney("Actor",Eingenommen,"Offering")
+		end
 		IncrementXPQuiet("Actor",5)
 		ShowOverheadSymbol("Actor",false,true,0,"%1t",Eingenommen)
 		SatisfyNeed("Owner", 6, -0.5)
-    RemoveItems("Actor", Lager, 1)
+    	RemoveItems("Actor", Lager, 1)
 	end
 
 end

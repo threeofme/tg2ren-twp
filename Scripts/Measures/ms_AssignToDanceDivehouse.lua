@@ -158,7 +158,7 @@ function Dance()
 			    f_SpendMoney(DestAlias,spend,"LaborOfLove")
 		    end
 		    SimGetWorkingPlace("","Divehouse")
-		    f_CreditMoney("",spend,"LaborOfLove")
+		    f_CreditMoney("Divehouse",spend,"LaborOfLove")
 		    economy_UpdateBalance("Divehouse", "Service", spend)
 			AddImpact(DestAlias,"FullOfLove",1,2)
 		end

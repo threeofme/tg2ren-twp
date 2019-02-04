@@ -49,13 +49,14 @@ function Run()
     end
 
     if RemoveItems("Actor", "Urkunde", 1, INVENTORY_STD) > 0 then
-      f_CreditMoney("Actor",Betrug,"Offering")
-	    IncrementXPQuiet("Actor",10)
-      ShowOverheadSymbol("Actor",false,true,0,"%1t",Betrug)
-      if IsDynastySim("Owner") then
-	      f_SpendMoney("Owner",Betrug,"Offering")
-      end
+    	ai_GetWorkBuilding("Actor", GL_BUILDING_TYPE_BANKHOUSE, "Workplace")
+		f_CreditMoney("Workplace",Betrug,"Offering")
+		IncrementXPQuiet("Actor",10)
+		ShowOverheadSymbol("Actor",false,true,0,"%1t",Betrug)
+		if IsDynastySim("Owner") then
+			f_SpendMoney("Owner",Betrug,"Offering")
 		end
+	end
                 
   else
     GetPosition("Actor","Betruger")

@@ -83,7 +83,13 @@ function KundeAuswahl()
 			gPreis = ItemGetBasePrice(lagInhalt[einkauf])
 			summe =math.floor((gPreis/100) * feil)
 			summe = gPreis+Rand(summe)
-			f_CreditMoney("Actor",summe,"Offering")
+			SimGetWorkingPlace("Actor", "Workingplace")
+			if AliasExists("Workingplace") then
+				f_CreditMoney("Workingplace",summe,"Offering")
+				economy_UpdateBalance("Workingplace", summe, "Service")
+			else
+				f_CreditMoney("Actor",summe,"Offering")
+			end
 			IncrementXPQuiet("Actor",5)
 			ShowOverheadSymbol("Actor",false,true,0,"%1t",summe)
 			RemoveItems("Actor", lagInhalt[einkauf], 1)

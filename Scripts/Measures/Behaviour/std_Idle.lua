@@ -541,7 +541,7 @@ function Worker(ActiveMovement)
 			idlelib_RobberIdle("WorkingPlace")
 			return
 		elseif SimGetProfession("") == GL_PROFESSION_COCOTTE then
-			idlelib_CocotteIdle("")
+			aitwp_CocotteIdle("")
 			return
 		elseif SimGetProfession("") == GL_PROFESSION_MYRMIDON then
 			aitwp_MyrmidonIdle("")

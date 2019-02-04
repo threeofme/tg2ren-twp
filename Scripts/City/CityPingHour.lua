@@ -93,7 +93,7 @@ function Run()
 			end
 			SetProperty("", "Workshops", WorkshopCount)
 			if Tax>0 then
-				f_CreditMoney("", Tax, "Tax")
+				CreditMoney("", Tax, "Tax")
 			end
 			SetProperty("", "TaxValue", TaxValue)
 			SetProperty("", "TaxMoney", Tax)
