@@ -1,13 +1,15 @@
 Installation
 ============
 
+Download-Link: https://github.com/threeofme/tg2ren-twp/archive/develop.zip
+
 TradeWarPolitics is based on Fajeth's MegaModPack 0.95. Make sure to follow 
 the installation instructions of that mod **before** you continue with the 
 following steps.
 
 1. Make sure that **MegaModPack 0.95** is installed correctly.
 
-2. !IMPORTANT! Remove the folder "Scripts/AI/" from your game folder. 
+2. **IMPORTANT** Remove the folder "Scripts/AI/" from your game folder. 
    Do not remove the rest of the scripts folder, as not all scripts are 
    contained in this zip file.
    You may experience oddities in AI behavior if you skipped this step. 
@@ -203,6 +205,15 @@ general.
   enable normal finances for AI dynasties. Try getting them bankrupt :) 
 
 * The divehouse was unable to use the sales counter for smuggled goods. It is now enabled. 
+
+* The working hours of some professions were reduced. I'll check the balancing of these 
+  changes later, just seemed right to give these guys some leisure time and sleep. 
+    - Brewer:  10--24
+	- Priest:   9--21
+	- Cocotte: 12-- 2
+	- Medic:    8--22
+	- Banker:   6--20
+	- Juggler:  9--21
 
 ## TWP 0.95.2 ##
 
