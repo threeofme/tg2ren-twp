@@ -332,7 +332,7 @@ function Run()
 			Station = Stations[s][1]
 			
 			-- move to given station. check owner (relevant for buying/selling)
-			f_MoveTo("",Station)
+			f_MoveTo("",Station, GL_MOVESPEED_RUN)
 			Sleep(1)
 			local SrcID = GetDynastyID("")
 			local DestID = -1

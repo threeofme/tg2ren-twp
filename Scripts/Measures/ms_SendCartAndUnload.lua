@@ -51,7 +51,7 @@ function Run()
 		SetProperty("", "AutoRoute")
 	end
 		
-	if not f_MoveTo("","EndPos") then
+	if not f_MoveTo("","EndPos", GL_MOVESPEED_RUN) then
 		StopMeasure()
 	end
 	
@@ -144,7 +144,7 @@ function Run()
 			StopMeasure()
 		end
 		
-		if not f_MoveTo("","StartPos") then
+		if not f_MoveTo("","StartPos", GL_MOVESPEED_RUN) then
 			StopMeasure()
 		end
 		
