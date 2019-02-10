@@ -178,7 +178,7 @@ function Run()
 		end
 		local MustPay = DynastyIsPlayer("Destination") and GetDynastyID("Hospital") ~= GetDynastyID("Destination")
 			
-		if CanHeal ~= false then
+		if CanHeal then
 			if MustPay and not f_SpendMoney("Destination", Costs, "Offering") then
 				MsgSay("","@L_MEDICUS_TREATMENT_DOC_NOMONEY")
 			else

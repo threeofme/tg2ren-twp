@@ -88,7 +88,7 @@ function Run()
 				Alias = "Workshop"..l
 				WorkshopLvl = BuildingGetLevel(Alias)
 				if BuildingGetOwner(Alias, "Sim") then
-					Tax = Tax + ((Rand(50) + 275) * WorkshopLvl * (TaxValue/10))
+					Tax = Tax + ((Rand(50) + 475) * WorkshopLvl * (TaxValue/10))
 				end
 			end
 			SetProperty("", "Workshops", WorkshopCount)

@@ -7,7 +7,20 @@ function Run()
 			MeasureRun("", nil, "DynastyBanned")
 			StopMeasure()
 		end 
-	
+		
+		-- no idle measures just before trial
+		if GetImpactValue("", "TrialTimer") >= 1 and ImpactGetMaxTimeleft("", "TrialTimer") <= 3 then
+			StopMeasure()
+		end
+		-- no idle measures just before duel
+		if GetImpactValue("", "DuelTimer") >= 1 and ImpactGetMaxTimeleft("", "DuelTimer") <= 3 then
+			StopMeasure()
+		end
+		-- no idle measures just before office session
+		if GetImpactValue("", "OfficeTimer") >= 1 and ImpactGetMaxTimeleft("", "OfficeTimer") <= 3 then
+			StopMeasure()
+		end
+
 		-- priority checks first: health, poison and banned
 		ms_dynastyidle_CheckHealth()
 		if GetImpactValue("", "banned") > 0 then
@@ -52,7 +65,7 @@ function Run()
 			idlelib_CollectWater()
 		elseif Value < 55 then
 			ms_dynastyidle_UseRandomArtefact("")
-		elseif Value < 70 and not SimGetSpouse("") and GetDynasty("", "MyDyn") and DynastyIsAI("") then
+		elseif Value < 70 and not SimGetSpouse("") and GetDynasty("", "MyDyn") and DynastyIsAI("MyDyn") then
 			-- find lover, court and marry (disabled for family of players)
 			aitwp_CourtLover("")
 		else
@@ -66,7 +79,7 @@ end
 function CheckHealth()
 	-- sickness, go to doctor
 	if GetImpactValue("","Sickness") > 0 and Rand(10) < 5 then
-		MeasureRun("SIM", nil, "AttendDoctor")
+		MeasureRun("", nil, "AttendDoctor")
 		-- I could also just go home and sleep...
 	end
 	

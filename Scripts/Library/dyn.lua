@@ -123,6 +123,19 @@ function IsIdleMember(MemberAlias)
 	if not CanBeControlled(MemberAlias, "dyn") then
 		return false
 	end
+	-- no measures just before trial
+	if GetImpactValue(MemberAlias, "TrialTimer") >= 1 and ImpactGetMaxTimeleft(MemberAlias, "TrialTimer") <= 3 then
+		return false
+	end
+	-- no measures just before duel
+	if GetImpactValue(MemberAlias, "DuelTimer") >= 1 and ImpactGetMaxTimeleft(MemberAlias, "DuelTimer") <= 3 then
+		return false
+	end
+	-- no measures just before office session
+	if GetImpactValue(MemberAlias, "OfficeTimer") >= 1 and ImpactGetMaxTimeleft(MemberAlias, "OfficeTimer") <= 3 then
+		return false
+	end
+	
 	local CurMeasureID = GetCurrentMeasureID(MemberAlias)
 	if CurMeasureID == 0 or CurMeasureID == 3202 or CurMeasureID == 3200 -- idle measures
 			or (CurMeasureID == 220 and Rand(10) < 3) then -- chance of 30% to interrupt production

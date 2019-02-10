@@ -220,17 +220,19 @@ end
 -- Userful for inter-workshop trade
 -- returns ItemCount, TotalPrice
 function BuyItems(BldAlias, BuyerAlias, ItemId, DesiredAmount)
-	local Available = GetProperty(BldAlias, PREFIX_SALESCOUNTER..ItemId)
-	if Available and Available > 0 then
-		local ItemPrice = economy_GetPrice(BldAlias, ItemId, BuyerAlias)
-		local ItemCount = math.min(Available, DesiredAmount)
-		SetProperty(BldAlias, PREFIX_SALESCOUNTER..ItemId, Available - ItemCount)
+	local Available = GetProperty(BldAlias, PREFIX_SALESCOUNTER..ItemId) or 0
+	local ItemPrice = economy_GetPrice(BldAlias, ItemId, BuyerAlias)
+	local Affordable = math.floor(GetMoney(BuyerAlias) / ItemPrice)
+	if Available > 0 and Affordable > 0 then
+		local ItemCount = math.min(Available, Affordable, DesiredAmount)
 		local TotalPrice = ItemCount * ItemPrice
-		f_CreditMoney(BldAlias, TotalPrice, "WaresSold")
-		ShowOverheadSymbol(BldAlias, false, false, 0, "@L%1t",TotalPrice)
-		economy_UpdateBalance(BldAlias, "Salescounter", TotalPrice, ItemId)
-		f_SpendMoney(BuyerAlias, TotalPrice, "WaresBought")
-		return ItemCount, TotalPrice
+		if f_SpendMoney(BuyerAlias, TotalPrice, "WaresBought") then
+			SetProperty(BldAlias, PREFIX_SALESCOUNTER..ItemId, Available - ItemCount)
+			f_CreditMoney(BldAlias, TotalPrice, "WaresSold")
+			ShowOverheadSymbol(BldAlias, false, false, 0, "@L%1t",TotalPrice)
+			economy_UpdateBalance(BldAlias, "Salescounter", TotalPrice, ItemId)
+			return ItemCount, TotalPrice
+		end
 	end
 	return 0, 0
 end

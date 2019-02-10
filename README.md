@@ -214,6 +214,19 @@ general.
 	- Medic:    8--22
 	- Banker:   6--20
 	- Juggler:  9--21
+	
+* burglary: added check for building owners and diplomatic state
+* f_CreditMoney: always credit to workbuilding, not workers
+* send cart and traderoutes: set movespeed to run
+* bugfix: availability of medicine was ignored on treat target
+* decrease chance for inferno, but include workshops
+* bugfix: calculate affordable amount of items to buy
+* bugfix: removed call to unused medicinechest
+* bugfix: dyn member should not look for spouses
+* enable king to vote on treasurer
+* bugfix: no idle measures just before trial/duel/election
+* increase city income (taxes) to handle increased repair costs
+* removed log error for CocotteIdle
 
 ## TWP 0.95.2 ##
 

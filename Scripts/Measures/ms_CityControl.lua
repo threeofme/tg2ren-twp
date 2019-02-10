@@ -32,14 +32,14 @@ function Run()
 		local Season = Weather_GetSeason()
 		-- spring and fall
 		-- infection, Heuschrecken, inferno, black death, ratboy
-		local probs = {8, 1, 2, 0, 0}
+		local probs = {8, 1, 2, 1, 1}
 			
 		if Season == 1 then
 			-- summer
-			probs = {3, 2, 4, 1, 0}
+			probs = {3, 2, 3, 2, 0}
 		elseif Season == 3 then
 			-- winter
-			probs = {15, 0, 0, 3, 0}
+			probs = {15, 0, 0, 2, 0}
 		end
 	
 		local Choice = Rand(100)+1
@@ -147,11 +147,24 @@ function RatBoy()
 end
 
 function Inferno()
+	-- residences
 	local NumBuildings = CityGetBuildingCount("MyCity",1,-1,-1,-1,FILTER_IGNORE)
 	CityGetBuildings("MyCity",1,-1,-1,-1,FILTER_IGNORE,"Building")
+	local Severity = Rand(70)
 	for i=0,NumBuildings-1 do
-		SetState("Building"..i,STATE_BURNING,true)
-		Sleep(5)
+		if GetImpactValue("Building"..i, 7) * 100 < Severity then
+			SetState("Building"..i,STATE_BURNING,true)
+			Sleep(3)
+		end
+	end
+	-- workshops
+	local NumBuildings = CityGetBuildingCount("MyCity",2,-1,-1,-1,FILTER_IGNORE)
+	CityGetBuildings("MyCity",1,-1,-1,-1,FILTER_IGNORE,"Building")
+	for i=0,NumBuildings-1 do
+		if GetImpactValue("Building"..i, 7) * 100 < Severity then
+			SetState("Building"..i,STATE_BURNING,true)
+			Sleep(3)
+		end
 	end
 	ms_citycontrol_Warnung(3,"MyCity")
 end
@@ -185,7 +198,6 @@ end
 
 function Warnung(danger,opfer,zusatz)
 
- -- GetLocalPlayerDynasty("Chef")
   local krankNam = { "@L_HPFZ_KATASTR_KRANK_NAM_+0", "@L_HPFZ_KATASTR_KRANK_NAM_+1", "@L_HPFZ_KATASTR_KRANK_NAM_+2", "@L_HPFZ_KATASTR_KRANK_NAM_+3", "@L_HPFZ_KATASTR_KRANK_NAM_+4", "@L_HPFZ_KATASTR_KRANK_NAM_+5" }
   if danger == 1 then
 	    MsgNewsNoWait(opfer,opfer,"","intrigue",-1,"@L_HPFZ_KATASTR_KRANK_KOPF",
