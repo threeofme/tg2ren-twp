@@ -625,11 +625,13 @@ CRD_DYN_ALIAS = "CrdAlias"
 function CreditMoney(Alias, Amount, Purpose)
 	if DynastyIsPlayer(Alias) or IsGUIDriven() then
 		-- call hardcoded f_CreditMoney since it works for these cases
-		LogMessage("AITWP::CreditMoney::"..Purpose.." on "..GetName(Alias))
+		-- LogMessage("AITWP::CreditMoney::"..Purpose.." on "..GetName(Alias))
 		return CreditMoney(Alias, Amount, Purpose)
 	else
+		if not GetDynasty(Alias, CRD_DYN_ALIAS) then
+			return CreditMoney(Alias, Amount, Purpose)
+		end
 		-- save to property for later transfer
-		GetDynasty(Alias, CRD_DYN_ALIAS)
 		local Current = GetProperty(CRD_DYN_ALIAS, "AITWP_Money") or 0
 		SetProperty(CRD_DYN_ALIAS, "AITWP_Money", Current + Amount)
 		return true
@@ -639,11 +641,13 @@ end
 function SpendMoney(Alias, Amount, Purpose)
 	if DynastyIsPlayer(Alias) or IsGUIDriven() then
 		-- call hardcoded f_SpendMoney since it works for these cases
-		LogMessage("AITWP::SpendMoney::"..Purpose.." on "..GetName(Alias))
+		-- LogMessage("AITWP::SpendMoney::"..Purpose.." on "..GetName(Alias))
 		return SpendMoney(Alias, Amount, Purpose)
 	else
 		-- save to property for later transfer
-		GetDynasty(Alias, CRD_DYN_ALIAS)
+		if not GetDynasty(Alias, CRD_DYN_ALIAS) then
+			return SpendMoney(Alias, Amount, Purpose)
+		end
 		local Current = GetProperty(CRD_DYN_ALIAS, "AITWP_Money") or 0
 		SetProperty(CRD_DYN_ALIAS, "AITWP_Money", Current - Amount)
 		return true

@@ -50,6 +50,12 @@ function Run()
 		StopMeasure()
 	end
 	
+	-- this makes sure the target leaves current building and stops running away
+	if GetInsideBuilding("Destination","DestBuilding") then
+		f_ExitCurrentBuilding("Destination")
+	end
+	BlockChar("Destination")
+	
 	local InteractionDistance = 128
 	local ProposeInteractionDistance = 116
 	

@@ -85,15 +85,38 @@ Features
 * New office **Treasurer** was introduced to take care of taxes. This serves to split 
   the power in city council.
 
+  
+### Nobility Title at Start ###
+
+Nobility title at game start may now be configured in config.ini.
+The setting "InitialTitle" relates directly to the file "NobilityTitle.dbt". 
+So it should be a value of 2 (default) or higher.
+Here is what I currently use on hardest difficulty:
+
+	~~~~
+	[INIT-PLAYER-4]
+	HasResidence = 1
+	Workshops = 0
+	Money = 4000
+	Married = 0
+	InitialTitle = 2
+
+	[INIT-AI-4]
+	InitDelay = 1
+	HasResidence = 1
+	Workshops = 1
+	Money = 4000
+	Married = 0
+	InitialTitle = 2
+	~~~~
+	
+There is one AI- and one PLAYER-block for each difficulty (easy 0 ... 4 hard)
 
 ### Other Changes ###
 
 * Spirit production was moved to alchemist.
 
 * Fruit farms now produce wine. Sugar beets were removed.
-
-* Nobility title at game start may now be configured in config.ini, look for "InitialTitle". 
-  It defaults to "2".
 
 * Increased chances for city events (fire, sickness, black death). Chances are based on 
   difficulty, but never fall to zero. Chances also depend on current season, so expect 
@@ -227,6 +250,12 @@ general.
 * bugfix: no idle measures just before trial/duel/election
 * increase city income (taxes) to handle increased repair costs
 * removed log error for CocotteIdle
+
+2019-02-11
+
+* bugfix: sales counter should offer mussel soup
+* bugfix: alias not found for employees in creditmoney (cancels medical treatment)
+* bugfix: check presession and pretrial behavior on AI (should fix AI running away from sessions, requires testing)
 
 ## TWP 0.95.2 ##
 
