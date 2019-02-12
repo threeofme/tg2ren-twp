@@ -119,6 +119,10 @@ function IsIdleMember(MemberAlias)
 	if GetState(MemberAlias, STATE_DYING) or GetState(MemberAlias, STATE_DEAD) then
 		return false
 	end
+	if GetStateImpact(MemberAlias, "no_idle") or GetStateImpact(MemberAlias, "no_control") then
+		return false
+	end
+	
 	GetDynasty(MemberAlias, "dyn")
 	if not CanBeControlled(MemberAlias, "dyn") then
 		return false

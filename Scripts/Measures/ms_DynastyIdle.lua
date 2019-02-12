@@ -8,6 +8,11 @@ function Run()
 			StopMeasure()
 		end 
 		
+		if SimGetBehavior("")=="CheckPresession" or SimGetBehavior("")=="CheckPretrial" then
+			-- TODO also check Presession?
+			StopMeasure()
+		end
+		
 		-- no idle measures just before trial
 		if GetImpactValue("", "TrialTimer") >= 1 and ImpactGetMaxTimeleft("", "TrialTimer") <= 3 then
 			StopMeasure()
@@ -78,7 +83,7 @@ end
 
 function CheckHealth()
 	-- sickness, go to doctor
-	if GetImpactValue("","Sickness") > 0 and Rand(10) < 5 then
+	if GetImpactValue("","Sickness") > 0 and Rand(10) < 5 and not GetMeasureRepeat("", "AttendDoctor") > 0 then
 		MeasureRun("", nil, "AttendDoctor")
 		-- I could also just go home and sleep...
 	end
@@ -94,7 +99,7 @@ function CheckHealth()
 	-- Check HP damage
 	if GetHPRelative("") < 0.85 and Rand(10) < 5 then
 		-- either doctor or lingerplace or nothing
-		if GetMoney("") > 2500 then
+		if GetMoney("") > 2500 and not GetMeasureRepeat("", "AttendDoctor") > 0 then
 			MeasureRun("", nil, "AttendDoctor")
 		else
 			MeasureRun("", "LingerPlace", "Linger")

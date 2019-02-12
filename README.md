@@ -251,11 +251,17 @@ general.
 * increase city income (taxes) to handle increased repair costs
 * removed log error for CocotteIdle
 
-2019-02-11
+2019-02-11 Several Bugfixes
 
 * bugfix: sales counter should offer mussel soup
 * bugfix: alias not found for employees in creditmoney (cancels medical treatment)
 * bugfix: check presession and pretrial behavior on AI (should fix AI running away from sessions, requires testing)
+
+2019-02-12 Bugfixes for trials, pickpocket and kontor events
+
+* bugfix: don't pickpocket buildings
+* bugfix: AI should not leave before trial
+* bugfix: kontor/market events cancelled early
 
 ## TWP 0.95.2 ##
 

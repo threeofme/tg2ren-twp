@@ -105,8 +105,8 @@ function NeedItems()
 		end
 		
 		-- fix for restoring event prices after save/load
-		if ItemGetPriceSell(Item, "") < BasePrice*2.6 then
-			CitySetFixedPrice("", Item, BasePrice*2.5, BasePrice*3.25, DestTime - GetGameTime())
+		if ItemGetPriceSell(Item, "") < BasePrice*2.4 then
+			CitySetFixedPrice("", Item, BasePrice*2.5, BasePrice*3.25, DestTime - GetGametime())
 		end
 		
 		ToDo = ToDo - 2
@@ -205,8 +205,8 @@ function OfferItems()
 	if CityIsKontor("City") then
 		random = Rand(4)
 	else
-		-- only offer food and resources in cities
-		random = Rand(2) + 2
+		-- only offer resources in cities
+		random = 3
 	end
 
 	local	Item = state_kontor_event_OfferItemsFindItem(random)
@@ -249,31 +249,27 @@ function OfferItems()
 	local	Success 	= false
 	local ID = "Event"..GetID("")
 	
-	MsgNewsNoWait("All","","@C[@L_KONTOR_MISSIONS_OFFER_ITEMS_COOLDOWN_+0,%5i,%6l]","economie",-1,
-			       "@L_KONTOR_MISSIONS_OFFER_ITEMS_HEAD_+"..random,
-			       "@L_KONTOR_MISSIONS_OFFER_ITEMS_TEXT_+"..random,
-			       GetID("City"), Offering, ItemLabel, Gametime,DestTime,ID)
-	
-	CitySetFixedPrice("", Item, BasePrice*0.2, BasePrice*0.65, Gametime)
-
 	-- first remove all items of this type	
 	Count = GetItemCount("", Item, INVENTORY_STD)
 	RemoveItems("", Item, Count, INVENTORY_STD)
 	
 	AddItems("", Item, Offering, INVENTORY_STD)
+	CitySetFixedPrice("", Item, BasePrice*0.2, BasePrice*0.65, Gametime)
 	
-	while ToDo>0 do
+	MsgNewsNoWait("All","","@C[@L_KONTOR_MISSIONS_OFFER_ITEMS_COOLDOWN_+0,%5i,%6l]","economie",-1,
+			       "@L_KONTOR_MISSIONS_OFFER_ITEMS_HEAD_+"..random,
+			       "@L_KONTOR_MISSIONS_OFFER_ITEMS_TEXT_+"..random,
+			       GetID("City"), Offering, ItemLabel, Gametime,DestTime,ID)
+	
+	while ToDo>0 and not Success do
 		Sleep(2)
 		Count = GetItemCount("", Item, INVENTORY_STD)
 		if Count < 1 then
 			Success = true
 			CitySetFixedPrice("", Item, -1, -1, -1)
-			break
-		end
-		
-		-- fix for restoring event prices after save/load
-		if ItemGetPriceBuy(Item, "") > BasePrice*0.6 then
-			CitySetFixedPrice("", Item, BasePrice*0.2, BasePrice*0.65, DestTime - GetGameTime())
+		elseif ItemGetPriceBuy(Item, "") > BasePrice then
+			-- fix for restoring event prices after save/load
+			CitySetFixedPrice("", Item, BasePrice*0.2, BasePrice*0.65, DestTime - GetGametime())
 		end
 		
 		ToDo = ToDo - 2
