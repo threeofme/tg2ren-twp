@@ -4,7 +4,7 @@ function Weight()
 		return 0
 	end 
 
-	return 5
+	return 0
 end
 
 function Execute()

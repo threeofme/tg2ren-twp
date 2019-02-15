@@ -112,6 +112,7 @@ function MoveToSilent(Owner, Destination, iSpeed, fRange)
 	if not AliasExists(Destination) then
 		return false
 	end
+	aitwp_LogMovementMeasure(Owner)
 	local Result
 	local ResultName
 		ResultName = "__MoveToResult_"..GetID(Owner).."_"..GetID(Destination)
@@ -138,6 +139,7 @@ function MoveTo(Owner, Destination, iSpeed, fRange, Special)
 	if not AliasExists(Owner) then
 		return false
 	end
+	aitwp_LogMovementMeasure(Owner)
 	
 	if not AliasExists(Destination) then
 		return false

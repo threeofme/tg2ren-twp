@@ -454,7 +454,7 @@ function Log(Message, Actor, ShowMsg)
 	Actor = Actor or ""
 	LogMessage("::TWP::AI::"..GetName(Actor).." "..Message)
 	if ShowMsg then
---		MsgQuick("all", "::TWP::AI::"..GetName(Actor).." "..Message)
+--		MsgQuick("All", "::TWP::AI::"..GetName(Actor).." "..Message)
 	end
 end
 
@@ -466,5 +466,13 @@ function GetAgressiveness(DynAlias)
 end
 function GetIntrigue(DynAlias)
 	return GetProperty(DynAlias, "AITWP_Intrigue") or 0
+end
+
+
+function LogMovementMeasure(SimAlias)
+	if DynastyIsPlayer(SimAlias) and IsPartyMember(SimAlias) then
+		local Measure = GetCurrentMeasureName(SimAlias)
+		LogMessage("AITWP::MOVE::"..GetName(SimAlias).." moving in measure: "..Measure)
+	end
 end
 

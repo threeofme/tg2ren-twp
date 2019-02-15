@@ -60,9 +60,9 @@ function Run()
 		MsgQuick("","@L_BATTLE_061_PLUNDERBUILDING_FAILURES_+1")
 	end
 	f_ExitCurrentBuilding("")
+	StopAction("stealfromcounter","")
 	GetFleePosition("", "Destination", 1500, "Away")
 	f_MoveTo("", "Away", GL_MOVESPEED_RUN)
-	StopAction("stealfromcounter","")
 	f_MoveTo("","Workbuilding",GL_MOVESPEED_RUN)
 	local ItemId
 	local Found

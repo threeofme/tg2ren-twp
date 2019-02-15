@@ -128,7 +128,7 @@ function IsIdleMember(MemberAlias)
 		return false
 	end
 	-- no measures while waiting for trial or office session
-	if SimGetBehavior(MemberAlias)=="CheckPresession" or SimGetBehavior(MemberAlias)=="CheckTrial" then
+	if SimGetBehavior(MemberAlias)=="CheckPresession" or SimGetBehavior(MemberAlias)=="CheckPretrial" then
 		-- TODO also check Presession?
 		return false
 	end

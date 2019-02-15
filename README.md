@@ -260,8 +260,9 @@ general.
 2019-02-12 Bugfixes for trials, pickpocket and kontor events
 
 * bugfix: don't pickpocket buildings
-* bugfix: AI should not leave before trial
 * bugfix: kontor/market events cancelled early
+
+2019-02-15 idle measures interrupted SIMs waiting for trial
 
 ## TWP 0.95.2 ##
 
