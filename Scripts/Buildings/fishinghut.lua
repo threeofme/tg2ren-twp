@@ -19,11 +19,7 @@ function CheckPosition()
 end
 
 function OnLevelUp()
-	
-	if BuildingGetAISetting("", "Produce_Selection") > 0 then
-		bld_SetupAI("")
-		bld_SpawnMaterial("")
-	end
+	bld_HandleOnLevelUp("")
 	
 	GetPosition("", "Position")
 	GetLocatorByName("", "Entry1", "PositionEntry")	
@@ -44,6 +40,7 @@ function OnLevelUp()
 end
 
 function Setup()
+	bld_HandleSetup("")
 end
 
 function SellFish(BldAlias, CartAlias)
@@ -106,51 +103,23 @@ function TransferHerring()
 end
 
 function PingHour()
+	bld_HandlePingHour("")
 	
 	if BuildingGetOwner("","MyBoss") then
 		if GetHomeBuilding("MyBoss", "MyHome") then
-			-- Improve Production
 			if BuildingGetAISetting("", "Produce_Selection")>0 then
-				bld_SetupAI("")
-				bld_SpawnMaterial("")
-
-				if DynastyIsAI("MyHome") then
-					bld_CheckRivals("")
-					bld_ForceLevelUp("")
-				end
-				
-				-- spawn boat and cart if needed
+				-- spawn boat if needed
 				local FoundBoat = false
-				local FoundCart = false
 				for i=0,BuildingGetCartCount("")-1 do
 					if BuildingGetCart("",i,"Cart") then
-						local CartType = CartGetType("Cart")
-						if CartType == EN_CT_FISHERBOOT then
+						if CartGetType("Cart") == EN_CT_FISHERBOOT then
 							FoundBoat = true
-						elseif CartType == EN_CT_MIDDLE or CartType == EN_CT_OX or CartType == EN_CT_HORSE then
-							-- sell fish if needed
-							if not GetState("Cart", STATE_CHECKFORSPINNINGS) then -- is not moving
-								if CanAddItems("Cart", "Salmon", 20, INVENTORY_STD) then
-									if GetDistance("", "Cart") < 1000 then
-										fishinghut_SellFish("", "Cart")
-									end
-								end
-							end
-							FoundCart = true
 						end
 					end
 				end
 				if not FoundBoat then
 					if BuildingGetWaterPos("", true, "PosWater") then
 						ScenarioCreateCart(EN_CT_FISHERBOOT, "", "PosWater", "fishingboat")
-					end
-				end
-				if not FoundCart then
-					GetOutdoorMovePosition(nil,"","Pos")
-					if BuildingGetLevel("") < 2 then
-						ScenarioCreateCart(EN_CT_MIDDLE, "", "Pos", "Cart")
-					else
-						ScenarioCreateCart(EN_CT_HORSE, "", "Pos", "Cart")
 					end
 				end
 			end

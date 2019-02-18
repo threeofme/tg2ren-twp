@@ -1,6 +1,6 @@
 function AIDecide()
 
-    if BuildingHasUpgrade("",6124) == true then
+    if BuildingHasUpgrade("",6124) and Rand(2) == 0 then
 	    return "B"
 	else
 	    return "A"
@@ -41,7 +41,7 @@ function Run()
   wahltext = wahltext.."@B[C,@L_MEASURES_DIVEGETALC_BODY_+1]"
 	
 	local sauf
-  if DynastyIsAI("") == false or DynastyIsShadow("") == false then
+  if DynastyIsAI("") == false or DynastyIsShadow("") == false or not IsGUIDriven() then
     sauf = MsgBox("",false,"@P"..
     wahltext,
     "@L_MEASURES_DIVEGETALC_HEAD_+0",

@@ -41,7 +41,7 @@ function Run()
 		end
 	end
 
-	if not GetProperty("","destination_ID") then
+	if not GetProperty("","cutscene_destination_ID") then
 		OutputDebugString("no destination presession")
 		SimResetBehavior("")
 		return

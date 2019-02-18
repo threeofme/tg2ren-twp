@@ -35,11 +35,11 @@ function Start()
 		--		local day = math.floor(GetGametime()/24)
 		local hour = math.mod(GetGametime(),24)
 
-		if (WaitTime<0) then
+--		if (WaitTime<0) then
 			trial_SetBuildingInfo()
-		else
-			CutsceneAddEvent("","SetBuildingInfo",WaitTime)
-		end
+--		else
+--			CutsceneAddEvent("","SetBuildingInfo",WaitTime)
+--		end
 
 		local Evidences = 0+CutsceneCollectEvidences("","accuser","accused")
 
@@ -349,7 +349,7 @@ end
 
 function SetBuildingInfo()
 	BuildingGetRoom("courtbuilding", "Judge", "judgeroom")
-	SetProperty("judgeroom","NextCutsceneID",GetID(""))
+	SetProperty("judgeroom","NextTrialCutsceneID",GetID(""))
 end
 
 -- Beisitzer erzeugen / Auf die Plätze
@@ -1719,18 +1719,22 @@ function CreateSim(SimAlias,LocatorName,templateID)
 end
 
 function SitAt(SimAlias, LocatorName)
+	LogMessage("AITWP::Trial::"..GetName("").." calling thread to move to sitting locator  "..LocatorName)
 	if trial_SimIsPresent(SimAlias)==1 then
 		CutsceneCallThread("", "SimSitDown", SimAlias, LocatorName)
 		return 1
 	end
+	LogMessage("AITWP::Trial::"..GetName("").." not present to move to locator  "..LocatorName)
 	return 0
 end
 
 function StandAt(SimAlias, LocatorName)
+	LogMessage("AITWP::Trial::"..GetName("").." calling thread to move to locator  "..LocatorName)
 	if trial_SimIsPresent(SimAlias)==1 then
 		CutsceneCallThread("", "SimStandAt", SimAlias, LocatorName)
 		return 1
 	end
+	LogMessage("AITWP::Trial::"..GetName("").." not present to move to locator  "..LocatorName)
 	return 0
 end
 
@@ -1850,11 +1854,8 @@ end
 --- Measures
 ----------------------------------------------------------------------------------
 function SimSitDown(LocatorName)
+	LogMessage("AITWP::Trial::"..GetName("").." moving to sitting locator "..LocatorName)
 	if GetLocatorByName("courtbuilding", LocatorName, LocatorName) then
-		--f_MoveTo("",LocatorName)
-		if GetName("")=="Lena Oscroft" then
-			OutputDebugString("f_BeginUseLocator"..GetName("").."loc: "..LocatorName..".\n")
-		end
 		--SimBeamMeUp("",LocatorName)
 		f_BeginUseLocator("",LocatorName, GL_STANCE_SIT, true)
 		--MoveSetStance("",GL_STANCE_SIT)   -- to be checked
@@ -1863,6 +1864,7 @@ function SimSitDown(LocatorName)
 end
 
 function SimStandAt(LocatorName)
+	LogMessage("AITWP::Trial::"..GetName("").." moving to standing locator "..LocatorName)
 	if(GetLocatorByName("courtbuilding", LocatorName, LocatorName)) then
 		f_MoveTo("",LocatorName)
 	end
@@ -1902,7 +1904,7 @@ function CleanUp()
 		end
 	end
 	
-	RemoveProperty("judgeroom","NextCutsceneID")
+	RemoveProperty("judgeroom","NextTrialCutsceneID")
 
 	RoomLockForCutscene("judgeroom",0)
 	

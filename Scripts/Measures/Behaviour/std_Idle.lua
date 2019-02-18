@@ -533,7 +533,8 @@ function Worker(ActiveMovement)
 	-- idle workers do something?
 	local AtPlace	= SimGetAssignedAreaID("") == SimGetWorkingPlaceID("")
 	SimGetWorkingPlace("", "WorkingPlace")
-	if AtPlace or BuildingGetAISetting("WorkingPlace", "Enable") > 0 then
+	local IsManageEmployee = GetProperty("", "TWP_ManageEmployee") or 0
+	if AtPlace or BuildingGetAISetting("WorkingPlace", "Enable") > 0 or IsManageEmployee > 0 then
 		if SimGetProfession("") == GL_PROFESSION_THIEF then
 			--LogMessage("::TOM::ThiefIdle::"..GetName("").." Going into idle work state.")
 			aitwp_ThiefIdle("WorkingPlace")
@@ -560,7 +561,7 @@ end
 
 
 function DynastyIdle()
-	LogMessage("AITWP::DynIdle::"..GetName("").." Starting DynastyIdle")
+	--LogMessage("AITWP::DynIdle::"..GetName("").." Starting DynastyIdle")
 	if GetImpactValue("", "banned") > 0 then
 		MeasureRun("", nil, "DynastyBanned")
 		return
@@ -568,23 +569,23 @@ function DynastyIdle()
 	
 	if SimGetBehavior("")=="CheckPresession" or SimGetBehavior("")=="CheckPretrial" then
 		-- TODO also check Presession?
-		LogMessage("AITWP::DynIdle::"..GetName("").." Is in CheckPresession or CheckPretrial. stop idle measure.")
+		--LogMessage("AITWP::DynIdle::"..GetName("").." Is in CheckPresession or CheckPretrial. stop idle measure.")
 		return
 	end
 	
 	-- no idle measures just before trial
 	if GetImpactValue("", "TrialTimer") >= 1 and ImpactGetMaxTimeleft("", "TrialTimer") <= 3 then
-		LogMessage("AITWP::DynIdle::"..GetName("").." waiting for trial")
+		--LogMessage("AITWP::DynIdle::"..GetName("").." waiting for trial")
 		return
 	end
 	-- no idle measures just before duel
 	if GetImpactValue("", "DuelTimer") >= 1 and ImpactGetMaxTimeleft("", "DuelTimer") <= 3 then
-		LogMessage("AITWP::DynIdle::"..GetName("").." Waiting for Duel")
+		--LogMessage("AITWP::DynIdle::"..GetName("").." Waiting for Duel")
 		return
 	end
 	-- no idle measures just before office session
 	if GetImpactValue("", "OfficeTimer") >= 1 and ImpactGetMaxTimeleft("", "OfficeTimer") <= 3 then
-		LogMessage("AITWP::DynIdle::"..GetName("").." Waiting for office session")
+		--LogMessage("AITWP::DynIdle::"..GetName("").." Waiting for office session")
 		return
 	end
 
@@ -592,7 +593,6 @@ function DynastyIdle()
 	std_idle_CheckHealth()
 
 	local Value = Rand(80)
-	aitwp_Log("Going idle with "..Value, "", true)
 	if Value < 5 then -- move about
 		idlelib_GoToRandomPosition()
 	elseif Value < 10 then -- sit down

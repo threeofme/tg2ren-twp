@@ -1,6 +1,10 @@
 ---
 -- TODO: buy and use random artefacts
 
+function Init()
+	ms_dynastyidle_CheckPresessions()
+end
+
 function Run()
 	repeat
 		if GetImpactValue("", "banned")==1 then
@@ -8,29 +12,9 @@ function Run()
 			StopMeasure()
 		end 
 		
-		if SimGetBehavior("")=="CheckPresession" or SimGetBehavior("")=="CheckPretrial" then
-			-- TODO also check Presession?
-			StopMeasure()
-		end
-		
-		-- no idle measures just before trial
-		if GetImpactValue("", "TrialTimer") >= 1 and ImpactGetMaxTimeleft("", "TrialTimer") <= 3 then
-			StopMeasure()
-		end
-		-- no idle measures just before duel
-		if GetImpactValue("", "DuelTimer") >= 1 and ImpactGetMaxTimeleft("", "DuelTimer") <= 3 then
-			StopMeasure()
-		end
-		-- no idle measures just before office session
-		if GetImpactValue("", "OfficeTimer") >= 1 and ImpactGetMaxTimeleft("", "OfficeTimer") <= 3 then
-			StopMeasure()
-		end
-
-		-- priority checks first: health, poison and banned
+		ms_dynastyidle_CheckPresessions()
+		-- priority checks: health, poison and banned
 		ms_dynastyidle_CheckHealth()
-		if GetImpactValue("", "banned") > 0 then
-			MeasureRun("", nil, "DynastyBanned", true)
-		end
 
 		local Value = Rand(80)
 		aitwp_Log("Going idle with "..Value, "", true)
@@ -133,3 +117,21 @@ function UseRandomArtefact(SimAlias)
 	MeasureRun(SimAlias, nil, "UseWalkingStick")
 end
 
+function CheckPresessions()
+	if SimGetBehavior("")=="CheckPresession" or SimGetBehavior("")=="CheckPretrial" then
+		-- TODO also check Presession?
+		StopMeasure()
+	end
+	-- no idle measures just before trial
+	if GetImpactValue("", "TrialTimer") >= 1 and ImpactGetMaxTimeleft("", "TrialTimer") <= 3 then
+		StopMeasure()
+	end
+	-- no idle measures just before duel
+	if GetImpactValue("", "DuelTimer") >= 1 and ImpactGetMaxTimeleft("", "DuelTimer") <= 3 then
+		StopMeasure()
+	end
+	-- no idle measures just before office session
+	if GetImpactValue("", "OfficeTimer") >= 1 and ImpactGetMaxTimeleft("", "OfficeTimer") <= 3 then
+		StopMeasure()
+	end
+end

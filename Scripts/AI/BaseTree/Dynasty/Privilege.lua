@@ -5,7 +5,7 @@ function Weight()
 		return 0
 	end
 	
-	if ScenarioGetTimePlayed() < 12 then
+	if ScenarioGetTimePlayed() < 24 then
 		return 0
 	end
 	

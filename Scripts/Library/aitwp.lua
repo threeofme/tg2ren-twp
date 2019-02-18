@@ -391,7 +391,8 @@ function MyrmidonIdle(MyrmAlias)
 	LogMessage("::TOM::AI Myrmidon going idle: ".. GetName(MyrmAlias))
 	SimGetWorkingPlace(MyrmAlias, "WorkingPlace")
 	GetDynasty("WorkingPlace", "DynAlias")
-	if DynastyIsAI("DynAlias") then
+	local IsManageEmployee = GetProperty("", "TWP_ManageEmployee") or 0
+	if DynastyIsAI("DynAlias") or IsManageEmployee > 0 then
 		if GetHPRelative(MyrmAlias) < 0.7 then
 			LogMessage("::TOM::AI Myrmidon healing: ".. GetName(MyrmAlias))
 			roguelib_Heal(MyrmAlias, "WorkingPlace")
@@ -470,7 +471,7 @@ end
 
 
 function LogMovementMeasure(SimAlias)
-	if DynastyIsPlayer(SimAlias) and IsPartyMember(SimAlias) then
+	if ENABLE_LOG and DynastyIsPlayer(SimAlias) and IsPartyMember(SimAlias) then
 		local Measure = GetCurrentMeasureName(SimAlias)
 		LogMessage("AITWP::MOVE::"..GetName(SimAlias).." moving in measure: "..Measure)
 	end

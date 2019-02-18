@@ -262,7 +262,14 @@ general.
 * bugfix: don't pickpocket buildings
 * bugfix: kontor/market events cancelled early
 
-2019-02-15 idle measures interrupted SIMs waiting for trial
+2019-02-18 Bugfixes for trial and new measure
+
+* The salescounter of fishinghuts did not restock properly. Also removed herring from the counter.
+* New measure: thugs may now be set to automatic. They will then look for tasks (patrol, escort, gather evidence) 
+  by themselves.
+* bugfix: pretrial measure stopped early, freeing the SIM for other tasks
+* bugfix: player SIMs did not move during cutscenes (with active logging)
+* AI should not use privileges in the first round (seriously, getting banned in your first round is nasty)
 
 ## TWP 0.95.2 ##
 

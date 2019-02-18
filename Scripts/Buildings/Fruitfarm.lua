@@ -104,5 +104,5 @@ end
 
 function PingHour()
 	bld_HandlePingHour("")
-	farm_SellOtherStuff("")
+	fruitfarm_SellOtherStuff("")
 end

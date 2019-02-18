@@ -13,7 +13,8 @@ function Weight()
 		if SimGetAge("Member") >= 18 
 				and SimGetSpouse("Member", "Spouse") 
 				and SimGetChildCount("Member") < 4 
-				and dyn_IsIdleMember("Member") then
+				and dyn_IsIdleMember("Member")
+				and dyn_IsIdleMember("Spouse") then
 			CopyAlias("Member", "SIM")
 			return 10
 		end

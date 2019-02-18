@@ -185,7 +185,7 @@ Data:
 2830   "ms_DistractGuards.lua"   ""   "DistractGuards"   60   "hud/buttons/btn_DistractGuards.tga"   0   5   0   ""   ""   0   6   1   "particles/radius.nif"   25   0   |
 2831   "ms_MultiplayerSay.lua"   ""   "MultiplayerSay"   5   "hud/buttons/btn_multiplayersay.tga"   0   14   0   ""   ""   0   0   0   "none"   0   0   |
 2832   "ms_RPGSitAround.lua"   ""   "RPGSitAround"   5   "hud/buttons/btn_RPGSitAround.tga"   0   14   0   ""   ""   50   0   0   "none"   0   0   |
-2833   "ms_DynastyIdle.lua"   ""   "DynastyIdle"   1   ""   2   13   0   ""   ""   0   0   0   "none"   0   0   |
+2833   "ms_DynastyIdle.lua"   ""   "DynastyIdle"   1   ""   2   11   0   ""   ""   0   0   0   "none"   0   0   |
 2834   "ms_DynastyBanned.lua"   ""   "DynastyBanned"   84   ""   2   11   0   ""   ""   0   0   0   "none"   0   0   |
 3002   "-"   "-"   "CameraExitBuilding"   999   "hud/buttons/btn_Building_Enter.tga"   2   0   0   ""   "CameraExitBuilding"   90   0   0   "none"   0   0   |
 3003   "-"   "-"   "ShowBuildingUpgradeTree"   999   "Hud/Buttons/btn_showUpgrade.tga"   2   0   0   "BuildingUpgradeSheet"   ""   10   0   0   "none"   0   0   |
@@ -251,7 +251,7 @@ Data:
 3239   "Behaviour\behavior_attack_TEMP.lua"   ""   "BehaviorAttack"   80   ""   1   13   0   ""   ""   0   0   0   "none"   0   0   |
 3240   "Behaviour\behavior_ShortWait.lua"   ""   "ShortWait"   55   ""   0   13   0   ""   ""   0   0   0   "none"   0   0   |
 3241   "Behaviour\behavior_presession.lua"   ""   "Presession"   34   ""   0   11   0   ""   ""   0   0   0   "none"   0   0   |
-3242   "Behaviour\behavior_pretrial.lua"   ""   "Pretrial"   34   ""   0   11   0   ""   ""   0   0   0   "none"   0   0   |
+3242   "Behaviour\behavior_pretrial.lua"   ""   "Pretrial"   50   ""   0   11   0   ""   ""   0   0   0   "none"   0   0   |
 3243   "Behaviour\behavior_university.lua"   ""   "University"   31   "-"   1   13   0   "-"   "-"   0   0   0   "none"   0   0   |
 3244   "Behaviour\behavior_CitizenChild.lua"   ""   "CitizenChild"   30   ""   0   11   0   ""   ""   0   0   0   "none"   0   0   |
 3245   "Behaviour\std_EliteGuard.lua"   "-"   "EliteGuard"   1   ""   1   13   0   ""   ""   0   0   0   "none"   0   0   |
@@ -607,6 +607,7 @@ Data:
 13080   "ms_ManageSalesCounter.lua"   "-"   "ManageSalesCounter"   40   "Hud/Buttons/Unload.tga"   0   5   0   ""   ""   0   0   0   "none"   0   0   |
 // 13081   "ms_DynastyIdle.lua"   "-"   "DynastyIdle"   5   "hud/buttons/btn_UseHotTea.tga"   0   2   3   ""   ""   3   0   48   "none"   0   0   |
 13082   "ms_twp_StealFromCounter.lua"   ""   "StealFromCounter"   42   "hud/buttons/btn_061_PlunderBuilding.tga"   0   3   50   ""   ""   0   6   0   "none"   0   0   |
+13083   "ms_ManageEmployee.lua"   ""   "ManageEmployee"   50   "hud/buttons/btn_twp_ManageEmployee.tga"   0   5   0   ""   ""   0  0   0   "none"   0   0   |
 
 14000   "HotTea.lua"   "-"   "HotTea"   55   "hud/buttons/btn_UseHotTea.tga"   0   2   0   ""   ""   2   0   0   "none"   0   0   |
 14001   "HotTea.lua"   "-"   "HotTeaTarget"   55   "hud/buttons/btn_UseHotTea.tga"   0   2   0   ""   ""   2   0   0   "none"   0   0   |

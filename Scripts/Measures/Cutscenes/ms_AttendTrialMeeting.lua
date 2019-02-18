@@ -1,11 +1,8 @@
 function Run()
 	SimSetProduceItemID("", -1, -1)
-	SetState("", STATE_WORKING, false)
 	if GetState("", STATE_ROBBERMEASURE) then
 		SetState("", STATE_ROBBERMEASURE, false)
 	end
-	SetProperty("","cutscene_destination_ID",GetID("destination"))
-	GetInsideRoom("","InsideRoom")
 	BuildingGetRoom("destination","Judge","Room")
 	if (GetID("Room") ~= GetID("InsideRoom")) then
 		f_ExitCurrentBuilding("")
@@ -17,7 +14,10 @@ function Run()
 	if DynastyIsPlayer("") then
 		return
 	end
+
+	SetProperty("","trial_destination_ID",GetID("destination"))
 	
-	SimSetBehavior("","CheckPresession")
+	SimSetBehavior("","CheckPretrial")
 end
+
 
