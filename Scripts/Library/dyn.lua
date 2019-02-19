@@ -115,7 +115,6 @@ function GetIdleMember(Dynasty, MemberAlias)
 end
 
 function IsIdleMember(MemberAlias)
-	--aitwp_Log("Checking idle state for ", MemberAlias) 
 	if GetState(MemberAlias, STATE_DYING) or GetState(MemberAlias, STATE_DEAD) then
 		return false
 	end

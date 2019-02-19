@@ -542,7 +542,7 @@ function Worker(ActiveMovement)
 		elseif SimGetProfession("") == GL_PROFESSION_ROBBER then
 			idlelib_RobberIdle("WorkingPlace")
 			return
-		elseif SimGetProfession("") == GL_PROFESSION_COCOTTE then
+		elseif SimGetProfession("") == GL_PROFESSION_COCOTTE and SimIsWorkingTime("") then
 			aitwp_CocotteIdle("")
 			return
 		elseif SimGetProfession("") == GL_PROFESSION_MYRMIDON then

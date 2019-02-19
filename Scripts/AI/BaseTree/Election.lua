@@ -1,6 +1,5 @@
 
 function Weight()
-	aitwp_Log("Weight::Election", "dynasty")
 	-- select SIM with upcoming trial
 	local Count = DynastyGetMemberCount("dynasty")
 	for i=0, Count-1 do
@@ -17,7 +16,6 @@ function Weight()
 end
 
 function Execute()
-	aitwp_Log("Going into ELECTION measures", "dynasty")
 	CopyAlias("ElectionSIM", "SIM")
 	RemoveAlias("ElectionSIM")
 end

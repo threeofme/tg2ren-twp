@@ -1,6 +1,4 @@
 function Weight()
-	aitwp_Log("Weight::ApplyForOffice", "dynasty")
-	
 	local time = math.mod(GetGametime(),24)
 	
 	if time >= 16 then

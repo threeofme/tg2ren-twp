@@ -1,9 +1,4 @@
 function Weight()
-	aitwp_Log("Weight::HomeLevelUp", "dynasty")
---	if GetRound() == 0 then
---		return 0
---	end
-	
 	if not ReadyToRepeat("dynasty", "AI_HomeLevelUp") then
 		return 0
 	end
@@ -55,7 +50,6 @@ function Weight()
 end
 
 function Execute()
-	aitwp_Log("Execute::HomeLevelUp", "dynasty")
 	if not AliasExists("home") then
 		GetHomeBuilding("dynasty", "home")
 	end

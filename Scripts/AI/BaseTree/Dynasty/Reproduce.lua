@@ -1,6 +1,4 @@
 function Weight()
-	aitwp_Log("Weight::Reproduce", "dynasty")
-	
 	if not ReadyToRepeat("dynasty", "AI_Reproduce") then
 		return 0
 	end

@@ -3,7 +3,6 @@
     -- Manage party, includes finding spouses
     -- Nobility
 function Weight()
-	aitwp_Log("Weight::Dynasty", "dynasty")
 	local PartyCount = DynastyGetMemberCount("dynasty")
 	if PartyCount < 2 then
 		return 30
@@ -15,5 +14,4 @@ function Weight()
 end
 
 function Execute()
-	aitwp_Log("Going into DYNASTY measures", "dynasty")
 end

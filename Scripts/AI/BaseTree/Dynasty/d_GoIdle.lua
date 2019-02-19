@@ -1,5 +1,4 @@
 function Weight()
-	aitwp_Log("Weight::Dynasty::GoIdle", "dynasty")
 	if not dyn_GetIdleMember("dynasty", "SIM") or not AliasExists("SIM") then
 		return 0
 	end

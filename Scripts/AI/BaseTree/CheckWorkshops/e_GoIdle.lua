@@ -1,5 +1,4 @@
 function Weight()
-	aitwp_Log("Weight::Economy::GoIdle", "dynasty")
 	return 50
 end
 

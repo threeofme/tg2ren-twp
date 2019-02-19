@@ -1,5 +1,4 @@
 function Weight()
-	aitwp_Log("Weight::Duel", "dynasty")
 	-- select SIM with upcoming duel
 	local Count = DynastyGetMemberCount("dynasty")
 	for i=0, Count-1 do
@@ -16,7 +15,6 @@ function Weight()
 end
 
 function Execute()
-	aitwp_Log("Going into DUEL measures", "dynasty")
 	CopyAlias("DuelSIM", "SIM")
 	RemoveAlias("DuelSIM")
 end

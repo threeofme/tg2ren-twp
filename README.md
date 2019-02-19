@@ -193,6 +193,16 @@ I find the time. Here are the most likely to happen:
 
 Changelog
 =========
+## TWP 0.95.4 ##
+This is a non-beta release for the changes introduced an polished during the 0.95.3beta.
+Thanks and kudos to **Ictiv**, **DarkOmegaMK2** and **Sir Kitteh** from the Steam forum for 
+their testing and support during the beta!
+
+Additional changes: 
+
+* removed logging calls in AI
+* implemented AI control for player divehouse
+
 
 ## TWP 0.95.3beta ##
 

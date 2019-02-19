@@ -1,5 +1,4 @@
 function Weight()
-	aitwp_Log("Weight::DefendRogue", "dynasty")
 	if not dyn_GetIdleMember("dynasty", "SIM") then
 		return 0
 	end

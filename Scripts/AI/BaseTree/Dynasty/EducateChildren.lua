@@ -1,6 +1,5 @@
 -- Action: Make sure all children are getting education
 function Weight()
-	aitwp_Log("Weight::EducateChildren", "dynasty")
 	local PartyCount = DynastyGetMemberCount("dynasty")
 	local FamilyCount = DynastyGetFamilyMemberCount("dynasty")
 	if FamilyCount > PartyCount then

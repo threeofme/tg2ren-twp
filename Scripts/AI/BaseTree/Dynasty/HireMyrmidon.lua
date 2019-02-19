@@ -1,5 +1,4 @@
 function Weight()
-	aitwp_Log("Weight::HireMyrmidon", "dynasty")
 	if not ReadyToRepeat("dynasty", "AI_HireMyrmidon") then
 		return 0
 	end

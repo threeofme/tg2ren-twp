@@ -52,11 +52,13 @@ function Run()
 		chr_SimAddFame(Target,25)
 		chr_SimAddImperialFame(Target,25)
 	elseif result==7 then
-		f_SpendMoney(Target, 50000, "HotTea")
-		MsgQuick("", "Thieves!", GetID(Target))
+	    BlockChar(Target)
+		CommitAction("attackcart", Target, "")
 	  	-- TheBlackDeath
 	    --CreateScriptcall("StartDisease",1,"Measures/Artefacts/as_222_UseMixture.lua","StartDisease","","")
 	    --idlelib_GoToTavern(1)
+	    Sleep(3)
+		StopAction("attackcart", Target)
 	elseif result == 8 then
 		local freeze = MsgBox("","Owner",
 				"@P@B[1,@L%1l,]@B[0,@L%2l,]",

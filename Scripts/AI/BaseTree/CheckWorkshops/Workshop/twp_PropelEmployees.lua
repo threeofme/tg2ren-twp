@@ -1,7 +1,4 @@
 function Weight()
-	aitwp_Log("Weight::Workshop::Propel", "dynasty")
-	aitwp_Log("Weight::Workshop::Propel for SIM", "SIM")
-	
 	if SimGetClass("SIM") == 4 then
 		return 0
 	end

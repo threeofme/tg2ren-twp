@@ -1,5 +1,4 @@
 function Weight()
-	aitwp_Log("Weight::Feud", "dynasty")
 	if not dyn_GetIdleMember("dynasty", "SIM") then
 		return 0
 	end
@@ -23,5 +22,4 @@ function Weight()
 end
 
 function Execute()
-	aitwp_Log("Going into FEUD measures", "dynasty")
 end

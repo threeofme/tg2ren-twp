@@ -1,5 +1,4 @@
 function Weight()
-	aitwp_Log("Weight::BuildHome", "dynasty")
 	if DynastyGetRandomBuilding("dynasty", GL_BUILDING_CLASS_LIVINGROOM, GL_BUILDING_TYPE_RESIDENCE, "home") then
 		-- residence exists already
 		return 0
@@ -22,7 +21,6 @@ end
 
 function Execute()
 	if not DynastyGetMemberRandom("dynasty", "SIM") then
-		aitwp_Log("Execute::BuildHome. Unable to initialize SIM alias.", "dynasty")
 		return
 	end
 	

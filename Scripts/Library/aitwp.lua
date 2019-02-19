@@ -376,12 +376,32 @@ function ThiefIdle(Workbuilding)
 end
 
 function CocotteIdle(Cocotte)
-	SimGetWorkingPlace(Cocotte, "WorkingPlace")
+	SimGetWorkingPlace(Cocotte, "Divehouse")
 	-- AI controlled cocottes do not go idle
-	if BuildingGetAISetting("WorkingPlace", "Enable") > 0 then
-		
+	local Lvl = BuildingGetLevel("Divehouse")
+	local GuestCount = BuildingGetSimCount("Divehouse")
+	if BuildingGetAISetting("Divehouse", "Enable") > 0 then
+		-- offer services if not already offered
+		if not HasProperty("Divehouse", "ServiceActive") and not HasProperty("Divehouse", "GoToService") then
+			SetProperty("Divehouse","GoToService",1)
+			MeasureCreate("Measure")
+			MeasureAddData("Measure", "TimeOut", Rand(3)+2)
+			MeasureStart("Measure", Cocotte, "Divehouse", "AssignToServiceDivehouse")
+		elseif Lvl >= 2 and GuestCount > 4 and not HasProperty("Divehouse", "DanceShow") and not HasProperty("Divehouse", "GoToDance") then
+			SetProperty("Divehouse","GoToDance",1)
+			MeasureCreate("Measure")
+			MeasureAddData("Measure", "TimeOut", Rand(3)+3)
+			MeasureStart("Measure", Cocotte, "Divehouse", "AssignToDanceDivehouse")
+		elseif Lvl >= 2 and BuildingHasUpgrade("Divehouse","SexyClothes") and Rand(10) < 3 
+				and GetSettlement("Divehouse", "City") and f_CityFindCrowdedPlace("City", Cocotte, "pick_pos") then
+			MeasureCreate("Measure")
+			MeasureAddData("Measure", "TimeOut", Rand(6)+2)
+			MeasureStart("Measure", Cocotte, "pick_pos", "AssignToThiefOfLove")
+		else
+			MeasureRun(Cocotte,"Divehouse","AssignToLaborOfLove",false)
+		end
 	end
-	
+	return 
 end
 
 -- -----------------------
@@ -446,7 +466,7 @@ function MyrmidonIdle(MyrmAlias)
 end
 
 SHOW_MSG = false
-ENABLE_LOG = false
+ENABLE_LOG = true
 function Log(Message, Actor, ShowMsg)
 	if not ENABLE_LOG then
 		return

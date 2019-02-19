@@ -1,6 +1,5 @@
 -- returns 30 on active contracts for SIM
 function Weight()
-	aitwp_Log("Weight::AIContractGuilHouse", "dynasty")
 	if not dyn_GetIdleMember("dynasty", "SIM") then
 		return 0
 	end

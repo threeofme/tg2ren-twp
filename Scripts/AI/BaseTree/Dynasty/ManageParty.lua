@@ -1,5 +1,4 @@
 function Weight()
-	aitwp_Log("Weight::ManageParty", "dynasty")
 	local PartyCount = DynastyGetMemberCount("dynasty")
 	local FamilyCount = DynastyGetFamilyMemberCount("dynasty")
 	if PartyCount < 3 and FamilyCount > PartyCount then

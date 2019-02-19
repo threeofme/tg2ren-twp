@@ -1,6 +1,5 @@
 -- Motivation: I'm broke, gotta sell
 function Weight()
-	aitwp_Log("Weight::SellWorkshop", "dynasty")
 	-- colored dynasties will not sell
 	if not DynastyIsShadow("dynasty") then
 		return 0
@@ -24,13 +23,10 @@ function Weight()
 --		end
 --	end
 	
-	aitwp_Log("Weight::SellWorkshop returns 2", "dynasty")
 	return 2
 end
 
 function Execute()
-	aitwp_Log("Execute::SellWorkshop", "dynasty")
-	aitwp_Log("Execute::SellWorkshop for SIM", "SIM")
 	SetRepeatTimer("dynasty", "AI_SellShop", 12)
 	BuildingSetForSale("sd_Workshop", true)
 	SetState("sd_Workshop", STATE_SELLFLAG, true)

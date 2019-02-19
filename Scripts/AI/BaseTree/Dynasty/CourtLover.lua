@@ -1,5 +1,4 @@
 function Weight()
-	aitwp_Log("Weight::CourtLover", "dynasty")
 	if not dyn_GetIdleMember("dynasty", "SIM") then
 		return 0
 	end

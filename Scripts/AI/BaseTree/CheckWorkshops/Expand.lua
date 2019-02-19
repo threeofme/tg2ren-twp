@@ -1,6 +1,5 @@
 ---- Decides, whether a new workshop will be build. 
 function Weight()
-	aitwp_Log("Weight::Expand", "dynasty")
 	if not ReadyToRepeat("dynasty", "AI_Expand") then
 		return 0
 	end
@@ -31,7 +30,6 @@ function Weight()
 end
 
 function Execute()
-	aitwp_Log("Execute::Expand for", "SIM")
 	local Difficulty = ScenarioGetDifficulty()
 	local Timer = 96 - Difficulty * 12 -- easy: 4 days, medium: 3 days, hard: 2 days
 	SetRepeatTimer("dynasty", "AI_Expand", Timer)

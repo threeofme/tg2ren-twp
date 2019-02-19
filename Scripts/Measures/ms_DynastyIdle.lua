@@ -17,7 +17,6 @@ function Run()
 		ms_dynastyidle_CheckHealth()
 
 		local Value = Rand(80)
-		aitwp_Log("Going idle with "..Value, "", true)
 		if Value < 5 then -- move about
 			idlelib_GoToRandomPosition()
 		elseif Value < 10 then -- sit down
