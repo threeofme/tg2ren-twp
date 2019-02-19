@@ -89,9 +89,4 @@ function PingHour()
 	end
 	
 	bld_HandlePingHour("")
-	
-	-- Improve AI management
-	if BuildingGetAISetting("", "Produce_Selection") > 0 then
-		MeasureRun("", nil, "MedicineChest", false)
-	end
 end

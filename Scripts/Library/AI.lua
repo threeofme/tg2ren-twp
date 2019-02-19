@@ -418,7 +418,7 @@ function BuyItem(SimAlias, Item, ItemCount)
 		return false
 	end
 	
-	local Price 			= ai_CanBuyItem(SimAlias, Item, ItemCount, "NextCity", AliasName)
+	local Price = ai_CanBuyItem(SimAlias, Item, ItemCount, "NextCity", AliasName)
 	
 	if Price<0 then
 		return false

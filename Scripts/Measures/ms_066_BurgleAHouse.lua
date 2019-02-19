@@ -114,7 +114,7 @@ function Run()
 	end
 	
 	--get the burgle skill , dexterity skill of the thief
-	local Skill = GetSkillValue("",2)*10			-- from 40 to 100
+	local Skill = GetSkillValue("", DEXTERITY)*10			-- from 40 to 100
 	local SpeedupTime = GetImpactValue("", 43) / 100	-- 43 = BurglarySpeedup  --0.25 wenn aktiv
 	if SpeedupTime > 0 then
 		Skill = Skill + (Skill*SpeedupTime)
@@ -209,13 +209,16 @@ function Run()
 			
 			local VicMoney = GetMoney("Victim")
 			if VicMoney > (Value + ValueBonus) then
-				SpendMoney("Destination", (Value + ValueBonus), "CostThiefs")
+				f_SpendMoney("Destination", (Value + ValueBonus), "CostThiefs")
 				chr_RecieveMoney("Owner",(Value + ValueBonus), "IncomeThiefs")
 				mission_ScoreCrime("", (Value + ValueBonus))
-			else
-				SpendMoney("Destination", VicMoney, "CostThiefs")
+			elseif VicMoney > 0 then
+				f_SpendMoney("Destination", VicMoney, "CostThiefs")
 				chr_RecieveMoney("Owner", VicMoney, "IncomeThiefs")
 				mission_ScoreCrime("", VicMoney)
+			else
+				chr_RecieveMoney("Owner", ValueBonus, "IncomeThiefs")
+				mission_ScoreCrime("", ValueBonus)
 			end
 
 			--Plunder("", "Destination",10)			
@@ -286,11 +289,11 @@ function Run()
 				ValueBonus = ValueBonus/2
 				local VicMoney = GetMoney("Victim")
 				if VicMoney > (Value + ValueBonus) then
-					SpendMoney("Destination", Value + ValueBonus, "CostThiefs")
+					f_SpendMoney("Destination", Value + ValueBonus, "CostThiefs")
 					chr_RecieveMoney("Owner", Value + ValueBonus, "IncomeThiefs")
 					mission_ScoreCrime("", Value + ValueBonus)
-				else
-					SpendMoney("Destination", VicMoney, "CostThiefs")
+				elseif VicMoney > 0 then
+					f_SpendMoney("Destination", VicMoney, "CostThiefs")
 					chr_RecieveMoney("Owner", VicMoney, "IncomeThiefs")
 					mission_ScoreCrime("", VicMoney)
 				end
@@ -359,31 +362,20 @@ end
 -- -----------------------
 
 function GetMaxHaulValue(DestAlias, DynastyID, ThiefLevel)
-
-	local BaseValue		= BuildingGetPriceProto(BuildingGetProto(DestAlias))
-	
+	local BaseValue	= BuildingGetValue(DestAlias)
 	if BaseValue < 1000 then
 		return 0
 	end
 	
-	BaseValue = BaseValue * 0.05
-	if GetDynastyID(DestAlias) then
-		BaseValue = BaseValue * 2
-	end
-	
-	if HasProperty(DestAlias,"ScoutedBy"..DynastyID) then
-		BaseValue = BaseValue * 3
-	end
+	BaseValue = BaseValue * 0.05	
+--	if HasProperty(DestAlias,"ScoutedBy"..DynastyID) then
+--		BaseValue = BaseValue * 2
+--	end
 
-	local LootFactor	= ((101 - GetImpactValue(DestAlias,"ProtectionOfBurglary"))*100 + 10*ThiefLevel )
-	local LootValue		=	(BaseValue * LootFactor / 100)
-	
-	if LootValue > 3000 then
-		LootValue = 3000
-	end
+	local LootFactor	= math.min(100, ((101 - GetImpactValue(DestAlias,"ProtectionOfBurglary"))*100 + 5*(ThiefLevel-1)))
+	local LootValue		=	math.max(100, BaseValue * LootFactor / 100)
 	
 	return LootValue
-	
 end
 
 -- -----------------------

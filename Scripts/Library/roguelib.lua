@@ -42,7 +42,9 @@ function BurgleBuilding(WorkerAlias, HomeAlias)
 		local BuildingClass = Rand(2) + 1 -- GL_BUILDING_CLASS_LIVINGROOM == 1, GL_BUILDING_CLASS_WORKSHOP == 2
 		for j = 0, 5 do
 			CityGetRandomBuilding("City", BuildingClass, -1, -1, -1, FILTER_HAS_DYNASTY, "BuildingToScout")
-			if DynId ~= GetDynastyID("BuildingToScout") then
+			if DynId ~= GetDynastyID("BuildingToScout") 
+					and BuildingGetOwner("BuildingToScout", "BldOwner") 
+					and DynastyGetDiplomacyState(HomeAlias, "BldOwner") <= DIP_NEUTRAL then
 				MeasureRun(WorkerAlias, "BuildingToScout", "ScoutAHouse")
 				return false
 			end

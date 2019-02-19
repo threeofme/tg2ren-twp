@@ -199,13 +199,13 @@ function Run()
 					-- Pay if the tavern does not belong to the owners dynasty
 					if GetDynastyID("Tavern") ~= GetDynastyID("") then
 						if DynastyIsPlayer("") then
-							if not SpendMoney("", 250, "CostSocial") then
+							if not f_SpendMoney("", 250, "CostSocial") then
 								MsgQuick("", "@L_TAVERN_232_INVITETODANCE_FAILURES_MONEY_+0", GetID(""), GetData("Price"))
 								StopMeasure()
 								return
 							end
 						end
-						CreditMoney("Tavern",250,"Offering")
+						f_CreditMoney("Tavern",250,"Offering")
 						economy_UpdateBalance("Tavern", "Service", 250)
 					end	
 					
@@ -319,13 +319,13 @@ function Run()
 			-- Pay if the tavern does not belong to the owners dynasty
 			if GetDynastyID("Tavern") ~= GetDynastyID("") then
 				if DynastyIsPlayer("") then
-					if not SpendMoney("", 250, "CostSocial") then
+					if not f_SpendMoney("", 250, "CostSocial") then
 						MsgQuick("", "@L_TAVERN_232_INVITETODANCE_FAILURES_MONEY_+0", GetID(""), GetData("Price"))
 						StopMeasure()
 						return
 					end
 				end
-				CreditMoney("Tavern",250,"Offering")
+				f_CreditMoney("Tavern",250,"Offering")
 				local OldBalance = 0
 				if HasProperty("Tavern", "BalanceDancingFee") then
 					OldBalance = GetProperty("Tavern", "BalanceDancingFee")

@@ -55,11 +55,12 @@ function Run()
 			PlayAnimation("","nod")
 			if RemoveItems("Actor", "MiracleCure", 1, INVENTORY_STD)==1 then
 				MoneyToGet = MoneyToGet + Rand(101)
-				CreditMoney("Actor",MoneyToGet,"Offering")
-				
 				-- for the balance
 				if ai_GetWorkBuilding("Actor", GL_BUILDING_TYPE_HOSPITAL, "Hospital") then
 					economy_UpdateBalance("Hospital", "Salescounter", MoneyToGet)
+					f_CreditMoney("Hospital",MoneyToGet,"Offering")
+				else
+					f_CreditMoney("Actor",MoneyToGet,"Offering")
 				end
 				
 				if dyn_IsLocalPlayer("Actor") then

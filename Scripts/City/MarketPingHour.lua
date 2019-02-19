@@ -221,44 +221,47 @@ function PingHour()
 	end
 	
 	local Level = CityGetLevel("City")
-	
-		-- Farmer
-	marketpinghour_CheckItem(Level, "Wheat", 4)
-	marketpinghour_CheckItem(Level, "Flachs", 4)
-	marketpinghour_CheckItem(Level, "Wool", 4)
-	marketpinghour_CheckItem(Level, "Fat", 5)
-	marketpinghour_CheckItem(Level, "Leather", 4)
-	marketpinghour_CheckItem(Level, "Beef", 4)
-	marketpinghour_CheckItem(Level, "Milch", 3)
-		-- Fisher
-	marketpinghour_CheckItem(Level, "Herring", 4)
-	marketpinghour_CheckItem(Level, "Salmon", 4)
-		-- Orchardist
-	marketpinghour_CheckItem(Level, "Fruit", 4)
-	marketpinghour_CheckItem(Level, "Honey", 4)
-	marketpinghour_CheckItem(Level, "Salat", 2)
-		-- Woodcutter
-	marketpinghour_CheckItem(Level, "Pinewood", 4)
-	marketpinghour_CheckItem(Level, "Oakwood", 4)
-	marketpinghour_CheckItem(Level, "Charcoal", 4)
-	marketpinghour_CheckItem(Level, "Fungi", 4)
-	marketpinghour_CheckItem(Level, "Pech", 5)
-		-- Mine
-	marketpinghour_CheckItem(Level, "Iron", 4)
-	marketpinghour_CheckItem(Level, "Silver", 4)
-	marketpinghour_CheckItem(Level, "Gold", 4)
-	marketpinghour_CheckItem(Level, "Gemstone", 2)
-	marketpinghour_CheckItem(Level, "Salt", 4)
-		-- Stonemason
-	marketpinghour_CheckItem(Level, "Grindingbrick", 2)
-		-- Mill
-	marketpinghour_CheckItem(Level, "Dye", 3)
-	marketpinghour_CheckItem(Level, "WheatFlour", 2)
-	marketpinghour_CheckItem(Level, "Oil", 2)
-		-- Smithy
-	marketpinghour_CheckItem(Level, "Nails", 2)
-		-- Tavern
-	marketpinghour_CheckItem(Level, "Weingeist", 3)
+	-- disable resource spawning on harder difficulties
+	local Difficulty = ScenarioGetDifficulty() -- easy 0, 1, 2, 3, 4 hard
+	if Difficulty < 3 or GetRound() < (5 - Difficulty) then
+			-- Farmer
+		marketpinghour_CheckItem(Level, "Wheat", 4)
+		marketpinghour_CheckItem(Level, "Flachs", 4)
+		marketpinghour_CheckItem(Level, "Wool", 4)
+		marketpinghour_CheckItem(Level, "Fat", 5)
+		marketpinghour_CheckItem(Level, "Leather", 4)
+		marketpinghour_CheckItem(Level, "Beef", 4)
+		marketpinghour_CheckItem(Level, "Milch", 3)
+			-- Fisher
+		marketpinghour_CheckItem(Level, "Herring", 4)
+		marketpinghour_CheckItem(Level, "Salmon", 4)
+			-- Orchardist
+		marketpinghour_CheckItem(Level, "Fruit", 4)
+		marketpinghour_CheckItem(Level, "Honey", 4)
+		marketpinghour_CheckItem(Level, "Salat", 2)
+			-- Woodcutter
+		marketpinghour_CheckItem(Level, "Pinewood", 4)
+		marketpinghour_CheckItem(Level, "Oakwood", 4)
+		marketpinghour_CheckItem(Level, "Charcoal", 4)
+		marketpinghour_CheckItem(Level, "Fungi", 4)
+		marketpinghour_CheckItem(Level, "Pech", 5)
+			-- Mine
+		marketpinghour_CheckItem(Level, "Iron", 4)
+		marketpinghour_CheckItem(Level, "Silver", 4)
+		marketpinghour_CheckItem(Level, "Gold", 4)
+		marketpinghour_CheckItem(Level, "Gemstone", 2)
+		marketpinghour_CheckItem(Level, "Salt", 4)
+			-- Stonemason
+		marketpinghour_CheckItem(Level, "Grindingbrick", 2)
+			-- Mill
+		marketpinghour_CheckItem(Level, "Dye", 3)
+		marketpinghour_CheckItem(Level, "WheatFlour", 2)
+		marketpinghour_CheckItem(Level, "Oil", 2)
+			-- Smithy
+		marketpinghour_CheckItem(Level, "Nails", 2)
+			-- Tavern
+		marketpinghour_CheckItem(Level, "Weingeist", 3)
+	end
 
 	marketpinghour_RemoveItemMarket()
 	

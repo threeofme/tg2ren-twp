@@ -332,7 +332,7 @@ function Run()
 			Station = Stations[s][1]
 			
 			-- move to given station. check owner (relevant for buying/selling)
-			f_MoveTo("",Station)
+			f_MoveTo("",Station, GL_MOVESPEED_RUN)
 			Sleep(1)
 			local SrcID = GetDynastyID("")
 			local DestID = -1
@@ -435,7 +435,7 @@ function LoadCart(SrcID, DestID, station, type, itemCount)
 	economy_UpdateBalance("homeBuilding", "Autoroute", 0 - math.abs(EstimatedMoney))
 	if BargainMoney > 0 then
 		Sleep(0.5)
-		CreditMoney("",BargainMoney,"WaresSold")
+		f_CreditMoney("homeBuilding",BargainMoney,"WaresSold")
 		ShowOverheadSymbol("", false, false, 0, "@L(+ %1t)",BargainMoney)
 	end
 end
@@ -516,7 +516,7 @@ function Unload(Station, Type, Count, Threshold)
 	economy_UpdateBalance("homeBuilding", "Autoroute", math.abs(EstimatedMoney))
 	if BargainMoney > 0 then
 		Sleep(0.5)
-		CreditMoney("",BargainMoney,"WaresSold")
+		f_CreditMoney("homeBuilding",BargainMoney,"WaresSold")
 		ShowOverheadSymbol("", false, false, 0, "@L(+ %1t)",BargainMoney)
 	end
 	if GetItemCount("", Type, INVENTORY_STD) > Count then

@@ -85,7 +85,7 @@ function CalculateSalesRanking(BldAlias, Count, Items)
 			AvailableGoods = AvailableGoods + 1
 		end
 	end
-	-- 5 points for each available item
+	-- 5 points for each available item (up to 40)
 	AvailableGoods = math.min(8, AvailableGoods)
 	local RankingGoods = AvailableGoods * 4		
 	
@@ -101,6 +101,7 @@ function CalculateSalesRanking(BldAlias, Count, Items)
 	local Charisma = GetSkillValue("Boss", CHARISMA)
 	local RankingCharisma = (math.min(12, Charisma) * 4) 
 	
+	-- goods <= 40; crafty <= 48; charisma <= 48
 	local Ranking = RankingGoods + RankingCrafty + RankingCharisma
 
 	local Attractivity = GetImpactValue(BldAlias,"Attractivity")
@@ -168,6 +169,7 @@ function BuyRandomItems(BldAlias, BuyerAlias, Budget, Max, Count, Items, IgnoreM
 		Count, Items = economy_GetItemsForSale(BldAlias)
 	end
 	IgnoreMoney = IgnoreMoney or (not IsDynastySim(BuyerAlias))
+	Budget = Budget or 0
 	
 	local ItemId, Available, ItemPrice, ItemCount
 	for i=1, Count do
@@ -181,11 +183,11 @@ function BuyRandomItems(BldAlias, BuyerAlias, Budget, Max, Count, Items, IgnoreM
 				if ItemCount > 0 then
 					SetProperty(BldAlias, PREFIX_SALESCOUNTER..ItemId, Available - ItemCount)
 					local TotalPrice = ItemCount * ItemPrice 
-					CreditMoney(BldAlias, TotalPrice, "WaresSold")
+					f_CreditMoney(BldAlias, TotalPrice, "WaresSold")
 					ShowOverheadSymbol(BldAlias, false, false, 0, "@L%1t",TotalPrice)
 					economy_UpdateBalance(BldAlias, "Salescounter", TotalPrice, ItemId)
 					if not IgnoreMoney then
-						SpendMoney(BuyerAlias, TotalPrice, "WaresBought")
+						f_SpendMoney(BuyerAlias, TotalPrice, "WaresBought")
 					end
 					return ItemId, ItemCount, TotalPrice
 				end
@@ -206,6 +208,10 @@ function ProtectSaleItems(BldAlias, ItemId, Available)
 			return math.max(0, Diff) -- return 0 if negative Diff
 		end
 	end
+	-- protect grog and schädelbrand since they don't have sale values
+	if ItemId == 935 or ItemId == 936 then
+		return 0
+	end
 	-- no restriction, return all available items
 	return Available
 end
@@ -214,17 +220,19 @@ end
 -- Userful for inter-workshop trade
 -- returns ItemCount, TotalPrice
 function BuyItems(BldAlias, BuyerAlias, ItemId, DesiredAmount)
-	local Available = GetProperty(BldAlias, PREFIX_SALESCOUNTER..ItemId)
-	if Available and Available > 0 then
-		local ItemPrice = economy_GetPrice(BldAlias, ItemId, BuyerAlias)
-		local ItemCount = math.min(Available, DesiredAmount)
-		SetProperty(BldAlias, PREFIX_SALESCOUNTER..ItemId, Available - ItemCount)
+	local Available = GetProperty(BldAlias, PREFIX_SALESCOUNTER..ItemId) or 0
+	local ItemPrice = economy_GetPrice(BldAlias, ItemId, BuyerAlias)
+	local Affordable = math.floor(GetMoney(BuyerAlias) / ItemPrice)
+	if Available > 0 and Affordable > 0 then
+		local ItemCount = math.min(Available, Affordable, DesiredAmount)
 		local TotalPrice = ItemCount * ItemPrice
-		CreditMoney(BldAlias, TotalPrice, "WaresSold")
-		ShowOverheadSymbol(BldAlias, false, false, 0, "@L%1t",TotalPrice)
-		economy_UpdateBalance(BldAlias, "Salescounter", TotalPrice, ItemId)
-		SpendMoney(BuyerAlias, TotalPrice, "WaresBought")
-		return ItemCount, TotalPrice
+		if f_SpendMoney(BuyerAlias, TotalPrice, "WaresBought") then
+			SetProperty(BldAlias, PREFIX_SALESCOUNTER..ItemId, Available - ItemCount)
+			f_CreditMoney(BldAlias, TotalPrice, "WaresSold")
+			ShowOverheadSymbol(BldAlias, false, false, 0, "@L%1t",TotalPrice)
+			economy_UpdateBalance(BldAlias, "Salescounter", TotalPrice, ItemId)
+			return ItemCount, TotalPrice
+		end
 	end
 	return 0, 0
 end
@@ -232,6 +240,13 @@ end
 --- calculates current price for offered item
 -- Price is based on current market price and depends on Bargaining of Owner and Buyer 
 function GetPrice(BldAlias, ItemId, Buyer)
+	-- Piratengrog, Schädelbrand
+	if ItemId == 935 then
+		return 35
+	elseif ItemId == 936 then
+		return 60
+	end
+
 	if not GetSettlement(BldAlias, "MyCity") then
 		return -1
 	end
@@ -241,7 +256,7 @@ function GetPrice(BldAlias, ItemId, Buyer)
 
 	-- get market price
 	CityGetLocalMarket("MyCity","MyMarket")
-	local BasePrice = ItemGetPriceSell(ItemId, "MyMarket")
+	local MarketPrice = ItemGetPriceSell(ItemId, "MyMarket")
 	
 	-- get difference in bargaining between Owner and Buyer
 	local BargOwner = GetSkillValue("BldOwner", BARGAINING)
@@ -254,7 +269,7 @@ function GetPrice(BldAlias, ItemId, Buyer)
 	end
 	
 	-- this will result in a range of about 70..110% of the market price
-	return (BasePrice * 0.9) + (BasePrice * TheBargain) 
+	return (MarketPrice * 0.9) + (MarketPrice * TheBargain) 
 end
 
 function UpdateBalance(BldAlias, BalanceSuffix, TotalPrice, ItemId, Amount)
@@ -309,7 +324,7 @@ function InitializeDefaultSalescounter(BldAlias, Count, Items)
 		Count, Items = economy_GetItemsForSale(BldAlias)
 	end
 
-	local Budget = BuildingGetLevel(BldAlias) * 1000
+	local Budget = BuildingGetLevel(BldAlias) * 600
 	local ItemId, MarketPrice, Max
 	for i=1, Count do
 		ItemId = ItemGetID(Items[i])
@@ -502,4 +517,15 @@ function BuyDrinkOrFood(Tavern, SimAlias, Budget, MaxItems)
 	local Items = {30, 31, 32, 34, 35, 37, 38}
 	local Count = 7
 	return economy_BuyRandomItems(Tavern, SimAlias, Budget, MaxItems, Count, Items)
+end
+
+function ClearBalance(BldAlias)
+	local BalanceTypes = {"Autoroute", "Theft", "Salescounter", "Service", "Wages"}
+	local Balance
+	for i=1, 5 do
+		Balance = "Balance"..BalanceTypes[i]
+		if HasProperty(BldAlias, Balance) then
+			RemoveProperty(BldAlias, Balance)
+		end 
+	end
 end

@@ -56,10 +56,10 @@ function Run()
 					f_EndUseLocator("","HolyIndulgencePos",GL_STANCE_STAND)
 					SetData("Blocked",0)
 				end
-				SpendMoney("", Cost,"CostIndulgence")
+				f_SpendMoney("", Cost,"CostIndulgence")
 				-- Donate the money to the owner
 				if GetDynastyID("") ~= GetDynastyID("church") then
-					CreditMoney("church",Cost*0.5,"IncomeIndulgence")
+					f_CreditMoney("church",Cost*0.5,"IncomeIndulgence")
 					economy_UpdateBalance("church", "Service", Cost*0.5)
 				end
 				SetMeasureRepeat(TimeOut)

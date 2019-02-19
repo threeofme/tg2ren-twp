@@ -107,7 +107,7 @@ function Run()
 							if VictimSpendValue > Value then
 								VictimSpendValue = Value
 							end
-							SpendMoney("VictimSim", VictimSpendValue, "theft")
+							f_SpendMoney("VictimSim", VictimSpendValue, "theft")
 							
 							if VictimSpendValue>25 then
 								feedback_MessageCharacter("VictimSim",

@@ -108,7 +108,7 @@ function Run()
 		-- Mod end
 
 		if GetDynastyID("Destination") ~= GetDynastyID("") then
-			CreditMoney("Destination", Money, "Offering")
+			f_CreditMoney("Destination", Money, "Offering")
 			economy_UpdateBalance("Destination", "Service", Money)
 		end
 		
@@ -160,7 +160,7 @@ function AffectFaith()
 	SimSetFaith("",SimGetFaith("")+5)
 	local MyFaith = SimGetFaith("")
 	
-	if(SpendMoney("",GetData("MessMoney"),"MessMoney")) then
+	if(f_SpendMoney("",GetData("MessMoney"),"MessMoney")) then
 		-- gunst steigt bei allen Dynastien deren Anführer die gleiche Religion hat 
 		GetDynasty("", "dynasty")
 		local iCount = ScenarioGetObjects("Dynasty", 99, "Dynasties")

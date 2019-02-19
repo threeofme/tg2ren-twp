@@ -149,7 +149,7 @@ function Danegeld()
 			
 			AddImpact("Victim", "HaveBeenPickpocketed", 1, 12)
 			
-			if SpendMoney("VictimOwner", money, "CostBribes", false) then
+			if f_SpendMoney("VictimOwner", money, "CostBribes", false) then
 				chr_ModifyFavor("VictimOwner","MercOwner",-favourloss)
 			end
 
@@ -161,7 +161,7 @@ function Danegeld()
 
 			--money = money + (SimGetLevel("") * 10)
 
-			CreditMoney("MercOwner", money, "IncomeBribes")
+			f_CreditMoney("MercOwner", money, "IncomeBribes")
 			economy_UpdateBalance("workingplace", "Theft", money)
 			IncrementXPQuiet("",15)
 

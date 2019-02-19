@@ -67,11 +67,11 @@ function Run()
 		if (ChurchReligion~=SimReligion) then
 			if Church ~= Infidel then
 				if DynastyIsPlayer("") then
-					if not SpendMoney("",100,"Credit") then
+					if not f_SpendMoney("",100,"Credit") then
 						MsgQuick("","@L_GENERAL_INFORMATION_INVENTORY_NOT_ENOUGH_MONEY")
 						StopMeasure()
 					else
-						CreditMoney("church",100,"misc")
+						f_CreditMoney("church",100,"misc")
 						economy_UpdateBalance("church", "Service", 100)
 						feedback_MessagePolitics("",""..Prefix.."MSG_HEAD",""..Prefix.."MSG_BODY",GetID(""),GetID("church"))
 						SetMeasureRepeat(TimeOut)

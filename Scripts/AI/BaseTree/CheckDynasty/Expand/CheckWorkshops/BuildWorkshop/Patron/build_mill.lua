@@ -1,7 +1,7 @@
 function Weight()
 	local Count = CityGetBuildingCount("HomeCity", -1, GL_BUILDING_TYPE_MILL)
 	local CityLevel = CityGetLevel("HomeCity")
-	return math.max(0, ((CityLevel - 1) - Count))
+	return (CityLevel - 1) - Count
 end
 
 function Execute()

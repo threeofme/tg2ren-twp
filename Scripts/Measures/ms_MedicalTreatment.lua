@@ -205,7 +205,7 @@ function Run()
 				
 				if CanHeal then
 					-- only Players need to pay
-					if MustPay and not SpendMoney("SickSim0", Costs, "Offering") then
+					if MustPay and not f_SpendMoney("SickSim0", Costs, "Offering") then
 						MsgSay("","@L_MEDICUS_TREATMENT_DOC_NOMONEY")
 					else
 						-- remove medicine
@@ -216,7 +216,7 @@ function Run()
 							SetProperty("Hospital","Salescounter_"..MedicineId,(Current - 1))
 						end
 						
-						CreditMoney("Hospital",Costs,"Offering")
+						f_CreditMoney("Hospital",Costs,"Offering")
 						economy_UpdateBalance("Hospital", "Service", Costs)
 						
 						MsgSay("","@L_MEDICUS_TREATMENT_DOC_"..Label)

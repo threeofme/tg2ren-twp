@@ -124,112 +124,6 @@ function Sleep(SleepStart, SleepEnd)
 end
 
 -- -----------------------
--- ThiefIdle
--- -----------------------
-function ThiefIdle(Workbuilding)
-	SimGetWorkingPlace("", "WorkingPlace")
-	-- AI controlled thiefs should not go idle
-	local Time = math.mod(GetGametime(), 24)
-	if BuildingGetAISetting("WorkingPlace", "Enable") > 0 then
-		if GetHPRelative("") < 0.7 then
-			roguelib_Heal("", "WorkingPlace")
-		elseif 5 <= Time and Time <= 21 then
-			-- pickpocket or look for sales counters during the day
-			if Rand(10) < 7 then
-				roguelib_Pickpocket("", "WorkingPlace")
-			else
-				roguelib_StealFromCounter("", "WorkingPlace")
-			end
-		else
-			roguelib_BurgleBuilding("", "WorkingPlace")
-		end 
-	end
-
-	local WhatToDo = Rand(5)
-	if WhatToDo == 0 then
-		if GetFreeLocatorByName("WorkingPlace", "Chair",1,4, "ChairPos") then
-			if not f_BeginUseLocator("", "ChairPos", GL_STANCE_SIT, true) then
-				RemoveAlias("ChairPos")
-				return
-			end
-			while true do
-				local WhatToDo2 = Rand(4)
-				if WhatToDo2 == 0 then
-					Sleep(12) 
-				elseif WhatToDo2 == 1 then
-					return
-				elseif WhatToDo2 == 2 then
-					PlayAnimation("","sit_talk")
-				else
-					PlayAnimation("","sit_laugh")					
-				end
-				Sleep(3)
-			end
-		end
-	elseif WhatToDo == 1 then
-		if GetLocatorByName("WorkingPlace", "Chair_Cellwatch", "ChairPos") then
-			if not f_BeginUseLocator("", "ChairPos", GL_STANCE_SIT, true) then
-				RemoveAlias("ChairPos")
-				return
-			end
-			PlayAnimation("","sit_laugh")
-			Sleep(Rand(12)+1)
-		end
-	elseif WhatToDo == 2 then
-		if GetLocatorByName("WorkingPlace", "Fistfight", "ChairPos") then
-			if not f_BeginUseLocator("", "ChairPos", GL_STANCE_STAND, true) then
-				RemoveAlias("ChairPos")
-				return
-			end
-			PlayAnimation("","point_at")
-			PlayAnimation("","fistfight_in")
-			PlayAnimation("","fistfight_punch_01")
-			PlayAnimation("","fistfight_punch_05")
-			PlayAnimation("","fistfight_punch_02")
-			PlayAnimation("","fistfight_punch_06")
-			PlayAnimation("","fistfight_punch_03")
-			PlayAnimation("","fistfight_punch_07")
-			PlayAnimation("","fistfight_punch_04")
-			PlayAnimation("","fistfight_punch_08")
-			PlayAnimation("","fistfight_out")
-		end
-	elseif WhatToDo == 3 then
-		if GetLocatorByName("WorkingPlace", "Pickpocket", "ChairPos") then
-			if not f_BeginUseLocator("", "ChairPos", GL_STANCE_STAND, true) then
-				RemoveAlias("ChairPos")
-				return
-			end
-			PlayAnimation("","pickpocket")
-		end
-	else
-		if GetLocatorByName("WorkingPlace", "Cell_Outside", "ChairPos") then
-			if not f_BeginUseLocator("", "ChairPos", GL_STANCE_STAND, true) then
-				RemoveAlias("ChairPos")
-				return
-			end
-			PlayAnimation("","sentinel_idle")
-		end
-	end
-end
-
--- -----------------------
--- RobberIdle
--- -----------------------
-function RobberIdle(Workbuilding)
-	SimGetWorkingPlace("", "WorkingPlace")
-	GetLocatorByName("WorkingPlace", "Entry1", "WaitingPos")
-	
-	Sleep(10)
-	
-	if GetDistance("", "WaitingPos") > 500 then
-		local dist = Rand(100)+10	
-		f_MoveTo("Sim","WaitingPos",GL_MOVESPEED_RUN, dist)
-	end
-
-	Sleep(5)
-end
-
--- -----------------------
 -- GoHome
 -- -----------------------
 function GoHome()
@@ -524,7 +418,7 @@ function Graveyard()
 			if GetImpactValue("Destination","Gravestone")>0 then
 				Money = Money*2
 			end
-			CreditMoney("Destination",Money,"tip") -- Fajeth Mod, default Rand(5)
+			f_CreditMoney("Destination",Money,"tip") -- Fajeth Mod, default Rand(5)
 			economy_UpdateBalance("Destination", "Service", Money)
 		end
 		Sleep(Rand(6)+1)
@@ -552,7 +446,7 @@ function GetCorn()
 					Carry = 1
 					RemoveItems("Destination","Wheat",5,INVENTORY_STD)
 					local Payment = ItemGetBasePrice("Wheat")*10
-					CreditMoney("Destination",Payment,"misc")
+					f_CreditMoney("Destination",Payment,"misc")
 				end
 				if Carry == 1 then
 					MsgSayNoWait("","@L_GETCORN_MESSAGE")
@@ -1018,7 +912,7 @@ function CheckInsideStore(Type)
 	end
 	-- Buy items up to budget, but no more than 10 (prevents outsales of lower items)
 	local ItemId, ItemCount = economy_BuyRandomItems(Workshop, "", Budget, Rand(10)+1)
-	
+	local ProdName = ItemGetLabel(ItemId, ItemCount == 1)
 	if ItemCount <= 0 then
 	-- nothing available for my budget -- lets shout
 		local ProdType
@@ -1027,7 +921,6 @@ function CheckInsideStore(Type)
 		else 
 			ProdType = "GETFOOD" 
 		end 
-		local ProdName = ItemGetLabel(ItemId, ItemCount == 1)
 		PlayAnimationNoWait("","propel")
 		if Rand(2) == 0 then
 			MsgSay("","@L_HPFZ_IDLELIB_"..ProdType.."_SPRUCH_+2",ProdName)
@@ -1166,7 +1059,7 @@ function TavernHangout(SimAlias, Tavern, Need)
 	-- stay a bit longer if Versengold is here
 	if HasProperty(Tavern,"Versengold") then
 		verweile = verweile + 2
-		CreditMoney(Tavern, 100, "Versengold")
+		f_CreditMoney(Tavern, 100, "Versengold")
 		economy_UpdateBalance(Tavern, "Service", 100)
 	end
 	
@@ -1271,7 +1164,7 @@ function TavernHangout(SimAlias, Tavern, Need)
 			if HasProperty(Tavern,"ServiceActive") then
 				-- TODO increase tip for higher charisma of service
 				local Tip = math.floor(Price * 0.15)
-				CreditMoney(Tavern, Tip, "Misc")
+				f_CreditMoney(Tavern, Tip, "Misc")
 				economy_UpdateBalance(Tavern, "Service", Tip)
 			end
 		end
@@ -1309,7 +1202,7 @@ function GetTimeToStayAtTavern(SimAlias, Tavern)
 	
 	if HasProperty(Tavern,"DanceShow") then
 		verweile = verweile + 2
-		CreditMoney(Tavern,50,"Versengold")
+		f_CreditMoney(Tavern,50,"Versengold")
 		economy_UpdateBalance(Tavern, "Service", 50)
 	end
 	
@@ -1456,32 +1349,23 @@ function RepairHome(Building)
 	
 end
 
+--- -----------------------
+-- RobberIdle
 -- -----------------------
--- MyrmidonIdle
--- -----------------------
-function MyrmidonIdle(Workbuilding)
+function RobberIdle(Workbuilding)
 	SimGetWorkingPlace("", "WorkingPlace")
-	if GetFreeLocatorByName("WorkingPlace", "backroom_sit_",1,3, "ChairPos") then
-		if not f_BeginUseLocator("", "ChairPos", GL_STANCE_SIT, true) then
-			RemoveAlias("ChairPos")
-			return
-		end
-		while true do
-			local WhatToDo2 = Rand(4)
-			if WhatToDo2 == 0 then
-				Sleep(10) 
-			elseif WhatToDo2 == 1 then
-				Sleep(Rand(20)+4)
-			elseif WhatToDo2 == 2 then
-				PlayAnimation("","sit_talk")
-			else
-				PlayAnimation("","sit_laugh")					
-			end
-			Sleep(1)
-		end
+	GetLocatorByName("WorkingPlace", "Entry1", "WaitingPos")
+	
+	Sleep(10)
+	
+	if GetDistance("", "WaitingPos") > 500 then
+		local dist = Rand(100)+10	
+		f_MoveTo("Sim","WaitingPos",GL_MOVESPEED_RUN, dist)
 	end
-	Sleep(3)
+
+	Sleep(5)
 end
+
 
 -- -----------------------
 -- VisitDoc
@@ -1790,7 +1674,6 @@ function GoToDivehouse()
 		
 		local Hour = math.mod(GetGametime(), 24)
 		local verweile = 0
-		local basicvalue = 1
 
 		if 6 < Hour and Hour < 20 then
 			verweile = Rand(2)+3
@@ -1804,10 +1687,10 @@ function GoToDivehouse()
 		  verweile = verweile + 2
 		end
 		if HasProperty("Destination","Versengold") then
-			basicvalue = basicvalue + 1
 			verweile = verweile + 3
 		end
 
+		-- 0 < rank < 5, 2 being poor and 5 being wealthy
 	    local simstand = math.max(1, SimGetRank(""))
 	    local grundBetrag = simstand * 5
 	
@@ -1842,7 +1725,7 @@ function GoToDivehouse()
 			    Sleep(1)
 			    CarryObject("","Handheld_Device/ANIM_beaker.nif",false)
 				end
-				CreditMoney("Destination",grundBetrag,"Offering")
+				f_CreditMoney("Destination",grundBetrag,"Offering")
 				economy_UpdateBalance("Destination", "Service", grundBetrag)
 				Sleep(1)
 				PlaySound3DVariation("","CharacterFX/drinking",1)
@@ -1868,7 +1751,7 @@ function GoToDivehouse()
 			    PlaySound3D("","Locations/tavern/cheers_01.wav",1)
 			    CarryObject("","Handheld_Device/ANIM_beaker.nif",false)
 				end
-				CreditMoney("Destination",grundBetrag,"Offering")
+				f_CreditMoney("Destination",grundBetrag,"Offering")
 				economy_UpdateBalance("Destination", "Service", grundBetrag)
 				Sleep(1)
 				PlaySound3DVariation("","CharacterFX/drinking",1)
@@ -1899,27 +1782,15 @@ function GoToDivehouse()
 				local	Items = { "SmallBeer", "WheatBeer", "PiratenGrog", "Schadelbrand" }
 				local Choice = Items[Rand(4)+1]	
 				local Success = false
-				local TavernAttractivity = GetImpactValue("Destination", "Attractivity")	
-				local Value = math.floor((ItemGetBasePrice(Choice)*(0.9+(TavernAttractivity)/2)+Rand((5*SimGetRank(""))))*NumItems)
-				local SpecialValue = math.floor((40*(0.9+(TavernAttractivity)/2)+Rand((5*SimGetRank(""))))*NumItems)
 				
-				if HasProperty("Destination","ServiceActive") then
-					Value = Value*1.5
-					SpecialValue = SpecialValue*1.5
-				end
 				
 				local ItemId = ItemGetID(Choice)
-				local ItemCount = economy_BuyItems("Destination", "", ItemId, NumItems)
+				local ItemCount, TotalPrice = economy_BuyItems("Destination", "", ItemId, NumItems)
 				
-				if ItemCount > 0 then
-					-- special prices for grog and rum
-					if Choice == "PiratenGrog" then
-						Value = SpecialValue
-					elseif Choice == "Schadelbrand" then
-						Value = SpecialValue * 2 
-					end
-					CreditMoney("Destination", Value, "WaresSold")
-					economy_UpdateBalance("Destination", "Salescounter", Value)
+				if ItemCount > 0 and HasProperty("Destination","ServiceActive") then
+					local Bonus = math.floor(TotalPrice * 0.3)
+					f_CreditMoney("Destination", Bonus, "Offering")
+					economy_UpdateBalance("Destination", "Service", Bonus)
 				end
 --			end
 			verweile = verweile - 1
@@ -2049,7 +1920,7 @@ function BeADrunkChamp()
 					end
 				    CarryObject("","",false)
 				    local tip = Rand(90)+10
-					CreditMoney("Destination", tip, "tip")
+					f_CreditMoney("Destination", tip, "tip")
 					economy_UpdateBalance("Destination", "Service", tip)
 					local newwinner = GetName("")
 					if HasProperty("Destination","BestDrunkPlayer") then
@@ -2102,7 +1973,7 @@ function BeADiceChamp()
 				PlaySound3D("","measures/throw_dices/throw_dices+0.wav", 1.0)
 				
 				local tip = Rand(20)+5
-				CreditMoney("Destination", tip, "tip")
+				f_CreditMoney("Destination", tip, "tip")
 				economy_UpdateBalance("Destination", "Service", tip)
 				local newwinner = GetName("")
 				local bonus
@@ -2319,7 +2190,7 @@ function BuySomeCoin(SplitNumber)
 					RemoveItems("Destination",Choice,1,INVENTORY_STD)
 					local bonus = (GetSkillValue("Glaubiger", BARGAINING)/10)*ItemGetBasePrice(Choice)+ItemGetBasePrice(Choice)
 					Sleep(0.5)
-					CreditMoney("Destination",bonus,"tip")
+					f_CreditMoney("Destination",bonus,"tip")
 					economy_UpdateBalance("Destination", "Service", bonus)
 					-- Fajeth Mod more Favor def 1
 					chr_ModifyFavor("","Glaubiger",5)					

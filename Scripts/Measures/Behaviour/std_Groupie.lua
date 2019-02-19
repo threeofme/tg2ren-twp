@@ -83,7 +83,7 @@ function Run()
 						local tips = GetProperty("","Tips")
 						if tips>0 then
 							if BuildingGetOwner("stageobj","BuildingOwner") then
-								CreditMoney("BuildingOwner", tips, "Versengold")
+								f_CreditMoney("BuildingOwner", tips, "Versengold")
 								economy_UpdateBalance("stageobj", "Service", tips)
 							end
 						end

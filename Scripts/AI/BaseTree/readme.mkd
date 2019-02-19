@@ -1,0 +1,147 @@
+TODO 14.11.2018
+-------------
+
+* (partly DONE) Divide ms_DynastyIdle into two measures 
+    - one idle measure for shadows and non-party members
+    - one measure for party members of AI
+
+* Check and integrate priorities for AI actions, especially attacks
+
+* DONE Check interplay of production with dyn_IsIdleMember. Stop production after certain time or interrupt it as required?
+
+* DONE Check courting process up to marriage
+
+* Consider repeat timers and difficulty for actions.
+
+* Enable AI.BuyItem to buy from sales counter
+
+* repair buildings (esp. homes)
+
+
+
+AI Base Tree
+============
+
+**Applies to ** every AI dynasty (colored and shadow).
+
+**Triggers ** through round robin for all dynasties.
+
+**Scripts ** in AI/BaseTree form decision tree.
+
+**Responsible for** strategic decisions for the whole dynasty, i.e.
+
+- Politics
+- Trials
+- Buying/Selling workshops
+- Feuds with other dynasties
+
+
+Consistent Behaviour
+--------------------
+
+Realistic gameplay requires consistent decisions based on the current situation. 
+This is especially true for politics, elimination and intrigue. 
+
+The weighted AI base tree will be supported by a few priorities/interests of the dynasty:
+
+* Political engagement (Priority and target office)
+    - Current nobility title
+    - Running applications
+    - Current offices
+    - Game mode "Political"
+
+* Opponents (Priority and current target)
+    - Business rivals (only similar wealth)
+    - Personal feuds
+    - Game mode "Elimination"
+
+
+
+This could be implemented inside the base tree:
+
+* Priorities.lua in root folder
+* Weight = 100, Repeat = 24h
+* Evaluate current situation to calculate priorities
+
+
+Decision Tree
+-------------
+
+The BaseTree is the core of dynasty gameplay. If anything strictly character related is removed from the base tree, 
+it will be much easier to polish. The following actions do not belong in the BaseTree:
+
+* Healing sickness or low health on characters. This belongs to idle behaviour. 
+* Healing or equipping mercenaries. Buying equipment may be considered an dynasty action, however.
+* The actual courting of a liason or fiance. The initial choice should be a dynasty action to allow for political marriages.
+
+Example tree:
+
+- Political actions (weight depends on **Political Ambition**)
+    - Gain favor with population, wear jewelery
+    - Run for office
+    - Impress office holders
+
+- Military actions (weight depends on **Aggressiveness**, generally higher for rogues)
+    - Hire thugs
+    - Build/Buy Merc camp (may be impossible due to AI building bug)
+    - Sabotage
+
+- Intrigue (weight depends on **Intrigue**, which in turn increases with political ambition)
+    - Spying on opponents
+    - Using offensive artefacts
+    - Collect evidence
+    - Trial
+
+- Dynasty (weight more or less static)
+    - Economic Expansion, build/buy workshops 
+    - Manage party, includes finding spouses
+    - Nobility
+
+
+Alternative setup of the decision tree (deprecated):
+
+1. Area of the game (Dynasty, Economy, Society)
+
+2. Choose motivation (i.e. Party is too small/I hate someone/Nobody likes me)
+
+3. Choose action (i.e. marry, get children)
+
+4. Choose subject for action (i.e. married dynasty member, myrmidon)
+
+5. Choose target for action if applicable (i.e. enemy building for sabotage)
+
+
+
+Idle Behaviour
+==============
+
+**Applies to** any idle (state) SIM that is not in a party.  
+
+**Scripts ** are Library/idlelib.lua, Behaviour/std_Idle.lua (non-dynasty sims) and ms_DynastyIdle.lua. 
+
+
+
+Building Specific AI
+====================
+
+**Applies to** any idle SIM in a building of certain type. Requires AI setting for production choice enabled.
+
+**Triggers** when SIM enters a building or finishes a measure/production while inside. 
+
+**Responsible for ** production measures.
+
+
+Logging
+=======
+
+	MsgNewsNoWait(
+		"All", -- recipient
+		"", -- jump to target 
+		"", -- String pPanelParam, 
+		"politics", -- String pMessageClass, 
+		-1, -- Number TimeOut, 
+		"AI-Weight for %1DN", -- String pHeaderLabel, 
+		"", -- String pBodyLabel 
+		GetID("dynasty") ) -- variable argument list
+		
+	LogMessage("::TOM::AI ...")

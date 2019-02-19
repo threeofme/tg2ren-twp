@@ -51,7 +51,7 @@ function Run()
 		SetProperty("", "AutoRoute")
 	end
 		
-	if not f_MoveTo("","EndPos") then
+	if not f_MoveTo("","EndPos", GL_MOVESPEED_RUN) then
 		StopMeasure()
 	end
 	
@@ -81,7 +81,9 @@ function Run()
 			if GetSettlement("Destination", "MyCity") then
 				GetHomeBuilding("","homeBuilding")
 				CityGetLocalMarket("MyCity","MyMarket")
-				economy_UpdateBalance("homeBuilding", "Autoroute", (0-ItemGetPriceBuy(ItemId,"MyMarket")) * ItemTransfered)
+				-- TODO add bargaining bonus for markets 
+				local EstimatedMoney = (0-ItemGetPriceBuy(ItemId,"MyMarket")) * ItemTransfered
+				economy_UpdateBalance("homeBuilding", "Autoroute", EstimatedMoney)
 			end
 			Found = true
 			Amount = Amount + ItemTransfered
@@ -93,7 +95,7 @@ function Run()
 		local	Slots = InventoryGetSlotCount("", INVENTORY_STD)
 		local	ItemId
 		local	ItemCount
-		local	Error
+		local	Error, ItemTransfered
 		local BargainMoney = 0
 		local EstimatedMoney = 0
 		local	CurrentSlot = Slots-1
@@ -121,7 +123,7 @@ function Run()
 			CurrentSlot = CurrentSlot - 1
 			Sleep(0.5)
 			if BargainMoney > 0 then
-				CreditMoney("",BargainMoney,"Bargaining")
+				f_CreditMoney("",BargainMoney,"Bargaining")
 				ShowOverheadSymbol("", false, false, 0, "@L(+ %1t)",BargainMoney)
 			end
 			Sleep(0.4)
@@ -142,25 +144,25 @@ function Run()
 			StopMeasure()
 		end
 		
-		if not f_MoveTo("","StartPos") then
+		if not f_MoveTo("","StartPos", GL_MOVESPEED_RUN) then
 			StopMeasure()
 		end
 		
 		-- if loading measure, unload at starting point if that is my own workshop
 		if result == "S" then
 			-- check for own workshop
-			if GetHomeBuilding("","MyHome") and CalcDistance("", "MyHome") < 200 then
+			if GetHomeBuilding("","MyHome") and GetOutdoorMovePosition("", "MyHome", "RetPos") 
+					and CalcDistance("", "RetPos") < 300 then
 				-- TODO local	Slots = InventoryGetSlotCount("", INVENTORY_STD)
 				local Slots = InventoryGetSlotCount("", INVENTORY_STD)
 				local ItemId, ItemCount
 				for i = 0, Slots - 1 do
 					ItemId, ItemCount = InventoryGetSlotInfo("", i, INVENTORY_STD)
-					if ItemId and ItemCount then
+					if ItemId and ItemCount and CanAddItems("MyHome", ItemId, ItemCount, INVENTORY_STD)  then
 						RemoveItems("", ItemId, ItemCount, INVENTORY_STD)
 						AddItems("MyHome", ItemId, ItemCount, INVENTORY_STD)
 					end
 				end
-				TransferItems("", "MyHome", INVENTORY_STD, INVENTORY_STD)
 			end
 		end
 		-- _GENERAL_MEASURES_SENDCARTANDUNLOAD_MSG_+0 -- abgeladen und ist zurück

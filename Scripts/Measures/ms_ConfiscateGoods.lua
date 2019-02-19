@@ -47,7 +47,7 @@ function Run()
 		SetProperty("Destination", "Salescounter_"..Items[i], 0)
 	end
 	
-	CreditMoney("", GoodMoney, "unknown")
+	f_CreditMoney("", GoodMoney, "unknown")
 	
 	local ItemsInSTD = InventoryGetSlotCount("Destination", INVENTORY_STD)
 	local ItemId, Found

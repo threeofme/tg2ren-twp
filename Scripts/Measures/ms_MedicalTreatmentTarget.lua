@@ -178,8 +178,8 @@ function Run()
 		end
 		local MustPay = DynastyIsPlayer("Destination") and GetDynastyID("Hospital") ~= GetDynastyID("Destination")
 			
-		if CanHeal ~= false then
-			if MustPay and not SpendMoney("Destination", Costs, "Offering") then
+		if CanHeal then
+			if MustPay and not f_SpendMoney("Destination", Costs, "Offering") then
 				MsgSay("","@L_MEDICUS_TREATMENT_DOC_NOMONEY")
 			else
 				-- remove medicine
@@ -190,7 +190,7 @@ function Run()
 					SetProperty("Hospital","Salescounter_"..MedicineId,(MedicineInSalescounter - 1))
 				end
 				
-				CreditMoney("Hospital",Costs,"Offering")
+				f_CreditMoney("Hospital",Costs,"Offering")
 				economy_UpdateBalance("Hospital", "Service", Costs)
 				
 				MsgSay("","@L_MEDICUS_TREATMENT_DOC_"..Label)

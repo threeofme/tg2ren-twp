@@ -20,6 +20,7 @@ function Run()
 		return
 	end
 	if DynastyIsAI("") then
+		SimSetProduceItemID("", -1, -1)
 		BlockChar("")
 		AllowMeasure("","StartDialog",EN_PASSIVE)
 		AllowMeasure("","BribeCharacter",EN_BOTH)
@@ -30,6 +31,7 @@ function Run()
 		AllowMeasure("","MakeAPresent",EN_PASSIVE)
 	end
 	
+	-- session is over or did not happen, leave building
 	local currentGameTime = math.mod(GetGametime(),24)
 	if currentGameTime >19 then
 		if DynastyIsAI("") then
@@ -39,7 +41,7 @@ function Run()
 		end
 	end
 
-	if not GetProperty("","destination_ID") then
+	if not GetProperty("","cutscene_destination_ID") then
 		OutputDebugString("no destination presession")
 		SimResetBehavior("")
 		return
