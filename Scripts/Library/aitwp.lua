@@ -466,9 +466,8 @@ function MyrmidonIdle(MyrmAlias)
 end
 
 SHOW_MSG = false
-ENABLE_LOG = true
 function Log(Message, Actor, ShowMsg)
-	if not ENABLE_LOG then
+	if GL_ENABLE_LOG < 1 then
 		return
 	end
 	ShowMsg = SHOW_MSG and ShowMsg
@@ -491,7 +490,7 @@ end
 
 
 function LogMovementMeasure(SimAlias)
-	if ENABLE_LOG and DynastyIsPlayer(SimAlias) and IsPartyMember(SimAlias) then
+	if GL_ENABLE_LOG > 0 and DynastyIsPlayer(SimAlias) and IsPartyMember(SimAlias) then
 		local Measure = GetCurrentMeasureName(SimAlias)
 		LogMessage("AITWP::MOVE::"..GetName(SimAlias).." moving in measure: "..Measure)
 	end
