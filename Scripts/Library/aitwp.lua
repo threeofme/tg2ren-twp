@@ -392,11 +392,6 @@ function CocotteIdle(Cocotte)
 			MeasureCreate("Measure")
 			MeasureAddData("Measure", "TimeOut", Rand(3)+3)
 			MeasureStart("Measure", Cocotte, "Divehouse", "AssignToDanceDivehouse")
-		elseif Lvl >= 2 and BuildingHasUpgrade("Divehouse","SexyClothes") and Rand(10) < 3 
-				and GetSettlement("Divehouse", "City") and f_CityFindCrowdedPlace("City", Cocotte, "pick_pos") then
-			MeasureCreate("Measure")
-			MeasureAddData("Measure", "TimeOut", Rand(6)+2)
-			MeasureStart("Measure", Cocotte, "pick_pos", "AssignToThiefOfLove")
 		else
 			MeasureRun(Cocotte,"Divehouse","AssignToLaborOfLove",false)
 		end
