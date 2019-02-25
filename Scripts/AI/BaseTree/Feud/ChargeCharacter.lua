@@ -16,5 +16,5 @@ end
 
 function Execute()
 	SetRepeatTimer("dynasty", "AI_ChargeCharacter", 48)
-	MeasureRun("SIM", "Actor", "ChargeCharacter")
+	MeasureRun("SIM", "Victim", "ChargeCharacter")
 end

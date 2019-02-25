@@ -425,7 +425,7 @@ function MyrmidonIdle(MyrmAlias)
 			DynastyGetRandomBuilding("DynAlias", -1, -1, "PatrolPlace")
 			LogMessage("::TOM::AI Myrmidon ".. GetName(MyrmAlias).." patroling: ".. GetName("PatrolPlace"))
 			MeasureRun(MyrmAlias, "PatrolPlace", "PatrolTheTown")
-		elseif Decision < 10 then -- 8, 9
+		elseif Decision < 10 and BuildingHasUpgrade("WorkingPlace", "Commode") then -- 8, 9
 			-- gather evidence
 			LogMessage("::TOM::AI Myrmidon ".. GetName(MyrmAlias).." gathering evidence...")
 			if GetSettlement("WorkingPlace", "City") and f_CityFindCrowdedPlace("City", MyrmAlias, "GatherDestination") > 0 then
