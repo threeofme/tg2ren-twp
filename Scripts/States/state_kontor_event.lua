@@ -109,8 +109,8 @@ function NeedItems()
 			CitySetFixedPrice("", Item, BasePrice*2.5, BasePrice*3.25, DestTime - GetGametime())
 		end
 		
-		ToDo = ToDo - 2
-		Sleep(2)
+		ToDo = ToDo - 4
+		Sleep(4)
 	end
 
 	-- message to insert here: end of the event
@@ -262,7 +262,7 @@ function OfferItems()
 			       GetID("City"), Offering, ItemLabel, Gametime,DestTime,ID)
 	
 	while ToDo>0 and not Success do
-		Sleep(2)
+		Sleep(4)
 		Count = GetItemCount("", Item, INVENTORY_STD)
 		if Count < 1 then
 			Success = true
@@ -272,7 +272,7 @@ function OfferItems()
 			CitySetFixedPrice("", Item, BasePrice*0.2, BasePrice*0.65, DestTime - GetGametime())
 		end
 		
-		ToDo = ToDo - 2
+		ToDo = ToDo - 4
 	end
 
 	-- message to insert here: end of the event

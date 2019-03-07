@@ -128,7 +128,7 @@ function Run()
 		end
 		
 		-- Timeout
-		if math.mod(GetGametime(),24) <8 then
+		if not SimIsWorkingTime("") then
 			StopMeasure()
 			break
 		end

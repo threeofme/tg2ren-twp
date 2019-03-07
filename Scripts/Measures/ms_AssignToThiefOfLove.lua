@@ -50,6 +50,11 @@ function Run()
 	SetData("IsProductionMeasure", 1)
 
 	while true do
+		if not SimIsWorkingTime("") then
+			StopMeasure()
+			break
+		end
+	
 		if TimeOut then
 			if TimeOut < GetGametime() then
 				break
