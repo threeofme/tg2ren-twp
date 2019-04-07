@@ -273,10 +273,8 @@ function PingHour()
 
 	marketpinghour_RemoveItemMarket()
 	
-	if Rand(100) < 10 then 
-		if not GetState("", STATE_KONTOR_EVENT) then
-			SetState("", STATE_KONTOR_EVENT, true)
-		end
+	if Rand(100) < 5 and not GetState("", STATE_KONTOR_EVENT) then
+		SetState("", STATE_KONTOR_EVENT, true)
 	end	
 end
 
