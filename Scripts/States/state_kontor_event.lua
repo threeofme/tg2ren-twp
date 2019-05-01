@@ -6,19 +6,22 @@ function Run()
 	end
 	SetData("#KontorEventCount", Count+1)
 
+	-- slightly randomize starting time of event
+	Sleep(Rand(20))
+
 	local	Selection = Rand(10)
-	SetData("Selection", Selection)
 	
 	if Selection > 2 then
+		SetData("Selection", 0)
 		state_kontor_event_NeedItems()
 	else 
+		SetData("Selection", 1)
 		state_kontor_event_OfferItems()
 	end
 
 end
 
 function CleanUp()
-
 	local Count = GetData("#KontorEventCount")
 	if Count and Count>0 then
 		SetData("#KontorEventCount", Count-1)
@@ -72,7 +75,7 @@ function NeedItems()
 	SetProperty("", "EventItem", Item)
 	
 	local CurrentTime = GetGametime()
-	local Gametime	= Rand(13) + 16
+	local Gametime	= Rand(13) + 10
 	local DestTime  = CurrentTime + Gametime
 	local	ToDo	= Gametime2Realtime(Gametime)
 	local ItemLabel	= ItemGetLabel(Item, false)
@@ -83,46 +86,22 @@ function NeedItems()
 	-- message to insert here: start of the event
 	GetSettlement("", "City")
 
+	CitySetFixedPrice("", Item, BasePrice*2.5, BasePrice*3.25, Gametime)
 	MsgNewsNoWait("All","","@C[@L_KONTOR_MISSIONS_NEED_ITEMS_COOLDOWN_+0,%5i,%6l]","economie",-1,
 			       "@L_KONTOR_MISSIONS_NEED_ITEMS_HEAD_+"..Type,
 			       "@L_KONTOR_MISSIONS_NEED_ITEMS_TEXT_+"..Type,
 			       GetID("City"), Needed, ItemLabel, Gametime, DestTime,ID)
-
-	CitySetFixedPrice("", Item, BasePrice*2.5, BasePrice*3.25, Gametime)
-
-	while ToDo>0 do
-
+	
+	-- every 20 minutes: make sure item slot is displayed
+	for i=0, Gametime * 3 do
+		-- makes sure the item slot is displayed
 		Count = GetItemCount("", Item, INVENTORY_STD)
-		if Count >= Needed then
-			Success = true
-			-- reset prices
-			CitySetFixedPrice("", Item, -1, -1, -1)
-			break
-		end
-		
 		if Count==0 then
 			AddItems("", Item, 1, INVENTORY_STD)
 		end
-		
-		-- fix for restoring event prices after save/load
-		if ItemGetPriceSell(Item, "") < BasePrice*2.4 then
-			CitySetFixedPrice("", Item, BasePrice*2.5, BasePrice*3.25, DestTime - GetGametime())
-		end
-		
-		ToDo = ToDo - 2
-		Sleep(2)
+		Sleep(20)
 	end
 
-	-- message to insert here: end of the event
-	if Success then
-		feedback_MessageEconomie("All", "@L_KONTOR_MISSIONS_NEED_ITEMS_SUCCESS_HEAD_+0",
-						"@L_KONTOR_MISSIONS_NEED_ITEMS_SUCCESS_TEXT_+0",
-						GetID("City"), Needed, ItemLabel)
-	else
-		feedback_MessageEconomie("All", "@L_KONTOR_MISSIONS_NEED_ITEMS_FAILED_HEAD_+0",
-						"@L_KONTOR_MISSIONS_NEED_ITEMS_FAILED_TEXT_+0",
-						GetID("City"), Needed, ItemLabel)
-	end
 end
 
 function NeedItemsFindItem(event)
@@ -182,10 +161,14 @@ function NeedItemsFindItem(event)
 end
 
 function NeedItemsCleanUp()
+	GetSettlement("", "City")
 	local Item = GetData("Item")
 	if Item then
-		local Count = GetItemCount("", Item, INVENTORY_STD)
-		RemoveItems("", Item, Count, INVENTORY_STD)
+		if CityIsKontor("City") then
+			-- remove goods from kontor, but not markets
+			local Count = GetItemCount("", Item, INVENTORY_STD)
+			RemoveItems("", Item, Count, INVENTORY_STD)
+		end
 		CitySetFixedPrice("", Item, -1, -1, -1)
 	end
 end
@@ -241,9 +224,8 @@ function OfferItems()
 	SetProperty("", "EventItem", Item)
 	
 	local CurrentTime = GetGametime()
-	local Gametime	= Rand(7)+6
+	local Gametime	= Rand(7) + 6
 	local DestTime     = CurrentTime + Gametime
-	local	ToDo			= Gametime2Realtime(Gametime)
 	local ItemLabel	= ItemGetLabel(Item, false)
 	local	Count
 	local	Success 	= false
@@ -260,31 +242,7 @@ function OfferItems()
 			       "@L_KONTOR_MISSIONS_OFFER_ITEMS_HEAD_+"..random,
 			       "@L_KONTOR_MISSIONS_OFFER_ITEMS_TEXT_+"..random,
 			       GetID("City"), Offering, ItemLabel, Gametime,DestTime,ID)
-	
-	while ToDo>0 and not Success do
-		Sleep(2)
-		Count = GetItemCount("", Item, INVENTORY_STD)
-		if Count < 1 then
-			Success = true
-			CitySetFixedPrice("", Item, -1, -1, -1)
-		elseif ItemGetPriceBuy(Item, "") > BasePrice then
-			-- fix for restoring event prices after save/load
-			CitySetFixedPrice("", Item, BasePrice*0.2, BasePrice*0.65, DestTime - GetGametime())
-		end
-		
-		ToDo = ToDo - 2
-	end
-
-	-- message to insert here: end of the event
-	if Success then
-		feedback_MessageEconomie("All", "@L_KONTOR_MISSIONS_OFFER_ITEMS_SUCCESS_HEAD_+0",
-						"@L_KONTOR_MISSIONS_OFFER_ITEMS_SUCCESS_TEXT_+0",
-						GetID("City"), ItemLabel)
-	else
-		feedback_MessageEconomie("All", "@L_KONTOR_MISSIONS_OFFER_ITEMS_FAILED_HEAD_+0",
-						"@L_KONTOR_MISSIONS_OFFER_ITEMS_FAILED_TEXT_+0",
-						GetID("City"), ItemLabel)
-	end
+	Sleep(Gametime * 60)
 
 end
 
@@ -334,10 +292,14 @@ function OfferItemsFindItem(event)
 end
 
 function OfferItemsCleanUp()
+	GetSettlement("", "City")
 	local Item = GetData("Item")
 	if Item then
-		local Count = GetItemCount("", Item, INVENTORY_STD)
-		RemoveItems("", Item, Count, INVENTORY_STD)
+		if CityIsKontor("City") then
+			-- remove goods from kontor, but not markets
+			local Count = GetItemCount("", Item, INVENTORY_STD)
+			RemoveItems("", Item, Count, INVENTORY_STD)
+		end
 		CitySetFixedPrice("", Item, -1, -1, -1)
 	end
 end

@@ -223,63 +223,69 @@ function PingHour()
 	local Level = CityGetLevel("City")
 	-- disable resource spawning on harder difficulties
 	local Difficulty = ScenarioGetDifficulty() -- easy 0, 1, 2, 3, 4 hard
-	if Difficulty < 3 or GetRound() < (5 - Difficulty) then
-			-- Farmer
-		marketpinghour_CheckItem(Level, "Wheat", 4)
-		marketpinghour_CheckItem(Level, "Flachs", 4)
-		marketpinghour_CheckItem(Level, "Wool", 4)
-		marketpinghour_CheckItem(Level, "Fat", 5)
-		marketpinghour_CheckItem(Level, "Leather", 4)
-		marketpinghour_CheckItem(Level, "Beef", 4)
-		marketpinghour_CheckItem(Level, "Milch", 3)
+	local AddMissing = (Difficulty < 3 or GetRound() < (5 - Difficulty))
+		
+		-- Farmer
+	marketpinghour_CheckItem(Level, "Wheat", 4, AddMissing)
+	marketpinghour_CheckItem(Level, "Flachs", 4, AddMissing)
+	marketpinghour_CheckItem(Level, "Wool", 4, AddMissing)
+	marketpinghour_CheckItem(Level, "Fat", 5, AddMissing)
+	marketpinghour_CheckItem(Level, "Leather", 4, AddMissing)
+	marketpinghour_CheckItem(Level, "Beef", 4, AddMissing)
+	marketpinghour_CheckItem(Level, "Milch", 3, AddMissing)
+		-- Orchardist
+	marketpinghour_CheckItem(Level, "Fruit", 4, AddMissing)
+	marketpinghour_CheckItem(Level, "Honey", 4, AddMissing)
+	marketpinghour_CheckItem(Level, "Salat", 2, AddMissing)
+		-- Woodcutter
+	marketpinghour_CheckItem(Level, "Pinewood", 4, AddMissing)
+	marketpinghour_CheckItem(Level, "Oakwood", 4, AddMissing)
+	marketpinghour_CheckItem(Level, "Charcoal", 4, AddMissing)
+	marketpinghour_CheckItem(Level, "Fungi", 4, AddMissing)
+	marketpinghour_CheckItem(Level, "Pech", 5, AddMissing)
+		-- Mine
+	marketpinghour_CheckItem(Level, "Iron", 4, AddMissing)
+	marketpinghour_CheckItem(Level, "Silver", 4, AddMissing)
+	marketpinghour_CheckItem(Level, "Gold", 4, AddMissing)
+	marketpinghour_CheckItem(Level, "Gemstone", 2, AddMissing)
+	marketpinghour_CheckItem(Level, "Salt", 4, AddMissing)
+		-- Stonemason
+	marketpinghour_CheckItem(Level, "Grindingbrick", 2, AddMissing)
+		-- Mill
+	marketpinghour_CheckItem(Level, "Dye", 3, AddMissing)
+	marketpinghour_CheckItem(Level, "WheatFlour", 2, AddMissing)
+	marketpinghour_CheckItem(Level, "Oil", 2, AddMissing)
+		-- Smithy
+	marketpinghour_CheckItem(Level, "Nails", 2, AddMissing)
+		-- Tavern
+	marketpinghour_CheckItem(Level, "Weingeist", 3, AddMissing)
+	
+	GetScenario("World")
+	if HasProperty("World","seamap") then
 			-- Fisher
-		marketpinghour_CheckItem(Level, "Herring", 4)
-		marketpinghour_CheckItem(Level, "Salmon", 4)
-			-- Orchardist
-		marketpinghour_CheckItem(Level, "Fruit", 4)
-		marketpinghour_CheckItem(Level, "Honey", 4)
-		marketpinghour_CheckItem(Level, "Salat", 2)
-			-- Woodcutter
-		marketpinghour_CheckItem(Level, "Pinewood", 4)
-		marketpinghour_CheckItem(Level, "Oakwood", 4)
-		marketpinghour_CheckItem(Level, "Charcoal", 4)
-		marketpinghour_CheckItem(Level, "Fungi", 4)
-		marketpinghour_CheckItem(Level, "Pech", 5)
-			-- Mine
-		marketpinghour_CheckItem(Level, "Iron", 4)
-		marketpinghour_CheckItem(Level, "Silver", 4)
-		marketpinghour_CheckItem(Level, "Gold", 4)
-		marketpinghour_CheckItem(Level, "Gemstone", 2)
-		marketpinghour_CheckItem(Level, "Salt", 4)
-			-- Stonemason
-		marketpinghour_CheckItem(Level, "Grindingbrick", 2)
-			-- Mill
-		marketpinghour_CheckItem(Level, "Dye", 3)
-		marketpinghour_CheckItem(Level, "WheatFlour", 2)
-		marketpinghour_CheckItem(Level, "Oil", 2)
-			-- Smithy
-		marketpinghour_CheckItem(Level, "Nails", 2)
-			-- Tavern
-		marketpinghour_CheckItem(Level, "Weingeist", 3)
+		marketpinghour_CheckItem(Level, "Herring", 4, AddMissing)
+		marketpinghour_CheckItem(Level, "Salmon", 4, AddMissing)
+	else
+			-- Fisher
+		marketpinghour_CheckItem(Level, "Herring", 4, true)
+		marketpinghour_CheckItem(Level, "Salmon", 6, true)
 	end
 
 	marketpinghour_RemoveItemMarket()
 	
-	if Rand(100) < 10 then 
-		if not GetState("", STATE_KONTOR_EVENT) then
-			SetState("", STATE_KONTOR_EVENT, true)
-		end
+	if Rand(100) < 5 and not GetState("", STATE_KONTOR_EVENT) then
+		SetState("", STATE_KONTOR_EVENT, true)
 	end	
 end
 
 
-function CheckItem(CityLevel, Item, MinCount)
+function CheckItem(CityLevel, Item, MinCount, AddMissing)
 	
 	local Wanted = math.floor((MinCount*CityLevel))
 	local Count = GetItemCount("", Item, INVENTORY_STD)
 	local AddCount = 0
 	
-	if Count < Wanted then
+	if AddMissing and Count < Wanted then
 		AddCount = Wanted-Count
 		if ItemGetCategory(Item)==1 then
 			AddCount = AddCount - Rand(12)

@@ -379,29 +379,7 @@ function CreateDynasty(ID, SpawnPoint, IsPlayer, PeerID, PlayerDescLabel)
 	
 
 	if not IsPlayer then
-		-- find a good character class for the new boss
-		if Workshops>0 then
-			local	BestClass
-			local	BestAmount = 0
-			for Class = GL_CLASS_PATRON, GL_CLASS_CHISELER do
-				local Count = CityGetBuildingCountForCharacter(CityAlias, Class, RELIGION_NONE, true)
-				if Count >= Workshops and Count > 1 and Count > BestAmount then -- we want enough workshops for our starting setting and we want more than before.
-					BestClass = Class -- save our new best class
-					BestAmount = Count -- save the new amount we found
-				elseif Count > 0 and Count > BestAmount then -- we did not found enough workshops, but at least 1, so save that
-					BestClass = Class
-					BestAmount = Count
-				end
-			end
-
-			if BestClass then
-			--	SimSetClass("boss", BestClass)
-				SimSetClass("boss",1+Rand(4))
-			else
-				SimSetClass("boss", 1+Rand(4))
-			end
-		end
-
+		SimSetClass("boss", 1+Rand(4))
 	end
 	
 	if not DynastyAddMember(DynastyAlias, "boss") then
