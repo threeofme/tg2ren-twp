@@ -4,7 +4,7 @@ function Weight()
 		return 0
 	end
 
-	if GetMeasureRepeat("SIM", "OrderABrainwash")>0 then
+	if GetRepeatTimerLeft("SIM", GetMeasureRepeatName2("OrderABrainwash")) > 0 then
 		return 0
 	end
 	

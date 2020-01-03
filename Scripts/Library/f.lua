@@ -7,7 +7,7 @@ function BeginUseLocator(Actor, LocatorName, Stance, MoveToLocator, Speed)
 	if not BlockLocator(Actor, LocatorName) then
 		return false
 	end
-	
+	 
 	if(MoveToLocator) then 
 		if not f_MoveTo(Actor, LocatorName, Speed) then
 			ReleaseLocator(Actor, LocatorName)
@@ -613,6 +613,9 @@ function CityFindCrowdedPlace(CityAlias, SimAlias, RetAlias)
 	local BldTypes = { GL_BUILDING_TYPE_TOWNHALL, GL_BUILDING_TYPE_CHURCH_CATH, GL_BUILDING_TYPE_CHURCH_EV, GL_BUILDING_TYPE_TAVERN, GL_BUILDING_TYPE_HOSPITAL, GL_BUILDING_TYPE_MARKET, GL_BUILDING_TYPE_MARKET }
 	local BldType = BldTypes[Rand(7)+1] 
 	CityGetNearestBuilding(CityAlias, SimAlias, -1, BldType, -1, -1, FILTER_IGNORE, "NearBld")
+	if not AliasExists("NearBld") then
+		return 0
+	end
 	GetOutdoorMovePosition(SimAlias, "NearBld", "OutdoorMovePosition")
 	if AliasExists("OutdoorMovePosition") then
 		CopyAlias("OutdoorMovePosition", RetAlias)
@@ -626,10 +629,11 @@ end
 CRD_DYN_ALIAS = "CrdAlias"
 function CreditMoney(Alias, Amount, Purpose)
 	if DynastyIsPlayer(Alias) or IsGUIDriven() then
-		-- call hardcoded f_CreditMoney since it works for these cases
+		-- call hardcoded CreditMoney since it works for these cases
 		-- LogMessage("AITWP::CreditMoney::"..Purpose.." on "..GetName(Alias))
 		return CreditMoney(Alias, Amount, Purpose)
 	else
+		-- don't care about non-dynasty characters
 		if not GetDynasty(Alias, CRD_DYN_ALIAS) then
 			return CreditMoney(Alias, Amount, Purpose)
 		end

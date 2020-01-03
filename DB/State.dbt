@@ -1,0 +1,70 @@
+//Table File, Version 1.02 (c) 2004 4head studios
+//Exported 
+
+Table Description:
+"id" INT -1 |"name" STRING  0               |"script" STRING  0             |
+
+Data: 
+0            "idle"                          ""                              | 
+1            "burning"                       "states\state_burning.lua"      | 
+2            "building"                      "states\state_building.lua"     | 
+3            "blackdeath"                    "states\state_blackdeath.lua"   | 
+4            "repairing"                     "states\state_repairing.lua"    | 
+5            "levelingup"                    "states\state_levelingup.lua"   | 
+6            "dead"                          "states\state_dead.lua"         | 
+7            "scanning"                      "states\state_scanning.lua"     | 
+8            "captured"                      "states\state_captured.lua"     | 
+9            "imprisoned"                    "states\state_imprisoned.lua"   | 
+10           "fighting"                      "states\state_fighting.lua"     | 
+11           "contaminated"                  "states\state_contaminated.lua" | 
+12           "unconscious"                   "states\state_unconscious.lua"  | 
+13           "cutscene"                      "states\state_cutscene.lua"     | 
+14           "monitordamage"                 "states\state_monitordamage.lua" | 
+15           "pregnant"                      "states\state_pregnant.lua"     | 
+16           "npc"                           "states\state_npc.lua"          | 
+17           "locked"                        "states\state_locked.lua"       | 
+18           "pillory"                       "states\state_pillory.lua"      | 
+19           "working"                       "states\state_working.lua"      | 
+20           "hijacked"                      "states\state_hijacked.lua"     | 
+21           "child"                         "states\state_child.lua"        | 
+22           "dying"                         "states\state_dying.lua"        | 
+23           "robberguard"                   "states\state_robberguard.lua"  |
+24           "revolt"                        "states\state_revolt.lua"  |  
+25           "robbermeasure"                 "states\state_robbermeasure.lua"  |  
+26           "inspected"                     "states\state_inspected.lua"    | 
+27           "feast"                         "states\state_feast.lua"        | 
+28           "hidden"                        "states\state_hidden.lua"       | 
+29           "driverattacked"                "states\state_driverattacked.lua" | 
+30           "townnpc"                       "states\state_townnpc.lua"      | 
+31           "expel"                         "states\state_expel.lua"        | 
+32           "npcfighter"                    "states\state_npcfighter.lua"   | 
+33           "duel"                          "states\state_duel.lua"         | 
+34           "sleeping"                      "states\state_sleeping.lua"     | 
+35           "active_escort"                 "states\state_active_escort.lua" | 
+36           "sick"                          "states\state_sick.lua"         | 
+37           "kontor_event"                  "states\state_kontor_event.lua" | 
+38           "crusade"                       "states\state_crusade.lua"      | 
+39           "invisible"                     "states\state_invisible.lua"    | 
+40           "marinecontrol"                 "states\state_marinecontrol.lua" | 
+41           "sitaround"                     "states\state_sitaround.lua"    | 
+42           "totallydrunk"                  "states\state_totallydrunk.lua" | 
+43           "npckill"                       "states\state_npckill.lua"      | 
+44           "guarding"                      "states\state_guarding.lua"          | 
+45           "jewellery"                     "states\state_jewellery.lua"    | 
+46           "guild_event"                   "states\state_guild_event.lua"  | 
+47           "guildtravelling"               "states\state_guildtravelling.lua"  |
+48           "checkforspinnings"             "states\state_checkforspinnings.lua"  |  
+50           "poisoned"                      "states\state_poisoned.lua"    | 
+51           "tradercontrol"                 "states\state_tradercontrol.lua" |
+52           "hpfz_traumland"                "states\state_hpfz_traumland.lua"        | 
+53           "hpfz_hypnose"                  "states\state_hpfz_hypnose.lua"          | 
+54           "miller"                        "states\state_miller.lua" | 
+55           "hpfz_verflucht"                "states\state_hpfz_verflucht.lua"        | 
+56           "revolt"                        "states\state_revolt.lua"  |
+57           "riding"                        "states\state_riding.lua"  |
+58           "luckyguy"                      "states\state_luckyguy.lua"  |  
+59           "sellflag"                      "states\state_sellflag.lua"       | 
+60           "moving_building"               "states\state_moving_building.lua"         | 
+61           "global_event"                  "states\state_global_event.lua"  | 
+62           "globaltravelling"              "states\state_globaltravelling.lua"  | 
+63           "animal"                        "states\state_animal.lua"  | 

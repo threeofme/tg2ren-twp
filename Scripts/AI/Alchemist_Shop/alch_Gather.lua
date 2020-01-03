@@ -37,7 +37,6 @@ function Weight()
 	local BlackberryCount = GetItemCount("WorkBuilding", "Blackberry", INVENTORY_STD)
 	local MoonflowerCount = GetItemCount("WorkBuilding", "Moonflower", INVENTORY_STD)
 	local StonelilyCount = GetItemCount("WorkBuilding", "Stonelily", INVENTORY_STD)
-	local SwamprootCount = GetItemCount("WorkBuilding", "Swamproot", INVENTORY_STD)
 	local SpiderlegCount = GetItemCount("WorkBuilding", "Spiderleg", INVENTORY_STD)
 	local FrogeyeCount = GetItemCount("WorkBuilding", "Frogeye", INVENTORY_STD)
 	
@@ -54,9 +53,6 @@ function Weight()
 			return 100
 		elseif StonelilyCount == 0 and BuildingCanProduce("WorkBuilding", "DrFaustusElixir") then
 			SetData("GatherGoal", "Stonelily")
-			return 100
-		elseif SwamprootCount == 0 and (BuildingCanProduce("WorkBuilding", "FragranceOfHoliness") or BuildingCanProduce("WorkBuilding", "InvisiblePotion")) then
-			SetData("GatherGoal", "Swamproot")
 			return 100
 		elseif SpiderlegCount == 0 and BuildingCanProduce("WorkBuilding", "WeaponPoison") then
 			SetData("GatherGoal", "Spiderleg")
@@ -79,9 +75,6 @@ function Weight()
 		elseif StonelilyCount == 0 and BuildingCanProduce("WorkBuilding", "DrFaustusElixir") then
 			SetData("GatherGoal", "Stonelily")
 			return 100
-		elseif SwamprootCount == 0 and (BuildingCanProduce("WorkBuilding", "FragranceOfHoliness") or BuildingCanProduce("WorkBuilding", "InvisiblePotion")) then
-			SetData("GatherGoal", "Swamproot")
-			return 100
 		elseif SpiderlegCount == 0 and BuildingCanProduce("WorkBuilding", "WeaponPoison") then
 			SetData("GatherGoal", "Spiderleg")
 			return 100
@@ -102,9 +95,6 @@ function Weight()
 			return 100
 		elseif StonelilyCount == 0 and BuildingCanProduce("WorkBuilding", "DrFaustusElixir") then
 			SetData("GatherGoal", "Stonelily")
-			return 100
-		elseif SwamprootCount == 0 and (BuildingCanProduce("WorkBuilding", "FragranceOfHoliness") or BuildingCanProduce("WorkBuilding", "InvisiblePotion")) then
-			SetData("GatherGoal", "Swamproot")
 			return 100
 		elseif SpiderlegCount == 0 and BuildingCanProduce("WorkBuilding", "WeaponPoison") then
 			SetData("GatherGoal", "Spiderleg")

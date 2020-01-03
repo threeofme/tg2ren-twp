@@ -113,13 +113,13 @@ function PropitiateEnemies()
 		SetRepeatTimer("SIM", TimerName, 2)
 		return 
 	end
-	CopyAlias("Victim","Destination")
+	CopyAlias("Victim","DestVictim")
 	
 	if not def_useprivilege_GetVictim(80) then
 		SetRepeatTimer("SIM", TimerName, 2)
 		return 
 	end
-	if GetID("Destination") == GetID("Victim") then
+	if GetID("DestVictim") == GetID("Victim") then
 		return
 	end
 	
@@ -127,7 +127,7 @@ function PropitiateEnemies()
 	SetRepeatTimer("SIM", def_useprivilege_GetTimerName(), 24)
 	MeasureCreate("Measure")
 	MeasureAddAlias("Measure","Destination2", "Destination2", false)
-	MeasureStart("Measure","SIM","Destination","PropitiateEnemies")
+	MeasureStart("Measure","SIM","DestVictim","PropitiateEnemies")
 end
 
 function CurryFavor()

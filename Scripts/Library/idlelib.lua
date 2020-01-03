@@ -626,7 +626,7 @@ function BuySomethingAtTheMarket(Type)
 					end
 				elseif Choice == 2 then -- poor
 					Ware = "Handheld_Device/ANIM_Breadbasket.nif"
-					zItem = Rand(6)
+					zItem = Rand(5)
 					
 					if Type == 1 then
 						Itemchoice = "Wheatbread"
@@ -644,8 +644,6 @@ function BuySomethingAtTheMarket(Type)
 							Itemchoice = "FarmersClothes"
 						elseif zItem == 4 then
 							Itemchoice = "Schnitzi"
-						elseif zItem == 5 then
-							Itemchoice = "Perle"
 						end
 					end
 				elseif Choice == 3 then --middle
@@ -912,54 +910,55 @@ function CheckInsideStore(Type)
 	end
 	-- Buy items up to budget, but no more than 10 (prevents outsales of lower items)
 	local ItemId, ItemCount = economy_BuyRandomItems(Workshop, "", Budget, Rand(10)+1)
-	local ProdName = ItemGetLabel(ItemId, ItemCount == 1)
-	if ItemCount <= 0 then
-	-- nothing available for my budget -- lets shout
+	if ItemId and ItemId > 0 then
+		local ProdName = ItemGetLabel(ItemId, ItemCount == 1)
+		if ItemCount <= 0 then
+		-- nothing available for my budget -- lets shout
+			local ProdType
+			if Type == 1 then 
+				ProdType = "GETGOOD" 
+			else 
+				ProdType = "GETFOOD" 
+			end 
+			PlayAnimationNoWait("","propel")
+			if Rand(2) == 0 then
+				MsgSay("","@L_HPFZ_IDLELIB_"..ProdType.."_SPRUCH_+2",ProdName)
+			else
+				MsgSay("","@L_HPFZ_IDLELIB_"..ProdType.."_SPRUCH_+3",ProdName)
+			end
+			if GetProperty(Workshop,"MsgSell")~=0 then
+				MsgNewsNoWait("ShopOwner","","","building",-1,
+				"@L_MEASURES_BUYSTUFF_HEAD",
+				"@L_MEASURES_BUYSTUFF_FAIL",ProdName, GetID(""), GetID(Workshop))
+			end
+			Sleep(Rand(4)+1) -- cool down before you leave ;)
+			return
+		end
+		BuildingGetOwner(Workshop, "BldOwner")
 		local ProdType
-		if Type == 1 then 
-			ProdType = "GETGOOD" 
-		else 
-			ProdType = "GETFOOD" 
-		end 
-		PlayAnimationNoWait("","propel")
+		if GL_CLASS_PATRON == SimGetClass("BldOwner") then
+			ProdType = "GETFOOD"
+			SatisfyNeed("", 1, 0.5)
+		else
+			ProdType = "GETGOOD"
+			SatisfyNeed("", 7, 0.5)
+		end
 		if Rand(2) == 0 then
-			MsgSay("","@L_HPFZ_IDLELIB_"..ProdType.."_SPRUCH_+2",ProdName)
+			PlayAnimationNoWait("","manipulate_middle_twohand")
+			MsgSay("","@L_HPFZ_IDLELIB_"..ProdType.."_SPRUCH_+0",ProdName)
 		else
-			MsgSay("","@L_HPFZ_IDLELIB_"..ProdType.."_SPRUCH_+3",ProdName)
+			if ProdType == "GETFOOD" then -- only eat food
+				MsgSayNoWait("","@L_HPFZ_IDLELIB_GETFOOD_SPRUCH_+1",ProdName)
+				CarryObject("", "Handheld_Device/ANIM_Pretzel.nif", false)
+				PlayAnimationNoWait("","eat_standing")
+				Sleep(6)
+				CarryObject("","",false)
+			else
+				MsgSayNoWait("","@L_HPFZ_IDLELIB_GETGOOD_SPRUCH_+1",ProdName)
+			end
 		end
-		if GetProperty(Workshop,"MsgSell")~=0 then
-			MsgNewsNoWait("ShopOwner","","","building",-1,
-			"@L_MEASURES_BUYSTUFF_HEAD",
-			"@L_MEASURES_BUYSTUFF_FAIL",ProdName, GetID(""), GetID(Workshop))
-		end
-		Sleep(Rand(4)+1) -- cool down before you leave ;)
-		return
+		IncrementXPQuiet("",10)
 	end
-
-	BuildingGetOwner(Workshop, "BldOwner")
-	local ProdType
-	if GL_CLASS_PATRON == SimGetClass("BldOwner") then
-		ProdType = "GETFOOD"
-		SatisfyNeed("", 1, 0.5)
-	else
-		ProdType = "GETGOOD"
-		SatisfyNeed("", 7, 0.5)
-	end
-	if Rand(2) == 0 then
-		PlayAnimationNoWait("","manipulate_middle_twohand")
-		MsgSay("","@L_HPFZ_IDLELIB_"..ProdType.."_SPRUCH_+0",ProdName)
-	else
-		if ProdType == "GETFOOD" then -- only eat food
-			MsgSayNoWait("","@L_HPFZ_IDLELIB_GETFOOD_SPRUCH_+1",ProdName)
-			CarryObject("", "Handheld_Device/ANIM_Pretzel.nif", false)
-			PlayAnimationNoWait("","eat_standing")
-			Sleep(6)
-			CarryObject("","",false)
-		else
-			MsgSayNoWait("","@L_HPFZ_IDLELIB_GETGOOD_SPRUCH_+1",ProdName)
-		end
-	end
-	IncrementXPQuiet("",10)
 	Sleep(Rand(4)+1)
 end
 

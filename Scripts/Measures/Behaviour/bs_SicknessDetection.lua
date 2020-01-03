@@ -54,17 +54,17 @@ function Run()
 	-- let's do the infection
 	local Hazard = 0 -- chance of infection depending on illness
 	if GetImpactValue("Actor","Cold")==1 then
-		Hazard = 30
+		Hazard = 25
 		if Rand(Hazard) > Immunity then
 			diseases_Cold("",true)
 		end
 	elseif GetImpactValue("Actor","Influenza")==1 then
-		Hazard = 40
+		Hazard = 30
 		if Rand(Hazard) > Immunity then
 			diseases_Influenza("",true)
 		end
 	elseif GetImpactValue("Actor","Pneumonia")==1 then
-		Hazard = 20
+		Hazard = 15
 		if Rand(Hazard) > Immunity then
 			diseases_Influenza("",true)
 			SetState("",STATE_CONTAMINATED,true)

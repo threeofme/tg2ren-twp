@@ -1,0 +1,19 @@
+//Table File, Version 1.02 (c) 2004 4head studios
+//Exported 
+
+Table Description:
+"id" INT -1 |"name" STRING  0               |"movspeedz" FLOAT  0 |"reachprecision" FLOAT  0 |"rotspeedy" FLOAT  0 |"movspeedzrun" FLOAT  0 |"buildtime" FLOAT  0 |"movspeedzsneak" FLOAT  0 |"buildtime" FLOAT  0 |
+
+Data: 
+0            "SimOutdoor"                    200                   50                         360                   320                      0                     70                         0                     | 
+1            "Animal"                        100                   100                        250                   100                      0                     100                        0                     | 
+2            "Wagon"                         240                   80                         120                   240                      0                     240                        0                     | 
+3            "SimIndoor"                     170                   25                         160                   260                      0                     100                        0                     | 
+4            "Hulk"                          180                   1500                       20                    180                      4                     180                        4                     | 
+5            "OxWagon"                       270                   200                        100                   270                      0.5                   270                        0.5                   | 
+6            "HorseWagon"                    350                   200                        100                   350                      0.5                   350                        0.5                   | 
+7            "Fisherboat"                    240                   400                        50                    240                      0.5                   240                        0.5                   | 
+8            "CogSmall"                      350                   750                        40                    350                      1.5                   350                        1.5                   | 
+9            "Carrack"                       400                   1000                       30                    400                      2.5                   400                        2.5                   | 
+10           "CogBig"                        350                   900                        35                    350                      3                     350                        3                     | 
+11           "Carriage"                      450                   100                        150                   450                      0                     400                        0                     |

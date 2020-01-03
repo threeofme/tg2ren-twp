@@ -1,0 +1,11 @@
+//Table File, Version 1.02 (c) 2004 4head studios
+//Exported 
+
+Table Description:
+"id" INT  0 |"buildingtype" INT  0 |"button0" STRING  0            |"button1" STRING  0            |"button2" STRING  0            |
+
+Data: 
+0            2                      "16,54"                         "72,54"                         "72,12"                         | 
+1            4                      "16,54"                         "72,54"                         "72,12"                         | 
+2            16                     "16,54"                         "72,54"                         "72,12"                         | 
+3            19                     "16,54"                         "72,54"                         "72,12"                         | 

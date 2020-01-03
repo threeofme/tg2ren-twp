@@ -1,0 +1,11 @@
+//Table File, Version 1.02 (c) 2004 4head studios
+//Exported 
+
+Table Description:
+"id" INT -1 |"name" STRING  0               |
+
+Data: 
+0            "JobOwner"                      | 
+1            "Individual"                    | 
+2            "Sim"                           | 
+3            "DynastySim"                    | 

@@ -1,0 +1,15 @@
+//Table File, Version 1.02 (c) 2004 4head studios
+//Exported 
+
+Table Description:
+"id" INT -1 |"type" STRING  0               |
+
+Data: 
+1            "DialogColor"                   | 
+2            "EditString"                    | 
+3            "EditFloat"                     | 
+4            "EditInt"                       | 
+5            "SliderInt"                     | 
+6            "SliderFloat"                   | 
+7            "ComboBool"                     | 
+8            "EditUnicodeString"             | 

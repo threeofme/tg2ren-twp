@@ -4,7 +4,7 @@ function Run()
 	local Count, Items = economy_GetItemsForSale("Workshop")
 	-- this call returns -1 for adding new items
 	local SelectedItemId = economy_ChooseItemFromCounter("Workshop", Count, Items)
-	if SelectedItemId == -1 then
+	if SelectedItemId == -1 then -- warehouse, add any available item from inventory
 		SelectedItemId = ms_managesalescounter_AddItemFromInventory("Workshop")
 	end
 	if not SelectedItemId then

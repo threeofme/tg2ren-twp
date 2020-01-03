@@ -1,5 +1,4 @@
 function Weight()
-
 	if GetImpactValue("SIM", "TrialTimer") < 1 then
 		return 0
 	end
@@ -60,6 +59,11 @@ function Weight()
 	
 	if DynastyIsShadow("SIM") and DynastyIsShadow("Victim") then
 		return 0
+	end
+	
+	if DynastyIsShadow("SIM") then
+		-- reduces aggressiveness of shadow dynasties
+		return 5
 	end
 	
 	return 100

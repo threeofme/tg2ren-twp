@@ -1,0 +1,15 @@
+//Table File, Version 1.02 (c) 2004 4head studios
+//Exported 
+
+Table Description:
+"id" INT -1 |"name" STRING  0               |"group_id" INT  0 |"template_base" INT  0 |"template_detail" INT  0 |"appearance" STRING  0         |
+
+Data: 
+1            "Villian"                       3                  1                       13                        "high_constitution"             | 
+2            "Peasant"                       3                  1                       4                         "dirty_and_mean"                | 
+3            "Fisher_Peasant"                3                  1                       4                         "ugly2"                         | 
+4            "Gamer"                         3                  1                       6                         "metal_7"                       | 
+5            "Mayor Tom"                     3                  1                       11                        "ugly2"                         | 
+6            "Inkeeperessess"                3                  1                       8                         "edel_2"                        | 
+7            "Carpenter"                     3                  1                       12                        "edel_2"                        | 
+8            "PlayerStart"                   3                  1                       2                         "player default template"       | 

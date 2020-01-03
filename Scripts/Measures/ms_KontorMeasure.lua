@@ -49,7 +49,7 @@ function Run()
 		-- add some random item occasionally
 		if Rand(10) < 1 and Count < 20 then
 			local It = ms_kontormeasure_GetRandomItem()
-			if GetItemCount("", It, INVENTORY_STD) < 1 then
+			if It and GetItemCount("", It, INVENTORY_STD) < 1 then
 				ms_kontormeasure_CheckItem(It, Rand(40) + 5, true)
 				Check[It] = true
 				Count = Count + 1
@@ -142,6 +142,7 @@ end
 function GetRandomItem() 
 	local ItemList = {
 	"Wheat"
+, "Barley"
 , "Flachs"
 , "Wool"
 , "Fat"
@@ -153,7 +154,6 @@ function GetRandomItem()
 , "Cookie"
 , "Wheatbread"
 , "Cake"
-, "Pretzel"
 , "BreadRoll"
 , "CreamPie"
 , "Candy"
@@ -179,8 +179,6 @@ function GetRandomItem()
 , "Pearlchain"
 , "Fruit"
 , "Dagger"
-, "SugarBeet"
-, "Salat"
 , "Honey"
 , "Longsword"
 , "WheatFlour"
@@ -235,7 +233,6 @@ function GetRandomItem()
 , "Iron"
 , "Silver"
 , "Gold"
-, "Salt"
 , "HerbTea"
 , "Phiole"
 , "FlowerOfDiscord"
@@ -244,7 +241,6 @@ function GetRandomItem()
 , "FragranceOfHoliness"
 , "DrFaustusElixir"
 , "WeaponPoison"
-, "InvisiblePotion"
 , "ToadExcrements"
 , "ParalysisPoison"
 , "Toadslime"
@@ -291,7 +287,7 @@ function GetRandomItem()
 , "Wheellock"
 , "Snaplock"
 	}
-	local count = 149
+	local count = 145
 	local random = Rand(count + 1)
 	return ItemList[random]
 end

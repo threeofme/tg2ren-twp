@@ -1,4 +1,8 @@
 function Weight()
+
+	if not AliasExists("SIM") then
+		return 0
+	end
 	
 	if not GetHomeBuilding("SIM","Home") then
 		return 0

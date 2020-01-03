@@ -1,0 +1,20 @@
+//Table File, Version 1.02 (c) 2004 4head studios
+//Exported 
+
+Table Description:
+"id" INT  0 |"level" INT  0 |"abilitylevel" INT  0 |
+
+Data: 
+0            0               0                      | 
+1            1               0                      | 
+2            2               2                      | 
+3            3               0                      | 
+4            4               4                      | 
+5            5               0                      | 
+6            6               2                      | 
+7            7               7                      | 
+8            8               4                      | 
+9            9               2                      | 
+10           10              10                     | 
+11           10              7                      | 
+12           10              4                      | 

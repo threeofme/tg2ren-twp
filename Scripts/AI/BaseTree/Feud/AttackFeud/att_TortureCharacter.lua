@@ -4,7 +4,7 @@ function Weight()
 		return 0
 	end
 	
-	if GetMeasureRepeat("SIM", "TortureCharacter") > 0 then
+	if GetRepeatTimerLeft("SIM", GetMeasureRepeatName2("TortureCharacter")) > 0 then
 		return 0
 	end
 

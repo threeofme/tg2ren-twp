@@ -1,0 +1,15 @@
+//Table File (c) 2004 4head studios
+//Modified by RUNEFORGE Game Studio
+
+Table Description:
+"id" INT -1 |"name" STRING  0 |"enemy1" STRING  0 |"enemy2" STRING  0 |"enemy3" STRING  0 |"enemy4" STRING  0 |
+
+Data:
+1   "netherlands"   "spain"   "france"   "germany"   "england"   |
+2   "hansa"   "denmark"   "sweden"   "england"   "norway"   |
+3   "germany"   "france"   "netherlands"   "denmark"   "italy"   |
+4   "austria"   "spain"   "italy"   "france"   "germany"   |
+5   "hungary"   "austria"   "poland"   "lithuania"   "moldavia" |
+6   "dragenthal"   "duesterbach"   "fernwalde"   "auenheim"   "dragenwald" |
+7   "france"   "austria"   "germany"   "spain"   "england" |
+8   "england"  "hansa"   "germany"   "france"   "netherlands" |

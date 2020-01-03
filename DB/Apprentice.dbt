@@ -1,0 +1,16 @@
+//Table File, Version 1.02 (c) 2004 4head studios
+//Exported 
+
+Table Description:
+"id" INT -1 |"class" INT  0 |"consti" INT  0 |"dex" INT  0 |"charisma" INT  0 |"fighting" INT  0 |"craftman" INT  0 |"shadow" INT  0 |"rhetoric" INT  0 |"empathy" INT  0 |"bargain" INT  0 |"secret" INT  0 |
+
+Data: 
+0            0               1                1             1                  1                  1                  1                1                  1                 1                 1                | 
+1            2               0                0             0                  0                  1                  0                0                  0                 1                 0                | 
+2            1               1                0             0                  0                  0                  0                0                  0                 1                 0                | 
+3            3               0                0             1                  0                  0                  0                1                  0                 0                 0                | 
+4            4               0                0             0                  1                  0                  1                0                  0                 0                 0                | 
+5            2               0                0             0                  0                  2                  0                1                  0                 2                 0                | 
+6            1               2                0             0                  0                  1                  0                1                  0                 1                 0                | 
+7            3               0                0             1                  0                  0                  0                2                  1                 0                 1                | 
+8            4               1                1             0                  2                  0                  1                0                  0                 0                 0                | 

@@ -1,9 +1,24 @@
 Changelog
 =========
 
-## Changes since 0.95.4 ##
+## TWP 1.0beta ##
+TradeWarPolitics 1.0beta is the first mod version independant of the MegaModPack. 
+**Installation of the MegaModPack is not required anymore.**
 
-The following bugs were fixed since release of 0.95.4 and are available in the develop branch:
+This version also changes several production values to improve AI management. 
+
+Bugfixes:
+
+* Medical treatment: Own dynasty members should not pay for treatment.
+* Medical treatment: Patients with burnwounds should also be healed.
+* AI settings: Don't ask player about repairs triggered by AI.
+* Messages for dying family members were sent to every player.
+* Balance: Shadow AI is now less agressive.
+* Balance: Reduced infection rates of cold and influenza.
+
+## TWP 0.95.5 ##
+
+The following bugs were fixed:
 
 * AI was unable to accuse someone for trial
 * overflowing resources (honey bug) were not removed from market

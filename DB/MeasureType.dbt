@@ -1,0 +1,19 @@
+//Table File, Version 1.02 (c) 2004 4head studios
+//Exported 
+
+Table Description:
+"id" INT  0 |"name" STRING  0               |"hudviewmode" INT  0 |
+
+Data: 
+0            "Hud"                           1                     | 
+1            "None"                          1                     | 
+2            "Family"                        2                     | 
+3            "Aggressive"                    2                     | 
+4            "Privilege"                     2                     | 
+5            "BuildingDep"                   2                     | 
+6            "Dialogue"                      2                     | 
+11           "GUIIrrelevant"                 0                     | 
+12           "Artefact"                      2                     | 
+13           "Idle"                          0                     | 
+14           "RPG"                           2                     | 
+99           "DebugOnly"                     2                     | 

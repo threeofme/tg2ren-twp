@@ -1,0 +1,16 @@
+//Table File, Version 1.02 (c) 2004 4head studios
+//Exported 
+
+Table Description:
+"id" INT -1 |"name" STRING  0               |
+
+Data: 
+1            "character"                     | 
+2            "building"                      | 
+3            "world"                         | 
+4            "weather"                       | 
+5            "character"                     | 
+6            "character"                     | 
+7            "character"                     | 
+8            "character"                     | 
+9            "character"                     | 

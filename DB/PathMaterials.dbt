@@ -1,0 +1,27 @@
+//Table File, Version 1.02 (c) 2004 4head studios
+//Exported 
+
+Table Description:
+"id" INT -1 |"name" STRING  0               |"colorr" INT  0 |"colorg" INT  0 |"colorb" INT  0 |"mapcolorr" INT  0 |"mapcolorg" INT  0 |"mapcolorb" INT  0 |
+
+Data: 
+0            "road - fast"                   180              180              180              159                 128                 65                  | 
+1            "road - normal"                 130              130              130              159                 128                 65                  | 
+2            "road - slow"                   100              100              100              159                 128                 65                  | 
+3            "walkable - fast"               230              200              130              0                   0                   0                   | 
+4            "walkable - normal"             190              150              50               0                   0                   0                   | 
+5            "walkable - slow"               140              120              70               0                   0                   0                   | 
+6            "water - fast"                  120              130              255              0                   0                   0                   | 
+7            "water - normal"                80               90               200              0                   0                   0                   | 
+8            "water - slow"                  70               80               140              0                   0                   0                   | 
+9            "wood - fast"                   150              230              130              60                  84                  37                  | 
+10           "wood - normal"                 110              70               90               60                  84                  37                  | 
+11           "wood - slow"                   80               120              70               60                  84                  37                  | 
+12           "unpassable"                    200              15               15               0                   0                   0                   | 
+13           "trigger area"                  0                255              255              0                   0                   0                   | 
+14           "indoor"                        255              0                0                0                   0                   0                   | 
+15           "decorator_inner"               255              0                255              0                   0                   0                   | 
+16           "decorator_outer"               255              0                255              0                   0                   0                   | 
+17           "road - special"                220              220              220              159                 128                 65                  | 
+18           "furt - normal"                 255              255              255              255                 255                 255                 | 
+19           "water - blocked"               0                0                100              0                   0                   0                   | 

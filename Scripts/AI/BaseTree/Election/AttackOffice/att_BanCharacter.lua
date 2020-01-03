@@ -8,7 +8,7 @@ function Weight()
 		return 0
 	end
 	
-	if GetMeasureRepeat("SIM", "BanCharacter")>0 then
+	if GetRepeatTimerLeft("SIM", GetMeasureRepeatName2("BanCharacter")) > 0 then
 		return 0
 	end
 	

@@ -1,0 +1,37 @@
+//Table File, Version 1.02 (c) 2004 4head studios
+//Exported 
+
+Table Description:
+"id" INT -1 |"type" INT  0 |"name" STRING  0               |"comment" STRING  0            |
+
+Data: 
+1            6              "Profession"                    ""                              | 
+2            1              "Class"                         "Character class"               | 
+3            1              "XP"                            "Characters Absolute Experience in points" | 
+4            1              "Level"                         "Characters Level"              | 
+5            1              "XPPoints"                      "Characters current XP Points for skill enhance etc" | 
+10           8              "dexterity"                     "Character Dexterity skill"     | 
+11           8              "charisma"                      "Character Charisma skill"      | 
+12           8              "constitution"                  "Character Constitution skill"  | 
+15           1              "Zodiac"                        "Zodiac Sign (Sternzeichen)"    | 
+21           1              "Age"                           "Age in years"                  | 
+22           1              "Gender"                        "Gender, Sex, Dingens 0-femal, 1-male" | 
+30           8              "fighting"                      "Character Fighting skill"      | 
+31           8              "craftsmanship"                 "Character Craftsmanship skill" | 
+32           8              "shadow_arts"                   "Character Shadow Arts skill"   | 
+33           8              "rhetoric"                      "Character Rhetoric skill"      | 
+34           8              "empathy"                       "Character Empathy skill"       | 
+35           8              "bargaining"                    "Character Bargaining skill"    | 
+36           8              "secret_knowledge"              "Character Secret Knowledge skill" | 
+41           1              "Alignment"                     "Characters Alignment from 0 (Evil) to 100 (True Good)" | 
+44           1              "Religion"                      "Characters Religion 0-Katholic, 1-Evangelic" | 
+45           9              "Thickness"                     "Character Thickness (100 = neutral)" | 
+46           9              "Beard"                         "Character Beard"               | 
+47           9              "Hair"                          "Character Hair"                | 
+48           9              "Hat"                           "Character Hat"                 | 
+49           9              "Skin"                          "Character Skin"                | 
+50           9              "Cloth"                         "Character Cloth"               | 
+51           9              "HairColor"                     "Character HairColor"           | 
+52           9              "ClothColor"                    "Character ClothColor"          | 
+53           9              "BeardColor"                    "Character BeardColor"          | 
+54           1              "Faith"                         "Glaubensstärke"                | 

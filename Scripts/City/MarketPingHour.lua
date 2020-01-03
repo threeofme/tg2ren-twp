@@ -15,6 +15,7 @@ function GameStart()
 	-- Food and Drinks (2)
 		-- Mill
 	marketpinghour_CheckItem(Level, "WheatFlour", 10)
+	marketpinghour_CheckItem(Level, "BarleyFlour", 10)
 	marketpinghour_CheckItem(Level, "Oil", 2)
 	marketpinghour_CheckItem(Level, "Saft", 2)
 		-- Church
@@ -23,12 +24,9 @@ function GameStart()
 	marketpinghour_CheckItem(Level, "HerbTea", 1)
 		-- Farmer
 	marketpinghour_CheckItem(Level, "Milch", 2)
-	marketpinghour_CheckItem(Level, "Cheese", 1)
-	marketpinghour_CheckItem(Level, "Wurst", 1)
 		-- Baker
 	marketpinghour_CheckItem(Level, "Cookie", 1)
 	marketpinghour_CheckItem(Level, "Wheatbread", 1)
-	marketpinghour_CheckItem(Level, "Pretzel", 2)
 	marketpinghour_CheckItem(Level, "BreadRoll", 2)
 	marketpinghour_CheckItem(Level, "Cake", 1)
 	marketpinghour_CheckItem(Level, "CreamPie", 0.5)
@@ -45,8 +43,6 @@ function GameStart()
 	marketpinghour_CheckItem(Level, "RoastBeef", 0.5)
 	marketpinghour_CheckItem(Level, "Wein", 0.5)
 	marketpinghour_CheckItem(Level, "BoozyBreathBeer", 0.5)
-		-- Orchard
-	marketpinghour_CheckItem(Level, "Salat", 1)
 		-- Fisher
 	marketpinghour_CheckItem(Level, "FriedHerring", 2)
 	marketpinghour_CheckItem(Level, "FishSoup", 1)
@@ -133,7 +129,6 @@ function GameStart()
 	marketpinghour_CheckItem(Level, "Perfume", 1)
 	marketpinghour_CheckItem(Level, "FragranceOfHoliness", 1, 0.5)
 	marketpinghour_CheckItem(Level, "DrFaustusElixir", 1, 0.5)
-	marketpinghour_CheckItem(Level, "InvisiblePotion", 1, 2)
 	marketpinghour_CheckItem(Level, "ToadExcrements", 1, 0.5)
 	marketpinghour_CheckItem(Level, "ToadSlime", 1, 0.5)
 	marketpinghour_CheckItem(Level, "WeaponPoison", 1, 0.5)
@@ -200,7 +195,6 @@ function GameStart()
 	marketpinghour_CheckItem(Level, "Silver", 10)
 	marketpinghour_CheckItem(Level, "Gold", 10)
 	marketpinghour_CheckItem(Level, "Gemstone", 10)
-	marketpinghour_CheckItem(Level, "Salt", 12)
 		-- Stonemason
 	marketpinghour_CheckItem(Level, "Grindingbrick", 3)
 		-- Mill
@@ -223,41 +217,41 @@ function PingHour()
 	local Level = CityGetLevel("City")
 	-- disable resource spawning on harder difficulties
 	local Difficulty = ScenarioGetDifficulty() -- easy 0, 1, 2, 3, 4 hard
-	local AddMissing = (Difficulty < 3 or GetRound() < (5 - Difficulty))
+	local AddMissing = Difficulty < 3 or GetRound() < 12 - (4 * (4 - Difficulty))
 		
 		-- Farmer
 	marketpinghour_CheckItem(Level, "Wheat", 4, AddMissing)
+	marketpinghour_CheckItem(Level, "Barley", 4, AddMissing)
 	marketpinghour_CheckItem(Level, "Flachs", 4, AddMissing)
 	marketpinghour_CheckItem(Level, "Wool", 4, AddMissing)
 	marketpinghour_CheckItem(Level, "Fat", 5, AddMissing)
 	marketpinghour_CheckItem(Level, "Leather", 4, AddMissing)
-	marketpinghour_CheckItem(Level, "Beef", 4, AddMissing)
-	marketpinghour_CheckItem(Level, "Milch", 3, AddMissing)
+	marketpinghour_CheckItem(Level, "Beef", 2, AddMissing)
+	marketpinghour_CheckItem(Level, "Milch", 2, AddMissing)
 		-- Orchardist
 	marketpinghour_CheckItem(Level, "Fruit", 4, AddMissing)
 	marketpinghour_CheckItem(Level, "Honey", 4, AddMissing)
-	marketpinghour_CheckItem(Level, "Salat", 2, AddMissing)
+	marketpinghour_CheckItem(Level, "Fungi", 4, AddMissing)
 		-- Woodcutter
 	marketpinghour_CheckItem(Level, "Pinewood", 4, AddMissing)
 	marketpinghour_CheckItem(Level, "Oakwood", 4, AddMissing)
 	marketpinghour_CheckItem(Level, "Charcoal", 4, AddMissing)
-	marketpinghour_CheckItem(Level, "Fungi", 4, AddMissing)
 	marketpinghour_CheckItem(Level, "Pech", 5, AddMissing)
 		-- Mine
 	marketpinghour_CheckItem(Level, "Iron", 4, AddMissing)
 	marketpinghour_CheckItem(Level, "Silver", 4, AddMissing)
 	marketpinghour_CheckItem(Level, "Gold", 4, AddMissing)
 	marketpinghour_CheckItem(Level, "Gemstone", 2, AddMissing)
-	marketpinghour_CheckItem(Level, "Salt", 4, AddMissing)
 		-- Stonemason
 	marketpinghour_CheckItem(Level, "Grindingbrick", 2, AddMissing)
 		-- Mill
-	marketpinghour_CheckItem(Level, "Dye", 3, AddMissing)
-	marketpinghour_CheckItem(Level, "WheatFlour", 2, AddMissing)
+	marketpinghour_CheckItem(Level, "BarleyFlour", 4, AddMissing)
+	marketpinghour_CheckItem(Level, "WheatFlour", 4, AddMissing)
 	marketpinghour_CheckItem(Level, "Oil", 2, AddMissing)
 		-- Smithy
 	marketpinghour_CheckItem(Level, "Nails", 2, AddMissing)
-		-- Tavern
+		-- Alchemist
+	marketpinghour_CheckItem(Level, "Dye", 3, AddMissing)
 	marketpinghour_CheckItem(Level, "Weingeist", 3, AddMissing)
 	
 	GetScenario("World")
@@ -345,7 +339,7 @@ function RemoveItemMarket()
 	local chance, Name, Baseprice, Sellprice, Count
 	local Reducevalue
 	local item = {
-		"Cheese", "Wurst", "Cookie", "Wheatbread", "Cake", 
+		"Cookie", "Wheatbread", "Cake", 
 		"BreadRoll", "CreamPie", "Candy", "Pastry", "GrainPap", 
 		"SmallBeer", "Stew", "SalmonFilet", "WheatBeer", "Mead", 
 		"RoastBeef", "Wein", "BoozyBreathBeer", "GhostlyFog", "FriedHerring",
@@ -359,7 +353,7 @@ function RemoveItemMarket()
 		"LeatherGloves", "CamouflageCloak", "NoblesClothes",  "GlovesOfDexterity", "LeatherArmor",
 		"vase", "Stonerotary", "Blissstone", "Gravestone", "statue",
 		"Gargoyle", "HerbTea", "Phiole", "FlowerOfDiscord", "Perfume", 
-		"BoobyTrap", "FragranceOfHoliness", "DrFaustusElixir", "WeaponPoison", "InvisiblePotion",
+		"BoobyTrap", "FragranceOfHoliness", "DrFaustusElixir", "WeaponPoison",
 		"ToadExcrements", "ParalysisPoison", "Toadslime", "BlackWidowPoison", "Housel", 
 		"Kerzen", "Poem", "ThesisPaper", "AboutTalents2", "Hasstirade",
 		"Bible", "Chaplet", "AboutTalents1", "LetterOfIndulgence", "LetterFromRome", 
@@ -373,7 +367,7 @@ function RemoveItemMarket()
 		"Silk", "OrientalCarpet", "OrientalStatues", "OrientalTobacco", "Sugar"
 		}
  
-	for i=0, 130 do
+	for i=0, 127 do
 	Name = item[i]
 	
 		if (Name ~= nil) then

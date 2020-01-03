@@ -34,6 +34,9 @@ function Run()
 			"@B[5,@L_PIRATE_LABOROFLOVE_DESTINATION_+4,]",
 			"@L_PIRATE_LABOROFLOVE_DESTINATION_HEAD_+0",
 			"@L_PIRATE_LABOROFLOVE_DESTINATION_BODY_+0")
+		if not result or result == "C" then
+			StopMeasure()
+		end
 	end
 		
 	local ErrorLabel

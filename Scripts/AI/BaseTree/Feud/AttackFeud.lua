@@ -44,6 +44,11 @@ function Weight()
 		return 0
 	end
 	
+	if DynastyIsShadow("SIM") then
+		-- reduces aggressiveness of shadow dynasties
+		return 5
+	end
+	
 	return 30
 end
 

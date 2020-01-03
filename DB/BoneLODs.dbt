@@ -1,0 +1,61 @@
+//Table File, Version 1.02 (c) 2004 4head studios
+//Exported 
+
+Table Description:
+"id" INT -1 |"name" STRING -1               |"lod" INT  0 |
+
+Data: 
+1            "Game_Spine_A"                  2             | 
+2            "Game_Spine_B"                  1             | 
+3            "Game_Spine_C"                  2             | 
+4            "Game_Shoulder_l"               3             | 
+5            "Game_Arm_l"                    2             | 
+6            "Game_Elbow_l"                  2             | 
+7            "Game_ElbowCorrector_l"         2             | 
+8            "Game_Wrist_l"                  1             | 
+9            "Game_Thumb_A_l"                0             | 
+10           "Game_Thumb_B_l"                0             | 
+11           "Game_Fore_A_l"                 0             | 
+12           "Game_Fore_B_l"                 0             | 
+13           "Game_Middle_A_l"               0             | 
+14           "Game_Middle_B_l"               0             | 
+15           "Game_Ring_A_l"                 0             | 
+16           "Game_Ring_B_l"                 0             | 
+17           "Game_Shoulder_r"               3             | 
+18           "Game_Arm_r"                    2             | 
+19           "Game_Elbow_r"                  2             | 
+20           "Game_ElbowCorrector_r"         2             | 
+21           "Game_Wrist_r"                  1             | 
+22           "Game_Thumb_A_r"                0             | 
+23           "Game_Thumb_B_r"                0             | 
+24           "Game_Fore_A_r"                 0             | 
+25           "Game_Fore_B_r"                 0             | 
+26           "Game_Middle_A_r"               0             | 
+27           "Game_Middle_B_r"               0             | 
+28           "Game_Ring_A_r"                 0             | 
+29           "Game_Ring_B_r"                 0             | 
+30           "Game_Neck"                     1             | 
+31           "Game_Head"                     1             | 
+32           "Game_eye_R"                    0             | 
+33           "Game_eye_L"                    0             | 
+34           "Game_Jaw"                      0             | 
+35           "Game_Cheek_Scale"              1             | 
+36           "Game_Neck_Scale"               1             | 
+37           "Game_eyelids"                  0             | 
+38           "Game_mouthcorner"              0             | 
+39           "Game_eyebrow_L"                0             | 
+40           "Game_eyebrow_R"                0             | 
+41           "Game_Zygomatic"                0             | 
+42           "Game_Chest_Scale"              1             | 
+43           "Game_Spine_A_Scale"            1             | 
+44           "Game_Leg_r"                    3             | 
+45           "Game_Knee_r"                   3             | 
+46           "Game_Ankle_r"                  1             | 
+47           "Game_Toe_r"                    0             | 
+48           "Game_Leg_l"                    3             | 
+49           "Game_Knee_l"                   3             | 
+50           "Game_Ankle_l"                  1             | 
+51           "Game_Toe_l"                    0             | 
+52           "Game_HipCorrector_l"           0             | 
+53           "Game_HipCorrector_r"           0             | 
+54           "Game_Hip_Scale"                1             | 

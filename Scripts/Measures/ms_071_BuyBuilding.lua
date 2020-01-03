@@ -92,7 +92,7 @@ function Run()
 --	end
 
   -- XXX force former workers to stop working
-  bld_HandleNewOwner("") 
+  bld_HandleNewOwner("", "FormerOwner") 
   SetState("", STATE_SELLFLAG, false)
 --	GetLocalPlayerDynasty("LocalPlayer")
 	if DynastyIsPlayer("") then

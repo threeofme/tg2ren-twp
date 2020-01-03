@@ -1,6 +1,6 @@
 function Weight()
 	
-	if GetMeasureRepeat("SIM", "MakeACompliment")>0 then
+	if GetRepeatTimerLeft("SIM", GetMeasureRepeatName2("MakeACompliment")) > 0 then
 		return 0
 	end
 	

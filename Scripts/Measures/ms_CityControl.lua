@@ -159,7 +159,7 @@ function Inferno()
 	end
 	-- workshops
 	local NumBuildings = CityGetBuildingCount("MyCity",2,-1,-1,-1,FILTER_IGNORE)
-	CityGetBuildings("MyCity",1,-1,-1,-1,FILTER_IGNORE,"Building")
+	CityGetBuildings("MyCity",2,-1,-1,-1,FILTER_IGNORE,"Building")
 	for i=0,NumBuildings-1 do
 		if GetImpactValue("Building"..i, 7) * 100 < Severity then
 			SetState("Building"..i,STATE_BURNING,true)

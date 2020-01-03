@@ -1,0 +1,19 @@
+//Table File (c) 2004 4head studios
+//Modified by RUNEFORGE Game Studio
+
+Table Description:
+"id" INT -1 |"name" STRING  0 |
+
+Data:
+0   "None"   |
+1   "Sim"   |
+2   "Building"   |
+3   "Cart"   |
+4   "Position"   |
+5   "Ship"   |
+6   "DynastySim"   |
+7   "Vehicle"   |
+8   "Resource"   |
+9   "Office"   |
+10   "Squad"   |
+99   "All"   | 

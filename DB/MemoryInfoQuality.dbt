@@ -1,0 +1,11 @@
+//Table File, Version 1.02 (c) 2004 4head studios
+//Exported 
+
+Table Description:
+"id" INT -1 |"quality" INT  0 |
+
+Data: 
+0            100               | 
+1            50                | 
+2            25                | 
+3            12                | 

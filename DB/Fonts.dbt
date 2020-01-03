@@ -1,0 +1,15 @@
+//Table File, Version 1.02 (c) 2004 4head studios
+//Exported 
+
+Table Description:
+"id" INT  0 |"fontgroup" STRING  0          |"fontname" STRING  0           |"charspace" INT  0 |"linespace" INT  0 |
+
+Data: 
+1            "sylfaen"                       "sylfaen_8pt"                   -1                  0                   | 
+2            "sylfaen"                       "BookAntiqua_large"             -1                  0                   | 
+3            "sylfaensmall"                  "sylfaen_6pt"                   -1                  0                   | 
+4            "sylfaensmall"                  "BookAntiqua_medium"            -1                  0                   | 
+5            "sylfaengold"                   "sylfaen_8pt_gold"              0                   0                   | 
+6            "sylfaengold"                   "sylfaen_10pt_gold"             0                   0                   | 
+7            "sylfaensmallgold"              "sylfaen_6pt_gold"              0                   0                   | 
+8            "sylfaensmallgold"              "sylfaen_8pt_gold"              0                   0                   | 

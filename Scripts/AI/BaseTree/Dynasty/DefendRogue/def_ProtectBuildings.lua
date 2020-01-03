@@ -1,6 +1,5 @@
 function Weight()
-	
-	if Rand(3) == 0 then
+	if not AliasExists("SIM") then
 		return 0
 	end
 	
@@ -66,7 +65,7 @@ function Weight()
 		BuildingGetType("ProtectMe") == 3 or BuildingGetType("ProtectMe")==108 or 
 		BuildingGetType("ProtectMe") == 104 or BuildingGetType("ProtectMe")==12 then
 		if ImpactGetMaxTimeleft("ProtectMe","buildingburgledtoday") <=4 then
-			if GetMeasureRepeat("SIM", "UseBoobyTrap")==0 then
+			if GetRepeatTimerLeft("SIM", GetMeasureRepeatName2("UseBoobyTrap")) <= 0 then
 				if GetImpactValue("ProtectMe","BoobyTrap")==0 then
 					if GetItemCount("SIM", "BoobyTrap", INVENTORY_STD)>0 then
 						SetData("WhatToDo",2)

@@ -7,9 +7,14 @@ end
 
 PREFIX_SALESCOUNTER = "Salescounter_"
 PREFIX_SALESCOUNTER_MAX = "SalescounterMax_"
-
+SALESCOUNTER_PRICE = "SalescounterPrice"
+ 
 ---- returns count and the list of items (by itemId) that can be sold at this workshop. See BuildingToItems.dbt
 function GetItemsForSale(BldAlias)
+	if (not BldAlias or not AliasExists(BldAlias)) then
+		return 0, {} 
+	end
+	
 	local BldId = BuildingGetProto(BldAlias)
 	local ItemsString
 	if GL_BUILDING_TYPE_WAREHOUSE == BuildingGetType(BldAlias) then
@@ -34,7 +39,7 @@ end
 -- Count and Items should be taken from above function GetItemsForSale
 function UpdateSalescounter(BldAlias, Count, Items)
 	if not Items then
-		Count, Items = GetItemsForSale(BldAlias)
+		Count, Items = economy_GetItemsForSale(BldAlias)
 	end
 
 	local Id, CurrentAmount, Max, Inv, Diff, Transfered
@@ -72,9 +77,7 @@ function CalculateSalesRanking(BldAlias, Count, Items)
 	if not Items then
 		Count, Items = economy_GetItemsForSale(BldAlias)
 	end
-	-- no pricing for now. If it existed, it would be around {75, 100, 125}
-	-- local Pricing = GetProperty(BldAlias, "SalescounterPrice")
-
+	
 	local Ranking = 0
 	-- availablity of goods is based on a default of six slots
 	local AvailableGoods = 0
@@ -108,6 +111,12 @@ function CalculateSalesRanking(BldAlias, Count, Items)
 	if Attractivity then
 		Ranking = Ranking + Ranking * Attractivity
 	end
+	
+	-- pricing gives bonus/penalty on total ranking 
+  local Pricing = GetProperty(BldAlias, SALESCOUNTER_PRICE) or 150 -- 100, 125, 150, 175, 200
+  local PricingBonus = 100 + (150 - Pricing)/2 -- 125, 112.5, 100, 87.5, 75
+  Ranking = math.floor(Ranking * PricingBonus / 100)
+	
 	SetProperty(BldAlias, "SalescounterRanking", Ranking)
 	return Ranking, RankingGoods, RankingCrafty, RankingCharisma, Attractivity
 end
@@ -254,9 +263,10 @@ function GetPrice(BldAlias, ItemId, Buyer)
 		return -1
 	end
 
-	-- get market price
-	CityGetLocalMarket("MyCity","MyMarket")
-	local MarketPrice = ItemGetPriceSell(ItemId, "MyMarket")
+	-- get baseprice and multiply by sales ratio
+	local BasePrice = ItemGetBasePrice(ItemId)
+	local PriceRatio = GetProperty(BldAlias, SALESCOUNTER_PRICE) or 150
+	BasePrice = BasePrice * (PriceRatio / 100)
 	
 	-- get difference in bargaining between Owner and Buyer
 	local BargOwner = GetSkillValue("BldOwner", BARGAINING)
@@ -268,8 +278,8 @@ function GetPrice(BldAlias, ItemId, Buyer)
 		TheBargain = BargOwner * 0.02
 	end
 	
-	-- this will result in a range of about 70..110% of the market price
-	return (MarketPrice * 0.9) + (MarketPrice * TheBargain) 
+	-- this will result in a range of about 70..110% of the calculated price
+	return math.floor((BasePrice * 0.9) + (BasePrice * TheBargain)) 
 end
 
 function UpdateBalance(BldAlias, BalanceSuffix, TotalPrice, ItemId, Amount)
@@ -307,6 +317,19 @@ function LogAISettings(BldAlias)
 	end
 end
 
+function LogProductionNeeds(BldAlias)
+	LogMessage("::TWPECONOMY:: Logging AI Settings")
+	local Count, Items = economy_GetItemsForSale(BldAlias)
+	GetInventory(BldAlias, INVENTORY_STD, "Inv") 
+	
+	local Item, Need
+	for i = 1, Count do
+		Item = Items[i]
+		Need = GetProperty("Inv", "Need_"..Item) or 0
+		LogMessage(ItemGetName(Item) .. ": " .. Need)
+	end
+end
+
 --- Salescounter for AI will default to 
 function InitializeDefaultSalescounter(BldAlias, Count, Items)
 	if not GetSettlement(BldAlias, "MyCity") then
@@ -334,6 +357,8 @@ function InitializeDefaultSalescounter(BldAlias, Count, Items)
 			SetProperty(BldAlias, PREFIX_SALESCOUNTER_MAX..ItemId, Max)
 		end 
 	end
+	-- set ratio for sales price, default to 150% of base price
+	SetProperty(BldAlias, SALESCOUNTER_PRICE, 150)
 end
 
 function CalculateWages(BldAlias)
@@ -366,9 +391,12 @@ function ChooseItemFromCounter(BldAlias, Count, Items)
 	end
 	
 	local Buttons = ""
-	local CurrentAmount, MaxAmount, Id, ItemTexture, ItemLabel, Subtext
+	local CurrentAmount, MaxAmount, Id, ItemTexture, ItemLabel, Subtext, Price, PriceLabel
+	local Prices = {}
 	for i=1, Count do
 		Id = ItemGetID(Items[i])
+		Prices[i] = economy_GetPrice(BldAlias, Id)
+		PriceLabel = "%"..i.."t"
 		-- Appending the itemID finding the items again and even enables filters on the property
 		CurrentAmount = GetProperty(BldAlias, PREFIX_SALESCOUNTER..Id) or 0
 		MaxAmount = GetProperty(BldAlias, PREFIX_SALESCOUNTER_MAX..Id) or 0
@@ -376,18 +404,19 @@ function ChooseItemFromCounter(BldAlias, Count, Items)
 		-- result, Tooltip, label, icon
 		ItemLabel = ItemGetLabel(Items[i], CurrentAmount == 1)
 		Subtext = CurrentAmount .. "/" .. MaxAmount
-		Buttons = Buttons.."@B[" .. Id .. "," .. Subtext .. "," .. ItemLabel .. "," .. ItemTexture .."]"
+		Buttons = Buttons.."@B[" .. Id .. "," .. Subtext .. "," .. PriceLabel .. "," .. ItemTexture .."]"
 	end
 	-- add extra button if warehouse and Count < 16
-	--hud/buttons/btn_220_Train.tga
 	if GL_BUILDING_TYPE_WAREHOUSE == BuildingGetType(BldAlias) and Count < 16 then
 		Buttons = Buttons.."@B[" .. -1 .. ",,,hud/buttons/btn_220_Train.tga]"
 	end
+	
 	local ChosenItemId = InitData(
 		"@P"..Buttons, -- PanelParam
 		0, -- AIFunc
 		"@L_MEASURE_SALESCOUNTER_HEAD_+0",-- HeaderLabel
-		"Body"-- BodyLabel (obsolete)
+		"Body",-- BodyLabel (obsolete)
+		helpfuncs_myunpack(Prices)
 		)-- optional variable list
 	
 	if ChosenItemId == "C" then
@@ -422,7 +451,7 @@ function ChooseItemFromInventory(BldAlias, PlayerAlias)
 		itemID, itemMen = InventoryGetSlotInfo(BldAlias,slotNr,INVENTORY_STD)
 		if itemMen and itemMen >= 0 and not economy_ContainsItemType(itemInfo, itemTypeCount, itemID) then
 			ItemTexture = "Hud/Items/Item_"..ItemGetName(itemID)..".tga"
-			-- result, Tooltip, label, icon
+			-- result, label, Tooltip, icon
 			ItemLabel = ItemGetLabel(itemID, itemMen == 1)
 			schalter = schalter.."@B[" .. itemID .. "," .. itemMen .. "," .. ItemLabel .. "," .. ItemTexture .."]"
 
@@ -520,12 +549,91 @@ function BuyDrinkOrFood(Tavern, SimAlias, Budget, MaxItems)
 end
 
 function ClearBalance(BldAlias)
-	local BalanceTypes = {"Autoroute", "Theft", "Salescounter", "Service", "Wages"}
-	local Balance
-	for i=1, 5 do
-		Balance = "Balance"..BalanceTypes[i]
-		if HasProperty(BldAlias, Balance) then
-			RemoveProperty(BldAlias, Balance)
-		end 
+	if BldAlias and AliasExists(BldAlias) then
+		local BalanceTypes = {"Autoroute", "Theft", "Salescounter", "Service", "Wages"}
+		local Balance
+		for i=1, 5 do
+			Balance = "Balance"..BalanceTypes[i]
+			if HasProperty(BldAlias, Balance) then
+				RemoveProperty(BldAlias, Balance)
+			end 
+		end
 	end
+end
+
+function CalcProductionPriorities(BldAlias, ProdCount, ProdItems)
+	-- 1. initialize optional produced items and Building Type
+	local BldType = BuildingGetType(BldAlias)
+	if BldType == GL_BUILDING_TYPE_WAREHOUSE then
+		return
+	end
+	
+	if not GetInventory(BldAlias, INVENTORY_STD, "Inv") then
+		return
+	end
+	
+	if not ProdCount or not ProdItems then
+		ProdCount, ProdItems = economy_GetItemsForSale(BldAlias)
+	end
+	
+	-- 2. Get local market
+	if not GetSettlement(BldAlias, "MyCity") then
+		return -1
+	end
+	CityGetLocalMarket("MyCity","MyMarket")
+	
+	-- 3. for each item: get min_stock, max_stock and current market stock
+	local ItemId, BasePrice, Min, Max, Current, CurrentLocal
+	local MarketValues = {}
+	local TotalValue = 0
+	for i=1, ProdCount do
+		-- get values
+		ItemId = ProdItems[i] 
+		BasePrice = ItemGetBasePrice(ItemId)
+		Min = GetDatabaseValue("Items", ItemId, "min_stock")
+		Max = GetDatabaseValue("Items", ItemId, "max_stock")
+		Current = GetItemCount("MyMarket", ItemId)
+		CurrentLocal = GetProperty(BldAlias, PREFIX_SALESCOUNTER..ItemId) or 0
+		-- normalize values
+		Min = math.max(0, Min - Current - CurrentLocal)
+		Max = math.max(1, Max - Current - CurrentLocal)
+		BasePrice = math.ceil(BasePrice/50)
+		-- increase base price of products required for services
+		BasePrice = economy_IncreaseServiceBasePrice(BldType, ItemId, BasePrice)
+		
+		-- calculate market value
+		MarketValues[i] = (Max + Min) * BasePrice   -- x
+		TotalValue = TotalValue + MarketValues[i]
+	end
+	
+	-- 4. Calculate the resulting priorities and set need property
+	local NeedValue
+	for i=1, ProdCount do
+		ItemId = ProdItems[i]
+		NeedValue = math.ceil(MarketValues[i]/TotalValue * 100)
+		SetProperty("Inv", "Need_"..ItemId, NeedValue)
+	end
+	economy_LogProductionNeeds(BldAlias)
+end
+
+function IncreaseServiceBasePrice(BldType, ItemId, BasePrice)
+	-- special case: hospital (Salve, Bandage, Medicine, Painkiller)
+	if BldType == GL_BUILDING_TYPE_HOSPITAL then
+		if ItemId == 201 or ItemId == 202 or ItemId == 203 or ItemId == 204 then
+			return BasePrice + 3 -- increase BasePrice by service income
+		end
+	elseif BldType == GL_BUILDING_TYPE_TAVERN then
+		if ItemId == 30 or ItemId == 31 or ItemId == 32 or ItemId == 34 or ItemId == 35 or ItemId == 37 or ItemId == 38 then
+			return BasePrice + 2
+		end
+	elseif BldType == GL_BUILDING_TYPE_CHURCH_EV or BldType == GL_BUILDING_TYPE_CHURCH_CATH then
+		if ItemId == 181 then -- Housel
+			return BasePrice + 2
+		end
+	end
+	return BasePrice
+end
+
+function CalcResourceRequirements(BldAlias)
+	-- TODO implement
 end

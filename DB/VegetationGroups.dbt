@@ -1,0 +1,19 @@
+//Table File, Version 1.02 (c) 2004 4head studios
+//Exported 
+
+Table Description:
+"id" INT -1 |"name" STRING  0               |"wateraffinity" FLOAT  0 |"heightmin" FLOAT  0 |"heightmax" FLOAT  0 |"flags" INT  0 |"vegetations" LIST  0                  |"radiuslow" FLOAT  0 |"radiushigh" FLOAT  0 |"density" FLOAT  0 |
+
+Data: 
+1            "forest_ground_objects_medium"  80                        0                     60                    16              ()                                      130                   0                      30                  | 
+3            "bushes"                        80                        0                     80                    0               (6239    6236    6233    6235    6238    6237    6242    6241    6240    6245    6244    6243    6596    ) 50                    0                      30                  | 
+4            "underwater_objects"            100                       0                     100                   32              () 50                    0                      20                  | 
+5            "watersurface_plants"           100                       0                     100                   64              (6200    ) 130                   0                      8                   | 
+6            "flatwater_objects"             100                       0                     100                   128             (6497    ) 50                    0                      30                  | 
+7            "onstone_objects"               0                         0                     100                   2               () 60                    0                      10                  | 
+8            "sand_objects"                  20                        0                     50                    0               (6245    ) 60                    0                      40                  | 
+9            "plain_trees_big"               80                        0                     60                    0               (595     597     599     600     6375    6374    ) 40                    800                    10                  | 
+10           "forest_ground_objects_small"   80                        0                     100                   16              (6539    6537    6245    6536    6538    6596    6478    6493    6495    6496    6575    6574    ) 80                    0                      10                  | 
+11           "forest_ground_objects_big"     40                        0                     80                    16              (6502    6535    6505    6503    6504    6498    6499    6092    6534    6500    6501    6615    6616    ) 220                   0                      10                  | 
+12           "plain_flowers"                 80                        0                     40                    0               (6480    7018    6478    6246    6247    6248    6249    6250    6251    6494    6515    6479    7017    6493    6596    ) 20                    0                      40                  | 
+13           "plain_objects_big"             60                        0                     80                    2               (6158    6167    6160    6229    6168    6094    6179    ) 220                   800                    5                   | 

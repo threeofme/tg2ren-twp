@@ -1,0 +1,38 @@
+//Table File, Version 1.02 (c) 2004 4head studios
+//Exported 
+
+Table Description:
+"id" INT -1 |"season_dependance" INT  0 |"daytime_dependance" INT  0 |"filename" STRING  0           |"interval_min" INT  0 |
+
+Data: 
+1            1                           2                            "CharacterFX/townbackground_loop/townbackground_loop+3.wav" 0                      | 
+2            9                           1                            "ambient/frogs_croak_loop/frogs_croak_loop+2.wav" 0                      | 
+3            1                           3                            "ambient/wolf_howl"             15                     | 
+4            1                           1                            "ambient/wind_stormy/wind_stormy+2.wav" 0                      | 
+5            1                           1                            "ambient/tree_light_wind_winter_loop/tree_light_wind_winter_loop+1.wav" 0                      | 
+6            1                           1                            "ambient/flies_flying_around_loop/flies_flying_around_loop+0.wav" 0                      | 
+7            9                           1                            "ambient/cricket_chirp_loop"    0                      | 
+8            9                           1                            "ambient/birds_chirp"           5                      | 
+9            9                           1                            "ambient/bees_flying_around_loop/bees_flying_around_loop+2.wav" 0                      | 
+10           1                           1                            "ambient/waterfall_medium_loop+0.wav" 0                      | 
+11           1                           1                            "ambient/water_medium+0.wav"    0                      | 
+12           1                           1                            "ambient/water_medium+1.wav"    0                      | 
+13           1                           3                            "ambient/dog_growl"             15                     | 
+30           1                           1                            "ambient/torch_loop/torch_loop+0.wav" 0                      | 
+31           1                           1                            "Effects/caldron_loop/caldron_loop+0.wav" 0                      | 
+32           1                           1                            "Locations/destillery_loop/destillery_loop+1.wav" 0                      | 
+33           1                           3                            "ambient/rats"                  10                     | 
+34           1                           1                            "Locations/cellar_waterdrop"    7                      | 
+35           1                           1                            "ambient/oven_loop/oven_loop+1.wav" 0                      | 
+36           1                           1                            "Locations/forge+0.wav"         0                      | 
+37           1                           1                            "Locations/waterwheel_loop+0.wav" 0                      | 
+38           1                           1                            "Locations/drippingwater+0.wav" 0                      | 
+39           1                           1                            "ambient/water_low+0.wav"       0                      | 
+40           1                           1                            "ambient/bee_flying_along"      15                     | 
+41           3                           2                            "ambient/bee_flying_along"      15                     | 
+42           1                           1                            "ambient/waves_coast"           0                      | 
+43           1                           1                            "ambient/waves_sea"             0                      | 
+50           1                           3                            "ambient/rats"                  5                      | 
+51           1                           3                            "ambient/waves_soft"            10                     | 
+52           1                           3                            "ambient/Animals/cow"            0                     |
+53           1                           3                            "ambient/Locations/sheeps_baa"            0                     |  

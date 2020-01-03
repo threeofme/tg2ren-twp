@@ -2,7 +2,7 @@ function Weight()
 	local	Item = "Shellchain"
 	local value = ai_CheckTitleVSJewellery("SIM",1,20)
 	
-	if GetMeasureRepeat("SIM", "Use"..Item)>0 then
+	if GetRepeatTimerLeft("SIM", GetMeasureRepeatName2("Use"..Item)) > 0 then
 		return 0
 	end
 

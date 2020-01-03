@@ -23,7 +23,7 @@ function Weight()
 	for i=1, 2 do
 		if not BuildingHasUpgrade("WorkBuilding", MeasureNames[i]) then
 			MeasureNames[i] = false
-		elseif GetMeasureRepeat("MYRM", "OrderASabotage_"..MeasureNames[i]) > 0 then
+		elseif GetRepeatTimerLeft("MYRM", GetMeasureRepeatName2("OrderASabotage_"..MeasureNames[i])) > 0 then
 			MeasureNames[i] = false
 		end
 	end

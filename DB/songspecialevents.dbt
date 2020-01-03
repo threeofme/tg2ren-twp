@@ -1,0 +1,55 @@
+//Table File, Version 1.02 (c) 2004 4head studios
+//Exported 
+
+Table Description:
+"id" INT -1   |"name" STRING  0                 |"var1" STRING  0                 |"prio1" INT  0   |"var2" STRING  0                 |"prio2" INT  0   |"var3" STRING  0                 |"prio3" INT  0   |"var4" STRING  0                 |"prio4" INT  0   |"var5" STRING  0                 |"prio5" INT  0   |"var6" STRING  0                 |"prio6" INT  0   |
+
+Data:
+1 "hamlet" "19_opener_hamlet1.ogg" 1 "20_opener_hamlet2.ogg" 1 "208_merchant.ogg" 1 "203_mill.ogg" 1 "none" 1 "none" 1 | 
+2 "village" "22_opener_village2.ogg" 1 "23_opener_village3.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+3 "smalltown" "25_opener_small_town2.ogg" 1 "26_opener_small_town3.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+4 "town" "28_opener_town2.ogg" 1 "29_opener_town3.ogg" 1 "30_opener_city1.ogg" 1 "31_opener_city2.ogg" 1 "none" 1 "none" 1 | 
+5 "capital" "75_capital1.ogg" 1 "77_capital2.ogg" 1 "216_juggler.ogg" 1 "none" 1 "none" 1 "none" 1 | 
+6 "winter" "71_winter_landscape1.ogg" 1 "72_winter_landscape2.ogg" 1 "73_winter_woods1.ogg" 1 "74_winter_woods2.ogg" 1 "none" 1 "none" 1 | 
+7 "spring" "04_building_farm.ogg" 1 "24_romantic_waters.ogg" 1 "37_springtime.ogg" 1 "41_background_woods1.ogg" 1 "none" 1 "none" 1 | 
+8 "summer" "24_romantic_waters.ogg" 1 "37_springtime.ogg" 1 "41_background_woods1.ogg" 1 "32_summer.ogg" 1 "none" 1 "none" 1 | 
+9 "autumn" "15_deep_waters.ogg" 1 "33_background_village1.ogg" 1 "35_background_small_town.ogg" 1 "40a_background_landscape4.ogg" 1 "none" 1 "none" 1 | 
+10 "landscape" "38_background_landscape1.ogg" 1 "39_background_landscape2.ogg" 1 "42_background_woods2.ogg" 1 "43_background_woods3.ogg" 1 "none" 1 "none" 1 | 
+11 "night" "65_night_landscape1.ogg" 1 "66_night_landscape2.ogg" 1 "67_night_woods1.ogg" 1 "68_night_woods2.ogg" 1 "213_land_kont.ogg" 1 "212_merc.ogg" 1 | 
+12 "night_town" "69_night_town1.ogg" 1 "70_night_town2.ogg" 1 "212_merc.ogg" 1 "213_land_kont.ogg" 1 "none" 1 "none" 1 | 
+13 "marriage" "50_event_wedding.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+14 "birth" "51_event_birth1.ogg" 1 "51_event_birth2.ogg" 1 "99_event_birth3.ogg" 1 "none" 1 "none" 1 "none" 1 | 
+15 "death" "52_event_death.ogg" 1 "100_event_death2.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+16 "execution" "53_event_execution.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+17 "dungeon" "54_event_gaol.ogg" 1 "46_situation_suspense2.ogg" 1 "44_situation_disease.ogg" 1 "none" 1 "none" 1 "none" 1 | 
+18 "positive_event" "55_jingle_positive1.ogg" 1 "56_jingle_positive2.ogg" 1 "57_jingle_positive3.ogg" 1 "58_jingle_positive4.ogg" 1 "none" 1 "none" 1 | 
+19 "negative_event" "60_jingle_negative1.ogg" 1 "61_jingle_negative2.ogg" 1 "62_jingle_negative3.ogg" 1 "63_jingle_negative4.ogg" 1 "64_jingle_negative5.ogg" 1 "none" 1 | 
+20 "fight" "48_situation_combat1.ogg" 1 "49_situation_combat2.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+21 "accused" "45_situation_suspense1.ogg" 1 "46_situation_suspense2.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+22 "epidemic" "44_situation_disease.ogg" 1 "46_situation_suspense2.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+23 "credits" "205_bank.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+24 "game_won" "02_game_won.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+25 "game_lost" "03_game_lost.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+26 "party" "06_building_tavern1.ogg" 1 "07_building_tavern2.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+27 "mainmenu" "201_maintheme_old.ogg" 1 "209_maintheme.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+28 "sea" "83_Sailing1.ogg" 1 "84_Sailing2.ogg" 1 "85_Sailing3.ogg" 1 "none" 1 "none" 1 "none" 1 | 
+29 "seafight" "88_ShipFight1.ogg" 1 "89_ShipFight2.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+30 "enemy_ship_plundered" "90_EnemyShipCaptured.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+31 "enemy_ship_sunk_small" "91_EnemyShipSunkSmall.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+32 "enemy_ship_sunk_med" "92_EnemyShipSunkMedium.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+33 "enemy_ship_sunk_big" "93_EnemyShipSunkBig.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+34 "ship_plundered" "94_OwnShipCaptured.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+35 "ship_sunk" "95_OwnShipSunk1.ogg" 1 "96_OwnShipSunk2.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+36 "pirate" "80_pirate.ogg" 1 "86_sailing_under_pirate_flag1.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+37 "fisherman" "81_Fisherman.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+38 "war" "200_war.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+39 "miller" "203_mill.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+40 "mercenary" "212_merc.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+41 "beekeeper" "215_orchand.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+42 "merchantman" "208_merchant.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+43 "estate" "210_estate.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+44 "gypsi" "216_juggler.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+45 "bank" "205_bank.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+46 "kontor" "213_land_kont.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+47 "graveyard" "202_crypt.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+48 "concert" "Silence.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 

@@ -1,5 +1,5 @@
 function Weight()
-	return 50
+	return 0
 end
 
 function Execute()

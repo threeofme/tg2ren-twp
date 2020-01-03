@@ -3,7 +3,7 @@ function Weight()
 		return 0
 	end
 	
-	if GetMeasureRepeat("SIM", "Disappropriate") > 0 then
+	if GetRepeatTimerLeft("SIM", GetMeasureRepeatName2("Disappropriate")) > 0 then
 		return 0
 	end
 	

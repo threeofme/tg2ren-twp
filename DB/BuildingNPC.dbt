@@ -1,0 +1,20 @@
+//Table File, Version 1.02 (c) 2004 4head studios
+//Exported 
+
+Table Description:
+"id" INT -1 |"name" STRING  0               |"buildingtype" INT  0 |"spawnlocator" STRING  0       |"behavior" INT  0 |"characterclass" INT  0 |"profession" INT  0 |
+
+Data: 
+0            "nothingTest"                   0                      ""                              0                  0                        0                    | 
+1            "Usher"                         23                     "UsherChairPos"                 3214               1                        33                   | 
+2            "TownhallGuard1"                23                     "Guard1OffPos"                  3215               4                        34                   | 
+3            "TownhallGuard2"                23                     "Guard2OffPos"                  3216               4                        34                   | 
+4            "Executioner"                   23                     "ExecutionerOffPos"             3217               4                        35                   | 
+5            "Doctor"                        31                     "Doctor"                        3230               3                        31                   | 
+6            "Sekundant1"                    31                     "Sekundant1"                    3231               4                        36                   | 
+7            "Sekundant2"                    31                     "Sekundant2"                    3232               4                        36                   | 
+8            "Vendor1"                       14                     "vendor"                        3237               19                       37                   | 
+9            "Undertaker"                    29                     "priest"                        10924              3                        38                   | 
+10           "Towncrier"                     23                     "entry1"                        3417               3                        10                   | 
+11           "WeddingPriest"                 42                     "WeddingPriest"                 11012              3                        11                   | 
+12           "GuildClerk"                    26                     "GuildClerkPos"                 11019              1                        27                   | 

@@ -66,7 +66,9 @@ end
 
 function CheckHealth()
 	-- sickness, go to doctor
-	if GetImpactValue("","Sickness") > 0 and Rand(10) < 5 and not GetMeasureRepeat("", "AttendDoctor") > 0 then
+	if GetImpactValue("","Sickness") > 0 
+			and Rand(10) < 5 
+			and GetRepeatTimerLeft("", GetMeasureRepeatName2("AttendDoctor")) <= 0 then
 		MeasureRun("", nil, "AttendDoctor")
 		-- I could also just go home and sleep...
 	end
@@ -74,7 +76,7 @@ function CheckHealth()
 	-- poisoned, try to use antidote
 	if GetState("", STATE_POISONED) 
 			and Rand(10) < 5
-			and not GetMeasureRepeat("", "UseAntidote") > 0 
+			and GetRepeatTimerLeft("", GetMeasureRepeatName2("UseAntidote")) <= 0 
 			and ai_CanBuyItem("", "Antidote") > 0 then
 		MeasureRun("", nil, "UseAntidote")
 	end
@@ -82,7 +84,8 @@ function CheckHealth()
 	-- Check HP damage
 	if GetHPRelative("") < 0.85 and Rand(10) < 5 then
 		-- either doctor or lingerplace or nothing
-		if GetMoney("") > 2500 and not GetMeasureRepeat("", "AttendDoctor") > 0 then
+		if GetMoney("") > 2500 
+				and GetRepeatTimerLeft("", GetMeasureRepeatName2("UseAntidote")) <= 0 then
 			MeasureRun("", nil, "AttendDoctor")
 		else
 			MeasureRun("", "LingerPlace", "Linger")
@@ -98,7 +101,7 @@ function UseRandomArtefact(SimAlias)
 		return
 	end
 	
-	if GetMeasureRepeat(SimAlias, "Use"..Item) > 0 then
+	if GetRepeatTimerLeft("", GetMeasureRepeatName2("Use"..Item)) > 0 then
 		return
 	end
 	

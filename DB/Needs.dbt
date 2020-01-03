@@ -1,0 +1,17 @@
+//Table File, Version 1.02 (c) 2004 4head studios
+//extended -ab id 7- by HPfZ Mod Team 2008
+//Exported 
+
+Table Description:
+"id" INT -1 |"name" STRING  0               |"growth" FLOAT  0 |"useneedobject" INT  0 |
+
+Data: 
+1            "eat"                           1.5                1                       | 
+2            "pleasure"                      2.5                1                       | 
+3            "talk"                          1.0                0                       | 
+4            "faith"                         2.5                0                       | 
+5            "curiosity"                     1.5                0                       | 
+6            "illness"                       1.5                0                       | 
+7            "konsum"                        2.5                1                       | 
+8            "drinking"                      2.5                1                       | 
+9            "financial"                     3.5                0                       |

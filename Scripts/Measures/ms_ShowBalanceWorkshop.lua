@@ -37,9 +37,13 @@ function ShowForWorkshop(BldAlias)
 	local Wages = economy_CalculateWages(BldAlias)
 	local Ranking, RankingGoods, RankingCrafty, RankingCharisma, Attractivity = economy_CalculateSalesRanking(BldAlias)
 	
-	-- TODO add buttons for more information about (1) current attractivity and (b) current prices  
+	-- add extra button to choose pricing
+	local PriceRatio = GetProperty(BldAlias, SALESCOUNTER_PRICE) or 150
+	
+	-- buttons for more information about (1) current attractivity and (b) current prices  
 	local Choice = MsgBox("dynasty", BldAlias,
-			"@B[ATTR,@L_MEASURE_SHOWBALANCE_SHEET_ATTRACTIVITY_+0,]",--.."@B[PRIC,@L_MEASURE_SHOWBALANCE_SHEET_PRICES_+0,]", 
+			"@B[ATTR,@L_MEASURE_SHOWBALANCE_SHEET_ATTRACTIVITY_+0,]"
+				.."@B[PRIC,@L_MEASURE_SHOWBALANCE_SHEET_PRICES_+0,]", 
 			"@L_MEASURE_SHOWBALANCE_SHEET_HEAD_+0",
 			"@L_MEASURE_SHOWBALANCE_SHEET_BODY_+1",
 			GetID(BldAlias), -- %1GG
@@ -48,7 +52,8 @@ function ShowForWorkshop(BldAlias)
 			Ranking, -- %4i Ranking
 			Balances[1], -- %5t Autoroute 
 			Balances[2], -- %6t Salescounter
-			Balances[3] -- %7t Services
+			Balances[3], -- %7t Services
+			PriceRatio -- %8i%% current PriceRatio
 			)
 	if Choice == "ATTR" then
 		MsgBoxNoWait("dynasty", BldAlias,
@@ -57,12 +62,7 @@ function ShowForWorkshop(BldAlias)
 			Ranking, RankingCharisma, RankingCrafty, RankingGoods, Attractivity
 			)
 	elseif Choice == "PRIC" then
-		-- TODO get estimated prices for each offered item
-		MsgBoxNoWait("dynasty", BldAlias,
-			"@L_MEASURE_SHOWBALANCE_SHEET_ATTRACTIVITY_+0",
-			"@L_MEASURE_SHOWBALANCE_SHEET_ATTRACTIVITY_+1",
-			Ranking, RankingCharisma, RankingCrafty, RankingGoods, Attractivity
-			)
+		ms_showbalanceworkshop_ChangePriceRatio(BldAlias)
 	end
 end
 
@@ -87,5 +87,26 @@ function ShowForRogue(BldAlias)
 			Balances[1], -- %4t Autoroute
 			Balances[2] -- %5t Theft
 			)
+end
+
+function ChangePriceRatio(BldAlias)
+  local PriceRatio = GetProperty(BldAlias, "SalescounterPrice") or 150
+  local Buttons = "@B[100,@L_MEASURE_SHOWBALANCE_SHEET_PRICES_OPTION_+0,]"
+  	.."@B[125,@L_MEASURE_SHOWBALANCE_SHEET_PRICES_OPTION_+1,]"
+  	.."@B[150,@L_MEASURE_SHOWBALANCE_SHEET_PRICES_OPTION_+2,]"
+  	.."@B[175,@L_MEASURE_SHOWBALANCE_SHEET_PRICES_OPTION_+3,]"
+  	.."@B[200,@L_MEASURE_SHOWBALANCE_SHEET_PRICES_OPTION_+4,]"
+  
+	local Choice = MsgBox(
+		BldAlias, -- building
+		BldAlias, -- jump to target
+		"@P"..Buttons,
+		"@L_MEASURE_SHOWBALANCE_SHEET_HEAD_+0",
+		"@L_MEASURE_SHOWBALANCE_SHEET_PRICES_BODY_+0",
+		PriceRatio -- params)
+	)
+	if (Choice and Choice ~= "C" and Choice >= 100) then
+		SetProperty(BldAlias, "SalescounterPrice", Choice)
+	end
 end
 

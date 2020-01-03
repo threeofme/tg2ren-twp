@@ -265,7 +265,7 @@ function GetCourtingMeasure(SimAlias)
 		if (BestMeasureId and BestMeasureId > 0) then
 			local MeasureName = CourtingId2Measure(BestMeasureId)
 			if MeasureName
-					and (GetMeasureRepeat(SimAlias, MeasureName) <= 0)
+					and (GetRepeatTimerLeft(SimAlias, GetMeasureRepeatName2(MeasureName)) <= 0)
 					and (MeasureName ~= Forbidden0 and MeasureName ~= Forbidden1) then
 				-- update properties with last courting measures
 				if Forbidden0 then

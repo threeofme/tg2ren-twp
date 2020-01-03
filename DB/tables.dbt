@@ -74,6 +74,4 @@ Data:
 100          "songvariation"                 | 
 101          "songspecialevents"             | 
 102          "Lordship"                      | 
-
-// TOM Modded
-110         "BuildingToItems"                |
+110         "BuildingToItems"                | 

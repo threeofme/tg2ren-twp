@@ -1,12 +1,11 @@
 function Weight()
-	if not dyn_GetIdleMember("dynasty", "SIM") then
-		return 0
-	end
-
 	if not ReadyToRepeat("dynasty", "AI_DefendRogue") then
 		return 0
 	end
 	
+	if not dyn_GetIdleMember("dynasty", "SIM") then
+		return 0
+	end
 	-- TODO: Check for dangerous rogues in town
 	
 	return 5

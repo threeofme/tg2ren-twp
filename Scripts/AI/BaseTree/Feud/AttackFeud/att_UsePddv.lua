@@ -1,7 +1,7 @@
 function Weight()
 	local	Item = "Pddv"
 	
-	if GetMeasureRepeat("SIM", "Usepddv")>0 then
+	if GetRepeatTimerLeft("SIM", GetMeasureRepeatName2("Usepddv")) > 0 then
 		return 0
 	end
 	

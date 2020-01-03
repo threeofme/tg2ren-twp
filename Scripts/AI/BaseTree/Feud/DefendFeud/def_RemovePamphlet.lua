@@ -1,6 +1,6 @@
 function Weight()
 
-	if GetMeasureRepeat("SIM", "RemovePamphlet")>0 then
+	if GetRepeatTimerLeft("SIM", GetMeasureRepeatName2("RemovePamphlet")) > 0 then
 		return 0
 	end
 

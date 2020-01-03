@@ -1,0 +1,18 @@
+//Table File, Version 1.02 (c) 2004 4head studios
+//Exported 
+
+Table Description:
+"id" INT -1 |"name" STRING  0               |
+
+Data: 
+0            "none"                          | 
+1            "constitution"                  | 
+2            "dexterity"                     | 
+3            "charisma"                      | 
+4            "fighting"                      | 
+5            "craftsmanship"                 | 
+6            "shadow_arts"                   | 
+7            "rhetoric"                      | 
+8            "empathy"                       | 
+9            "bargaining"                    | 
+10           "secret_knowledge"              | 

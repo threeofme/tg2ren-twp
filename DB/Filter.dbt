@@ -596,7 +596,5 @@ Data:
 2064   "CanUsePastry"  "__F((Object.CanBeControlled())AND(Object.GetItemCnt(Pastry)>0)AND NOT(Object.GetState(fighting)))" | 
 2065   "SelectFriedhof" "__F((Object.Type==Building)AND(Object.BelongsToMe())OR(NOT(Object.BelongsToMe()))" |
 2066   "BookmarkPerson" "__F((Object.IsDynastySim)AND NOT(Object.BelongsToMe()))" |  
-
 2070   "IsMyThiefCanSteal"   "__F((Object.CanBeControlled())AND(Object.GetProfession()== 26)AND(Object.MinAge(16))AND(Object.GetWorkBuilding())AND(Object.GetLevel()>=3))"   |
 2071   "IsMyThiefCanBurgle"   "__F((Object.CanBeControlled())AND(Object.GetProfession()== 26)AND(Object.MinAge(16))AND(Object.GetWorkBuilding())AND(Object.GetLevel()>=2))"   |
-

@@ -64,5 +64,4 @@ Data:
 60           "donation"                      3                         22                    0                            0                       0                          500                     ""                              1                        | 
 61           "church"                        3                         23                    0                            0                       0                          500                     ""                              1                        | 
 62           "acceptbribe"                   3                         24                    0                            0                       0                          500                     ""                              1                        | 
-
-63           "stealfromcounter"              3                         20                    0                            0                       -4                         250                    "bs_IllegalDetection.lua"       0                        |
+63           "stealfromcounter"              3                         20                    0                            0                      -4                          250                    "bs_IllegalDetection.lua"        0                        | 

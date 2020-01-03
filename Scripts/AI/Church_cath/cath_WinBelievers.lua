@@ -1,5 +1,5 @@
 function Weight()
-	if GetMeasureRepeat("dynasty", "WinBelievers") > 0 then
+	if GetRepeatTimerLeft("SIM", GetMeasureRepeatName2("WinBelievers")) > 0 then
 		return 0
 	end
 	

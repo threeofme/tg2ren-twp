@@ -1,0 +1,12 @@
+//Table File, Version 1.02 (c) 2004 4head studios
+//Exported 
+
+Table Description:
+"id" INT -1 |"identifier" STRING  0         |"value" INT  0 |
+
+Data: 
+0            "Normal"                        6               | 
+1            "VeryShort"                     2               | 
+2            "Short"                         4               | 
+3            "Long"                          12              | 
+4            "VeryLong"                      24              | 

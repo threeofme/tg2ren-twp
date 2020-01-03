@@ -372,8 +372,10 @@ function ReturnCredit()
 		SetProperty("Bank","BankAccount",(Account+CreditSum))
 		SetProperty("Bank","BalanceReturnCount",(BalanceReturnCount+1))
 		SetProperty("Bank","BalanceReturn", (BalanceReturn+Plus))
-		
+		-- TODO is the money not returned to players if AI controlled?
 		f_CreditMoney("MyBoss",Plus,"Credit")
+		economy_UpdateBalance("Bank", "Service", Plus)
+		
 		local ExtraMsg = "@L_MEASURE_IDLE_RETURNCREDIT_SPRUCH"
 		if GetProperty("Bank","MsgReturn")==1 then
 			MsgNewsNoWait("MyBoss","","","building",-1,"@L_MEASURE_OfferCredit_HEAD_+1",
@@ -402,6 +404,10 @@ end
 
 function aidecide()
 	BuildingGetOwner("Bank", "BankChief")
+	-- only player should manage the credit account
+	if DynastyIsPlayer("BankChief") then 
+		return "C"
+	end
 
 	local cash = GetMoney("BankChief")
 

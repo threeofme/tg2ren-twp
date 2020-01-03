@@ -3,7 +3,7 @@ function Weight()
 		return 0
 	end
 	
-	return 40
+	return 60
 end
 
 function Execute()

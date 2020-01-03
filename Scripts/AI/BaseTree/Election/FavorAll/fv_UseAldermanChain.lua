@@ -4,7 +4,7 @@ function Weight()
 	local Title = GetNobilityTitle("SIM")
 	local Price = (Title * Title) * 50
 
-	if GetMeasureRepeat("SIM", "Use"..Item)>0 then
+	if GetRepeatTimerLeft("SIM", GetMeasureRepeatName2("Use"..Item)) > 0 then
 		return 0
 	end
 	

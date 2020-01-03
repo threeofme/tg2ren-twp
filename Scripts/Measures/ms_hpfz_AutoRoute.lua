@@ -77,7 +77,16 @@ function Init()
 			ms_hpfz_autoroute_ShowRoute(StationCount, Stations) 
 		elseif vorgang == 5 then
 			local ret = MsgBox("", "Owner", 
-				"@P@B[0,@L_AUTOROUTE_SALETHRESHOLD_+0,]".."@B[75,@L_AUTOROUTE_SALETHRESHOLD_+1,]".."@B[100,@L_AUTOROUTE_SALETHRESHOLD_+2,]".."@B[125,@L_AUTOROUTE_SALETHRESHOLD_+3,]".."@B[150,@L_AUTOROUTE_SALETHRESHOLD_+4,]",
+				"@P@B[0,@L_AUTOROUTE_SALETHRESHOLD_+0,]"..
+				"@B[70,@L_AUTOROUTE_SALETHRESHOLD_+1,]"..
+				"@B[80,@L_AUTOROUTE_SALETHRESHOLD_+1,]"..
+				"@B[90,@L_AUTOROUTE_SALETHRESHOLD_+1,]"..
+				"@B[100,@L_AUTOROUTE_SALETHRESHOLD_+2,]"..
+				"@B[110,@L_AUTOROUTE_SALETHRESHOLD_+3,]"..
+				"@B[120,@L_AUTOROUTE_SALETHRESHOLD_+4,]"..
+				"@B[130,@L_AUTOROUTE_SALETHRESHOLD_+4,]"..
+				"@B[140,@L_AUTOROUTE_SALETHRESHOLD_+4,]"..
+				"@B[150,@L_AUTOROUTE_SALETHRESHOLD_+4,]",
 				"@L_AUTOROUTE_SALETHRESHOLD_HEAD_+0",
 				"@L_AUTOROUTE_SALETHRESHOLD_BODY_+0",
 				SaleThreshold)
@@ -86,7 +95,6 @@ function Init()
 			end 
 		elseif vorgang == 6 then
 			local ret = MsgBox("","Owner","@P@B[0,@L_AUTOROUTE_INITIATE_INTERVAL_+0,]".."@B[1,@L_AUTOROUTE_INITIATE_INTERVAL_+1,]".."@B[6,@L_AUTOROUTE_INITIATE_INTERVAL_+2,]".."@B[12,@L_AUTOROUTE_INITIATE_INTERVAL_+3,]","@L_AUTOROUTE_INTERVAL_HEAD_+0","@L_AUTOROUTE_INTERVAL_BODY_+0")
-			LogMessage("MLIE: AutoRoute:InitiateInterval returned "..ret)
 			if ret == 0 or ret == 1 then
 				IntervalLabel = "_AUTOROUTE_INITIATE_INTERVAL_+"..ret
 				Interval = ret

@@ -229,9 +229,6 @@ function Run()
 
 		AddItems("",Plan,1)
 	
-		if IsStateDriven() then
-			SetState("",STATE_AIGUILDPRODUCE,true)
-		end
 	end
 end
 

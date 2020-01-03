@@ -1,0 +1,31 @@
+//Table File, Version 1.02 (c) 2004 4head studios
+//Exported 
+
+Table Description:
+"id" INT -1   |"var1" STRING  0                 |"prio1" INT  0   |"var2" STRING  0                 |"prio2" INT  0   |"var3" STRING  0                 |"prio3" INT  0   |"var4" STRING  0                 |"prio4" INT  0   |"var5" STRING  0                 |"prio5" INT  0   |"var6" STRING  0                 |"prio6" INT  0   |
+
+Data:
+1 "none" 1 "none" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+100 "05_building_bakery.ogg" 1 "09_building_joiner.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+110 "06_building_tavern1.ogg" 1 "07_building_tavern2.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+120 "08_building_blacksmith.ogg" 1 "09_building_joiner.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+130 "08_building_blacksmith.ogg" 1 "05_building_bakery.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+140 "10_building_couturier.ogg" 1 "15_deep_waters.ogg" 1 "33_background_village1.ogg" 1 "34_medieval1.ogg" 1 "34a_medieval2.ogg" 1 "35_background_small_town.ogg" 1 | 
+150 "11_building_alchemist.ogg" 1 "17_building_robber.ogg" 1 "18_building_thiefery.ogg" 1 "" 1 "98_Alchemist_Background.ogg" 1 "none" 1 | 
+160 "12_building_church.ogg" 1 "13_building_monastery.ogg" 1 "14_building_chapel.ogg" 1 "none" 1 "none" 1 "none" 1 | 
+180 "17_building_robber.ogg" 1 "18_building_thiefery.ogg" 1 "46_situation_suspense2.ogg" 1 "45_situation_suspense1.ogg" 1 "47_situation_suspense3.ogg" 1 "none" 1 | 
+200 "28_opener_town2.ogg" 1 "29_opener_town3.ogg" 1 "30_opener_city1.ogg" 1 "none" 1 "none" 1 "none" 1 | 
+201 "28_opener_town2.ogg" 1 "29_opener_town3.ogg" 1 "30_opener_city1.ogg" 1 "31_opener_city2.ogg" 1 "none" 1 "none" 1 | 
+202 "28_opener_town2.ogg" 1 "29_opener_town3.ogg" 1 "30_opener_city1.ogg" 1 "31_opener_city2.ogg" 1 "75_capital1.ogg" 1 "77_capital2.ogg" 1 | 
+210 "40_background_landscape3.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+220 "15_deep_waters.ogg" 1 "33_background_village1.ogg" 1 "34_medieval1.ogg" 1 "34a_medieval2.ogg" 1 "35_background_small_town.ogg" 1 "none" 1 | 
+221 "15_deep_waters.ogg" 1 "33_background_village1.ogg" 1 "34_medieval1.ogg" 1 "34a_medieval2.ogg" 1 "16_building_keep.ogg" 1 "39_background_landscape2.ogg" 1 | 
+225 "82_medicus.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+230 "201_herbshouse.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+231 "217_guildhouse.ogg" 1 "205_bank.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+232 "205_bank.ogg" 1 "217_guildhouse.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+233 "202_crypt.ogg" 1 "214_dungeon.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+234 "210_estate.ogg" 1 "205_bank.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+235 "211_dive.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+236 "214_dungeon.ogg" 1 "17_building_robber.ogg" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 
+237 "none" 1 "none" 1 "none" 1 "none" 1 "none" 1 "none" 1 | 

@@ -1,0 +1,49 @@
+//Table File, Version 1.02 (c) 2004 4head studios
+//Exported 
+
+Table Description:
+"id" INT -1 |"label" STRING  0              |"posx" FLOAT  0 |"posy" FLOAT  0 |"posz" FLOAT  0 |"rotx" FLOAT  0 |"roty" FLOAT  0 |"rotz" FLOAT  0 |
+
+Data: 
+1            "CameraPortrait"                -120             175              76               18               119              0                | 
+2            "CloseUp"                       -25              164              51               -10              150              0                | 
+3            "Totale"                        -163             311              239              37               126              0                | 
+4            "CloseUp-DownLeft"              -40              110              95               -40              130              0                | 
+5            "CloseUp-DownRight"             40               110              95               -40              230              0                | 
+6            "CloseUp-DownCenter"            0                110              95               -40              180              0                | 
+7            "Overview-DownRight"            -150             64               80               -40              90               0                | 
+8            "Overview-DownLeft"             150              64               80               -40              270              0                | 
+9            "Talk-TotalLeft"                -180             100              64               0                90               0                | 
+10           "Talk-TotalRight"               180              100              64               0                -90              0                | 
+11           "Talk-Left"                     -155             180              238              9                128              0                | 
+12           "Talk-Right"                    155              180              238              9                -128             0                | 
+13           "Talk-Front"                    0                180              238              0                180              0                | 
+14           "CloseUpSit"                    -74              179              292              5                177              0                | 
+15           "TalkSit-Left-Near"             -123             133              58               5                -228             0                | 
+16           "TalkSit-Front-Near"            -64              133              83               5                -185             0                | 
+17           "TalkSit-Right-Near"            -3               133              70               5                -144             0                | 
+18           "TalkSit-Left-Far"              -214             219              152              29               -223             0                | 
+19           "TalkSit-Front-Far"             -63              182              177              19               -182             0                | 
+20           "TalkSit-Right-Far"             95               209              136              26               -133             0                | 
+21           "Close_HCenterYCenter"          0                170              45               -4               177              0                | 
+22           "Close_HBottomYCenter"          0                150              47               -32              177              0                | 
+23           "Close_HCenterYLeft"            -33              170              51               -3               143              0                | 
+24           "Close_HBottomYLeft"            -33              150              51               -22              143              0                | 
+25           "Close_HCenterYRight"           33               170              51               -3               -143             0                | 
+26           "Close_HBottomYRight"           33               150              51               -22              -143             0                | 
+27           "Mid_HCenterYCenter"            0                170              104              -4               177              0                | 
+28           "Mid_HBottomYCenter"            -3               130              106              -28              177              0                | 
+29           "Mid_HCenterYLeft"              -94              170              130              -3               143              0                | 
+30           "Mid_HBottomYLeft"              -94              130              130              -17              143              0                | 
+31           "Mid_HCenterYRight"             94               170              130              -3               -143             0                | 
+32           "Mid_HBottomYRight"             94               130              130              -17              -143             0                | 
+33           "Far_HCenterYLeft"              -134             170              207              0                140              0                | 
+34           "Far_HUpYLeft"                  -155             230              196              19               130              0                | 
+35           "Far_HCenterYRight"             134              170              207              0                -140             0                | 
+36           "Far_HUpYRight"                 155              230              196              19               -130             0                | 
+37           "Up_HSkyYLeft"                  -80              310              155              55               140              0                | 
+38           "Up_HSkyYRight"                 80               310              155              55               -140             0                | 
+39           "TestFrontalView"               0                300              730              14               180              0                | 
+40           "TestTopView"                   64               1300             240              77               180              0                | 
+41           "DuelView"                      -520             265              480              17               130              0                | 
+42           "ExecutionView"                 -63              150              360              6                -182             0                | 

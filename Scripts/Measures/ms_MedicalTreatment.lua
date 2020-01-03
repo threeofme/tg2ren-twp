@@ -201,7 +201,8 @@ function Run()
 				elseif MedicineInSalescounter > 0 then
 					CanHeal = 2
 				end
-				local MustPay = DynastyIsPlayer("SickSim0") and GetDynastyID("Hospital") ~= GetDynastyID("SickSim0")
+				GetDynasty("SickSim0", "SickDyn")
+				local MustPay = DynastyIsPlayer("SickDyn") and GetDynastyID("Hospital") ~= GetDynastyID("SickDyn")
 				
 				if CanHeal then
 					-- only Players need to pay

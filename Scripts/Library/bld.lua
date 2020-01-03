@@ -25,7 +25,9 @@ end
 -- Stop former employees to work
 -- -----------------------
 function BuildingWorkersStopWorking(BuildingAlias)
-	local Alias
+	if not BuildingAlias or not AliasExists(BuildingAlias) then
+		return
+	end  
 	local workerCount = BuildingGetSimCount(BuildingAlias)
 	GetSettlement(BuildingAlias, "City")
 	
@@ -58,6 +60,9 @@ end
 -- Pays out bank account and medicine chest when on sale/sold
 -- -----------------------
 function ClearBuildingStash(BldAlias, OwnerAlias)
+	if not BldAlias or not AliasExists(BldAlias) then
+		return
+	end  
 	if BuildingGetType(BldAlias) == GL_BUILDING_TYPE_BANKHOUSE and HasProperty(BldAlias,"BankAccount") then
 		local invest = GetProperty(BldAlias,"BankAccount")
 		RemoveProperty(BldAlias,"BankAccount")
@@ -75,10 +80,10 @@ function ClearBuildingStash(BldAlias, OwnerAlias)
 	local ItemId, ItemCount, Price
 	for i = 1, Count do
 		ItemId = Items[i]
-		ItemCount = GetProperty("Salescounter_"..ItemId) or 0
+		ItemCount = GetProperty(BldAlias, "Salescounter_"..ItemId) or 0
 		Price = economy_GetPrice(BldAlias, ItemId)
 		Value = Value + (ItemCount * Price)
-		RemoveProperty("Salescounter_"..ItemId)
+		RemoveProperty(BldAlias, "Salescounter_"..ItemId)
 	end
 	if Value > 0 and AliasExists(OwnerAlias) then
 		f_CreditMoney(OwnerAlias, Value, "BuildingSold")
@@ -597,9 +602,6 @@ function SetupAI(BldAlias)
 	local ItemsNum -- total count of items to check
 	local MarketStock = {} -- Array, If this is not -1, AI will prefer to produce items that have a lower amount on stock on the local market
 	local LocalStock = {} -- Array, If this is not -1, AI will prefer to produce items that have a lower amount on stock on your workshops stock
-	local CheckItem
-	local CheckID
-	local Value
 	
 	local BldType = BuildingGetType(BldAlias)
 	
@@ -809,8 +811,9 @@ function SetupAI(BldAlias)
 		return
 	end
 	
-	local CheckStock
+	local CheckStock, CheckItem, CheckID
 	local CheckMarket
+	local Value
 	
 	for i=1, ItemsNum do
 		CheckItem = Items[i]
@@ -925,186 +928,6 @@ function GetNeedForMedicine(HospAlias, ItemName)
 	end
 end
 
--- ----------------------------------------------
--- Help AI by spawning (buying) important ressources
--- ----------------------------------------------
-
-function SpawnMaterial(BldAlias)
-	
-	if not BuildingGetOwner(BldAlias, "MyBoss") then
-		return
-	end
-	
-	if not GetSettlement(BldAlias, "City") then
-		GetNearestSettlement(BldAlias, "City")
-	end
-	
-	CityGetLocalMarket("City", "Market")
-	if not AliasExists("Market") then
-		return
-	end
-	
-	local Items = {} -- Array, name of items to spawn (buy)
-	local ItemsNum -- total amount of all mats to spawn
-	local CheckItem
-	local SpawnCount = {} -- Array, how many should be spawned?
-	local PayMoney = true -- do you have to pay? Setting this to false would be a cheat but could improve AI-behavior
-	
-	local BldType = BuildingGetType(BldAlias)
-	
-	if BldType == GL_BUILDING_TYPE_SMITHY then
-		Items = { "Iron", "Pinewood", "Oakwood"
-				}
-		ItemsNum = 3
-		SpawnCount = { 10, 5, 5 }
-		
-		if BuildingCanProduce(BldAlias, "Steel") then
-			Items = { "Iron", "Pinewood", "Oakwood", "Charcoal" }
-			ItemsNum = 4
-			SpawnCount = { 10, 5, 5, 10 }
-		end
-		
-	elseif BldType == GL_BUILDING_TYPE_ALCHEMIST then
-		Items = { "Oil", "Fruit"
-				}
-		ItemsNum = 2
-		SpawnCount = { 5, 5 }
-		
-	elseif BldType == GL_BUILDING_TYPE_TAILORING then
-		Items = {	"Flachs", "Wool"
-					}
-		ItemsNum = 2
-		SpawnCount = { 10, 10 }
-		
-		if BuildingGetLevel(BldAlias) > 1 then
-		
-			Items = {	"Flachs", "Wool", "Leather", "Dye"
-					}
-			ItemsNum = 4
-			SpawnCount = { 10, 10, 10, 10 }
-		end
-		
-	elseif BldType == GL_BUILDING_TYPE_BAKERY then
-		Items = {	"WheatFlour", "Salt", "Fat", "Honey"
-				}
-		ItemsNum = 4
-		SpawnCount = { 10, 10, 10, 10 }
-	
-	elseif BldType == GL_BUILDING_TYPE_TAVERN then
-		Items = {	"Wheat", "Salat", "Fruit"
-				}
-		ItemsNum = 3
-		SpawnCount = { 10, 5, 5 }
-		if BuildingGetLevel(BldAlias) > 1 then
-			Items = { "Wheat", "Salat", "Weingeist" }
-			ItemsNum = 3
-			SpawnCount = { 10, 5, 5 }
-		end
-		
-		
-	elseif BldType == GL_BUILDING_TYPE_JOINERY then
-		Items = {	"Pinewood", "Pech", "Oakwood", "Leather"
-					}
-		ItemsNum = 4
-		SpawnCount = { 10, 5, 10, 5 }
-		
-	elseif BldType == GL_BUILDING_TYPE_CHURCH_EV then
-		Items = {	"WheatFlour", "Honey", "Dye", "Pinewood"
-					}
-		ItemsNum = 4
-		SpawnCount = { 10, 5, 10, 5 }
-		
-	elseif BldType == GL_BUILDING_TYPE_CHURCH_CATH then
-		Items = {	"WheatFlour", "Honey", "Dye", "Pinewood"
-					}
-		ItemsNum = 4
-		SpawnCount = { 10, 5, 10, 5 }
-		
-	elseif BldType == GL_BUILDING_TYPE_HOSPITAL then
-		Items = {	"Fat", "Flachs", "Pech" }
-		ItemsNum = 3
-		SpawnCount = { 10, 10, 5 }
-		
-		if BuildingGetLevel(BldAlias) >= 2 then
-			Items = {	"Fat", "Flachs", "Pech", "Honey", "Weingeist" }
-			ItemsNum = 5
-			SpawnCount = { 10, 10, 5, 10, 5 }
-		end
-		
-	elseif BldType == GL_BUILDING_TYPE_BANKHOUSE then
-		Items = {	"Iron", "Oakwood", "Dye"
-					}
-		ItemsNum = 3
-		SpawnCount = { 5, 10, 10 }
-		
-		if BuildingGetLevel(BldAlias) >= 2 then
-			Items = {	"Iron", "Oakwood", "Dye", "Honey"
-					}
-			ItemsNum = 4
-			SpawnCount = { 5, 10, 5, 10 }
-		end
-		
-	elseif BldType == GL_BUILDING_TYPE_STONEMASON then
-		Items = {	"Dye"
-					}
-		ItemsNum = 1
-		SpawnCount = { 4 }
-		
-		if BuildingGetLevel(BldAlias) > 1 then
-			Items = {	"Dye", "Pinewood", "Iron"
-					}
-			ItemsNum = 3
-			SpawnCount = { 4, 10, 10 }
-		end
-	else
-		return
-	end
-	
-	local ItemId
-	local Price
-	local MarketStock
-	
-	for i=1, ItemsNum do
-		CheckItem = Items[i] -- check every material
-		if CheckItem ~= nil then -- just a safety check
-			if GetItemCount(BldAlias, CheckItem, INVENTORY_STD) == 0 then -- only spawn mats if we have 0
-				ItemId = ItemGetID(CheckItem)
-				MarketStock = GetItemCount("Market", CheckItem, INVENTORY_STD) 
-				if MarketStock < SpawnCount[i] and MarketStock > 1 then
-					Price = ItemGetPriceSell(CheckItem, "Market")*MarketStock
-					if PayMoney == true then
-						if GetMoney("MyBoss") >= Price then -- check if we have the money
-							if f_SpendMoney("MyBoss", Price, "misc") then
-								RemoveItems("Market", CheckItem, MarketStock, INVENTORY_STD)
-								Transfer(nil, nil, INVENTORY_STD, "Market", INVENTORY_STD, CheckItem, MarketStock)
-								AddItems(BldAlias, CheckItem, MarketStock, INVENTORY_STD)
-							end
-						end
-					else
-						RemoveItems("Market", CheckItem, MarketStock, INVENTORY_STD)
-						Transfer(nil, nil, INVENTORY_STD, "Market", INVENTORY_STD, CheckItem, MarketStock)
-						AddItems(BldAlias, CheckItem, MarketStock, INVENTORY_STD)
-					end
-				elseif MarketStock >= SpawnCount[i] then
-					Price = ItemGetPriceSell(CheckItem, "Market")*SpawnCount[i]
-					if PayMoney == true then
-						if GetMoney("MyBoss") >= Price then -- check if we have the money
-							if f_SpendMoney("MyBoss", Price, "misc") then
-								RemoveItems("Market", CheckItem, SpawnCount[i], INVENTORY_STD)
-								Transfer(nil, nil, INVENTORY_STD, "Market", INVENTORY_STD, CheckItem, SpawnCount[i])
-								AddItems(BldAlias, CheckItem, SpawnCount[i], INVENTORY_STD)
-							end
-						end
-					else
-						RemoveItems("Market", CheckItem, SpawnCount[i], INVENTORY_STD)
-						Transfer(nil, nil, INVENTORY_STD, "Market", INVENTORY_STD, CheckItem, SpawnCount[i])
-						AddItems(BldAlias, CheckItem, SpawnCount[i], INVENTORY_STD)
-					end
-				end
-			end
-		end
-	end
-end
 
 function RemoveCart(BldAlias)
 
@@ -1224,36 +1047,39 @@ end
 
 function HandleSetup(BldAlias)
 	bld_ResetWorkers(BldAlias)
-	if BuildingGetAISetting(BldAlias, "Produce_Selection") > 0 then
-		bld_SetupAI(BldAlias)
-		bld_SpawnMaterial(BldAlias)
-	end
 	economy_CalculateSalesRanking(BldAlias)
+	if BuildingGetAISetting(BldAlias, "Produce_Selection") > 0 then
+		economy_CalcProductionPriorities(BldAlias)
+	end
 	SetProperty(BldAlias, "BuySell_SellStock", 0)
 end
 
 function HandleOnLevelUp(BldAlias)
 	economy_CalculateSalesRanking(BldAlias)
+	if BuildingGetAISetting(BldAlias, "Produce_Selection") > 0 then
+		-- support AI production
+		economy_CalcProductionPriorities(BldAlias)
+	end
 	SetProperty(BldAlias, "BuySell_SellStock", 0)
 end
 
 function HandlePingHour(BldAlias)
-	-- Improve AI management
-	if BuildingGetAISetting(BldAlias, "Produce_Selection") > 0 then
-		bld_SetupAI(BldAlias)
-		--bld_SpawnMaterial(BldAlias)
-	end
-	
 	local Count, Items = economy_GetItemsForSale(BldAlias)
+	
 	-- 9am and 9pm with AI management
 	if math.mod(GetGametime(), 12) == 9 and (DynastyIsAI(BldAlias) or BuildingGetAISetting(BldAlias, "BuySell_SellStock") > 0) then 
 		economy_InitializeDefaultSalescounter(BldAlias, Count, Items)
 	end
-	economy_UpdateSalescounter(BldAlias, Count, Items)
+	
 	-- at 3, 11, 19 
 	if math.mod(GetGametime(), 8) == 3 then
+		if BuildingGetAISetting(BldAlias, "Produce_Selection") > 0 then
+			economy_UpdateSalescounter(BldAlias, Count, Items)
+			economy_CalcProductionPriorities(BldAlias, Count, Items)
+		end
 		economy_CalculateSalesRanking(BldAlias, Count, Items)
 	end
+	
 	-- at 1am: subtract current wages from balance
 	if math.mod(GetGametime(), 24) == 1 then
 		local Wages = economy_CalculateWages(BldAlias)
@@ -1278,6 +1104,10 @@ end
 function HandleNewOwner(BldAlias, FormerOwner)
 	bld_ClearBuildingStash(BldAlias, FormerOwner)
 	bld_BuildingWorkersStopWorking(BldAlias)
+	if BuildingGetAISetting(BldAlias, "Produce_Selection") > 0 then
+		-- support AI production
+		economy_CalcProductionPriorities(BldAlias)
+	end
 	bld_ResetWorkers(BldAlias)
 	economy_ClearBalance(BldAlias)
 	SetProperty(BldAlias, "BuySell_SellStock", 0)

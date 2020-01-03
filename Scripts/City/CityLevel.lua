@@ -147,7 +147,7 @@ function SetNewLevel(OldLevel, NewLevel)
 	if NewLevel == 3 then
 		CityGetOffice("", 2, 1, "treasurer")
 		CityGetOffice("", 2, 2, "judge")
-		if OfficeGetHolder("treasurer", "treasurerSim") and not OfficeGetHolder("judge", "judgeSim") then
+		if AliasExists("treasurer") and OfficeGetHolder("treasurer", "treasurerSim") and not OfficeGetHolder("judge", "judgeSim") then
 			SimSetOffice("treasurerSim", "judge")
 		end
 	end

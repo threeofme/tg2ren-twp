@@ -1,0 +1,27 @@
+//Table File (c) 2004 4head studios
+//Modified by RUNEFORGE Game Studio
+
+Table Description:
+"id" INT -1 |"filename" STRING  0 |"modes" INT  0 |"name" STRING  0 |"maxplayers" INT  0 |"multiplayer" INT  0 |"lordship" STRING  0 |
+
+Data:
+
+1   "ulm"                    0   "Ulm"                  10   3   "germany"      |
+2   "magathaburg"            0   "magathaburg"          8    3   "germany"      |
+3   "holyblood"              0   "Holyblood"            16   3   "austria"      |
+4   "seatown"                0   "Seatown"              6    3   "hansa"        |
+5   "fichtenhain"            0   "Fichtenhain"          12   3   "germany"      |
+6   "bingenheim"             0   "Bingenheim"           12   3   "germany"      |
+7   "weilerthal"             0   "Weilerthal"           10   3   "germany"      |
+8   "Novaesium"              0   "Novaesium"            14   3   "germany"      |
+9   "hanse"                  0   "Hanse"                12   3   "hansa"        |
+10  "Northsea"               0   "Northsea"             8    3   "hansa"        |
+11  "vienna"                 0   "vienna"               16   3   "austria"      |
+12  "vienna_2c"              0   "Vienna_2c"            8    3   "austria"      |
+13  "calenberg"              0   "Calenberg"            12   3   "germany"      |
+14  "hannover"               0	 "Hannover"             6    3   "germany"      |
+15  "duel"                   0   "Duel"                 2    3   "germany"      |
+16  "newark"                 0   "Newark"               8    3   "england"      |
+17  "augsburg"               0   "South_Germany"        12   3   "germany"      |
+18  "lyon"                   0   "France"               12   3   "france"       |
+19  "lyon_3s"                0   "France_3s"            16   3   "france"       | 

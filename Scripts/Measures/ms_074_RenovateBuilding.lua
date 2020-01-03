@@ -35,7 +35,8 @@ function Run()
 	-- Loose money according to buildingcosts
 	Cost = BuildingGetRepairPrice("")
 	
-	local Result = MsgNews("","","@P"..
+	if IsGUIDriven() then
+		local Result = MsgNews("","","@P"..
 				"@B[1,@L_REPLACEMENTS_BUTTONS_JA_+0]"..
 				"@B[C,@L_REPLACEMENTS_BUTTONS_NEIN_+0]",
 				ms_074_renovatebuilding_AIDecision,  --AIFunc
@@ -44,8 +45,9 @@ function Run()
 				"@L_MEASURE_RenovateBuilding_NAME_+0",
 				"@L_GENERAL_MEASURES_074_RENOVATEBUILDING_MSG_BODY_+0",
 				GetID(""),Cost)
-	if Result == "C" then
-		StopMeasure()
+		if Result == "C" then
+			StopMeasure()
+		end
 	end
 	
 	if not f_SpendMoney("dynasty", Cost, "BuildingRepairs") then

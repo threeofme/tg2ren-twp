@@ -23,7 +23,7 @@ function Weight()
 	local Money = GetMoney("SIM")
 	
 	local ratio = math.floor(Money*100 / Wealth)
-	if math.min(50, ratio) then
+	if math.min(5, ratio) then
 		return ratio
 	end
 	return 0

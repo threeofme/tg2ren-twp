@@ -1,9 +1,16 @@
 function Run()
+--	for i=100, 672 do
+--		local Testname = GetDatabaseValue("BuildingToItems", i, "name")
+--		if Testname and Testname ~= "" then
+--			hottea_PrintRequiredItems(i)
+--		end		
+--	end
+
 	local Target = ""
 	if AliasExists("Destination") then
 		Target = "Destination"
 	end
-		
+	
 	local result = InitData("@P"..
 	"@B[1,@L%1l,@L%1l,Hud/Buttons/btn_playtarot.tga]"..
 	"@B[2,@L%2l,@L%2l,Hud/Items/Item_AldermanChain.tga]"..
@@ -25,7 +32,7 @@ function Run()
 			SimSetMortal(Target, true)
 			MsgQuick("", "Lieber ein sterbliches Leben mit dir, als die Ewigkeit ohne dich!",GetID(Target))
 		end
-
+ 
 	elseif result==2 then
 		if GetNobilityTitle(Target)<7 then
 			SetNobilityTitle(Target, 7, true)
@@ -52,13 +59,13 @@ function Run()
 		chr_SimAddFame(Target,25)
 		chr_SimAddImperialFame(Target,25)
 	elseif result==7 then
-	    BlockChar(Target)
-		CommitAction("attackcart", Target, "")
-	  	-- TheBlackDeath
-	    --CreateScriptcall("StartDisease",1,"Measures/Artefacts/as_222_UseMixture.lua","StartDisease","","")
-	    --idlelib_GoToTavern(1)
-	    Sleep(3)
-		StopAction("attackcart", Target)
+		-- best used on target
+		GetDynasty("", "MyDyn")
+		local targetId = GetID(Target)
+		local buildingType = GL_BUILDING_TYPE_MINE
+		LogMessage("AITWP::HotTea buildingType = "..buildingType)
+	    SetProperty("MyDyn", "BUILD_TargetSimId", targetId)
+		SetProperty("MyDyn", "BUILD_BuildingType", buildingType)
 	elseif result == 8 then
 		local freeze = MsgBox("","Owner",
 				"@P@B[1,@L%1l,]@B[0,@L%2l,]",
@@ -69,6 +76,58 @@ function Run()
 			ScenarioPauseAI(false)
 		end
 	end
+end
+
+function PrintRequiredItems(BldId)
+	local ItemsString = GetDatabaseValue("BuildingToItems", BldId, "produceditems")
+	local ProducedItems = {}
+	local ProducedItemsCount = 0
+	for Id in string.gfind(ItemsString, "%d+") do
+		ProducedItemsCount = ProducedItemsCount + 1
+		ProducedItems[ProducedItemsCount] = ItemGetID(Id)
+	end
+	
+	local RequiredItems = {}
+	local RequiredItemsBaseUsages = {}
+	local RequiredItemsCount = 0
+	
+	local ItemId
+	local Amount, Buildtime
+	for i=1, ProducedItemsCount do
+		ItemId = ProducedItems[i]
+		Buildtime = GetDatabaseValue("Items", ItemId, "buildtime")
+		for j=1, 3 do
+			local Prod = GetDatabaseValue("Items", ItemId, "prod"..j)
+			if Prod and Prod > 0 then
+				Amount = GetDatabaseValue("Items", ItemId, "nr"..j)
+				-- only add prod if it isn't in the list yet, otherwise increase usage
+				local IndexOfProd =	hottea_IndexOf(RequiredItems, RequiredItemsCount, Prod)
+				if not IndexOfProd then
+					RequiredItemsCount = RequiredItemsCount + 1
+					IndexOfProd = RequiredItemsCount
+					RequiredItems[IndexOfProd] = Prod
+					RequiredItemsBaseUsages[IndexOfProd] = 0
+				end
+				-- base usage is defined as the maximum of units of this items that can be used up by one worker during a day 
+				RequiredItemsBaseUsages[IndexOfProd] = math.max(math.ceil(24/Buildtime) * Amount, RequiredItemsBaseUsages[IndexOfProd])				
+			end
+		end
+	end
+	-- 100  "Farm1"  4                 "1   2   4   5"                                         | 
+	local DbEntry = BldId .. "   "
+	DbEntry = DbEntry .. "\"" .. GetDatabaseValue("BuildingToItems", BldId, "name") .. "\"   "
+	DbEntry = DbEntry .. "\"" .. GetDatabaseValue("BuildingToItems", BldId, "produceditems") .. "\"   "
+	DbEntry = DbEntry .. "\"" .. helpfuncs_IdListToString(RequiredItems, RequiredItemsCount) .. "\"   \"" .. helpfuncs_IdListToString(RequiredItemsBaseUsages, RequiredItemsCount) .. "\"   |"
+	LogMessage(DbEntry)
+end
+
+function IndexOf(List, ListSize, Item)
+	for x=1, ListSize do
+		if List[x] and List[x] == Item then
+			return x
+		end
+	end
+	return nil
 end
 
 function CleanUp()

@@ -176,7 +176,8 @@ function Run()
 		elseif MedicineInSalescounter > 0 then
 			CanHeal = 2
 		end
-		local MustPay = DynastyIsPlayer("Destination") and GetDynastyID("Hospital") ~= GetDynastyID("Destination")
+		GetDynasty("SickSim0", "SickDyn")
+		local MustPay = DynastyIsPlayer("SickDyn") and GetDynastyID("Hospital") ~= GetDynastyID("SickDyn")
 			
 		if CanHeal then
 			if MustPay and not f_SpendMoney("Destination", Costs, "Offering") then
@@ -207,6 +208,8 @@ function Run()
 				elseif Disease == "BurnWound" then
 					ms_medicaltreatmenttarget_LayToBed("","Destination",BedNumber)
 					diseases_BurnWound("Destination",false)
+					local ToHeal = GetMaxHP("Destination") - GetHP("Destination")
+					ModifyHP("Destination",ToHeal,true)
 				elseif Disease == "Pox" then
 					ms_medicaltreatmenttarget_LayToBed("","Destination",BedNumber)
 					diseases_Pox("Destination",false)

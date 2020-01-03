@@ -4,7 +4,7 @@ function Weight()
 		return 0
 	end
 
-	if GetMeasureRepeat("Divehouse", "ArrangeConcert") > 0 then
+	if GetRepeatTimerLeft("Divehouse", GetMeasureRepeatName2("ArrangeConcert")) > 0 then
 		return 0
 	end
 		

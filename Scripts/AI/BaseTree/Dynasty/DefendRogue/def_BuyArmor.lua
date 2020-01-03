@@ -1,9 +1,8 @@
 function Weight()
-	
-	if Rand(3) == 0 then
+	if not AliasExists("SIM") then
 		return 0
 	end
-	
+
 	local Difficulty = ScenarioGetDifficulty()
 	local Item
 	

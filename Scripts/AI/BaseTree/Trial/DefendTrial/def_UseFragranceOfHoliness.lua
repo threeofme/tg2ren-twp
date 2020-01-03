@@ -6,7 +6,7 @@ function Weight()
 	
 	local	Item = "FragranceOfHoliness"
 	
-	if GetMeasureRepeat("SIM", "Use"..Item)>0 then
+	if GetRepeatTimerLeft("SIM", GetMeasureRepeatName2("Use"..Item)) > 0 then
 		return 0
 	end
 	

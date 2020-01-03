@@ -1,0 +1,20 @@
+//Table File, Version 1.02 (c) 2004 4head studios
+//Exported 
+
+Table Description:
+"id" INT -1 |"scriptfilename" STRING  0     |"prescript" INT  0 |"name" STRING  0               |"character_type" INT  0 |
+
+Data: 
+0            "-"                             0                   "none"                          0                        | 
+10           "-"                             0                   "CheckDynasty"                  0                        | 
+11           "-"                             0                   "CheckMyrmidon"                 0                        | 
+12           "-"                             0                   "CheckGuildHouse"               0                        | 
+20           "CheckWorkingHut.lua"           10                  "CheckWorkingHut"               0                        | 
+21           "HireMyrmidon.lua"              10                  "HireMyrmidon"                  0                        | 
+22           "Office.lua"                    10                  "OfficeCheck"                   2                        | 
+23           "Insult.lua"                    10                  "InsultCharacter"               1                        | 
+24           "L3_DynBlackmail.lua"           10                  "Blackmail"                     2                        | 
+25           "L3_DynAccuse.lua"              10                  "Accuse"                        0                        | 
+32           "L3_Patrol.lua"                 11                  "Patrol"                        1                        | 
+33           "L3_Sabotage.lua"               11                  "Sabotage"                      1                        | 
+36           "L3_OrderCollectEvidence.lua"   11                  "CollectEvidence"               2                        | 

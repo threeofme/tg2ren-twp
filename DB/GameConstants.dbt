@@ -177,10 +177,9 @@ Data:
 1006         "GL_BUILDING_TYPE_BANKHOUSE"    43                ""                              | 
 1007         "GL_BUILDING_TYPE_STONEMASON"   110               ""                              | 
 1008         "GL_PROFESSION_STONEMASONER"    62                ""                              | 
-1009         "GL_BUILDING_TYPE_FRUITFARM"    108               ""                              |
-1010         "GL_BUILDING_TYPE_JUGGLER"    102               ""                              |
+1009         "GL_BUILDING_TYPE_FRUITFARM"    108               ""                              | 
+1010         "GL_BUILDING_TYPE_JUGGLER"    102               ""                              | 
 1011         "GL_BUILDING_CLASS_ADDON"    8                 ""                              | 
-1012         "GL_BUILDING_TYPE_WAREHOUSE"     38             ""                              |
-1013         "GL_PROFESSION_COCOTTE"           30                ""                              |
-1014         "GL_ENABLE_LOG"           0                ""                              |
-
+1012         "GL_BUILDING_TYPE_WAREHOUSE"     38             ""                              | 
+1013         "GL_PROFESSION_COCOTTE"           30                ""                              | 
+1014         "GL_ENABLE_LOG"           0                ""                              | 

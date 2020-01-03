@@ -1,0 +1,11 @@
+//Table File, Version 1.02 (c) 2004 4head studios
+//Exported 
+
+Table Description:
+"id" INT -1 |"name" STRING  0               |"is_fixed_value" INT  0 |"fixed_value" FLOAT  0 |
+
+Data: 
+0            "neutral"                       1                        1                       | 
+1            "aggresiv"                      0                        0                       | 
+2            "political"                     0                        0                       | 
+3            "expansiv"                      0                        0                       | 
