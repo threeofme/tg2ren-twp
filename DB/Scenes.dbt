@@ -1,0 +1,48 @@
+//Table File, Version 1.02 (c) 2004 4head studios
+//Exported 
+
+Table Description:
+"id" INT -1 |"name" STRING  0               |"relativepath" STRING  0       |
+
+Data: 
+0            ""                              ""                              | 
+1            "Blacksmith_SMap_01"            "Locations/Blacksmith/"         | 
+2            "Couturier_SMap_01"             "Locations/Couturier/"          | 
+3            "Joiner_00"                     "Locations/"                    | 
+4            "Alchimist_main_SMap_01"        "Locations/Alchimist/"          | 
+5            "Tavern_taproom_SMap_01"        "Locations/Tavern/"             | 
+6            "Residence_backroom_SMap_01"    "Locations/Residence/"          | 
+7            "Residence_house_SMap_01"       "Locations/Residence/"          | 
+8            "PortalTest1"                   "Sandbox/"                      | 
+9            "PortalTest2"                   "Sandbox/"                      | 
+10           "Tavern_brewcellar"             "Locations/Tavern/"             | 
+11           "Alchimist_chamber_SMap_01"     "Locations/Alchimist/"          | 
+12           "Alchimist_cellar_SMap_01"      "Locations/Alchimist/"          | 
+13           "joiner_SMap_10"                "Locations/Joiner/"             | 
+14           "Townhall_smap_01"              "Locations/Townhall/"           | 
+15           "tavern_bath_smap_01"           "Locations/Tavern/"             | 
+16           "tavern_cellar_smap_01"         "Locations/Tavern/"             | 
+17           "Cave_SMap_01"                  "Locations/Cave/"               | 
+18           "Bakery_SMap_01"                "Locations/Bakery/"             | 
+19           "Room_Blackbox"                 "Locations/Room_Blackbox/"      | 
+20           "Prison_SMap_01"                "Locations/Prison/"             | 
+21           "Residence_house_poor_SMap_01"  "Locations/Residence/"          | 
+22           "Residence_house_rich_SMap_01"  "Locations/Residence/"          | 
+23           "ThiefesGuild_SMap_01"          "Locations/ThiefesGuild/"       | 
+24           "Church_evangelic_Smap_01"      "Locations/Church/"             | 
+25           "ResidenceSalon_SMap_01"        "Locations/ResidenceSalon/"     | 
+26           "Scriptorium_SMap_01"           "Locations/Church/"             | 
+27           "Room_Proto"                    "Locations/Room_Proto/"         | 
+28           "hospital"                      "Locations/Hospital/"           | 
+31           "wedding_chapel_Smap_01"        "Locations/WeddingChapel/"      | 
+32           "Warehouse_Smap_01"             "Locations/Warehouse/"          | 
+33           "graveyard"                     "Locations/Graveyard/"          | 
+34           "Bank_SMap_01"                  "Locations/Bank/"               | 
+35           "Guildhall_mainroom_SMap_01"    "Locations/Guildhouse/"         | 
+36           "Townhall_smap_02"              "Locations/Townhall/"           | 
+37           "Divehouse_SMap_01"             "Locations/Divehouse/"          | 
+38           "Estate_SMap_02"          	     "Locations/Estate/"             | 
+39           "stonemason_SMap_10"            "Locations/Stonemason/"         |
+40           "monastary_SMap_01"             "Locations/Monastery/"          |
+41           "marryroom_SMap_01"             "Locations/Marryroom/"          |
+42           "Alchimist_main_SMap_02"        "Locations/Alchimist/"          | 
