@@ -384,7 +384,7 @@ function CalculateWages(BldAlias)
 end
 
 function ChooseItemFromCounter(BldAlias, Count, Items)
-	LogMessage("TOM::economy::ChooseItemFromCounter starting")
+	--LogMessage("TOM::economy::ChooseItemFromCounter starting")
 	-- initialize optional Count, Items
 	if not Count or not Items then
 		Count, Items = economy_GetItemsForSale(BldAlias)
@@ -429,7 +429,7 @@ end
 ---
 -- returns ItemId, AvailableAmount
 function ChooseItemFromInventory(BldAlias, PlayerAlias)
-	LogMessage("TOM::economy::ChooseItemFromInventory starting")
+	--LogMessage("TOM::economy::ChooseItemFromInventory starting")
 	-- not my own building and not market, use sales counter
 	if GetDynastyID(PlayerAlias) ~= GetDynastyID(BldAlias) and BuildingGetClass(BldAlias) ~= GL_BUILDING_CLASS_MARKET then
 		return economy_ChooseItemFromCounter(BldAlias)

@@ -1,6 +1,16 @@
 Changelog
 =========
 
+## TWP 1.0.1beta ##
+
+This minor version includes following changes:
+
+* Orchard and beehives are now buildable resources, like fields. Thanks to *Ictiv* for help with that, especially the textures in the building menu.
+* Some missing English localization was added.
+* New measure "Buy Items (Gegenstände kaufen)" enables your sims to buy items directly from market or a sales counter.
+* Some missing files were added. 
+ 
+
 ## TWP 1.0beta ##
 TradeWarPolitics 1.0beta is the first mod version independant of the MegaModPack. 
 **Installation of the MegaModPack is not required anymore.**

@@ -598,3 +598,4 @@ Data:
 2066   "BookmarkPerson" "__F((Object.IsDynastySim)AND NOT(Object.BelongsToMe()))" |  
 2070   "IsMyThiefCanSteal"   "__F((Object.CanBeControlled())AND(Object.GetProfession()== 26)AND(Object.MinAge(16))AND(Object.GetWorkBuilding())AND(Object.GetLevel()>=3))"   |
 2071   "IsMyThiefCanBurgle"   "__F((Object.CanBeControlled())AND(Object.GetProfession()== 26)AND(Object.MinAge(16))AND(Object.GetWorkBuilding())AND(Object.GetLevel()>=2))"   |
+2072   "ValidBuyingTargetForSim"   "__F((Object.IsClass(5))OR(Object.IsClass(2)))"   |

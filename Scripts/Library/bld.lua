@@ -1108,6 +1108,7 @@ function HandleNewOwner(BldAlias, FormerOwner)
 		-- support AI production
 		economy_CalcProductionPriorities(BldAlias)
 	end
+	local NumWorkers = BuildingGetWorkerCount(BldAlias)
 	bld_ResetWorkers(BldAlias)
 	economy_ClearBalance(BldAlias)
 	SetProperty(BldAlias, "BuySell_SellStock", 0)

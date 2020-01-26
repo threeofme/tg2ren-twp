@@ -7,7 +7,7 @@
 -------------------------------------------------------------------------------
 
 function Init()
-end
+end 
 
 -- changes: added about 50 base gold to all successful pickpocketings
 
@@ -36,10 +36,12 @@ function Run()
 		end
 	end
 	
-	
+	local DestX, DestY, DestZ = PositionGetVector(Destination)
+	local TargetX, TargetZ
 	-- stop after 4 hours if started by AI
 	local Endtime = GetGametime() + 4
-	local DestAlias = "PickpocketTarget"
+	local NextPosition = "CurrentPosition"
+
 	while true do
 		-- check AI management of workshop
 		if BuildingGetAISetting("MyHome", "Enable") > 0 and GetGametime() > Endtime then
@@ -47,16 +49,22 @@ function Run()
 			return
 		end
 		
-		local NumOfObjects = Find("Owner","__F( (Object.GetObjectsByRadius(Sim)==1000) AND NOT(Object.BelongsToMe())AND NOT(Object.GetState(cutscene))AND NOT(Object.HasImpact(HaveBeenPickpocketed))AND NOT(Object.GetProfession() == 25)AND NOT(Object.GetProfession() == 21)AND NOT(Object.GetProfession() == 22)AND(Object.MinAge(16))AND NOT(Object.GetInsideBuilding()))","Sims",-1)
+		PlayAnimation("", "watch_for_guard")
+		local NumOfObjects = Find("Owner","__F( (Object.GetObjectsByRadius(Sim)==1000) AND NOT(Object.BelongsToMe())AND NOT(Object.GetState(cutscene))AND NOT(Object.HasImpact(HaveBeenPickpocketed))AND(Object.MinAge(16)))","Sims",-1)
 --		LogMessage("::TOM::Pickpocket::"..GetName("Owner").." Looking for victims... Found "..NumOfObjects)
 		if NumOfObjects <= 0 then
-			-- change position
+			-- change position			
 --			LogMessage("::TOM::Pickpocket::"..GetName("").." Changing position")
-			f_MoveTo("",Destination,GL_MOVESPEED_WALK,50)	
-			PlayAnimation("", "watch_for_guard")
+			TargetX = DestX + (Rand(1500) - 750.0)
+			TargetZ = DestZ + (Rand(1500) - 750.0)
+--			LogMessage("::TOM::Pickpocket Position is:"..TargetX..", "..TargetZ)
+			if ScenarioCreatePosition(TargetX, TargetZ, NextPosition) then
+--				StartMagicalEffect(CurrentPosition,"particles/aimingpoint.nif",5,0,2000,2000)				
+				f_MoveTo("",NextPosition,GL_MOVESPEED_WALK,10)
+			end
 		else
 			local DestAlias = "Sims"..Rand(NumOfObjects-1)
---			LogMessage("::TOM::Pickpocket::"..GetName("").." Going for "..GetName(DestAlias))
+			LogMessage("::TOM::Pickpocket::"..GetName("").." Going for "..GetName(DestAlias))
 			local DoIt = 1
 			if GetCurrentMeasureName(DestAlias)=="AttendMass" then 
 				DoIt = 0
@@ -68,7 +76,7 @@ function Run()
 				VictimSkill = Rand(4) + 1
 			end
 			if DoIt==1 then
---				LogMessage("::TOM::Pickpocket::"..GetName("").." I'll do it!")
+				LogMessage("::TOM::Pickpocket::"..GetName("").." I'll do it!")
 				if SendCommandNoWait(DestAlias, "BlockMe") then 
 					SetData("Blocked", 1)
 					f_MoveTo("", DestAlias, GL_MOVESPEED_WALK, 140)
@@ -132,7 +140,12 @@ function Run()
 --									return
 --								end
 							end
-							f_MoveTo("",Destination,GL_MOVESPEED_WALK,50)
+--							LogMessage("TWP::THIEF Move Around")
+							TargetX = DestX + (Rand(1500) - 750.0)
+							TargetZ = DestZ + (Rand(1500) - 750.0)
+							if ScenarioCreatePosition(TargetX, TargetZ, NextPosition) then
+								f_MoveTo("",NextPosition,GL_MOVESPEED_WALK,10)
+							end
 						end
 					end
 				end

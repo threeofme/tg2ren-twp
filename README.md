@@ -3,26 +3,23 @@ Installation
 
 Download-Link: https://github.com/threeofme/tg2ren-twp/archive/develop.zip
 
-TradeWarPolitics is based on Fajeth's MegaModPack 0.95. Make sure to follow 
-the installation instructions of that mod **before** you continue with the 
-following steps.
+TradeWarPolitics was originally based on Fajeth's MegaModPack 0.95. 
 
-1. Make sure that **MegaModPack 0.95** is installed correctly.
+**TradeWarPolitics 1.0beta** is the first mod version independant of the MegaModPack. 
+Installation of the MegaModPack is not required anymore. 
 
-2. **IMPORTANT** Remove the folder "Scripts/AI/" from your game folder. 
-   Do not remove the rest of the scripts folder, as not all scripts are 
-   contained in this zip file.
-   You may experience oddities in AI behavior if you skipped this step. 
+1. Use a fresh installation of TG2:Renaissance 4.211.
+   **Note:** For single player you may use an existing installation of the TWP mod.  
 
-3. Unzip this mod into your Guild2 game folder. Confirm to overwrite 
+2. Unzip this mod into your Guild2 game folder. Confirm to overwrite 
    existing files. If you are not prompted to confirm any overwrite, 
    you unzipped into the wrong folder.
 
-4. Go into the DBT-folder and remove the file **Text.dbt**. Rename the 
+3. Go into the DBT-folder and remove the file **Text.dbt**. Rename the 
    file **Text_EN.dbt** or **Text_DE.dbt** into **Text.dbt** for English 
    or German text.
 
-5. Start a new game and have fun. 
+4. Start a new game and have fun. 
 
 
 Mod Details

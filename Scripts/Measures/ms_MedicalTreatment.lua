@@ -202,7 +202,7 @@ function Run()
 					CanHeal = 2
 				end
 				GetDynasty("SickSim0", "SickDyn")
-				local MustPay = DynastyIsPlayer("SickDyn") and GetDynastyID("Hospital") ~= GetDynastyID("SickDyn")
+				local MustPay = AliasExists("SickDyn") and GetDynastyID("Hospital") ~= GetDynastyID("SickDyn")
 				
 				if CanHeal then
 					-- only Players need to pay

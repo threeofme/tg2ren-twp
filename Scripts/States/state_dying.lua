@@ -10,6 +10,8 @@
 -- init
 -- -----------------------
 function Init()
+	log_death("", "SIM is dying (state_dying).")
+
 	SetStateImpact("no_idle")
 	SetStateImpact("no_hire")
 	SetStateImpact("no_control")

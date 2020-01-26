@@ -125,8 +125,8 @@ function NeedItemsFindItem(event)
 		Items = { 
 		  "Beef", "Honey", "FishSoup", 
 			"Cookie", "FriedHerring", "BreadRoll",
-			"GrainPap", "Wheatbread", "Shellsoup", "Wurst", 
-			"Cheese", "Salat", "Fungi", "Fruit"
+			"GrainPap", "Wheatbread", "Barleybread", "Shellsoup", 
+			"Fungi", "Fruit"
 			}
 	-- Kriegsmaterial
 	elseif event == 3 then
@@ -145,7 +145,7 @@ function NeedItemsFindItem(event)
 	else
 	-- Rohstoffe
 		Items = { 
-			"Iron", "Silver", "Gold", "Wheat", "Flachs",
+			"Iron", "Silver", "Gold", "Wheat", "Flachs", "Barley",
 			"Wool", "Milch", "Leather",
 			"Herring", "Salmon", "Fat"
 			}
