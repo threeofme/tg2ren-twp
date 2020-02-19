@@ -1,0 +1,14 @@
+//Table File, Version 1.02 (c) 2004 4head studios
+//Exported 
+
+Table Description:
+"id" INT -1 |"name" STRING  0               |"skillability" LIST  0                                         |"isplayable" INT  0 |
+
+Data: 
+0            "none"                          ()                                                              0                    | 
+1            "patron"                        (1       1       2       2       3       2       4       3       5       2       6       3       7       2       8       1       9       1       10       3) 1                    | 
+2            "artisan"                       (1       1       2       1       3       2       4       3       5       1       6       3       7       2       8       3       9       2       10       2) 1                    | 
+3            "scholar"                       (1       2       2       2       3       3       4       3       5       2       6       3       7       1       8       1       9       2       10       1) 1                    | 
+4            "chiseler"                      (1       3       2       1       3       2       4       1       5       2       6       1       7       3       8       3       9       2       10       2) 1                    | 
+6            "npc"                           () 0                    | 
+19           "all"                           () 0                    | 

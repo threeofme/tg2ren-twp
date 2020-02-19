@@ -1,0 +1,23 @@
+//Table File, Version 1.02 (c) 2004 4head studios
+//extended -ab id 985- by HPfZ Mod Team 2008
+//Exported 
+
+Table Description:
+"id" INT -1 |"model" STRING  0              |"damage" FLOAT  0 |"weapontype" INT  0 |"minrange" INT  0 |"maxrange" INT  0 |"reload" FLOAT  0 |"soundtype" INT  0 |
+
+Data: 
+64           "sword_01.nif"                  12                 1                    0                  120                0                  2                   | 
+89           "doubleaxe_02.nif"              24                 1                    0                  200                0                  2                   | 
+83           "mace_01.nif"                   16                 1                    0                  160                0                  1                   | 
+61           "shortsword_01.nif"             8                  1                    0                  100                0                  2                   | 
+69           "langsword_01.nif"              20                 1                    0                  150                0                  2                   | 
+0            ""                              1                  1                    0                  80                 0                  3                   | 
+81           "ANIM_torchparticles.nif"       4                  2                    300                1000               3                  4                   | 
+503          ""                              1                  2                    300                500                3                  4                   | 
+500          "ANIM_Epic_onehand_sword.nif"   36                 1                    0                  200                0                  2                   | 
+502          ""                              28                 2                    100                2000               2                  4                   | 
+499          "ANIM_Epic_onehand_axe.nif"     38                 1                    0                  250                0                  2                   | 
+504          ""                              5                  2                    0                  1500               2                  4                   | 
+985          "ANIM_gun.nif"                  35                 1                    0                  200                0                  6                   | 
+983          ""                              25                 2                    100                200                0                  2                   | 
+982          ""                              45                 2                    0                  200                0                  2                   | 
