@@ -1,4 +1,9 @@
 function Weight()
+	-- disabled since lavender gathering is item production
+	if true then
+		return 0
+	end
+
 	if IsDynastySim("SIM") then
 		return 0
 	end

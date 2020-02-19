@@ -20,6 +20,7 @@ function Run()
 	
 	local	TimeOut
 
+	-- wait up to 3 hours for beginning of mass
 	if GetImpactValue("Destination","MassInProgress")~=1 then
 	
 		TimeOut = math.mod(GetGametime(),24)+3
@@ -73,7 +74,7 @@ function Run()
 
 	BuildingGetOwner("Destination","Boss")	
 	local	Attr = GetImpactValue("Destination", "Attractivity") + 1
-	local Money = math.floor(GetSkillValue("Boss", RHETORIC) * SimGetRank("") * Attr) + 5
+	local Money = math.floor(GetSkillValue("Boss", RHETORIC) * SimGetRank("") * Attr) + 7
 	if GetImpactValue("Destination","FalseRelict")>0 then
 		Money = Money + 10
 	end
@@ -81,7 +82,7 @@ function Run()
 	local Transfered
 	local HouselTaken = false
 	local HasKerzen = GetItemCount("", "Kerzen")
-	SetData("Endtime",math.mod(GetGametime(),24)+2)
+	SetData("Endtime",math.mod(GetGametime(),24)+3)
 	
 	while (math.mod(GetGametime(),24)<GetData("Endtime")) do
 
@@ -180,12 +181,12 @@ function AffectFaith()
 			end
 		end	
 		
-		-- gunst steigt bei anwesenden dynastielosen sims gleichen glaubens
+		-- gunst steigt bei anwesenden sims gleichen glaubens
 		if GetInsideBuilding("","church") then
 			BuildingGetInsideSimList("church","sim_list")
 			for i=0,ListSize("sim_list")-1 do
 				ListGetElement("sim_list",i,"sim")
-				if GetDynastyID("sim")<1 and SimGetReligion("")==SimGetReligion("sim") then
+				if SimGetReligion("")==SimGetReligion("sim") then
 					chr_ModifyFavor("","sim",MyFaith*SimGetFaith("sim")/1000)	-- 0..10
 				end
 			end

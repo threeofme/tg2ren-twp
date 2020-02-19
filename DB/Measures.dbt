@@ -58,7 +58,7 @@ Data:
 870   "ms_087_ChangeFaith.lua"   ""   "ChangeFaith"   30   "hud/buttons/btn_087_ChangeFaith.tga"   0   5   75   ""   ""   2   24   0   "none"   0   0   |
 890   "ms_089_PrayForGodsBlessing.lua"   ""   "PrayForGodsBlessing"   30   "hud/buttons/btn_089_PrayForGodsBlessing.tga"   0   5   100   ""   ""   0   12   24   "none"   0   0   |
 900   "ms_090_BuyHolyIndulgence.lua"   ""   "BuyHolyIndulgence"   31   "hud/buttons/btn_090_BuyHolyIndulgence.tga"   0   5   25   ""   ""   1   24   0   "none"   0   0   |
-910   "ms_091_PrepareWorship.lua"   ""   "PrepareWorship"   55   "hud/buttons/btn_091_PrepareWorship.tga"   0   5   100   ""   ""   0   8   4   "none"   0   0   |
+910   "ms_091_PrepareWorship.lua"   ""   "PrepareWorship"   55   "hud/buttons/btn_091_PrepareWorship.tga"   0   5   100   ""   ""   0   8   3   "none"   0   0   |
 911   "ms_091a_WorshipPraise.lua"   ""   "WorshipPraise"   30   "hud/buttons/btn_091a_WorshipPraise.tga"   0   5   0   "ImportantPersons"   ""   0   8   0   "none"   0   1   |
 912   "ms_091b_WorshipScold.lua"   "-"   "WorshipScold"   30   "hud/buttons/btn_091b_WorshipScold.tga"   0   5   0   "ImportantPersons"   ""   0   8   0   "none"   0   1   |
 920   "ms_092_SingForPeacefulness.lua"   ""   "SingForPeacefulness"   31   "hud/buttons/btn_092_SingForPeacefulness.tga"   0   3   100   ""   ""   0   12   2   "particles/radius.nif"   10   0   |
