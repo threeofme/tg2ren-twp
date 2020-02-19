@@ -10,16 +10,18 @@ Installation of the MegaModPack is not required anymore.
 
 1. Use a fresh installation of TG2:Renaissance 4.211.
    **Note:** For single player you may use an existing installation of the TWP mod.  
+   
+2. Delete the folder "Scripts" from your Guild2 game folder.
 
-2. Unzip this mod into your Guild2 game folder. Confirm to overwrite 
+3. Unzip this mod into your Guild2 game folder. Confirm to overwrite 
    existing files. If you are not prompted to confirm any overwrite, 
    you unzipped into the wrong folder.
 
-3. Go into the DBT-folder and remove the file **Text.dbt**. Rename the 
+4. Go into the DBT-folder and remove the file **Text.dbt**. Rename the 
    file **Text_EN.dbt** or **Text_DE.dbt** into **Text.dbt** for English 
    or German text.
 
-4. Start a new game and have fun. 
+5. Start a new game and have fun. 
 
 
 Mod Details
