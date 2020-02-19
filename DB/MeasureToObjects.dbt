@@ -537,8 +537,6 @@ Data:
 3084   13071   1   609   2063   6   ""   (1  6  )   ""   0   0   |
 3085   13072   0   0   2064   6   ""   ()   ""   0   0   |
 3086   13073   0   2066   10   6   ""   (6)   "MEASUREINIT_SELECTION"   0   0   |
-
-// TradeWarPolitics by ThreeOfMe
 3090   13080   0   0   2056   2   ""   ()   ""   0   0   |
 3091   2833   0   0   10   6   ""   ()   ""   0   0   |
 3092   13082   1   198   2070   1   ""   (2)   ""   0   0   |
@@ -546,9 +544,3 @@ Data:
 3094   1470   1   0   583   1   "hud/cursors/Cursor_moveto.tga"   (2  4  )   "MEASUREINIT_SELECTION"   0   0   |
 3095   500   1   0   583   1   "hud/cursors/Cursor_Attack.tga"   (6  1  3  )   "MEASUREINIT_SELECTION"   0   0   |
 3096   13083   0   0   75  1   ""   ()   ""   0   0   |
-
-
-// Hot Tea (self)
-4000   14000   0   0   514   6   ""   ()   ""   0   0   |
-// Hot Tea (target)
-4001   14001   0   0   514   6   ""   (6   )   ""   0   0   |
