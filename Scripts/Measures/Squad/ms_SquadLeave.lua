@@ -1,0 +1,4 @@
+function Run()
+	SquadRemoveMember("")
+end
+

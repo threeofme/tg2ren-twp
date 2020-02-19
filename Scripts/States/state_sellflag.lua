@@ -28,6 +28,6 @@ function CleanUp()
 	
 	BuildingGetOwner("", "NewOwner")
 	if GetData("FormerOwner") ~= GetID("NewOwner") then
-		bld_HandleNewOwner("Destination", "FormerOwner") 
+		bld_HandleNewOwner("", "FormerOwner") 
 	end
 end

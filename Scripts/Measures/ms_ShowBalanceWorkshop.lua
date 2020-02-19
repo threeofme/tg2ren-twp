@@ -16,6 +16,26 @@ function Run()
 		SetProperty("Workshop","MsgSell",0)
 	end
 	
+	-- DEBUG: Show current production priorities
+	local MsgBody = ""
+	local Count, Items = economy_GetItemsForSale("")
+	GetInventory("", INVENTORY_STD, "Inv") 
+	local Item, Need
+	for i = 1, Count do
+		Item = Items[i]
+		Need = GetProperty("Inv", "Need_"..Item) or 0
+		
+		MsgBody = MsgBody..ItemGetName(Item) .. ": " .. Need.."$N"
+	end
+	-- add lavender
+	Need = GetProperty("Inv", "Need_"..160) or 0
+	MsgBody = MsgBody..ItemGetName(160) .. ": " .. Need.."$N"
+		
+	MsgBox("", "Owner", "", "Prioritäten", MsgBody)
+	-- DEBUG END
+	
+	
+	
 	-- differentiate rogue buildings
 	local BldType = BuildingGetType("Workshop")
 	if GL_BUILDING_TYPE_THIEF == BldType or GL_BUILDING_TYPE_ROBBER == BldType or GL_BUILDING_TYPE_PIRATESNEST == BldType then
