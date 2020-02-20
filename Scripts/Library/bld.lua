@@ -762,7 +762,7 @@ function HandlePingHour(BldAlias)
 	end
 	
 	-- update sales counter every hour for players
-	if BuildingGetAISetting(BldAlias, "Produce_Selection") == 0 then
+	if BuildingGetAISetting(BldAlias, "Produce_Selection") <= 0 then
 		economy_UpdateSalescounter(BldAlias, Count, Items)
 	end
 	
