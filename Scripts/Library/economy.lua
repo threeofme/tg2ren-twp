@@ -620,7 +620,7 @@ function IncreaseServiceBasePrice(BldType, ItemId, BasePrice)
 	-- special case: hospital (Salve, Bandage, Medicine, Painkiller)
 	if BldType == GL_BUILDING_TYPE_HOSPITAL then
 		if ItemId == 201 or ItemId == 202 or ItemId == 203 or ItemId == 204 then
-			return BasePrice + 3 -- increase BasePrice by service income
+			return BasePrice + 5 -- increase BasePrice by service income
 		end
 	elseif BldType == GL_BUILDING_TYPE_TAVERN then
 		if ItemId == 30 or ItemId == 31 or ItemId == 32 or ItemId == 34 or ItemId == 35 or ItemId == 37 or ItemId == 38 then

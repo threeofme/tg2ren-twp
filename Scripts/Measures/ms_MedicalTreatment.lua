@@ -186,7 +186,7 @@ function Run()
 			if Cured == false then
 				-- TREATMENT
 				if Disease == false then -- special case HP LOSS
-					Costs = GetMaxHP("SickSim0") - GetHP("SickSim0") + 100
+					Costs = GetMaxHP("SickSim0") - GetHP("SickSim0") + 120
 				else
 					Costs = diseases_GetTreatmentCost(Disease)
 				end
@@ -202,7 +202,7 @@ function Run()
 					CanHeal = 2
 				end
 				GetDynasty("SickSim0", "SickDyn")
-				local MustPay = AliasExists("SickDyn") and GetDynastyID("Hospital") ~= GetDynastyID("SickDyn")
+				local MustPay = IsDynastySim("SickDyn") and GetDynastyID("Hospital") ~= GetDynastyID("SickDyn")
 				
 				if CanHeal then
 					-- only Players need to pay

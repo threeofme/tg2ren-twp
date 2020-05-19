@@ -13,6 +13,8 @@ function Setup()
 	else
 		worldambient_CreateAnimal("Dog", "" ,1)
 	end
+	AddItems("", "Fat", 12)
+	AddItems("", "Charcoal", 6)
 end
 
 function UpdateBalance(Alias)

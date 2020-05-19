@@ -210,14 +210,17 @@ function Run()
 			local VicMoney = GetMoney("Victim")
 			if VicMoney > (Value + ValueBonus) then
 				f_SpendMoney("Destination", (Value + ValueBonus), "CostThiefs")
-				chr_RecieveMoney("Owner",(Value + ValueBonus), "IncomeThiefs")
+				chr_RecieveMoney("",(Value + ValueBonus), "IncomeThiefs")
+				economy_UpdateBalance("MyThievesGuild", "Theft", (Value + ValueBonus))
 				mission_ScoreCrime("", (Value + ValueBonus))
 			elseif VicMoney > 0 then
 				f_SpendMoney("Destination", VicMoney, "CostThiefs")
-				chr_RecieveMoney("Owner", VicMoney, "IncomeThiefs")
+				chr_RecieveMoney("", VicMoney, "IncomeThiefs")
+				economy_UpdateBalance("MyThievesGuild", "Theft", VicMoney)
 				mission_ScoreCrime("", VicMoney)
 			else
-				chr_RecieveMoney("Owner", ValueBonus, "IncomeThiefs")
+				chr_RecieveMoney("", ValueBonus, "IncomeThiefs")
+				economy_UpdateBalance("MyThievesGuild", "Theft", ValueBonus)
 				mission_ScoreCrime("", ValueBonus)
 			end
 
@@ -290,11 +293,13 @@ function Run()
 				local VicMoney = GetMoney("Victim")
 				if VicMoney > (Value + ValueBonus) then
 					f_SpendMoney("Destination", Value + ValueBonus, "CostThiefs")
-					chr_RecieveMoney("Owner", Value + ValueBonus, "IncomeThiefs")
+					chr_RecieveMoney("", Value + ValueBonus, "IncomeThiefs")
+					economy_UpdateBalance("MyThievesGuild", "Theft", Value + ValueBonus)
 					mission_ScoreCrime("", Value + ValueBonus)
 				elseif VicMoney > 0 then
 					f_SpendMoney("Destination", VicMoney, "CostThiefs")
-					chr_RecieveMoney("Owner", VicMoney, "IncomeThiefs")
+					chr_RecieveMoney("", VicMoney, "IncomeThiefs")
+					economy_UpdateBalance("MyThievesGuild", "Theft", VicMoney)
 					mission_ScoreCrime("", VicMoney)
 				end
 	
@@ -335,9 +340,11 @@ function Run()
 			RemoveImpact("Destination", "Scouted")
 		end
 		
-		feedback_MessageCharacter("Owner",
-			"@L_THIEF_066_BURGLEAHOUSE_MSG_ACTOR_SUCCESS_HEAD_+0",
-			"@L_THIEF_066_BURGLEAHOUSE_MSG_ACTOR_SUCCESS_BODY_+0",GetID("Destination"), Haul + HaulBonus )
+		if IsGUIDriven() then
+			feedback_MessageCharacter("Owner",
+				"@L_THIEF_066_BURGLEAHOUSE_MSG_ACTOR_SUCCESS_HEAD_+0",
+				"@L_THIEF_066_BURGLEAHOUSE_MSG_ACTOR_SUCCESS_BODY_+0",GetID("Destination"), Haul + HaulBonus )
+		end
 		
 		feedback_MessageCharacter("Destination",
 			"@L_THIEF_066_BURGLEAHOUSE_MSG_VICTIM_SUCCESS_HEAD_+0",

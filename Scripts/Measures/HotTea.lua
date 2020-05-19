@@ -6,7 +6,6 @@ function Run()
 --		end		
 --	end
 
-
 	local Target = ""
 	if AliasExists("Destination") then
 		Target = "Destination"
@@ -61,16 +60,12 @@ function Run()
 		chr_SimAddImperialFame(Target,25)
 	elseif result==7 then
 		-- best used on target
---		GetDynasty("", "MyDyn")
---		local targetId = GetID(Target)
---		local buildingType = GL_BUILDING_TYPE_MINE
---		LogMessage("AITWP::HotTea buildingType = "..buildingType)
---	    SetProperty("MyDyn", "BUILD_TargetSimId", targetId)
---		SetProperty("MyDyn", "BUILD_BuildingType", buildingType)
-		if GetInsideBuilding(Target, "Hospital") then
-			local TreatmentNeed = bld_CalcTreatmentNeed("Hospital", Target)
-			MsgBox("", Target, "", "TreatmentNeed", "TreatmendNeed = "..TreatmentNeed)
-		end
+		GetDynasty("", "MyDyn")
+		local targetId = GetID(Target)
+		local buildingType = GL_BUILDING_TYPE_MINE
+		LogMessage("AITWP::HotTea buildingType = "..buildingType)
+	    SetProperty("MyDyn", "BUILD_TargetSimId", targetId)
+		SetProperty("MyDyn", "BUILD_BuildingType", buildingType)
 	elseif result == 8 then
 		local freeze = MsgBox("","Owner",
 				"@P@B[1,@L%1l,]@B[0,@L%2l,]",
@@ -123,19 +118,6 @@ function PrintRequiredItems(BldId)
 	DbEntry = DbEntry .. "\"" .. GetDatabaseValue("BuildingToItems", BldId, "name") .. "\"   "
 	DbEntry = DbEntry .. "\"" .. GetDatabaseValue("BuildingToItems", BldId, "produceditems") .. "\"   "
 	DbEntry = DbEntry .. "\"" .. helpfuncs_IdListToString(RequiredItems, RequiredItemsCount) .. "\"   \"" .. helpfuncs_IdListToString(RequiredItemsBaseUsages, RequiredItemsCount) .. "\"   |"
-	LogMessage(DbEntry)
-end
-
-function PrintTextvalues(TextId)
-	local Label = GetDatabaseValue("TextDeUtf8", TextId, "label")
-	local German = GetDatabaseValue("TextDeUtf8", TextId, "german")
-	local English = GetDatabaseValue("TextEnUtf8", TextId, "english")
-
-	local DbEntry = TextId .. "   "
-	DbEntry = DbEntry .. "\"" .. Label .. "\"   "
-	DbEntry = DbEntry .. "\"" .. German .. "\"   "
-	DbEntry = DbEntry .. "\"" .. English .. "\"   "
-	DbEntry = DbEntry .. " |"
 	LogMessage(DbEntry)
 end
 

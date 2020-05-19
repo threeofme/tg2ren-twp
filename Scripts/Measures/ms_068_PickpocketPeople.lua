@@ -69,6 +69,9 @@ function Run()
 			if GetCurrentMeasureName(DestAlias)=="AttendMass" then 
 				DoIt = 0
 			end
+			if DynastyGetDiplomacyState("MyHome", DestAlias) >= DIP_ALLIANCE then
+				DoIt = 0
+			end
 			local VictimSkill
 			if IsDynastySim(DestAlias) then 
 				VictimSkill = GetSkillValue(DestAlias,EMPATHY)

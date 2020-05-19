@@ -536,9 +536,9 @@ function GetTreatmentCost(Disease)
 	elseif Disease == "Cold" then
 		return 250
 	elseif Disease == "Influenza" then
-		return 400
-	elseif Disease == "BurnWound" then
 		return 500
+	elseif Disease == "BurnWound" then
+		return 300
 	elseif Disease == "Pox" then
 		return 750
 	elseif Disease == "Pneumonia" then
@@ -550,7 +550,7 @@ function GetTreatmentCost(Disease)
 	elseif Disease == "Caries" then
 		return 800
 	else
-		return 50
+		return 200
 	end
 end
 

@@ -94,10 +94,12 @@ function Run()
 	
 	CreateScriptcall(scriptcall,48,"Measures/ms_070_ScoutAHouse.lua","ExpireValues","Owner","Destination",OwnerDyn)
 	
-	--message to thief owner
-	feedback_MessageCharacter("Owner",
-		"@L_THIEF_070_SCOUTAHOUSE_MSG_ACTOR_HEAD_+0",
-		"@L_THIEF_070_SCOUTAHOUSE_MSG_ACTOR_BODY_+0",GetID("Destination"),ProtectionLabel,ValueLabel)
+	if IsGUIDriven() then
+		--message to thief owner
+		feedback_MessageCharacter("Owner",
+			"@L_THIEF_070_SCOUTAHOUSE_MSG_ACTOR_HEAD_+0",
+			"@L_THIEF_070_SCOUTAHOUSE_MSG_ACTOR_BODY_+0",GetID("Destination"),ProtectionLabel,ValueLabel)
+	end
 
 	--stop hiding
 	ResetProcessProgress("")
