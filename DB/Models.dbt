@@ -1318,6 +1318,8 @@ Data:
 7632   "weapons/"   "pike"   0   0   0   0   0   0   |
 7633   "buildings/WeddingChurch/"   "Weddingchruch_high"   0   1   0   0   0   0   |
 7634   "buildings/resources/"   "wiese"   0   0   0   0   0   0   |
+7635   "buildings/Piratsnest/"   "piratsnest_medium"   0   0   0   0   0   0  | 
+7636   "buildings/Piratsnest/"   "piratsnest_high"  0   0   0   0   0   0   | 
 9001   "city/build/"   "deco_scaffold1"   0   0   0   0   0   0   |
 9002   "city/build/"   "deco_scaffold2"   0   0   0   0   0   0   |
 9003   "city/build/"   "deco_scaffold3"   0   0   0   0   0   0   |
