@@ -41,7 +41,7 @@ function Run()
   wahltext = wahltext.."@B[C,@L_MEASURES_DIVEGETALC_BODY_+1]"
 	
 	local sauf
-  if DynastyIsAI("") == false or DynastyIsShadow("") == false or not IsGUIDriven() then
+  if IsGUIDriven() then
     sauf = MsgBox("",false,"@P"..
     wahltext,
     "@L_MEASURES_DIVEGETALC_HEAD_+0",
