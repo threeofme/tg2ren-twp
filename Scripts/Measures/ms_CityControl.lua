@@ -25,24 +25,25 @@ function Run()
 	end
 	
 	local Difficulty = ScenarioGetDifficulty()
-
+	local Season
 	while true do
-		Sleep(Rand(60)+300)
-
-		local Season = Weather_GetSeason()
+		Sleep(Rand(120)+420)
+		Season = GetSeason() 
 		-- spring and fall
 		-- infection, Heuschrecken, inferno, black death, ratboy
 		local probs = {8, 1, 2, 1, 1}
 			
-		if Season == 1 then
+		if Season == EN_SEASON_SUMMER then
 			-- summer
 			probs = {3, 2, 3, 2, 0}
-		elseif Season == 3 then
+		elseif Season == EN_SEASON_WINTER then
 			-- winter
 			probs = {15, 0, 0, 2, 0}
 		end
 	
 		local Choice = Rand(100)+1
+		MsgNewsNoWait("All","","","intrigue",-1,"Testereignis",
+	                    "Choice: "..Choice.."$NProbs[3] = "..probs[3].."$N Season: "..Season)
 		if Choice < Difficulty * probs[1] then
 			ms_citycontrol_InfectPartyMember()
 		elseif Choice < Difficulty * (probs[1] + probs[2]) then
