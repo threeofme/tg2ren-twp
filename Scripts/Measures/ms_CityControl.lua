@@ -42,8 +42,6 @@ function Run()
 		end
 	
 		local Choice = Rand(100)+1
-		MsgNewsNoWait("All","","","intrigue",-1,"Testereignis",
-	                    "Choice: "..Choice.."$NProbs[3] = "..probs[3].."$N Season: "..Season)
 		if Choice < Difficulty * probs[1] then
 			ms_citycontrol_InfectPartyMember()
 		elseif Choice < Difficulty * (probs[1] + probs[2]) then
