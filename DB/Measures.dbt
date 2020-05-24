@@ -606,7 +606,7 @@ Data:
 13080   "ms_ManageSalesCounter.lua"   "-"   "ManageSalesCounter"   40   "Hud/Buttons/Unload.tga"   0   5   0   ""   ""   0   0   0   "none"   0   0   |
 13082   "ms_twp_StealFromCounter.lua"   ""   "StealFromCounter"   42   "hud/buttons/btn_061_PlunderBuilding.tga"   0   3   50   ""   ""   0   6   0   "none"   0   0   |
 13083   "ms_ManageEmployee.lua"   ""   "ManageEmployee"   50   "hud/buttons/btn_twp_ManageEmployee.tga"   0   5   0   ""   ""   0  0   0   "none"   0   0   |
-13084   "ms_ShowSalesCounterSim.lua"   ""   "ShowSalesCounterSim"   30   "hud/buttons/Unload.tga"   0   3   0   ""   ""   0   0   0   "none"   0   0   |
+13084   "ms_ShowSalesCounterSim.lua"   ""   "ShowSalesCounterSim"   30   "hud/buttons/Unload.tga"   0   2   0   ""   ""   3   0   0   "none"   0   0   |
 14000   "HotTea.lua"   "-"   "HotTea"   55   "hud/buttons/btn_UseHotTea.tga"   0   2   0   ""   ""   2   0   0   "none"   0   0   |
 14001   "HotTea.lua"   "-"   "HotTeaTarget"   55   "hud/buttons/btn_UseHotTea.tga"   0   2   0   ""   ""   2   0   0   "none"   0   0   |
 14002   "ms_CameraUnlock.lua"   "-"   "CameraUnlock"   55   "hud/buttons/btn_UseHotTea.tga"   0   5   0   ""   ""   0  0   0   "none"   0   0   |
