@@ -59,6 +59,10 @@ function Setup()
 end
 
 function PingHour()
+	if math.mod(GetGametime(), 6) == 2 then -- at 2, 8, 14, 20
+		bld_CheckRepairs("")
+	end
+
 	GetScenario("World")
 	if HasProperty("World", "messages") then
 		if GetProperty("World", "messages") == 1 then

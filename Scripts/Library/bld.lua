@@ -775,6 +775,11 @@ function HandlePingHour(BldAlias)
 		economy_CalculateSalesRanking(BldAlias, Count, Items)
 	end
 	
+	-- at 2, 8, 14, 20: repairs
+	if math.mod(GetGametime(), 6) == 2 and BuildingGetAISetting(BldAlias, "Budget_Repair") > 0 then 
+		bld_CheckRepairs("")
+	end
+	
 	-- at 1am: subtract current wages from balance
 	if math.mod(GetGametime(), 24) == 1 then
 		local Wages = economy_CalculateWages(BldAlias)
@@ -790,10 +795,30 @@ function HandlePingHour(BldAlias)
 		if DynastyIsAI("MyBoss") then
 			bld_CheckRivals(BldAlias)
 			bld_ForceLevelUp(BldAlias)
-			-- attempt to fix stagnant money of AI dynasties
-			--f_CreditMoney("MyBoss", Rand(100)*BuildingGetLevel(BldAlias))
 		end
 	end
+end
+
+function CheckRepairs(BldAlias)
+	local BuildHP = GetHPRelative(BldAlias) * 100
+	if BuildHP >= 90 then
+		-- no repairs necessary yet
+		return
+	end
+
+	if GetState(BldAlias, STATE_REPAIRING) 
+			or GetState(BldAlias, STATE_FIGHTING) 
+			or GetState(BldAlias, STATE_BURNING)
+			or GetState(BldAlias, STATE_LEVELINGUP)
+			or GetState(BldAlias, STATE_DEAD) then
+		-- no repairs possible
+		return
+	end
+	-- leave the rest to chance...
+	local Chance = Rand(70) + 20 -- always below 20%, never above 90% (70 + 20)
+	if Chance >= BuildHP then
+		MeasureRun(BldAlias, BldAlias, "RenovateBuilding")
+	end		
 end
 
 function HandleNewOwner(BldAlias, FormerOwner)
@@ -807,4 +832,16 @@ function HandleNewOwner(BldAlias, FormerOwner)
 	bld_ResetWorkers(BldAlias)
 	economy_ClearBalance(BldAlias)
 	SetProperty(BldAlias, "BuySell_SellStock", 0)
+end
+
+function GetItemCount(BldAlias, RequestedItemId)
+	local SlotCount = InventoryGetSlotCount(BldAlias, INVENTORY_STD)
+	local Retval = 0
+	for i=0, SlotCount-1 do
+		local ItemId, ItemCount = InventoryGetSlotInfo(BldAlias, i, INVENTORY_STD)
+		if ItemId and ItemId == RequestedItemId then
+			Retval = Retval + ItemCount
+		end
+	end
+	return Retval
 end
