@@ -41,6 +41,6 @@ end
 
 function Execute()
 	local Difficulty = ScenarioGetDifficulty()
-	local Timer = 24 - Difficulty*4
+	local Timer = 12 - Difficulty * 2
 	SetRepeatTimer("SIM", "AI_Privilege", Timer)
 end

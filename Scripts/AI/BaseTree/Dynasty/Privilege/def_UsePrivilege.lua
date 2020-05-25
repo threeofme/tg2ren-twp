@@ -15,8 +15,7 @@ function Weight()
 		return 0
 	end
 		
-	
-	return 100
+	return 50
 end
 
 function GetVictim(maxfavor)
