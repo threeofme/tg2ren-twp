@@ -2,8 +2,10 @@ function Weight()
 	if not ReadyToRepeat("dynasty", "AI_HomeLevelUp") then
 		return 0
 	end
+	
+	DynastyGetMemberRandom("dynasty", "DynMember")
 
-	if not GetHomeBuilding("dynasty", "home") then
+	if not GetHomeBuilding("DynMember", "home") then
 		return 0
 	end
 	
@@ -39,8 +41,8 @@ function Weight()
 	SetData("Cost", UpgradeCost)
 	SetData("Level", HomeLevel)
 	
-	local Title = GetNobilityTitle("dynasty")
-	local Money = GetMoney("dynasty")
+	local Title = GetNobilityTitle("DynMember")
+	local Money = GetMoney("DynMember")
 	
 	if Money < (UpgradeCost + MoneyReserve) or Title < NeedTitle then
 		return 0
@@ -51,7 +53,7 @@ end
 
 function Execute()
 	if not AliasExists("home") then
-		GetHomeBuilding("dynasty", "home")
+		GetHomeBuilding("DynMember", "home")
 	end
 	
 	local Difficulty = ScenarioGetDifficulty()

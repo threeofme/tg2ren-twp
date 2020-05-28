@@ -221,7 +221,6 @@ function PingHour()
 		
 		-- Farmer
 	marketpinghour_CheckItem(Level, "Wheat", 4, AddMissing)
-	marketpinghour_CheckItem(Level, "Barley", 4, AddMissing)
 	marketpinghour_CheckItem(Level, "Flachs", 4, AddMissing)
 	marketpinghour_CheckItem(Level, "Wool", 4, AddMissing)
 	marketpinghour_CheckItem(Level, "Fat", 5, AddMissing)

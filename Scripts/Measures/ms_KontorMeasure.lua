@@ -142,15 +142,12 @@ end
 function GetRandomItem() 
 	local ItemList = {
 	"Wheat"
-, "Barley"
 , "Flachs"
 , "Wool"
 , "Fat"
 , "Leather"
 , "Milch"
 , "Beef"
-, "Cheese"
-, "Wurst"
 , "Cookie"
 , "Wheatbread"
 , "Cake"
@@ -287,7 +284,7 @@ function GetRandomItem()
 , "Wheellock"
 , "Snaplock"
 	}
-	local count = 145
+	local count = 142
 	local random = Rand(count + 1)
 	return ItemList[random]
 end

@@ -673,7 +673,7 @@ function BuySomethingAtTheMarket(Type)
 						if Rand(2) == 0 then
 							Itemchoice = "RoastBeef"
 						else
-							Itemchoice = "Pretzel"
+							Itemchoice = "Candy"
 						end
 					elseif Type == 9 then
 						Itemchoice = "Optieisen"
@@ -1346,23 +1346,6 @@ function RepairHome(Building)
 	CarryObject("","",false)
 		
 	
-end
-
---- -----------------------
--- RobberIdle
--- -----------------------
-function RobberIdle(Workbuilding)
-	SimGetWorkingPlace("", "WorkingPlace")
-	GetLocatorByName("WorkingPlace", "Entry1", "WaitingPos")
-	
-	Sleep(10)
-	
-	if GetDistance("", "WaitingPos") > 500 then
-		local dist = Rand(100)+10	
-		f_MoveTo("Sim","WaitingPos",GL_MOVESPEED_RUN, dist)
-	end
-
-	Sleep(5)
 end
 
 

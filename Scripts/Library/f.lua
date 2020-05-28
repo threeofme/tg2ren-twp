@@ -645,6 +645,9 @@ function CreditMoney(Alias, Amount, Purpose)
 end
 
 function SpendMoney(Alias, Amount, Purpose)
+	if not AliasExists(Alias) then
+		return true
+	end
 	if DynastyIsPlayer(Alias) or IsGUIDriven() then
 		-- call hardcoded f_SpendMoney since it works for these cases
 		-- LogMessage("AITWP::SpendMoney::"..Purpose.." on "..GetName(Alias))

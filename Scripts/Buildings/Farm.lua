@@ -3,6 +3,7 @@ end
 
 function OnLevelUp()
 	bld_HandleOnLevelUp("")
+	
 end
 
 function Setup()
@@ -124,5 +125,5 @@ end
 
 function PingHour()
 	bld_HandlePingHour("")
-	farm_SellOtherStuff("")
+	--farm_SellOtherStuff("")
 end
