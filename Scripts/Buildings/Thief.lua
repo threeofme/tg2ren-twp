@@ -32,7 +32,7 @@ function PingHour()
 	if BuildingGetOwner("", "MyBoss") then
 		if GetHomeBuilding("MyBoss", "MyHome") then
 			if DynastyIsShadow("MyHome") then -- shadows shall only have 1 cart
-				bld_RemoveCart("")
+				bld_CheckCarts("")
 			end
 			
 			if DynastyIsAI("MyHome") then

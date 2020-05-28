@@ -619,32 +619,45 @@ function GetNeedForMedicine(HospAlias, ItemName)
 end
 
 
-function RemoveCart(BldAlias)
-
+function CheckCarts(BldAlias)
 	local CartCount = BuildingGetCartCount(BldAlias)
-	if CartCount > 2 then
-		for i=1, BuildingGetCartCount("")-1 do
-			if BuildingGetCart("", i, "CartAlias") then
-				if not GetState("CartAlias", STATE_CHECKFORSPINNINGS) then -- means it is standing still
-					if GetDistance("CartAlias", BldAlias) < 500 then -- is the cart at home?
-						-- Check for currently loaded items
-						local ItemId
-						local Found = 0
-						local Count = InventoryGetSlotCount("CartAlias", INVENTORY_STD)
-						local HasItems = false
-						for i=0, Count-1 do
-							ItemId, Found = InventoryGetSlotInfo("CartAlias", i, INVENTORY_STD)
-							if ItemId and ItemId>0 and Found>0 then
-								HasItems = true
-							end
-						end
-						if not HasItems then -- only remove cart if it is empty
-							f_CreditMoney(BldAlias, 250, "misc") -- add some money for compensation (needs testing)
-							InternalRemove("CartAlias")
-							break
-						end
-					end
+	if CartCount > 2 and BuildingGetCart("", 2, "CartAlias") then
+		bld_RemoveCart("", "CartAlias") -- remove third cart
+	end
+	-- for farm and orchard: assign AutoCart-Measure to all carts (does not work yet for any workshops that have to buy resources)
+	local BldType = BuildingGetType(BldAlias)
+	if BldType ~= GL_BUILDING_TYPE_FARM and BldType ~= GL_BUILDING_TYPE_FRUITFARM  then
+		return
+	end
+	
+	CartCount = BuildingGetCartCount(BldAlias)
+	for i=0, CartCount - 1 do
+		if BuildingGetCart("", i, "CartAlias") then
+			local Measure = GetCurrentMeasureName("CartAlias")
+			if Measure ~= "AutoRoute" and Measure ~= "AutoCart" and Measure ~= "SendCartAndUnload" then
+				MeasureRun("CartAlias", "CartAlias", "AutoCart", true)
+			end
+		end
+	end
+end
+
+function RemoveCart(BldAlias, CartAlias)
+	if not GetState("CartAlias", STATE_CHECKFORSPINNINGS) then -- means it is standing still
+		if GetDistance("CartAlias", BldAlias) < 500 then -- is the cart at home?
+			-- Check for currently loaded items
+			local ItemId
+			local Found = 0
+			local Count = InventoryGetSlotCount("CartAlias", INVENTORY_STD)
+			local HasItems = false
+			for i=0, Count-1 do
+				ItemId, Found = InventoryGetSlotInfo("CartAlias", i, INVENTORY_STD)
+				if ItemId and ItemId>0 and Found>0 then
+					HasItems = true
 				end
+			end
+			if not HasItems then -- only remove cart if it is empty
+				f_CreditMoney(BldAlias, 250, "misc") -- add some money for compensation (needs testing)
+				InternalRemove("CartAlias")
 			end
 		end
 	end
@@ -788,13 +801,10 @@ function HandlePingHour(BldAlias)
 	
 	-- Manage carts
 	if BuildingGetOwner(BldAlias, "MyBoss") then
-		if DynastyIsShadow("MyBoss") then -- shadows shall only have 1 cart
-			bld_RemoveCart(BldAlias)
-		end
-		
 		if DynastyIsAI("MyBoss") then
+			bld_CheckCarts(BldAlias)
 			bld_CheckRivals(BldAlias)
-			bld_ForceLevelUp(BldAlias)
+			--bld_ForceLevelUp(BldAlias)
 		end
 	end
 end
