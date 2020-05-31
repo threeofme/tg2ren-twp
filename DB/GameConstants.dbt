@@ -183,3 +183,4 @@ Data:
 1012         "GL_BUILDING_TYPE_WAREHOUSE"     38             ""                              | 
 1013         "GL_PROFESSION_COCOTTE"           30                ""                              | 
 1014         "GL_ENABLE_LOG"           0                ""                              | 
+1015         "GL_PROFESSION_JUGGLER"           42                ""                              |

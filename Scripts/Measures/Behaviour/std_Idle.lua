@@ -540,11 +540,14 @@ function Worker(ActiveMovement)
 			aitwp_ThiefIdle("WorkingPlace")
 			return
 		elseif SimGetProfession("") == GL_PROFESSION_ROBBER then
-			idlelib_RobberIdle("WorkingPlace")
+			aitwp_RobberIdle("") 
 			return
 		elseif SimGetProfession("") == GL_PROFESSION_COCOTTE then
 			aitwp_CocotteIdle("")
 			return
+		elseif SimGetProfession("") == GL_PROFESSION_JUGGLER then
+			--aitwp_JugglerIdle("")
+			--return
 		elseif SimGetProfession("") == GL_PROFESSION_MYRMIDON then
 			aitwp_MyrmidonIdle("")
 			return

@@ -85,3 +85,32 @@ function Heal(WorkerAlias, HomeAlias)
 	CityGetNearestBuilding("City", WorkerAlias, -1, GL_BUILDING_TYPE_LINGERPLACE, -1, -1, FILTER_IGNORE, "LingerPlace")
 	MeasureRun(WorkerAlias, "LingerPlace", "Linger")
 end
+
+function GetAmbushLocation(RobberBld, RetAlias)
+	local Count = GetOutdoorLocator("ambush", -1, "Ambush")
+	if (Count==0) or (Count==nil) then
+		return false
+	end
+	
+	local	Alias
+	local	Dist = -1
+	local Location = nil
+	local BestDist = 99999
+	
+	for l=0,Count-1 do
+		Alias = "Ambush"..l
+		Dist = GetDistance(RobberBld, Alias)
+		
+		if not Location or Dist < BestDist then
+			Location = Alias
+			BestDist = Dist
+		end
+	end
+	
+	if not Location then
+		return false
+	end
+	
+	CopyAlias(Location , RetAlias)
+	return true
+end

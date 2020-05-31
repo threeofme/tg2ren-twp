@@ -399,11 +399,54 @@ function CocotteIdle(Cocotte)
 	return 
 end
 
+--- -----------------------
+-- RobberIdle; other measures are triggered by building script Robber.lua
+-- 1. Check HP and heal
+-- 2. Check for better equipment at base
+-- 3. Waylay
+-- -----------------------
+function RobberIdle(RobberAlias)
+	SimGetWorkingPlace(RobberAlias, "WorkingPlace")
+	GetDynasty("WorkingPlace", "DynAlias")
+	if DynastyIsAI("DynAlias") or BuildingGetAISetting("WorkingPlace", "Enable") > 0 then
+		-- TODO implement
+		if GetHPRelative(RobberAlias) <= 0.8 then
+			LogMessage("::TOM::AI Robber healing: ".. GetName(RobberAlias))
+			-- robbers may be able to heal at home, otherwise go to a lingerplace
+			if BuildingHasUpgrade("WorkingPlace", "Campfire") then
+				MeasureRun(RobberAlias, nil, "GetCured")
+			else 
+				roguelib_Heal(RobberAlias, "WorkingPlace")
+			end
+			return
+		end
+		if Rand(10) == 0 then
+			-- check my equipment occasionally 
+			LogMessage("::TOM::AI Robber checking outfit: ".. GetName(RobberAlias))
+			MeasureRun(RobberAlias, nil, "CheckOutfit")
+			return
+		end
+		LogMessage("::TOM::AI Robber waylaying: ".. GetName(RobberAlias))
+		roguelib_GetAmbushLocation("WorkingPlace", "WaylayDest")
+		SquadCreate(RobberAlias, "SquadWaylayForBooty", "WaylayDest", "SquadWaylayMember", "SquadWaylayMember")
+	else
+		-- go to base and stand around (actual idle behaviour)
+		GetLocatorByName("WorkingPlace", "Entry1", "WaitingPos")
+		Sleep(10)
+		if GetDistance(RobberAlias, "WaitingPos") > 500 then
+			local dist = Rand(100)+10
+			f_MoveTo(RobberAlias,"WaitingPos",GL_MOVESPEED_RUN, dist)
+		end
+	
+		Sleep(5)
+	end
+
+end
+
 -- -----------------------
 -- MyrmidonIdle
 -- -----------------------
 function MyrmidonIdle(MyrmAlias)
-	LogMessage("::TOM::AI Myrmidon going idle: ".. GetName(MyrmAlias))
 	SimGetWorkingPlace(MyrmAlias, "WorkingPlace")
 	GetDynasty("WorkingPlace", "DynAlias")
 	local IsManageEmployee = GetProperty("", "TWP_ManageEmployee") or 0

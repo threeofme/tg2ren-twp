@@ -26,9 +26,10 @@ function Run()
 	local	ToDo
 	local	Success
 	SetData("Tarnung", 0)
+	local Endtime = GetGametime() + 4
 	
-	while true do
-		
+	while BuildingGetAISetting("MyRobbercamp", "Enable") <= 0 and GetGametime() <= Endtime do
+
 		ToDo = ms_squadwaylaymember_WhatToDo()
 		Success = false
 		
@@ -48,7 +49,7 @@ function Run()
 			Success = ms_squadwaylaymember_Attack()
 		elseif ToDo == "plunder" then
 			Success = ms_squadwaylaymember_Plunder()
-		elseif ToDo == "rest" then
+		elseif ToDo == "rest" or GetHPRelative("") <= 0.76 then 
 			Success = ms_squadwaylaymember_Rest()
 		end
 		
@@ -133,7 +134,7 @@ function WhatToDo()
 	end
 	
 	-- Check the building's inventory to add new stuff - no need to waylay if it is full. We use a dummy item
-	if not CanAddItems("MyRobbercamp", "PoisonedCake", 1, INVENTORY_STD) then
+	if not CanAddItems("MyRobbercamp", "DummyItem", 1, INVENTORY_STD) then
 		return "wait"
 	end
 	

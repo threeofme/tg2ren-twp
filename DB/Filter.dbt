@@ -183,7 +183,7 @@ Data:
 255   "IsMyScholar"   "__F((Object.CanBeControlled())AND(Object.IsClass(3))AND(Object.MinAge(16)))"   |
 257   "ValidTargetForEvilMeasure"   "__F(NOT(Object.BelongsToMe())AND(Object.ActionAdmissible()))"   |
 258   "CanBeThreated"   "__F((Object.CanBeThreated())AND(Object.ActionAdmissible()))"   |
-259   "IsMyRobber"   "__F((Object.CanBeControlled())AND(Object.IsClass(4))AND NOT(Object.GetProfession()==14)AND NOT(Object.GetProfession()>15))"   |
+259   "IsMyRobber"   "__F((Object.CanBeControlled())AND(Object.IsClass(4))AND(Object.GetProfession()==15))"   |
 260   "IsMyCartToBeRepaired"   "__F((Object.BelongsToMe())AND(Object.CompareHPRelative()<99))"   |
 261   "CanStartFeast"   "__F((Object.CanBeControlled())AND(Object.GetInsideBuilding())AND(Object.IsBuildingOwnedByMe())AND(Object.IsBuildingMyHome())AND(Object.BelongsToMe())AND(Object.IsType(2))AND(Object.HasUpgrade(Saloon))AND NOT(Object.GetState(feast)))"   |
 263   "IsInventoryVisibleSim"   "__F((Object.IsInventoryVisible())AND NOT(Object.HudIsInCutscene()))"   |
@@ -599,3 +599,4 @@ Data:
 2070   "IsMyThiefCanSteal"   "__F((Object.CanBeControlled())AND(Object.GetProfession()== 26)AND(Object.MinAge(16))AND(Object.GetWorkBuilding())AND(Object.GetLevel()>=3))"   |
 2071   "IsMyThiefCanBurgle"   "__F((Object.CanBeControlled())AND(Object.GetProfession()== 26)AND(Object.MinAge(16))AND(Object.GetWorkBuilding())AND(Object.GetLevel()>=2))"   |
 2072   "ValidBuyingTargetForSim"   "__F((Object.IsClass(5))OR(Object.IsClass(2)))"   |
+2073   "IsMyRobberLv2"   "__F((Object.CanBeControlled())AND(Object.IsClass(4))AND(Object.GetProfession()==15)AND(Object.GetWorkBuilding())AND(Object.GetLevel()>=2))"   |
