@@ -21,6 +21,7 @@ function GetCartSlotInfo(CartAlias)
 	elseif Type == EN_CT_MERCHANTMAN_BIG then
 		return 6, 40
 	end
+	return 0, 0
 end
 
 -- returns (OptionCount, Options)
@@ -81,13 +82,13 @@ function UnloadAll(CartAlias, DestAlias)
 		if ItemId and ItemCount then
 			-- Add some bargain-bonus on market sells
 			if BuildingGetClass(DestAlias) == 5 then
-				if GetHomeBuilding(CartAlias,"Buisness") then
-					if BuildingGetOwner("Buisness","MyBoss") then
+				if GetHomeBuilding(CartAlias,"Business") then
+					if BuildingGetOwner("Business","MyBoss") then
 						if GetSettlement(CartAlias, "MyCity") then
 							CityGetLocalMarket("MyCity","MyMarket")
 							EstimatedMoney = ItemGetPriceSell(ItemId,"MyMarket")*ItemCount
 							BargainMoney = math.floor(EstimatedMoney*((GetSkillValue("MyBoss",BARGAINING)*2)/100))
-							economy_UpdateBalance("Buisness", "Autoroute", math.abs(EstimatedMoney + BargainMoney))
+							economy_UpdateBalance("Business", "Autoroute", math.abs(EstimatedMoney + BargainMoney))
 						end
 					end
 				end 
