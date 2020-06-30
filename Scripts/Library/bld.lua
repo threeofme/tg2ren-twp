@@ -624,11 +624,6 @@ function CheckCarts(BldAlias)
 	if CartCount > 2 and BuildingGetCart("", 2, "CartAlias") then
 		bld_RemoveCart("", "CartAlias") -- remove third cart
 	end
-	-- for farm and orchard: assign AutoCart-Measure to all carts (does not work yet for any workshops that have to buy resources)
-	local BldType = BuildingGetType(BldAlias)
-	if BldType ~= GL_BUILDING_TYPE_FARM and BldType ~= GL_BUILDING_TYPE_FRUITFARM  then
-		return
-	end
 	
 	CartCount = BuildingGetCartCount(BldAlias)
 	for i=0, CartCount - 1 do
@@ -799,12 +794,14 @@ function HandlePingHour(BldAlias)
 		economy_UpdateBalance(BldAlias, "Wages", -Wages)
 	end
 	
-	-- Manage carts
 	if BuildingGetOwner(BldAlias, "MyBoss") then
+		-- Manage carts
+		if DynastyIsAI("MyBoss") or BuildingGetAISetting(BldAlias, "BuySell") > 0 then 
+			bld_CheckCarts(BldAlias) 
+		end
+		-- look for rivals
 		if DynastyIsAI("MyBoss") then
-			bld_CheckCarts(BldAlias)
 			bld_CheckRivals(BldAlias)
-			--bld_ForceLevelUp(BldAlias)
 		end
 	end
 end
