@@ -15,7 +15,6 @@ function GameStart()
 	-- Food and Drinks (2)
 		-- Mill
 	marketpinghour_CheckItem(Level, "WheatFlour", 10)
-	marketpinghour_CheckItem(Level, "BarleyFlour", 10)
 	marketpinghour_CheckItem(Level, "Oil", 2)
 	marketpinghour_CheckItem(Level, "Saft", 2)
 		-- Church
@@ -218,7 +217,9 @@ function PingHour()
 	-- disable resource spawning on harder difficulties
 	local Difficulty = ScenarioGetDifficulty() -- easy 0, 1, 2, 3, 4 hard
 	local AddMissing = Difficulty < 3 or GetRound() < 12 - (4 * (4 - Difficulty))
-		
+	-- TODO re-enable resource spawning in early game
+	AddMissing = false
+	
 		-- Farmer
 	marketpinghour_CheckItem(Level, "Wheat", 4, AddMissing)
 	marketpinghour_CheckItem(Level, "Flachs", 4, AddMissing)
@@ -244,7 +245,6 @@ function PingHour()
 		-- Stonemason
 	marketpinghour_CheckItem(Level, "Grindingbrick", 2, AddMissing)
 		-- Mill
-	marketpinghour_CheckItem(Level, "BarleyFlour", 4, AddMissing)
 	marketpinghour_CheckItem(Level, "WheatFlour", 4, AddMissing)
 	marketpinghour_CheckItem(Level, "Oil", 2, AddMissing)
 		-- Smithy

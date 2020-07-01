@@ -1,10 +1,11 @@
 function Run()
---	for i=100, 672 do
---		local Testname = GetDatabaseValue("BuildingToItems", i, "name")
---		if Testname and Testname ~= "" then
---			hottea_PrintRequiredItems(i)
---		end		
---	end
+	-- for each building
+	for i=490, 672 do
+		local Testname = GetDatabaseValue("BuildingToItems", i, "name")
+		if Testname and Testname ~= "" then
+			hottea_PrintRequiredItems(i)
+		end		
+	end 
 
 	local Target = ""
 	if AliasExists("Destination") then
@@ -91,25 +92,28 @@ function PrintRequiredItems(BldId)
 	local RequiredItemsBaseUsages = {}
 	local RequiredItemsCount = 0
 	
-	local ItemId
+	local ItemId, Manufacturer
 	local Amount, Buildtime
 	for i=1, ProducedItemsCount do
 		ItemId = ProducedItems[i]
 		Buildtime = GetDatabaseValue("Items", ItemId, "buildtime")
-		for j=1, 3 do
-			local Prod = GetDatabaseValue("Items", ItemId, "prod"..j)
-			if Prod and Prod > 0 then
+		for j=1, 3 do 
+			local Prod = GetDatabaseValue("Items", ItemId, "prod"..j) 
+			Manufacturer = GetDatabaseValue("Items", Prod , "manufacturer")
+			-- if Prod is empty or produced by same building, ignore it 
+			if Prod and Prod > 0 and BldId ~= Manufacturer then
 				Amount = GetDatabaseValue("Items", ItemId, "nr"..j)
 				-- only add prod if it isn't in the list yet, otherwise increase usage
 				local IndexOfProd =	hottea_IndexOf(RequiredItems, RequiredItemsCount, Prod)
-				if not IndexOfProd then
+				if not IndexOfProd then 
 					RequiredItemsCount = RequiredItemsCount + 1
 					IndexOfProd = RequiredItemsCount
 					RequiredItems[IndexOfProd] = Prod
 					RequiredItemsBaseUsages[IndexOfProd] = 0
+					--LogMessage(ItemGetLabel(Prod, false))
 				end
-				-- base usage is defined as the maximum of units of this items that can be used up by one worker during a day 
-				RequiredItemsBaseUsages[IndexOfProd] = math.max(math.ceil(24/Buildtime) * Amount, RequiredItemsBaseUsages[IndexOfProd])				
+				-- base usage is defined as the maximum of units of this items that can be used up by one worker in 8 hours 
+				RequiredItemsBaseUsages[IndexOfProd] = math.max(math.ceil(8/Buildtime) * Amount, RequiredItemsBaseUsages[IndexOfProd])				
 			end
 		end
 	end
