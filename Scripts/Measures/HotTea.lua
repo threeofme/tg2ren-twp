@@ -1,6 +1,6 @@
 function Run()
 	-- for each building
-	for i=490, 672 do
+	for i=100, 672 do 
 		local Testname = GetDatabaseValue("BuildingToItems", i, "name")
 		if Testname and Testname ~= "" then
 			hottea_PrintRequiredItems(i)
