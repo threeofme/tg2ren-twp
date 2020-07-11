@@ -5,7 +5,7 @@ Table Description:
 "id" INT -1 |"name" STRING  0               |"buildingtype" INT  0 |"spawnlocator" STRING  0       |"behavior" INT  0 |"characterclass" INT  0 |"profession" INT  0 |
 
 Data: 
-0            "nothingTest"                   0                      ""                              0                  0                        0                    | 
+0            ""                              0                      ""                              0                  0                        0                    | 
 1            "Usher"                         23                     "UsherChairPos"                 3214               1                        33                   | 
 2            "TownhallGuard1"                23                     "Guard1OffPos"                  3215               4                        34                   | 
 3            "TownhallGuard2"                23                     "Guard2OffPos"                  3216               4                        34                   | 

@@ -222,6 +222,7 @@ Data:
 373   1   1   0   "TradingRoutePlundered"   0   "Hud/state/TradingRoutePlundered.tga"   |
 374   1   1   0   "Insulter"   0   "Hud/state/IsInsulter.tga"   |
 375   1   1   0   "CanApplyForLowestOffice"   0   ""   |
+385   1   2   0   "UnterHypnose"   0   ""   |
 386   1   1   0   "LevelingUp"   1050   ""   |
 387   1   4   0   "KindGelehrt"   0   "Hud/state/impacts/stoned.tga"   |
 388   1   3   0   "GebaudeVerflucht"   0   "Hud/state/impacts/Pox.tga"   |
@@ -261,6 +262,7 @@ Data:
 423   1   2   0   "ToyFlute"   0   ""   |
 424   1   2   0   "ToyPferd"   0   ""   |
 425   1   2   0   "BootyMsg"   0   ""   |
+426   2   2   0   "RecentWaylay"   0   ""   |
 427   1   2   0   "TrialTimer"   0   ""   |
 428   1   2   0   "DuelTimer"   0   ""   |
 429   1   2   0   "OfficeTimer"   0   ""   |
