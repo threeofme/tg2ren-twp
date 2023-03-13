@@ -1,7 +1,7 @@
 Installation
 ============
 
-Download-Link: https://github.com/threeofme/tg2ren-twp/archive/develop.zip
+Download-Link: https://github.com/threeofme/tg2ren-twp/archive/master.zip
 
 TradeWarPolitics is based on Fajeth's MegaModPack 0.95. Make sure to follow 
 the installation instructions of that mod **before** you continue with the 
