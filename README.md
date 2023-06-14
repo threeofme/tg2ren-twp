@@ -18,7 +18,7 @@ following steps.
    existing files. If you are not prompted to confirm any overwrite, 
    you unzipped into the wrong folder.
 
-4. Go into the DBT-folder and remove the file **Text.dbt**. Rename the 
+4. Go into the "DB" folder and remove the file **Text.dbt**. Rename the 
    file **Text_EN.dbt** or **Text_DE.dbt** into **Text.dbt** for English 
    or German text.
 
